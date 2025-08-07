@@ -1,36 +1,76 @@
-
-import React from 'react';
+import React, { useState } from "react";
+import Button from "./ui/Button";
 
 interface QuestionProps {
   question: string;
+  questionNumber: number;
+  totalQuestions: number;
   options: number[];
   description: string[];
-  onAnswer: (answer: number) => void;
+  onNext: (answer: number) => void;
   progress: number;
 }
 
-const Question: React.FC<QuestionProps> = ({ question, options, description, onAnswer, progress }) => {
+const Question: React.FC<QuestionProps> = ({
+  question,
+  questionNumber,
+  totalQuestions,
+  options,
+  description,
+  onNext,
+  progress,
+}) => {
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+
+  const handleContinue = () => {
+    if (selectedOption !== null) {
+      onNext(selectedOption);
+      setSelectedOption(null); // Reset for the next question
+    }
+  };
+
   return (
-    <div className="p-4 md:p-8">
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
-        <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
+    <div className="space-y-12">
+      <div className="space-y-2">
+        <div className="text-left  text-gray-500 ">
+          Вопрос {questionNumber} из {totalQuestions}
+        </div>
+        <div className="w-full bg-white rounded-full h-2.5 mb-4">
+          <div
+            className="bg-[var(--color-custom-blue)] h-2.5 rounded-full"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
       </div>
-      <h2 className="text-2xl font-bold my-4">{question}</h2>
-      <div className="flex justify-between text-sm text-gray-500 mb-4">
-        <span>{description[0]}</span>
-        <span>{description[1]}</span>
+      <div>
+        <h2 className="text-[1.75rem] font-semibold  text-foreground-secondary">
+          {question}
+        </h2>
+        <div className="text-left text-gray-600 mt-2">Выберите ответ:</div>
+
+        <div className="flex gap-4 items-center mt-6">
+          {options.map((option) => (
+            <button
+              key={option}
+              onClick={() => setSelectedOption(option)}
+              className={`flex justify-center items-center w-12 h-12 rounded-lg border  transition-colors  text-xl ${
+                selectedOption === option
+                  ? "bg-custom-blue text-white border-[var(--color-custom-blue)]"
+                  : "border-gray-300 bg-white text-gray-500 hover:border-[var(--color-custom-blue)] hover:text-[var(--color-custom-blue)]"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
       </div>
-      <div className="flex justify-between space-x-2">
-        {options.map((option) => (
-          <button 
-            key={option} 
-            onClick={() => onAnswer(option)} 
-            className="w-10 h-10 rounded-full border-2 border-blue-500 text-blue-500 flex items-center justify-center hover:bg-blue-500 hover:text-white transition-colors"
-          >
-            {option}
-          </button>
-        ))}
-      </div>
+      <Button
+        onClick={handleContinue}
+        disabled={selectedOption === null}
+        className=" py-3   "
+      >
+        Продолжить
+      </Button>
     </div>
   );
 };

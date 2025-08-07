@@ -3,7 +3,7 @@ import Button from "../components/ui/Button";
 
 export default function Home() {
   return (
-    <main className=" flex items-center justify-center ">
+    <main className="flex-1 flex items-center justify-center ">
       <div className="w-full max-w-5xl p-4 ">
         <h1 className="text-2xl font-bold ">
           Самотестирование бизнеса для оценки собственной цифровой зрелости

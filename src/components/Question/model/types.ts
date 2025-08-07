@@ -1,4 +1,4 @@
-export type InputType = 'scale' | 'radio' | 'text' | 'location' | 'final-thoughts';
+export type InputType = 'scale' | 'radio' | 'text' | 'location' | 'sector' | 'final-thoughts';
 
 export interface QuestionOption {
   value: string;
@@ -20,7 +20,7 @@ export interface Question {
   followUp?: FollowUp;
   weight: number;
   placeholder?: string; // For simple text inputs
-  scoring?: { [key: string]: number }; // Add scoring back for radio types
+  scoring?: { [key: string]: number };
 }
 
 export type Answer = {

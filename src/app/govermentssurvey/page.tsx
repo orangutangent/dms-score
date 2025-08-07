@@ -1,28 +1,29 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useSurvey } from '../../components/Question/data-access/useSurvey';
-import Question from '../../components/Question';
-import { Question as QuestionType } from '../../components/Question/model/types';
-import questionsData from '../../govermentssurvey.json';
-import { useGovernmentSurveyStore } from '../../store/government-survey.store';
+import React from "react";
+import { useSurvey } from "../../components/Question/data-access/useSurvey";
+import Question from "../../components/Question";
+import { Question as QuestionType } from "../../components/Question/model/types";
+import questionsData from "../../govermentssurvey.json";
+import { useGovernmentSurveyStore } from "../../store/government-survey.store";
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
 const locationQuestion: QuestionType = {
   id: -1,
-  inputType: 'location', // Corrected from 'type'
-  criterion: 'Location',
-  question: 'В какой стране вы находитесь?',
+  inputType: "location",
+  criterion: "Location",
+  question: "В какой стране вы находитесь?",
   weight: 0,
 };
 
 const finalThoughtsQuestion: QuestionType = {
   id: -2,
-  inputType: 'final-thoughts', // Corrected from 'type'
-  criterion: 'Feedback',
-  question: 'Можете оставить свои пожелания по улучшению цифровых услуг при желании',
-  placeholder: 'Введите свои пожелания',
+  inputType: "final-thoughts",
+  criterion: "Feedback",
+  question:
+    "Можете оставить свои пожелания по улучшению цифровых услуг при желании",
+  placeholder: "Введите свои пожелания",
   weight: 0,
 };
 
@@ -39,9 +40,15 @@ const GovermentsSurveyPage = () => {
     initialAnswer,
     location,
     setLocation,
+    sector,
+    setSector,
     finalThoughts,
     setFinalThoughts,
-  } = useSurvey(useGovernmentSurveyStore, allQuestions, '/resultsgovermentserice');
+  } = useSurvey(
+    useGovernmentSurveyStore,
+    allQuestions,
+    "/resultsgovermentserice"
+  );
 
   if (!currentQuestion) {
     return (
@@ -65,6 +72,8 @@ const GovermentsSurveyPage = () => {
           initialAnswer={initialAnswer}
           initialLocation={location}
           onLocationChange={setLocation}
+          initialSector={sector || ""}
+          onSectorChange={setSector || (() => {})}
           initialFinalThoughts={finalThoughts}
           onFinalThoughtsChange={setFinalThoughts}
         />

@@ -11,22 +11,35 @@ const questions: QuestionType[] = questionsData as QuestionType[];
 
 const locationQuestion: QuestionType = {
   id: -1,
-  inputType: 'location', // Corrected from 'type'
+  inputType: 'location',
   criterion: 'Location',
   question: 'В какой стране вы находитесь?',
   weight: 0,
 };
 
+const sectorQuestion: QuestionType = {
+  id: -3,
+  inputType: 'sector',
+  criterion: 'Sector',
+  question: 'К какому сектору экономики вы относитесь?',
+  options: [
+    { value: 'healthcare', label: 'Здравоохранение' },
+    { value: 'education', label: 'Образование' },
+    { value: 'other', label: 'Другое' },
+  ],
+  weight: 0,
+};
+
 const finalThoughtsQuestion: QuestionType = {
   id: -2,
-  inputType: 'final-thoughts', // Corrected from 'type'
+  inputType: 'final-thoughts',
   criterion: 'Feedback',
   question: 'Можете оставить свои пожелания по улучшению цифровых услуг при желании',
   placeholder: 'Введите свои пожелания',
   weight: 0,
 };
 
-const allQuestions = [locationQuestion, ...questions, finalThoughtsQuestion];
+const allQuestions = [locationQuestion, sectorQuestion, ...questions, finalThoughtsQuestion];
 
 const DigitalMaturityPage = () => {
   const {
@@ -39,6 +52,8 @@ const DigitalMaturityPage = () => {
     initialAnswer,
     location,
     setLocation,
+    sector,
+    setSector,
     finalThoughts,
     setFinalThoughts,
   } = useSurvey(useBusinessSurveyStore, allQuestions, '/resultsmatutiry');
@@ -65,6 +80,8 @@ const DigitalMaturityPage = () => {
           initialAnswer={initialAnswer}
           initialLocation={location}
           onLocationChange={setLocation}
+          initialSector={sector || ''}
+          onSectorChange={setSector || (() => {})}
           initialFinalThoughts={finalThoughts}
           onFinalThoughtsChange={setFinalThoughts}
         />

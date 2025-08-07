@@ -10,31 +10,26 @@ type LocationState = {
 type SurveyStore = {
   answers: Record<number, Answer>;
   location: LocationState;
+  sector?: string; // Optional for government survey
   finalThoughts: string;
   setAnswer: (questionIndex: number, answer: Answer) => void;
   setLocation: (location: LocationState) => void;
+  setSector?: (sector: string) => void;
   setFinalThoughts: (thoughts: string) => void;
 };
 
 export const useSurvey = (useStore: () => SurveyStore, questions: Question[], resultsPage: string) => {
   const router = useRouter();
-  const { 
-    answers, 
-    location, 
-    finalThoughts, 
-    setAnswer, 
-    setLocation, 
-    setFinalThoughts 
-  } = useStore();
-  
+  const store = useStore();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const handleNext = (answer: Answer) => {
-    // The location question is always at index 0
-    // The final thoughts question is always at the last index
-    if (currentQuestionIndex > 0 && currentQuestionIndex < questions.length - 1) {
-      // Adjust index for storing regular answers
-      setAnswer(currentQuestionIndex - 1, answer);
+    const currentQuestion = questions[currentQuestionIndex];
+    // Handle special questions that don't store answers in the main 'answers' object
+    if (currentQuestion.inputType !== 'location' && currentQuestion.inputType !== 'sector' && currentQuestion.inputType !== 'final-thoughts') {
+      // Adjust index for regular answers
+      const answerIndex = questions.slice(0, currentQuestionIndex).filter(q => q.inputType !== 'location' && q.inputType !== 'sector' && q.inputType !== 'final-thoughts').length;
+      store.setAnswer(answerIndex, answer);
     }
 
     if (currentQuestionIndex < questions.length - 1) {
@@ -53,10 +48,10 @@ export const useSurvey = (useStore: () => SurveyStore, questions: Question[], re
   const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
   const currentQuestion = questions[currentQuestionIndex];
   
-  // Determine the initial answer for the current question
   let initialAnswer: Answer = null;
-  if (currentQuestion.inputType !== 'location' && currentQuestion.inputType !== 'final-thoughts') {
-    initialAnswer = answers[currentQuestionIndex - 1] || null;
+  if (currentQuestion.inputType !== 'location' && currentQuestion.inputType !== 'sector' && currentQuestion.inputType !== 'final-thoughts') {
+      const answerIndex = questions.slice(0, currentQuestionIndex).filter(q => q.inputType !== 'location' && q.inputType !== 'sector' && q.inputType !== 'final-thoughts').length;
+      initialAnswer = store.answers[answerIndex] || null;
   }
 
   return {
@@ -67,9 +62,6 @@ export const useSurvey = (useStore: () => SurveyStore, questions: Question[], re
     handleBack,
     progress,
     initialAnswer,
-    location,
-    setLocation,
-    finalThoughts,
-    setFinalThoughts,
+    ...store,
   };
 };

@@ -9,6 +9,25 @@ import { useGovernmentSurveyStore } from '../../store/government-survey.store';
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
+const locationQuestion: QuestionType = {
+  id: -1,
+  inputType: 'location', // Corrected from 'type'
+  criterion: 'Location',
+  question: 'В какой стране вы находитесь?',
+  weight: 0,
+};
+
+const finalThoughtsQuestion: QuestionType = {
+  id: -2,
+  inputType: 'final-thoughts', // Corrected from 'type'
+  criterion: 'Feedback',
+  question: 'Можете оставить свои пожелания по улучшению цифровых услуг при желании',
+  placeholder: 'Введите свои пожелания',
+  weight: 0,
+};
+
+const allQuestions = [locationQuestion, ...questions, finalThoughtsQuestion];
+
 const GovermentsSurveyPage = () => {
   const {
     currentQuestion,
@@ -18,7 +37,11 @@ const GovermentsSurveyPage = () => {
     handleBack,
     progress,
     initialAnswer,
-  } = useSurvey(useGovernmentSurveyStore, questions, '/resultsgovermentserice');
+    location,
+    setLocation,
+    finalThoughts,
+    setFinalThoughts,
+  } = useSurvey(useGovernmentSurveyStore, allQuestions, '/resultsgovermentserice');
 
   if (!currentQuestion) {
     return (
@@ -40,6 +63,10 @@ const GovermentsSurveyPage = () => {
           onBack={handleBack}
           progress={progress}
           initialAnswer={initialAnswer}
+          initialLocation={location}
+          onLocationChange={setLocation}
+          initialFinalThoughts={finalThoughts}
+          onFinalThoughtsChange={setFinalThoughts}
         />
       </div>
     </main>

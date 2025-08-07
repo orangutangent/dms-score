@@ -2,19 +2,40 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Question, Answer } from '../model/types';
 
-// The hook now accepts a generic store hook
+type LocationState = {
+  country: string;
+  region: string;
+};
+
 type SurveyStore = {
   answers: Record<number, Answer>;
+  location: LocationState;
+  finalThoughts: string;
   setAnswer: (questionIndex: number, answer: Answer) => void;
+  setLocation: (location: LocationState) => void;
+  setFinalThoughts: (thoughts: string) => void;
 };
 
 export const useSurvey = (useStore: () => SurveyStore, questions: Question[], resultsPage: string) => {
   const router = useRouter();
-  const { answers, setAnswer } = useStore();
+  const { 
+    answers, 
+    location, 
+    finalThoughts, 
+    setAnswer, 
+    setLocation, 
+    setFinalThoughts 
+  } = useStore();
+  
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const handleNext = (answer: Answer) => {
-    setAnswer(currentQuestionIndex, answer);
+    // The location question is always at index 0
+    // The final thoughts question is always at the last index
+    if (currentQuestionIndex > 0 && currentQuestionIndex < questions.length - 1) {
+      // Adjust index for storing regular answers
+      setAnswer(currentQuestionIndex - 1, answer);
+    }
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -29,9 +50,14 @@ export const useSurvey = (useStore: () => SurveyStore, questions: Question[], re
     }
   };
 
-  const progress = (currentQuestionIndex / questions.length) * 100;
+  const progress = (currentQuestionIndex / (questions.length - 1)) * 100;
   const currentQuestion = questions[currentQuestionIndex];
-  const initialAnswer = answers[currentQuestionIndex] || null;
+  
+  // Determine the initial answer for the current question
+  let initialAnswer: Answer = null;
+  if (currentQuestion.inputType !== 'location' && currentQuestion.inputType !== 'final-thoughts') {
+    initialAnswer = answers[currentQuestionIndex - 1] || null;
+  }
 
   return {
     currentQuestion,
@@ -41,5 +67,9 @@ export const useSurvey = (useStore: () => SurveyStore, questions: Question[], re
     handleBack,
     progress,
     initialAnswer,
+    location,
+    setLocation,
+    finalThoughts,
+    setFinalThoughts,
   };
 };

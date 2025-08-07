@@ -6,10 +6,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ children, variant = 'primary', ...props }, ref) => {
-  const baseClasses = "px-6 py-3 text-lg font-semibold rounded-md";
+  const baseClasses = "px-6 py-3 text-lg font-semibold rounded-md transition-colors duration-200 ease-in-out";
+  
   const variants = {
-    primary: "text-white bg-custom-blue hover:bg-blue-700",
-    secondary: "text-custom-blue border border-custom-blue hover:bg-blue-50",
+    primary: 
+      "text-white bg-custom-blue hover:bg-blue-700 disabled:bg-[#D5D9DD] disabled:cursor-not-allowed",
+    secondary: 
+      "text-custom-blue border border-custom-blue hover:bg-blue-50 disabled:border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed",
   };
 
   return (

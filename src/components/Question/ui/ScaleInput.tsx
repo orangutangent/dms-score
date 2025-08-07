@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface ScaleInputProps {
-  options: number[];
-  selectedValue: number | null;
-  onChange: (value: number) => void;
+  options: string[];
+  selectedValue: string | null;
+  onChange: (value: string) => void;
 }
 
 const ScaleInput: React.FC<ScaleInputProps> = ({ options, selectedValue, onChange }) => {

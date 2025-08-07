@@ -1,15 +1,29 @@
-export type QuestionType = 'scale' | 'yes-no' | 'yes-no-text';
+export type InputType = 'scale' | 'radio' | 'text' | 'location' | 'final-thoughts';
 
-export type Answer = number | { choice: 'yes' | 'no'; details?: string };
+export interface QuestionOption {
+  value: string;
+  label: string;
+}
+
+export interface FollowUp {
+  triggerValue: string;
+  inputType: 'text';
+  placeholder: string;
+}
 
 export interface Question {
   id: number;
   criterion: string;
-  type: QuestionType;
-  title: string;
+  inputType: InputType;
   question: string;
-  response_options?: string;
-  scoring?: { [key: string]: number };
-  followUpQuestion?: string;
+  options?: QuestionOption[];
+  followUp?: FollowUp;
   weight: number;
+  placeholder?: string; // For simple text inputs
+  scoring?: { [key: string]: number }; // Add scoring back for radio types
 }
+
+export type Answer = {
+  value: string;
+  details?: string;
+} | null;

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../ui/Button";
+import LocationInput from "./LocationInput";
 import ScaleInput from "./ScaleInput";
-import YesNoInput from "./YesNoInput";
-import YesNoWithTextInput from "./YesNoWithTextInput";
+import Radio from "../../ui/Radio";
+import Textarea from "../../ui/Textarea";
+import FinalThoughtsInput from "./FinalThoughtsInput";
 import { Question as QuestionType, Answer } from "../model/types";
 
 interface QuestionProps {
@@ -12,7 +14,12 @@ interface QuestionProps {
   onNext: (answer: Answer) => void;
   onBack: () => void;
   progress: number;
-  initialAnswer: Answer | null;
+  // State handlers
+  initialAnswer: Answer;
+  initialLocation: { country: string; region: string };
+  initialFinalThoughts: string;
+  onLocationChange: (location: { country: string; region: string }) => void;
+  onFinalThoughtsChange: (thoughts: string) => void;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -23,52 +30,91 @@ const Question: React.FC<QuestionProps> = ({
   onBack,
   progress,
   initialAnswer,
+  initialLocation,
+  initialFinalThoughts,
+  onLocationChange,
+  onFinalThoughtsChange,
 }) => {
-  const [answer, setAnswer] = useState<Answer | null>(initialAnswer);
+  const [answer, setAnswer] = useState<Answer>(initialAnswer);
 
   useEffect(() => {
     setAnswer(initialAnswer);
   }, [initialAnswer]);
 
   const handleContinue = () => {
-    if (answer !== null) {
-      onNext(answer);
-      setAnswer(null); // Reset for the next question
-    }
+    onNext(answer);
+    setAnswer(null);
   };
 
   const renderInput = () => {
-    switch (question.type) {
+    switch (question.inputType) {
+      case 'location':
+        return (
+          <LocationInput
+            country={initialLocation.country}
+            region={initialLocation.region}
+            onCountryChange={(country) => onLocationChange({ ...initialLocation, country })}
+            onRegionChange={(region) => onLocationChange({ ...initialLocation, region })}
+          />
+        );
+      case 'final-thoughts':
+        return (
+          <FinalThoughtsInput
+            value={initialFinalThoughts}
+            onChange={onFinalThoughtsChange}
+            placeholder={question.placeholder}
+          />
+        );
       case 'scale':
         return (
           <ScaleInput
-            options={[0, 1, 2, 3, 4, 5]}
-            selectedValue={typeof answer === 'number' ? answer : null}
-            onChange={(value) => setAnswer(value)}
+            options={question.options?.map(opt => opt.label) || []}
+            selectedValue={answer?.value || null}
+            onChange={(value) => setAnswer({ value })}
           />
         );
-      case 'yes-no':
+      case 'radio':
         return (
-          <YesNoInput
-            selectedValue={typeof answer === 'object' && answer !== null && 'choice' in answer ? (answer.choice as 'yes' | 'no') : null}
-            onChange={(value) => setAnswer({ choice: value })}
-          />
+          <div className="flex flex-col gap-4 mt-6">
+            {question.options?.map((option) => (
+              <Radio
+                key={option.value}
+                name={question.id.toString()}
+                label={option.label}
+                checked={answer?.value === option.value}
+                onChange={() => setAnswer({ value: option.value, details: '' })}
+              />
+            ))}
+            {question.followUp && answer?.value === question.followUp.triggerValue && (
+              <div className="mt-4">
+                <Textarea
+                  placeholder={question.followUp.placeholder}
+                  value={answer?.details || ''}
+                  onChange={(e) => setAnswer({ ...answer, details: e.target.value })}
+                />
+              </div>
+            )}
+          </div>
         );
-      case 'yes-no-text':
-        const choice = typeof answer === 'object' && answer !== null && 'choice' in answer ? (answer.choice as 'yes' | 'no') : null;
-        const details = typeof answer === 'object' && answer !== null && 'details' in answer ? (answer.details as string) : '';
+      case 'text':
         return (
-          <YesNoWithTextInput
-            selectedValue={choice}
-            details={details}
-            onSelectionChange={(value) => setAnswer({ choice: value, details })}
-            onDetailsChange={(text) => setAnswer({ choice: choice || 'yes', details: text })}
-            followUpQuestion={question.followUpQuestion}
-          />
+          <div className="mt-6">
+            <Textarea
+              placeholder={question.placeholder}
+              value={answer?.value || ''}
+              onChange={(e) => setAnswer({ value: e.target.value })}
+            />
+          </div>
         );
       default:
         return null;
     }
+  };
+
+  const isNextDisabled = () => {
+    if (question.inputType === 'location') return !initialLocation.country;
+    if (question.inputType === 'final-thoughts') return false; // Can proceed with empty thoughts
+    return answer === null || answer.value === '';
   };
 
   return (
@@ -88,7 +134,7 @@ const Question: React.FC<QuestionProps> = ({
         <h2 className="text-[1.75rem] font-semibold text-foreground-secondary">
           {question.question}
         </h2>
-        <div className="text-left text-gray-600 mt-2">{question.response_options || 'Выберите ответ:'}</div>
+        <div className="text-left text-gray-600 mt-2">Выберите ответ:</div>
         {renderInput()}
       </div>
       <div className="flex gap-4">
@@ -99,7 +145,7 @@ const Question: React.FC<QuestionProps> = ({
         )}
         <Button
           onClick={handleContinue}
-          disabled={answer === null}
+          disabled={isNextDisabled()}
           className="py-3"
         >
           Продолжить

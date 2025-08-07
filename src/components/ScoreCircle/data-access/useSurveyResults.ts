@@ -2,11 +2,18 @@ import { useEffect, useState } from 'react';
 import { Question, Answer } from '../../../components/Question/model/types';
 
 const calculateScore = (question: Question, answer: Answer | null): number => {
-  if (answer === null) return 0;
-  if (typeof answer === 'number') return answer * question.weight;
-  if (typeof answer === 'object' && 'choice' in answer) {
-    return (question.scoring?.[answer.choice] || 0) * question.weight;
+  if (answer === null || !answer.value) return 0;
+
+  // For scale, the value is the score
+  if (!isNaN(Number(answer.value))) {
+    return Number(answer.value) * question.weight;
   }
+
+  // For radio/yes-no, use the scoring object
+  if (question.scoring) {
+    return (question.scoring[answer.value] || 0) * question.weight;
+  }
+
   return 0;
 };
 

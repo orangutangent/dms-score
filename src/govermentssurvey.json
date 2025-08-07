@@ -2,102 +2,55 @@
   {
     "id": 1,
     "criterion": "Digital Services",
-    "type": "scale",
-    "title": "Online Service Availability",
-    "question": "What percentage of public services can be fully completed online without a physical visit?",
-    "response_options": "Rate from 0 (0-20%) to 5 (80-100%).",
+    "inputType": "scale",
+    "question": "Какой процент госуслуг можно получить полностью онлайн?",
+    "options": [
+      { "value": "0", "label": "0-20%" },
+      { "value": "1", "label": "21-40%" },
+      { "value": "2", "label": "41-60%" },
+      { "value": "3", "label": "61-80%" },
+      { "value": "4", "label": "81-100%" }
+    ],
     "weight": 1
   },
   {
     "id": 2,
     "criterion": "Digital Services",
-    "type": "scale",
-    "title": "Mobile Accessibility",
-    "question": "Are the digital services optimized for mobile devices?",
-    "response_options": "Rate from 0 (Not optimized) to 5 (Fully responsive and mobile-first design).",
+    "inputType": "radio",
+    "question": "Оптимизированы ли цифровые сервисы для мобильных устройств?",
+    "options": [
+      { "value": "yes", "label": "Да, полностью адаптивны" },
+      { "value": "no", "label": "Нет, работают только на десктопе" }
+    ],
+    "scoring": { "yes": 5, "no": 1 },
     "weight": 1
   },
   {
     "id": 3,
     "criterion": "Data Management",
-    "type": "scale",
-    "title": "Data Sharing Between Departments",
-    "question": "How effectively is data shared between different government departments to improve service delivery?",
-    "response_options": "Rate from 0 (No sharing) to 5 (Seamless and secure real-time data exchange).",
+    "inputType": "radio",
+    "question": "Существует ли публичный портал с открытыми данными?",
+    "options": [
+      { "value": "yes", "label": "Да" },
+      { "value": "no", "label": "Нет" }
+    ],
+    "followUp": {
+      "triggerValue": "yes",
+      "inputType": "text",
+      "placeholder": "Пожалуйста, укажите ссылку на портал"
+    },
+    "scoring": { "yes": 5, "no": 0 },
     "weight": 1
   },
   {
     "id": 4,
-    "criterion": "Data Management",
-    "type": "yes-no",
-    "title": "Open Data Policy",
-    "question": "Is there a publicly accessible open data portal available?",
-    "scoring": { "yes": 5, "no": 0 },
-    "weight": 1
-  },
-  {
-    "id": 5,
-    "criterion": "Digital Tools",
-    "type": "yes-no-text",
-    "title": "e-Participation Platform",
-    "question": "Does the government use a digital platform for citizen consultations?",
-    "followUpQuestion": "If yes, please specify the platform and its main uses.",
-    "scoring": { "yes": 5, "no": 1 },
-    "weight": 1
-  },
-  {
-    "id": 6,
     "criterion": "Infrastructure Security",
-    "type": "yes-no",
-    "title": "Two-Factor Authentication",
-    "question": "Is two-factor authentication (2FA) mandatory for all internal government systems?",
-    "scoring": { "yes": 5, "no": 1 },
-    "weight": 1
-  },
-  {
-    "id": 7,
-    "criterion": "Digital Tools",
-    "type": "yes-no-text",
-    "title": "Cloud Adoption",
-    "question": "Has your department migrated any services to the cloud?",
-    "followUpQuestion": "If yes, please describe which services and the benefits you have observed.",
-    "scoring": { "yes": 5, "no": 2 },
-    "weight": 1
-  },
-  {
-    "id": 8,
-    "criterion": "Infrastructure Security",
-    "type": "scale",
-    "title": "Cybersecurity Measures",
-    "question": "How robust are the cybersecurity protocols protecting government IT infrastructure?",
-    "response_options": "Rate from 0 (Basic protection) to 5 (Advanced, multi-layered security with proactive monitoring).",
-    "weight": 1
-  },
-  {
-    "id": 9,
-    "criterion": "Infrastructure Security",
-    "type": "yes-no",
-    "title": "Data Encryption",
-    "question": "Is sensitive citizen and government data encrypted both at rest and in transit?",
-    "scoring": { "yes": 5, "no": 0 },
-    "weight": 1
-  },
-  {
-    "id": 10,
-    "criterion": "Digital Tools",
-    "type": "scale",
-    "title": "Internal Collaboration Tools",
-    "question": "How effective are the digital tools used for internal collaboration and communication?",
-    "response_options": "Rate from 0 (Ineffective and outdated) to 5 (Modern, integrated, and widely adopted).",
-    "weight": 1
-  },
-  {
-    "id": 11,
-    "criterion": "Digital Tools",
-    "type": "yes-no-text",
-    "title": "Digital Signature Adoption",
-    "question": "Are digital signatures used for official document workflows?",
-    "followUpQuestion": "If yes, please specify the primary platform or technology used.",
+    "inputType": "radio",
+    "question": "Является ли двухфакторная аутентификация (2FA) обязательной для доступа к внутренним системам?",
+    "options": [
+      { "value": "yes", "label": "Да, для всех сотрудников и систем" },
+      { "value": "no", "label": "Нет, используется только пароль" }
+    ],
     "scoring": { "yes": 5, "no": 1 },
     "weight": 1
   }

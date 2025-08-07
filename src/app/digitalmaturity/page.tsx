@@ -9,6 +9,25 @@ import { useBusinessSurveyStore } from '../../store/business-survey.store';
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
+const locationQuestion: QuestionType = {
+  id: -1,
+  inputType: 'location', // Corrected from 'type'
+  criterion: 'Location',
+  question: 'В какой стране вы находитесь?',
+  weight: 0,
+};
+
+const finalThoughtsQuestion: QuestionType = {
+  id: -2,
+  inputType: 'final-thoughts', // Corrected from 'type'
+  criterion: 'Feedback',
+  question: 'Можете оставить свои пожелания по улучшению цифровых услуг при желании',
+  placeholder: 'Введите свои пожелания',
+  weight: 0,
+};
+
+const allQuestions = [locationQuestion, ...questions, finalThoughtsQuestion];
+
 const DigitalMaturityPage = () => {
   const {
     currentQuestion,
@@ -18,7 +37,11 @@ const DigitalMaturityPage = () => {
     handleBack,
     progress,
     initialAnswer,
-  } = useSurvey(useBusinessSurveyStore, questions, '/resultsmatutiry');
+    location,
+    setLocation,
+    finalThoughts,
+    setFinalThoughts,
+  } = useSurvey(useBusinessSurveyStore, allQuestions, '/resultsmatutiry');
 
   if (!currentQuestion) {
     return (
@@ -40,6 +63,10 @@ const DigitalMaturityPage = () => {
           onBack={handleBack}
           progress={progress}
           initialAnswer={initialAnswer}
+          initialLocation={location}
+          onLocationChange={setLocation}
+          initialFinalThoughts={finalThoughts}
+          onFinalThoughtsChange={setFinalThoughts}
         />
       </div>
     </main>

@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Question, Answer } from '../model/types';
-import { useSurveyStore } from '../../../store/survey';
 
-export const useSurvey = (survey: keyof ReturnType<typeof useSurveyStore.getState>['answers'], questions: Question[], resultsPage: string) => {
+// The hook now accepts a generic store hook
+type SurveyStore = {
+  answers: Record<number, Answer>;
+  setAnswer: (questionIndex: number, answer: Answer) => void;
+};
+
+export const useSurvey = (useStore: () => SurveyStore, questions: Question[], resultsPage: string) => {
   const router = useRouter();
-  const { answers, setAnswer } = useSurveyStore();
+  const { answers, setAnswer } = useStore();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const handleNext = (answer: Answer) => {
-    setAnswer(survey, currentQuestionIndex, answer);
+    setAnswer(currentQuestionIndex, answer);
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -26,7 +31,7 @@ export const useSurvey = (survey: keyof ReturnType<typeof useSurveyStore.getStat
 
   const progress = (currentQuestionIndex / questions.length) * 100;
   const currentQuestion = questions[currentQuestionIndex];
-  const initialAnswer = answers[survey]?.[currentQuestionIndex] || null;
+  const initialAnswer = answers[currentQuestionIndex] || null;
 
   return {
     currentQuestion,

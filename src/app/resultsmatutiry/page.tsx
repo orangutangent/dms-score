@@ -8,11 +8,12 @@ import { useSurveyResults } from '../../components/ScoreCircle/data-access/useSu
 import { criteriaColors } from '../../config/criteriaColors';
 import { Question } from '../../components/Question/model/types';
 import questionsData from '../../questions.json';
+import { useBusinessSurveyStore } from '../../store/business-survey.store';
 
 const questions: Question[] = questionsData as Question[];
 
 const ResultsMaturityPage = () => {
-  const { scores, averageScore } = useSurveyResults('digitalmaturity', questions);
+  const { scores, averageScore } = useSurveyResults(useBusinessSurveyStore, questions);
 
   const criteria = useMemo(() => {
     const uniqueCriteria = [...new Set(questions.map((q) => q.criterion))];

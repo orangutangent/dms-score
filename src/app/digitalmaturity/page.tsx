@@ -5,6 +5,7 @@ import { useSurvey } from '../../components/Question/data-access/useSurvey';
 import Question from '../../components/Question';
 import { Question as QuestionType } from '../../components/Question/model/types';
 import questionsData from '../../questions.json';
+import { useBusinessSurveyStore } from '../../store/business-survey.store';
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
@@ -17,7 +18,7 @@ const DigitalMaturityPage = () => {
     handleBack,
     progress,
     initialAnswer,
-  } = useSurvey('digitalmaturity', questions, '/resultsmatutiry');
+  } = useSurvey(useBusinessSurveyStore, questions, '/resultsmatutiry');
 
   if (!currentQuestion) {
     return (

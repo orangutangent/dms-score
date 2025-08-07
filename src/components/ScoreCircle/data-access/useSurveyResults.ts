@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react';
-import { useSurveyStore } from '../../../store/survey';
 import { Question, Answer } from '../../../components/Question/model/types';
 
 const calculateScore = (question: Question, answer: Answer | null): number => {
   if (answer === null) return 0;
-
-  if (typeof answer === 'number') {
-    return answer * question.weight;
-  }
-
+  if (typeof answer === 'number') return answer * question.weight;
   if (typeof answer === 'object' && 'choice' in answer) {
     return (question.scoring?.[answer.choice] || 0) * question.weight;
   }
-
   return 0;
 };
 
-export const useSurveyResults = (survey: keyof ReturnType<typeof useSurveyStore.getState>['answers'], questions: Question[]) => {
-  const { answers } = useSurveyStore();
+type SurveyStore = {
+  answers: Record<number, Answer>;
+};
+
+export const useSurveyResults = (useStore: () => SurveyStore, questions: Question[]) => {
+  const { answers } = useStore();
   const [scores, setScores] = useState<{ [key: string]: number }>({});
   const [averageScore, setAverageScore] = useState(0);
 
   useEffect(() => {
-    const surveyAnswers = answers[survey] || {};
     const newScores: { [key: string]: number } = {};
     let totalScore = 0;
     let totalWeight = 0;
@@ -31,7 +28,7 @@ export const useSurveyResults = (survey: keyof ReturnType<typeof useSurveyStore.
       if (!newScores[question.criterion]) {
         newScores[question.criterion] = 0;
       }
-      const answer = surveyAnswers[index] || null;
+      const answer = answers[index] || null;
       const score = calculateScore(question, answer);
       newScores[question.criterion] += score;
       totalScore += score;
@@ -42,7 +39,7 @@ export const useSurveyResults = (survey: keyof ReturnType<typeof useSurveyStore.
 
     setScores(newScores);
     setAverageScore(newAverage);
-  }, [answers, survey, questions]);
+  }, [answers, questions]);
 
   return { scores, averageScore };
 };

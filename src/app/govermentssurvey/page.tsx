@@ -5,6 +5,7 @@ import { useSurvey } from '../../components/Question/data-access/useSurvey';
 import Question from '../../components/Question';
 import { Question as QuestionType } from '../../components/Question/model/types';
 import questionsData from '../../govermentssurvey.json';
+import { useGovernmentSurveyStore } from '../../store/government-survey.store';
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
@@ -17,7 +18,7 @@ const GovermentsSurveyPage = () => {
     handleBack,
     progress,
     initialAnswer,
-  } = useSurvey('govermentssurvey', questions, '/resultsgovermentserice');
+  } = useSurvey(useGovernmentSurveyStore, questions, '/resultsgovermentserice');
 
   if (!currentQuestion) {
     return (

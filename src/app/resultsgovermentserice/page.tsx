@@ -4,34 +4,23 @@ import React, { useMemo } from 'react';
 import ScoreCircle from '../../components/ScoreCircle';
 import ScoreTable from '../../components/ScoreTable';
 import AdviceBlock from '../../components/AdviceBlock';
-import { useCombinedSurveyResults } from '../../components/ScoreCircle/data-access/useCombinedSurveyResults';
+import { useSurveyResults } from '../../components/ScoreCircle/data-access/useSurveyResults';
 import { criteriaColors } from '../../config/criteriaColors';
 import { Question } from '../../components/Question/model/types';
+import questionsData from '../../govermentssurvey.json';
+import { useGovernmentSurveyStore } from '../../store/government-survey.store';
 
-// Import JSON data with temporary names
-import govermentssurveyData from '../../govermentssurvey.json';
-import govermentsmiData from '../../govermentsmi.json';
-
-// Assert the types of the imported data to Question[]
-const govermentssurvey: Question[] = govermentssurveyData as Question[];
-const govermentsmi: Question[] = govermentsmiData as Question[];
-
-const allQuestions = [...govermentssurvey, ...govermentsmi];
+const questions: Question[] = questionsData as Question[];
 
 const ResultsGovermentServicePage = () => {
-  const surveys = useMemo(() => ({
-    govermentssurvey,
-    govermentsmi,
-  }), []);
-
-  const { scores, averageScore } = useCombinedSurveyResults(surveys);
+  const { scores, averageScore } = useSurveyResults(useGovernmentSurveyStore, questions);
 
   const criteria = useMemo(() => {
-    const uniqueCriteria = [...new Set(allQuestions.map((q) => q.criterion))];
+    const uniqueCriteria = [...new Set(questions.map((q) => q.criterion))];
     return uniqueCriteria.reduce((acc, criterion) => {
       acc[criterion] = {
         color: criteriaColors[criterion] || '#000000',
-        weight: allQuestions.filter((q) => q.criterion === criterion).reduce((sum, q) => sum + q.weight, 0),
+        weight: questions.filter((q) => q.criterion === criterion).reduce((sum, q) => sum + q.weight, 0),
       };
       return acc;
     }, {} as { [key: string]: { color: string; weight: number } });

@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "criterion": "Infrastructure Security",
+    "type": "scale",
+    "title": "Cybersecurity Measures",
+    "question": "How robust are the cybersecurity protocols protecting government IT infrastructure?",
+    "response_options": "Rate from 0 (Basic protection) to 5 (Advanced, multi-layered security with proactive monitoring).",
+    "weight": 1
+  },
+  {
+    "id": 2,
+    "criterion": "Infrastructure Security",
+    "type": "yes-no",
+    "title": "Data Encryption",
+    "question": "Is sensitive citizen and government data encrypted both at rest and in transit?",
+    "scoring": { "yes": 5, "no": 0 },
+    "weight": 1
+  },
+  {
+    "id": 3,
+    "criterion": "Digital Tools",
+    "type": "scale",
+    "title": "Internal Collaboration Tools",
+    "question": "How effective are the digital tools used for internal collaboration and communication?",
+    "response_options": "Rate from 0 (Ineffective and outdated) to 5 (Modern, integrated, and widely adopted).",
+    "weight": 1
+  },
+  {
+    "id": 4,
+    "criterion": "Digital Tools",
+    "type": "yes-no-text",
+    "title": "Digital Signature Adoption",
+    "question": "Are digital signatures used for official document workflows?",
+    "followUpQuestion": "If yes, please specify the primary platform or technology used.",
+    "scoring": { "yes": 5, "no": 1 },
+    "weight": 1
+  }
+]

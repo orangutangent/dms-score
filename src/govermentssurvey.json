@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "criterion": "Digital Services",
+    "type": "scale",
+    "title": "Online Service Availability",
+    "question": "What percentage of public services can be fully completed online without a physical visit?",
+    "response_options": "Rate from 0 (0-20%) to 5 (80-100%).",
+    "weight": 1
+  },
+  {
+    "id": 2,
+    "criterion": "Digital Services",
+    "type": "scale",
+    "title": "Mobile Accessibility",
+    "question": "Are the digital services optimized for mobile devices?",
+    "response_options": "Rate from 0 (Not optimized) to 5 (Fully responsive and mobile-first design).",
+    "weight": 1
+  },
+  {
+    "id": 3,
+    "criterion": "Data Management",
+    "type": "scale",
+    "title": "Data Sharing Between Departments",
+    "question": "How effectively is data shared between different government departments to improve service delivery?",
+    "response_options": "Rate from 0 (No sharing) to 5 (Seamless and secure real-time data exchange).",
+    "weight": 1
+  },
+  {
+    "id": 4,
+    "criterion": "Data Management",
+    "type": "yes-no",
+    "title": "Open Data Policy",
+    "question": "Is there a publicly accessible open data portal available?",
+    "scoring": { "yes": 5, "no": 0 },
+    "weight": 1
+  },
+  {
+    "id": 5,
+    "criterion": "Digital Tools",
+    "type": "yes-no-text",
+    "title": "e-Participation Platform",
+    "question": "Does the government use a digital platform for citizen consultations?",
+    "followUpQuestion": "If yes, please specify the platform and its main uses.",
+    "scoring": { "yes": 5, "no": 1 },
+    "weight": 1
+  },
+  {
+    "id": 6,
+    "criterion": "Infrastructure Security",
+    "type": "yes-no",
+    "title": "Two-Factor Authentication",
+    "question": "Is two-factor authentication (2FA) mandatory for all internal government systems?",
+    "scoring": { "yes": 5, "no": 1 },
+    "weight": 1
+  },
+  {
+    "id": 7,
+    "criterion": "Digital Tools",
+    "type": "yes-no-text",
+    "title": "Cloud Adoption",
+    "question": "Has your department migrated any services to the cloud?",
+    "followUpQuestion": "If yes, please describe which services and the benefits you have observed.",
+    "scoring": { "yes": 5, "no": 2 },
+    "weight": 1
+  }
+]

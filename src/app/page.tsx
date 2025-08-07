@@ -21,7 +21,7 @@ export default function Home() {
           <p>11 вопросов</p>
         </div>
         <div className="mt-12">
-          <Link href="/survey">
+          <Link href="/digitalmaturity">
             <Button>Начать тестирование</Button>
           </Link>
         </div>

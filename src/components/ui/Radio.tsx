@@ -13,7 +13,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(({ label, ...props 
         {...props} 
         className="hidden" 
       />
-      <span className={`relative flex items-center justify-center w-6 h-6 border-2 rounded-full transition-colors ${props.checked ? 'border-custom-blue' : 'border-gray-400'}`}>
+      <span className={`relative flex-shrink-0 flex items-center justify-center w-6 h-6 border-2 rounded-full transition-colors ${props.checked ? 'border-custom-blue' : 'border-gray-400'}`}>
         {props.checked && <span className="w-3 h-3 bg-custom-blue rounded-full"></span>}
       </span>
       <span className="text-lg">{label}</span>

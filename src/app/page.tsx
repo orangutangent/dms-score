@@ -3,7 +3,7 @@ import Button from "../components/ui/Button";
 
 export default function Home() {
   return (
-    <main className="flex-1 flex items-center justify-center ">
+    <main className="flex-1 flex items-center justify-center p-8">
       <div className="w-full max-w-5xl ">
         <h1 className="text-[1.75rem] font-bold  mb-4">
           Оценка зрелости государственных услуг и цифровой зрелости бизнеса

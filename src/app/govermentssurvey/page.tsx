@@ -60,7 +60,7 @@ const GovermentsSurveyPage = () => {
   }
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center p-6 bg-[var(--background)]">
+    <main className="flex flex-1 flex-col items-center justify-center p-8 bg-[var(--background)]">
       <div className="w-full max-w-5xl mx-auto   ">
         <Question
           question={currentQuestion}

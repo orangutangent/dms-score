@@ -18,8 +18,8 @@ interface QuestionProps {
   initialAnswer: Answer;
   initialLocation: { country: string; region: string };
   onLocationChange: (location: { country: string; region: string }) => void;
-  initialSector: string;
-  onSectorChange: (sector: string) => void;
+  initialSector?: string | null; // Made optional
+  onSectorChange?: (sector: string) => void; // Made optional
   initialFinalThoughts: string;
   onFinalThoughtsChange: (thoughts: string) => void;
 }
@@ -46,13 +46,13 @@ const Question: React.FC<QuestionProps> = ({
   }, [initialAnswer]);
 
   const handleContinue = () => {
-    if (question.inputType === 'location') {
+    if (question.inputType === "location") {
       onLocationChange(initialLocation);
       onNext(null); // Pass null as answer for location question
-    } else if (question.inputType === 'sector') {
-      onSectorChange(initialSector);
+    } else if (question.inputType === "sector") {
+      onSectorChange?.(initialSector || ""); // Use optional chaining
       onNext(null); // Pass null as answer for sector question
-    } else if (question.inputType === 'final-thoughts') {
+    } else if (question.inputType === "final-thoughts") {
       onFinalThoughtsChange(initialFinalThoughts);
       onNext(null); // Pass null as answer for final thoughts question
     } else if (answer !== null) {
@@ -63,31 +63,35 @@ const Question: React.FC<QuestionProps> = ({
 
   const getInstructionText = () => {
     switch (question.inputType) {
-      case 'scale':
-      case 'radio':
-      case 'location':
-      case 'sector':
-        return 'Выберите ответ:';
-      case 'text':
-      case 'final-thoughts':
-        return 'Оставьте ответ:';
+      case "scale":
+      case "radio":
+      case "location":
+      case "sector":
+        return "Выберите ответ:";
+      case "text":
+      case "final-thoughts":
+        return "Оставьте ответ:";
       default:
-        return '';
+        return "";
     }
   };
 
   const renderInput = () => {
     switch (question.inputType) {
-      case 'location':
+      case "location":
         return (
           <LocationInput
             country={initialLocation.country}
             region={initialLocation.region}
-            onCountryChange={(country) => onLocationChange({ ...initialLocation, country })}
-            onRegionChange={(region) => onLocationChange({ ...initialLocation, region })}
+            onCountryChange={(country) =>
+              onLocationChange({ ...initialLocation, country })
+            }
+            onRegionChange={(region) =>
+              onLocationChange({ ...initialLocation, region })
+            }
           />
         );
-      case 'sector':
+      case "sector":
         return (
           <div className="flex flex-col gap-4 mt-6">
             {question.options?.map((option) => (
@@ -96,12 +100,12 @@ const Question: React.FC<QuestionProps> = ({
                 name={question.id.toString()}
                 label={option.label}
                 checked={initialSector === option.value}
-                onChange={() => onSectorChange(option.value)}
+                onChange={() => onSectorChange?.(option.value)}
               />
             ))}
           </div>
         );
-      case 'final-thoughts':
+      case "final-thoughts":
         return (
           <FinalThoughtsInput
             value={initialFinalThoughts}
@@ -109,15 +113,15 @@ const Question: React.FC<QuestionProps> = ({
             placeholder={question.placeholder}
           />
         );
-      case 'scale':
+      case "scale":
         return (
           <ScaleInput
-            options={question.options?.map(opt => opt.label) || []}
+            options={question.options?.map((opt) => opt.label) || []}
             selectedValue={answer?.value || null}
             onChange={(value) => setAnswer({ value })}
           />
         );
-      case 'radio':
+      case "radio":
         return (
           <div className="flex flex-col gap-4 mt-6">
             {question.options?.map((option) => (
@@ -126,26 +130,29 @@ const Question: React.FC<QuestionProps> = ({
                 name={question.id.toString()}
                 label={option.label}
                 checked={answer?.value === option.value}
-                onChange={() => setAnswer({ value: option.value, details: '' })}
+                onChange={() => setAnswer({ value: option.value, details: "" })}
               />
             ))}
-            {question.followUp && answer?.value === question.followUp.triggerValue && (
-              <div className="mt-4">
-                <Textarea
-                  placeholder={question.followUp.placeholder}
-                  value={answer?.details || ''}
-                  onChange={(e) => setAnswer({ ...answer, details: e.target.value })}
-                />
-              </div>
-            )}
+            {question.followUp &&
+              answer?.value === question.followUp.triggerValue && (
+                <div className="mt-4">
+                  <Textarea
+                    placeholder={question.followUp.placeholder}
+                    value={answer?.details || ""}
+                    onChange={(e) =>
+                      setAnswer({ ...answer, details: e.target.value })
+                    }
+                  />
+                </div>
+              )}
           </div>
         );
-      case 'text':
+      case "text":
         return (
           <div className="mt-6">
             <Textarea
               placeholder={question.placeholder}
-              value={answer?.value || ''}
+              value={answer?.value || ""}
               onChange={(e) => setAnswer({ value: e.target.value })}
             />
           </div>
@@ -156,10 +163,10 @@ const Question: React.FC<QuestionProps> = ({
   };
 
   const isNextDisabled = () => {
-    if (question.inputType === 'location') return !initialLocation.country;
-    if (question.inputType === 'sector') return !initialSector;
-    if (question.inputType === 'final-thoughts') return false; // Can proceed with empty thoughts
-    return answer === null || answer.value === '';
+    if (question.inputType === "location") return !initialLocation.country;
+    if (question.inputType === "sector") return !initialSector;
+    if (question.inputType === "final-thoughts") return false; // Can proceed with empty thoughts
+    return answer === null || answer.value === "";
   };
 
   return (
@@ -179,7 +186,9 @@ const Question: React.FC<QuestionProps> = ({
         <h2 className="text-[1.75rem] font-semibold text-foreground-secondary">
           {question.question}
         </h2>
-        <div className="text-left text-gray-600 mt-2">{getInstructionText()}</div>
+        <div className="text-left text-gray-600 mt-2">
+          {getInstructionText()}
+        </div>
         {renderInput()}
       </div>
       <div className="flex gap-4">

@@ -1,10 +1,11 @@
 import React from 'react';
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  children: React.ReactNode;
+  options?: { label: string; value: string }[];
+  children?: React.ReactNode;
 }
 
-const Select = React.forwardRef<HTMLSelectElement, SelectProps>(({ children, ...props }, ref) => {
+const Select = React.forwardRef<HTMLSelectElement, SelectProps>(({ options, children, ...props }, ref) => {
   return (
     <div className="relative w-full">
       <select
@@ -12,7 +13,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(({ children, ...
         {...props}
         className="w-full appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-custom-blue focus:border-transparent transition-shadow"
       >
-        {children}
+        {options ? options.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        )) : children}
       </select>
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
         <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

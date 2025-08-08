@@ -12,6 +12,13 @@ import { useBusinessSurveyStore } from "../../store/business-survey.store";
 
 const questions: Question[] = questionsData as Question[];
 
+const getMaturityStage = (score: number) => {
+  if (score < 1.5) return "C";
+  if (score < 3) return "B";
+  if (score < 4.5) return "A";
+  return "A+"; // Assuming A+ for highest level
+};
+
 const ResultsMaturityPage = () => {
   const { scores, averageScore } = useSurveyResults(
     useBusinessSurveyStore,
@@ -31,24 +38,31 @@ const ResultsMaturityPage = () => {
     }, {} as { [key: string]: { color: string; weight: number } });
   }, [questions]);
 
+  const overallStage = getMaturityStage(averageScore);
+
   return (
-    <main className="h-full flex-1 flex justify-center items-center p-8">
+    <main className="h-full flex-1 flex justify-center items-center ">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold  mb-8">Ваш результат</h1>
-        <div className="grid grid-cols-1 w-full lg:grid-cols-[27rem,auto] gap-6">
-          {/* Left Block */}
-          <div className="lg:row-span-2 bg-white rounded-2xl shadow-lg p-6 flex items-center justify-center">
+        <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,1fr] gap-6">
+          {/* Left Block - Circle and Stage */}
+          <div className=" bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center ">
+            <p className="text-xl font-semibold text-gray-700 mb-4">
+              Стадия: {overallStage} - Adoption
+            </p>
             <ScoreCircle scores={scores} criteria={criteria} />
           </div>
-
-          {/* Top Right Block */}
-          <div className="lg:col-start-2 bg-white rounded-2xl shadow-lg p-8 w-[38rem]">
-            <ScoreTable scores={scores} criteria={criteria} />
-          </div>
-
-          {/* Bottom Right Block */}
-          <div className="lg:col-start-2 bg-white rounded-2xl shadow-lg p-8 w-[38rem]">
-            <AdviceBlock averageScore={averageScore} />
+          {/* Right Block - Main Score Table */}
+          <div className=" col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold mb-4">
+              Оценка цифровой зрелости бизнеса
+            </h2>
+            <ScoreTable
+              scores={scores}
+              criteria={criteria}
+              averageScore={averageScore}
+              getMaturityStage={getMaturityStage}
+            />
           </div>
         </div>
       </div>

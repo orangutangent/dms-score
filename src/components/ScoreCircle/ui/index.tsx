@@ -6,14 +6,22 @@ interface ScoreCircleProps {
 }
 
 const ScoreCircle: React.FC<ScoreCircleProps> = ({ scores, criteria }) => {
-  const totalScore = Object.values(scores).reduce((acc, score) => acc + score, 0);
-  const totalWeight = Object.values(criteria).reduce((acc, { weight }) => acc + weight, 0);
+  const totalScore = Object.values(scores).reduce(
+    (acc, score) => acc + score,
+    0
+  );
+  const totalWeight = Object.values(criteria).reduce(
+    (acc, { weight }) => acc + weight,
+    0
+  );
   const averageScore = totalWeight > 0 ? totalScore / totalWeight : 0;
 
   let accumulatedPercentage = 0;
 
   return (
-    <div className="relative size-[27rem]">
+    <div className="relative size-full">
+      {" "}
+      {/* Reverted to original size */}
       <svg className="w-full h-full" viewBox="0 0 250 250">
         {/* Background circle */}
         <circle

@@ -41,7 +41,7 @@ const ResultsMaturityPage = () => {
   const overallStage = getMaturityStage(averageScore);
 
   return (
-    <main className="h-full flex-1 flex justify-center items-center ">
+    <main className="h-full flex-1 flex justify-center items-center p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold  mb-8">Ваш результат</h1>
         <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,1fr] gap-6">
@@ -53,7 +53,7 @@ const ResultsMaturityPage = () => {
             <ScoreCircle scores={scores} criteria={criteria} />
           </div>
           {/* Right Block - Main Score Table */}
-          <div className=" col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
+          <div className=" lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-4">
               Оценка цифровой зрелости бизнеса
             </h2>

@@ -20,7 +20,7 @@ export default function Home() {
           <p>Время прохождения: ~ 5 минут</p>
           <p>~25 вопросов</p>
         </div>
-        <div className="mt-12 flex  gap-6">
+        <div className="mt-12 flex flex-col lg:flex-row gap-6">
           <Link href="/digitalmaturity">
             <Button>Начать тестирование для МСП</Button>
           </Link>

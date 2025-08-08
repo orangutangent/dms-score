@@ -138,7 +138,7 @@ const ResultsGovermentServicePage = () => {
             <ScoreCircle scores={scores} criteria={criteria} />
           </div>
           {/* Top Right Block - Main Score Table */}
-          <div className=" col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
+          <div className=" lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-4">
               Оценка цифровой зрелости гос. услуг
             </h2>
@@ -150,7 +150,7 @@ const ResultsGovermentServicePage = () => {
             />
           </div>
           {/* Bottom Right Block - Special Score Table */}
-          <div className="col-start-2 max-w-xl  bg-white rounded-2xl shadow-lg p-8">
+          <div className="lg:col-start-2 max-w-xl  bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-4">Специальные разделы</h2>
             <ScoreTable
               scores={specialScores}

@@ -22,7 +22,7 @@ const locationQuestion: QuestionType = {
 
 const sectorQuestion: QuestionType = {
   id: -3,
-  inputType: 'radio',
+  inputType: 'sector',
   criterion: 'Sector',
   question: 'К какому сектору экономики вы относитесь?',
   options: [

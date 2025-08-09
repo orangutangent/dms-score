@@ -36,4 +36,19 @@ model GovernmentSurveyResult {
   criterionScores Json
   rawAnswers      Json
   createdAt       DateTime  @default(now())
+  sectionScores   Json?
+  serviceScores   GovernmentSurveyServiceScore[]
+}
+
+model GovernmentSurveyServiceScore {
+  id              String   @id @default(uuid())
+  resultId        String
+  serviceCode     String
+  overallScore    Float
+  criterionScores Json
+  createdAt       DateTime @default(now())
+
+  result GovernmentSurveyResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
+
+  @@index([resultId])
 }

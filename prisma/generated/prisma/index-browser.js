@@ -140,6 +140,16 @@ exports.Prisma.GovernmentSurveyResultScalarFieldEnum = {
   finalThoughts: 'finalThoughts',
   criterionScores: 'criterionScores',
   rawAnswers: 'rawAnswers',
+  createdAt: 'createdAt',
+  sectionScores: 'sectionScores'
+};
+
+exports.Prisma.GovernmentSurveyServiceScoreScalarFieldEnum = {
+  id: 'id',
+  resultId: 'resultId',
+  serviceCode: 'serviceCode',
+  overallScore: 'overallScore',
+  criterionScores: 'criterionScores',
   createdAt: 'createdAt'
 };
 
@@ -149,6 +159,11 @@ exports.Prisma.SortOrder = {
 };
 
 exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull
 };
 
@@ -163,10 +178,16 @@ exports.Prisma.JsonNullValueFilter = {
   AnyNull: Prisma.AnyNull
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   DigitalMaturitySurveyResult: 'DigitalMaturitySurveyResult',
-  GovernmentSurveyResult: 'GovernmentSurveyResult'
+  GovernmentSurveyResult: 'GovernmentSurveyResult',
+  GovernmentSurveyServiceScore: 'GovernmentSurveyServiceScore'
 };
 
 /**

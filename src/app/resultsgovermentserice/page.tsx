@@ -3,21 +3,20 @@
 import React, { useMemo } from "react";
 import ScoreCircle from "../../components/ScoreCircle";
 import ScoreTable from "../../components/ScoreTable";
-import AdviceBlock from "../../components/AdviceBlock";
 import { useSurveyResults } from "../../components/ScoreCircle/data-access/useSurveyResults";
 import { criteriaColors } from "../../config/criteriaColors";
 import { Question } from "../../components/Question/model/types";
 import questionsData from "../../govermentssurvey.json";
+import { expandServiceTemplates } from "@/lib/survey";
+import { getStage } from "@/lib/stage";
 import { useGovernmentSurveyStore } from "../../store/government-survey.store";
 
-const questions: Question[] = questionsData as Question[];
+const questions: Question[] = expandServiceTemplates(
+  questionsData as Question[]
+);
 
-const getMaturityStage = (score: number) => {
-  if (score < 1.5) return "C";
-  if (score < 3) return "B";
-  if (score < 4.5) return "A";
-  return "A+"; // Assuming A+ for highest level
-};
+const getMaturityStage = (score0to5: number) =>
+  `${getStage(score0to5 * 2).letter} - ${getStage(score0to5 * 2).label}`;
 
 const ResultsGovermentServicePage = () => {
   const { scores, averageScore } = useSurveyResults(
@@ -36,7 +35,7 @@ const ResultsGovermentServicePage = () => {
       };
       return acc;
     }, {} as { [key: string]: { color: string; weight: number } });
-  }, [questions]);
+  }, []);
 
   // Separate questions into two groups based on their criterion
   const mainQuestions = questions.filter((q) =>
@@ -94,34 +93,30 @@ const ResultsGovermentServicePage = () => {
       const answer = useGovernmentSurveyStore.getState().answers[index] || null;
       // This part needs to be more robust to calculate scores based on answer type
       // For now, assuming simple number answers for main questions
-      if (typeof answer?.value === "string" && !isNaN(Number(answer.value))) {
+      if (answer?.score && !isNaN(Number(answer.score))) {
         s[q.criterion] =
-          (s[q.criterion] || 0) + Number(answer.value) * q.weight;
+          (s[q.criterion] || 0) + Number(answer.score) * q.weight;
       }
     });
     return s;
-  }, [useGovernmentSurveyStore.getState().answers, mainQuestions]);
+  }, [mainQuestions]);
 
   const specialScores = useMemo(() => {
     const s: { [key: string]: number } = {};
-    specialQuestions.forEach((q, index) => {
+    specialQuestions.forEach((q) => {
       // Adjust index for special questions based on their position in the original 'questions' array
       const originalIndex = questions.indexOf(q);
       const answer =
         useGovernmentSurveyStore.getState().answers[originalIndex] || null;
       // This part needs to be more robust to calculate scores based on answer type
       // For now, assuming simple number answers for special questions
-      if (typeof answer?.value === "string" && !isNaN(Number(answer.value))) {
+      if (answer?.score && !isNaN(Number(answer.score))) {
         s[q.criterion] =
-          (s[q.criterion] || 0) + Number(answer.value) * q.weight;
+          (s[q.criterion] || 0) + Number(answer.score) * q.weight;
       }
     });
     return s;
-  }, [
-    useGovernmentSurveyStore.getState().answers,
-    specialQuestions,
-    questions,
-  ]);
+  }, [specialQuestions]);
 
   const overallStage = getMaturityStage(averageScore);
 
@@ -133,7 +128,7 @@ const ResultsGovermentServicePage = () => {
           {/* Left Block - Circle and Stage */}
           <div className=" bg-white  rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center ">
             <p className="text-xl font-semibold text-gray-700 mb-4">
-              Стадия: {overallStage} - Adoption
+              Стадия: {overallStage}
             </p>
             <ScoreCircle scores={scores} criteria={criteria} />
           </div>

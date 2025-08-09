@@ -1,35 +1,45 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useSurvey } from '../../components/Question/data-access/useSurvey';
-import Question from '../../components/Question';
-import { Question as QuestionType, Answer } from '../../components/Question/model/types';
-import questionsData from '../../govermentssurvey.json';
-import { useGovernmentSurveyStore } from '../../store/government-survey.store';
-import { useMutation } from '@tanstack/react-query';
-import axios, { AxiosError } from 'axios'; // Import AxiosError
-import { useRouter } from 'next/navigation';
+import React from "react";
+import { useSurvey } from "../../components/Question/data-access/useSurvey";
+import Question from "../../components/Question";
+import {
+  Question as QuestionType,
+  Answer,
+} from "../../components/Question/model/types";
+import questionsData from "../../govermentssurvey.json";
+import { useGovernmentSurveyStore } from "../../store/government-survey.store";
+import { useMutation } from "@tanstack/react-query";
+import axios, { AxiosError } from "axios"; // Import AxiosError
+import { useRouter } from "next/navigation";
+import { expandServiceTemplates } from "@/lib/survey";
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
 const locationQuestion: QuestionType = {
   id: -1,
-  inputType: 'location',
-  criterion: 'Location',
-  question: 'В какой стране вы находитесь?',
+  inputType: "location",
+  criterion: "Location",
+  question: "В какой стране вы находитесь?",
   weight: 0,
 };
 
 const finalThoughtsQuestion: QuestionType = {
   id: -2,
-  inputType: 'final-thoughts',
-  criterion: 'Feedback',
-  question: 'Можете оставить свои пожелания по улучшению цифровых услуг при желании',
-  placeholder: 'Введите свои пожелания',
+  inputType: "final-thoughts",
+  criterion: "Feedback",
+  question:
+    "Можете оставить свои пожелания по улучшению цифровых услуг при желании",
+  placeholder: "Введите свои пожелания",
   weight: 0,
 };
 
-const allQuestions = [locationQuestion, ...questions, finalThoughtsQuestion];
+const expandedQuestions = expandServiceTemplates(questions);
+const allQuestions = [
+  locationQuestion,
+  ...expandedQuestions,
+  finalThoughtsQuestion,
+];
 
 const GovermentsSurveyPage = () => {
   const router = useRouter();
@@ -46,19 +56,29 @@ const GovermentsSurveyPage = () => {
     finalThoughts,
     setFinalThoughts,
     answers, // Explicitly get answers
-  } = useSurvey(useGovernmentSurveyStore, allQuestions, '/resultsgovermentserice');
+  } = useSurvey(
+    useGovernmentSurveyStore,
+    allQuestions,
+    "/resultsgovermentserice"
+  );
 
-  type SubmitData = { location: { country: string; region: string }; finalThoughts: string; answers: Record<number, Answer> };
+  type SubmitData = {
+    location: { country: string; region: string };
+    finalThoughts: string;
+    answers: Record<number, Answer>;
+  };
   type SubmitResponse = { message: string; resultId: string };
 
   const submitSurvey = useMutation<SubmitResponse, AxiosError, SubmitData>({
-    mutationFn: (data) => axios.post('/api/submit-government-survey', data),
+    mutationFn: (data) => axios.post("/api/submit-government-survey", data),
     onSuccess: () => {
-      router.push('/resultsgovermentserice');
+      router.push("/resultsgovermentserice");
     },
     onError: (error) => {
-      console.error('Error submitting survey:', error);
-      alert(`Ошибка при отправке опроса: ${error.message}. Пожалуйста, попробуйте еще раз.`);
+      console.error("Error submitting survey:", error);
+      alert(
+        `Ошибка при отправке опроса: ${error.message}. Пожалуйста, попробуйте еще раз.`
+      );
     },
   });
 
@@ -76,7 +96,7 @@ const GovermentsSurveyPage = () => {
   const customHandleNext = (answer: Answer) => {
     if (currentQuestionIndex === allQuestions.length - 1) {
       // This is the final question (final thoughts)
-      setFinalThoughts(answer?.value || ''); // Ensure final thoughts are saved
+      setFinalThoughts(answer?.value || ""); // Ensure final thoughts are saved
       handleFinalSubmit();
     } else {
       handleNext(answer);

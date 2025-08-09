@@ -6,6 +6,7 @@ import Radio from "../../ui/Radio";
 import Textarea from "../../ui/Textarea";
 import FinalThoughtsInput from "./FinalThoughtsInput";
 import { Question as QuestionType, Answer } from "../model/types";
+import { SERVICE_MAP, type ServiceCode } from "@/config/services";
 
 interface QuestionProps {
   question: QuestionType;
@@ -124,13 +125,17 @@ const Question: React.FC<QuestionProps> = ({
       case "radio":
         return (
           <div className="flex flex-col gap-4 mt-6">
-            {question.options?.map((option) => (
+            {question.options?.map((option, idx) => (
               <Radio
                 key={option.value}
                 name={question.id.toString()}
                 label={option.label}
                 checked={answer?.value === option.value}
-                onChange={() => setAnswer({ value: option.value, details: "" })}
+                onChange={() => {
+                  const total = question.options?.length || 0;
+                  const score = total > 0 ? (idx + 1) / total : 0;
+                  setAnswer({ value: option.value, details: "", score });
+                }}
               />
             ))}
             {question.followUp &&
@@ -184,7 +189,36 @@ const Question: React.FC<QuestionProps> = ({
       </div>
       <div>
         <h2 className="text-[1.75rem] font-semibold text-foreground-secondary">
-          {question.question}
+          {(() => {
+            const sc = question.service as ServiceCode | undefined;
+            if (!sc) {
+              return <>{question.question}</>;
+            }
+            const info = SERVICE_MAP[sc];
+            const q = question.question || "";
+            const qmIndex = q.indexOf("?");
+            if (qmIndex === -1) {
+              return (
+                <>
+                  {q}{" "}
+                  <span style={{ color: info.color, fontWeight: 700 }}>
+                    {info.label}
+                  </span>
+                </>
+              );
+            }
+            const before = q.slice(0, qmIndex).trimEnd();
+            const after = q.slice(qmIndex); // includes '?'
+            return (
+              <>
+                {before}{" "}
+                <span style={{ color: info.color, fontWeight: 700 }}>
+                  {info.label}
+                </span>
+                {after}
+              </>
+            );
+          })()}
         </h2>
         <div className="text-left text-gray-600 mt-2">
           {getInstructionText()}

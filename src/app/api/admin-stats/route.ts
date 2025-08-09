@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
+import { SERVICES, type ServiceCode } from "@/config/services";
 
 // Define interfaces for our data structures
 interface CriterionStat {
@@ -18,6 +19,7 @@ interface SurveyStats {
 interface CountryStats {
   digitalMaturity: SurveyStats;
   government: SurveyStats;
+  governmentByService: Record<ServiceCode, SurveyStats>;
 }
 
 export async function GET() {
@@ -25,6 +27,21 @@ export async function GET() {
     const digitalMaturityResults =
       await prisma.digitalMaturitySurveyResult.findMany();
     const governmentResults = await prisma.governmentSurveyResult.findMany();
+    const governmentServiceRows: Array<{
+      resultId: string;
+      serviceCode: string;
+      overallScore: number;
+      criterionScores: Record<string, number>;
+    }> = await prisma.$queryRawUnsafe<
+      Array<{
+        resultId: string;
+        serviceCode: string;
+        overallScore: number;
+        criterionScores: Record<string, number>;
+      }>
+    >(
+      'SELECT "resultId", "serviceCode", "overallScore", "criterionScores" FROM "public"."GovernmentSurveyServiceScore"'
+    );
 
     const statsByCountry: Record<string, CountryStats> = {};
 
@@ -40,6 +57,15 @@ export async function GET() {
             average: 0,
           },
           government: { count: 0, totalScore: 0, criterion: {}, average: 0 },
+          governmentByService: SERVICES.reduce((acc, s) => {
+            acc[s.code] = {
+              count: 0,
+              totalScore: 0,
+              criterion: {},
+              average: 0,
+            };
+            return acc;
+          }, {} as Record<ServiceCode, SurveyStats>),
         };
       }
       statsByCountry[country].digitalMaturity.count++;
@@ -73,6 +99,15 @@ export async function GET() {
             average: 0,
           },
           government: { count: 0, totalScore: 0, criterion: {}, average: 0 },
+          governmentByService: SERVICES.reduce((acc, s) => {
+            acc[s.code] = {
+              count: 0,
+              totalScore: 0,
+              criterion: {},
+              average: 0,
+            };
+            return acc;
+          }, {} as Record<ServiceCode, SurveyStats>),
         };
       }
       statsByCountry[country].government.count++;
@@ -90,6 +125,29 @@ export async function GET() {
         }
         statsByCountry[country].government.criterion[criterion].total += score;
         statsByCountry[country].government.criterion[criterion].count++;
+      }
+    });
+
+    // Process per-service rows (join by resultId to country)
+    const resultIdToCountry: Record<string, string> = {};
+    governmentResults.forEach((r) => {
+      resultIdToCountry[r.id] = r.country;
+    });
+    governmentServiceRows.forEach((row) => {
+      const country = resultIdToCountry[row.resultId];
+      if (!country) return;
+      const svc = row.serviceCode as ServiceCode;
+      const bucket = statsByCountry[country].governmentByService[svc];
+      bucket.count++;
+      bucket.totalScore += row.overallScore;
+      for (const [criterion, score] of Object.entries(
+        row.criterionScores || {}
+      )) {
+        if (!bucket.criterion[criterion]) {
+          bucket.criterion[criterion] = { total: 0, count: 0, average: 0 };
+        }
+        bucket.criterion[criterion].total += score;
+        bucket.criterion[criterion].count++;
       }
     });
 
@@ -111,6 +169,18 @@ export async function GET() {
         for (const criterion in countryStats.government.criterion) {
           const crit = countryStats.government.criterion[criterion];
           crit.average = crit.total / crit.count;
+        }
+      }
+
+      // service averages
+      for (const svc of SERVICES) {
+        const s = countryStats.governmentByService[svc.code];
+        if (s.count > 0) {
+          s.average = s.totalScore / s.count;
+          for (const criterion in s.criterion) {
+            const crit = s.criterion[criterion];
+            crit.average = crit.total / crit.count;
+          }
         }
       }
     }

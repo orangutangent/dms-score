@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Select from "@/components/ui/Select";
 import ScoreCircle from "@/components/ScoreCircle";
 import ScoreTable from "@/components/ScoreTable";
+import { getStage } from "@/lib/stage";
 import { criteriaColors } from "@/config/criteriaColors";
 import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
 import { CountryStats } from "@/api/admin-stats-api";
@@ -31,11 +32,9 @@ const AdminPage = () => {
 
   const countryData: CountryStats | undefined = stats[selectedCountry];
 
-  const getMaturityStage = (score: number) => {
-    if (score < 1.5) return "C";
-    if (score < 3) return "B";
-    if (score < 4.5) return "A";
-    return "A+";
+  const getMaturityStage = (score0to5: number) => {
+    const s = getStage(score0to5 * 2);
+    return `${s.letter} - ${s.label}`;
   };
 
   const renderContent = () => {
@@ -70,7 +69,7 @@ const AdminPage = () => {
       <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,auto] gap-6 mt-6">
         <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
           <p className="text-xl font-semibold text-gray-700 mb-4">
-            Стадия: {getMaturityStage(data.average)} - Adoption
+            Стадия: {getMaturityStage(data.average)}
           </p>
           <ScoreCircle scores={scores} criteria={criteria} />
         </div>

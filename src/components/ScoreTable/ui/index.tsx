@@ -23,9 +23,9 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
         <div className="text-center">Стадия</div>
       </div>
       <div className="mt-4 space-y-4">
-        {Object.entries(criteria).map(([criterion, { color, weight }]) => {
+        {Object.entries(criteria).map(([criterion, { color }]) => {
           const score = scores[criterion] || 0;
-          const stage = getMaturityStage(score);
+          const stage = getMaturityStage(score).split(" - ")[0];
 
           return (
             <div
@@ -50,7 +50,9 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
         <div className="grid grid-cols-3 gap-4 items-center font-bold border-t pt-4 mt-4">
           <div>Среднее значение</div>
           <div className="text-center">{averageScore.toFixed(1)}</div>
-          <div className="text-center">{getMaturityStage(averageScore)}</div>
+          <div className="text-center">
+            {getMaturityStage(averageScore).split(" - ")[0]}
+          </div>
         </div>
       </div>
     </div>

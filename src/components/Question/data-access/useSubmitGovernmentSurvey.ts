@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { submitGovernmentSurvey } from '../../../data-access/survey-api';
+import { submitGovernmentSurvey } from '../../../api/survey-api';
 import { Answer } from '../model/types';
 import { AxiosError } from 'axios';
 

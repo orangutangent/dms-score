@@ -1,56 +1,35 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Select from "@/components/ui/Select";
 import ScoreCircle from "@/components/ScoreCircle";
 import ScoreTable from "@/components/ScoreTable";
 import { criteriaColors } from "@/config/criteriaColors";
-
-// Types from API
-interface CriterionStat {
-  total: number;
-  count: number;
-  average: number;
-}
-
-interface SurveyStats {
-  count: number;
-  totalScore: number;
-  criterion: Record<string, CriterionStat>;
-  average: number;
-}
-
-interface CountryStats {
-  digitalMaturity: SurveyStats;
-  government: SurveyStats;
-}
-
-type AdminStats = Record<string, CountryStats>;
+import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
+import { CountryStats } from "@/api/admin-stats-api";
 
 const AdminPage = () => {
-  const [stats, setStats] = useState<AdminStats>({});
+  const { data: stats, isLoading, error } = useAdminStats();
   const [selectedCountry, setSelectedCountry] = useState("");
   const [activeTab, setActiveTab] = useState<"government" | "digitalMaturity">(
     "government"
   );
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const response = await axios.get<AdminStats>("/api/admin-stats");
-        setStats(response.data);
-        if (Object.keys(response.data).length > 0) {
-          setSelectedCountry(Object.keys(response.data)[0]);
-        }
-      } catch (error) {
-        console.error("Error fetching admin stats:", error);
-      }
-    };
-    fetchStats();
-  }, []);
+    if (stats && Object.keys(stats).length > 0 && !selectedCountry) {
+      setSelectedCountry(Object.keys(stats)[0]);
+    }
+  }, [stats, selectedCountry]);
 
-  const countryData = stats[selectedCountry];
+  if (isLoading) return <div className="text-center p-8">Loading...</div>;
+  if (error)
+    return (
+      <div className="text-center p-8 text-red-500">Error fetching stats</div>
+    );
+  if (!stats || Object.keys(stats).length === 0)
+    return <div className="text-center p-8">No stats available</div>;
+
+  const countryData: CountryStats | undefined = stats[selectedCountry];
 
   const getMaturityStage = (score: number) => {
     if (score < 1.5) return "C";
@@ -61,19 +40,21 @@ const AdminPage = () => {
 
   const renderContent = () => {
     if (!countryData) {
-      return <p>No data available for this country.</p>;
+      return <p className="text-center p-8">Please select a country.</p>;
     }
 
     const data = countryData[activeTab];
     if (!data || data.count === 0) {
-      return <p>No survey data for this category.</p>;
+      return (
+        <p className="text-center p-8">No survey data for this category.</p>
+      );
     }
 
     const criteria = Object.keys(data.criterion).reduce((acc, key, index) => {
       acc[key] = {
         color: criteriaColors[index % criteriaColors.length],
         weight: 1,
-      }; // Dummy weight
+      }; // Using dummy weight as it's not needed for average display
       return acc;
     }, {} as Record<string, { color: string; weight: number }>);
 
@@ -86,7 +67,7 @@ const AdminPage = () => {
     );
 
     return (
-      <div className="grid grid-cols-1  w-full lg:grid-cols-[28rem,auto] gap-6 mt-6">
+      <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,auto] gap-6 mt-6">
         <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
           <p className="text-xl font-semibold text-gray-700 mb-4">
             Стадия: {getMaturityStage(data.average)} - Adoption
@@ -104,6 +85,7 @@ const AdminPage = () => {
             criteria={criteria}
             averageScore={data.average}
             getMaturityStage={getMaturityStage}
+            scoreColumnTitle="Средняя оценка"
           />
         </div>
       </div>
@@ -111,8 +93,8 @@ const AdminPage = () => {
   };
 
   return (
-    <main className="h-full flex-1 flex flex-col items-center p-8 bg-gray-50">
-      <div className="w-full max-w-5xl mx-auto">
+    <main className="h-full flex-1 flex flex-col items-center p-8 ">
+      <div className="w-full max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div className="flex flex-col lg:flex-row gap-4">
             <button

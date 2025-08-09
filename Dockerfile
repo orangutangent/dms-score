@@ -18,6 +18,9 @@ ENV NODE_ENV=production
 COPY --from=builder /app/package*.json ./
 RUN npm install --production --frozen-lockfile
 
+COPY --from=builder /app/generated/prisma ./generated/prisma
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 

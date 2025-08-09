@@ -18,9 +18,13 @@ services:
     restart: always
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./public:/app/public
+      - /etc/letsencrypt/live/dpsmaturitysurvey.org:/etc/letsencrypt/live/dpsmaturitysurvey.org:ro
+      - /etc/letsencrypt/archive/dpsmaturitysurvey.org:/etc/letsencrypt/archive/dpsmaturitysurvey.org:ro
+      - /etc/letsencrypt/renewal:/etc/letsencrypt/renewal:ro
     depends_on:
       - app
 

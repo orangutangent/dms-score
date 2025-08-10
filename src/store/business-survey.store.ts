@@ -1,6 +1,7 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { Answer } from '../components/Question/model/types';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { Answer } from "../components/Question/model/types";
+import type { GovernmentSurveyResponseDTO } from "@/api/types";
 
 interface LocationState {
   country: string;
@@ -8,33 +9,48 @@ interface LocationState {
 }
 
 interface BusinessSurveyState {
-  answers: Record<number, Answer>;
+  responses: GovernmentSurveyResponseDTO[];
   location: LocationState;
   sector: string;
   finalThoughts: string;
-  setAnswer: (questionIndex: number, answer: Answer) => void;
+  setResponse: (response: GovernmentSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
   setSector: (sector: string) => void;
   setFinalThoughts: (thoughts: string) => void;
+  clearResponses: () => void;
 }
 
 export const useBusinessSurveyStore = create<BusinessSurveyState>()(
   persist(
-    (set) => ({
-      answers: {},
-      location: { country: '', region: '' },
-      sector: '',
-      finalThoughts: '',
-      setAnswer: (questionIndex, answer) =>
-        set((state) => ({
-          answers: { ...state.answers, [questionIndex]: answer },
-        })),
+    (set, get) => ({
+      responses: [],
+      location: { country: "", region: "" },
+      sector: "",
+      finalThoughts: "",
+      setResponse: (response) =>
+        set((state) => {
+          const existingIndex = state.responses.findIndex(
+            (r) =>
+              r.questionId === response.questionId &&
+              r.service === response.service
+          );
+          if (existingIndex >= 0) {
+            // Обновляем существующий ответ
+            const updated = [...state.responses];
+            updated[existingIndex] = response;
+            return { responses: updated };
+          } else {
+            // Добавляем новый ответ
+            return { responses: [...state.responses, response] };
+          }
+        }),
       setLocation: (location) => set({ location }),
       setSector: (sector) => set({ sector }),
       setFinalThoughts: (thoughts) => set({ finalThoughts: thoughts }),
+      clearResponses: () => set({ responses: [] }),
     }),
     {
-      name: 'dms-business-survey-storage',
+      name: "dms-business-survey-storage",
     }
   )
 );

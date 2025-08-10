@@ -7,6 +7,8 @@ import Textarea from "../../ui/Textarea";
 import FinalThoughtsInput from "./FinalThoughtsInput";
 import { Question as QuestionType, Answer } from "../model/types";
 import { SERVICE_MAP, type ServiceCode } from "@/config/services";
+import { calculateRadioScore, calculateScaleScore } from "@/lib/scoring";
+import type { GovernmentSurveyResponseDTO } from "@/api/types";
 
 interface QuestionProps {
   question: QuestionType;
@@ -23,6 +25,8 @@ interface QuestionProps {
   onSectorChange?: (sector: string) => void; // Made optional
   initialFinalThoughts: string;
   onFinalThoughtsChange: (thoughts: string) => void;
+  // New prop for storing responses
+  onResponseChange?: (response: GovernmentSurveyResponseDTO) => void;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -39,6 +43,7 @@ const Question: React.FC<QuestionProps> = ({
   onSectorChange,
   initialFinalThoughts,
   onFinalThoughtsChange,
+  onResponseChange,
 }) => {
   const [answer, setAnswer] = useState<Answer>(initialAnswer);
 
@@ -46,17 +51,48 @@ const Question: React.FC<QuestionProps> = ({
     setAnswer(initialAnswer);
   }, [initialAnswer]);
 
+  // Создает response DTO из ответа пользователя
+  const createResponse = (ans: Answer): GovernmentSurveyResponseDTO | null => {
+    if (!ans || ans.value === undefined || ans.value === null) return null;
+
+    // Для специальных типов вопросов не создаем response
+    if (["location", "sector", "final-thoughts"].includes(question.inputType)) {
+      return null;
+    }
+
+    let score01 = 0;
+
+    if (question.inputType === "radio") {
+      score01 = calculateRadioScore(ans.value, question.options?.length || 0);
+    } else if (question.inputType === "scale") {
+      score01 = calculateScaleScore(ans.value, question.options?.length);
+    }
+
+    return {
+      questionId: question.id,
+      criterion: question.criterion,
+      service: question.service,
+      score01,
+      answerValue: ans.value,
+    };
+  };
+
   const handleContinue = () => {
     if (question.inputType === "location") {
       onLocationChange(initialLocation);
       onNext(null); // Pass null as answer for location question
     } else if (question.inputType === "sector") {
-      onSectorChange?.(initialSector || ""); // Use optional chaining
+      onSectorChange?.(answer?.value || ""); // Use selected answer value
       onNext(null); // Pass null as answer for sector question
     } else if (question.inputType === "final-thoughts") {
-      onFinalThoughtsChange(initialFinalThoughts);
+      onFinalThoughtsChange(answer?.value || ""); // Use selected answer value
       onNext(null); // Pass null as answer for final thoughts question
     } else if (answer !== null) {
+      // Создаем и сохраняем response
+      const response = createResponse(answer);
+      if (response && onResponseChange) {
+        onResponseChange(response);
+      }
       onNext(answer);
     }
     setAnswer(null); // Reset for the next question
@@ -98,43 +134,44 @@ const Question: React.FC<QuestionProps> = ({
             {question.options?.map((option) => (
               <Radio
                 key={option.value}
-                name={question.id.toString()}
                 label={option.label}
-                checked={initialSector === option.value}
-                onChange={() => onSectorChange?.(option.value)}
+                value={option.value}
+                checked={answer?.value === option.value}
+                onChange={(value) => {
+                  const newAnswer = { value: option.value };
+                  setAnswer(newAnswer);
+                }}
               />
             ))}
           </div>
         );
       case "final-thoughts":
         return (
-          <FinalThoughtsInput
-            value={initialFinalThoughts}
-            onChange={onFinalThoughtsChange}
-            placeholder={question.placeholder}
-          />
-        );
-      case "scale":
-        return (
-          <ScaleInput
-            options={question.options?.map((opt) => opt.label) || []}
-            selectedValue={answer?.value || null}
-            onChange={(value) => setAnswer({ value })}
-          />
+          <div className="mt-6">
+            <Textarea
+              placeholder={question.placeholder || "Введите свои мысли..."}
+              value={answer?.value || ""}
+              onChange={(e) => setAnswer({ value: e.target.value })}
+            />
+          </div>
         );
       case "radio":
         return (
-          <div className="flex flex-col gap-4 mt-6">
-            {question.options?.map((option, idx) => (
+          <div className="space-y-4 mt-6">
+            {question.options?.map((option) => (
               <Radio
                 key={option.value}
-                name={question.id.toString()}
                 label={option.label}
+                value={option.value}
                 checked={answer?.value === option.value}
-                onChange={() => {
-                  const total = question.options?.length || 0;
-                  const score = total > 0 ? (idx + 1) / total : 0;
-                  setAnswer({ value: option.value, details: "", score });
+                onChange={(value) => {
+                  const newAnswer = { value: option.value };
+                  setAnswer(newAnswer);
+                  // Создаем response сразу при выборе
+                  const response = createResponse(newAnswer);
+                  if (response && onResponseChange) {
+                    onResponseChange(response);
+                  }
                 }}
               />
             ))}
@@ -151,6 +188,22 @@ const Question: React.FC<QuestionProps> = ({
                 </div>
               )}
           </div>
+        );
+      case "scale":
+        return (
+          <ScaleInput
+            options={question.options?.map((opt) => opt.label) || []}
+            selectedValue={answer?.value || null}
+            onChange={(value) => {
+              const newAnswer = { value };
+              setAnswer(newAnswer);
+              // Создаем response сразу при выборе
+              const response = createResponse(newAnswer);
+              if (response && onResponseChange) {
+                onResponseChange(response);
+              }
+            }}
+          />
         );
       case "text":
         return (
@@ -169,7 +222,7 @@ const Question: React.FC<QuestionProps> = ({
 
   const isNextDisabled = () => {
     if (question.inputType === "location") return !initialLocation.country;
-    if (question.inputType === "sector") return !initialSector;
+    if (question.inputType === "sector") return !answer?.value;
     if (question.inputType === "final-thoughts") return false; // Can proceed with empty thoughts
     return answer === null || answer.value === "";
   };

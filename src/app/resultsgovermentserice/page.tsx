@@ -15,29 +15,17 @@ const questions: Question[] = expandServiceTemplates(
   questionsData as Question[]
 );
 
-const getMaturityStage = (score0to5: number) =>
-  `${getStage(score0to5 * 2).letter} - ${getStage(score0to5 * 2).label}`;
+const getMaturityStage = (score0to1: number) => {
+  // Конвертируем score 0..1 в 0..10 для определения стадии
+  const score0to10 = score0to1 * 10;
+  const stage = getStage(score0to10);
+  return `${stage.letter} - ${stage.label}`;
+};
 
 const ResultsGovermentServicePage = () => {
-  const { scores, averageScore } = useSurveyResults(
-    useGovernmentSurveyStore,
-    questions
-  );
+  const { responses } = useGovernmentSurveyStore();
 
-  const criteria = useMemo(() => {
-    const uniqueCriteria = [...new Set(questions.map((q) => q.criterion))];
-    return uniqueCriteria.reduce((acc, criterion, index) => {
-      acc[criterion] = {
-        color: criteriaColors[index % criteriaColors.length],
-        weight: questions
-          .filter((q) => q.criterion === criterion)
-          .reduce((sum, q) => sum + q.weight, 0),
-      };
-      return acc;
-    }, {} as { [key: string]: { color: string; weight: number } });
-  }, []);
-
-  // Separate questions into two groups based on their criterion
+  // Разделяем вопросы на основные и специальные разделы
   const mainQuestions = questions.filter((q) =>
     [
       "Инфраструктурный уровень",
@@ -47,6 +35,7 @@ const ResultsGovermentServicePage = () => {
       "Уровень экосистемы",
     ].includes(q.criterion)
   );
+
   const specialQuestions = questions.filter((q) =>
     [
       "Специальный раздел 1",
@@ -55,17 +44,75 @@ const ResultsGovermentServicePage = () => {
     ].includes(q.criterion)
   );
 
+  // Вычисляем баллы для основных разделов (только для круга)
+  const mainScores = useMemo(() => {
+    const s: { [key: string]: number } = {};
+
+    // Группируем responses по критериям для основных разделов
+    responses.forEach((response) => {
+      if (mainQuestions.some((q) => q.criterion === response.criterion)) {
+        if (!s[response.criterion]) {
+          s[response.criterion] = 0;
+        }
+        s[response.criterion] += response.score01;
+      }
+    });
+
+    return s;
+  }, [responses, mainQuestions]);
+
+  // Вычисляем баллы для специальных разделов
+  const specialScores = useMemo(() => {
+    const s: { [key: string]: number } = {};
+
+    // Группируем responses по критериям для специальных разделов
+    responses.forEach((response) => {
+      if (specialQuestions.some((q) => q.criterion === response.criterion)) {
+        if (!s[response.criterion]) {
+          s[response.criterion] = 0;
+        }
+        s[response.criterion] += response.score01;
+      }
+    });
+
+    return s;
+  }, [responses, specialQuestions]);
+
+  // Вычисляем средний балл ТОЛЬКО по основным критериям для круга
+  const mainAverageScore = useMemo(() => {
+    const criteriaScores = Object.values(mainScores);
+    return criteriaScores.length > 0
+      ? criteriaScores.reduce((sum, score) => sum + score, 0) /
+          criteriaScores.length
+      : 0;
+  }, [mainScores]);
+
+  // Вычисляем средний балл по основным критериям для таблицы
+  const mainTableAverageScore = useMemo(() => {
+    const criteriaScores = Object.values(mainScores);
+    return criteriaScores.length > 0
+      ? criteriaScores.reduce((sum, score) => sum + score, 0) /
+          criteriaScores.length
+      : 0;
+  }, [mainScores]);
+
+  // Вычисляем средний балл по специальным критериям для таблицы
+  const specialTableAverageScore = useMemo(() => {
+    const criteriaScores = Object.values(specialScores);
+    return criteriaScores.length > 0
+      ? criteriaScores.reduce((sum, score) => sum + score, 0) /
+          criteriaScores.length
+      : 0;
+  }, [specialScores]);
+
   const mainCriteria = useMemo(() => {
     const uniqueCriteria = [...new Set(mainQuestions.map((q) => q.criterion))];
     return uniqueCriteria.reduce((acc, criterion, index) => {
       acc[criterion] = {
         color: criteriaColors[index % criteriaColors.length],
-        weight: mainQuestions
-          .filter((q) => q.criterion === criterion)
-          .reduce((sum, q) => sum + q.weight, 0),
       };
       return acc;
-    }, {} as { [key: string]: { color: string; weight: number } });
+    }, {} as { [key: string]: { color: string } });
   }, [mainQuestions]);
 
   const specialCriteria = useMemo(() => {
@@ -77,80 +124,47 @@ const ResultsGovermentServicePage = () => {
         color:
           criteriaColors[
             (index + Object.keys(mainCriteria).length) % criteriaColors.length
-          ], // Corrected
-        weight: specialQuestions
-          .filter((q) => q.criterion === criterion)
-          .reduce((sum, q) => sum + q.weight, 0),
+          ],
       };
       return acc;
-    }, {} as { [key: string]: { color: string; weight: number } });
-  }, [specialQuestions, mainCriteria]); // Added mainCriteria to dependency array
+    }, {} as { [key: string]: { color: string } });
+  }, [specialQuestions, mainCriteria]);
 
-  // Calculate scores for main and special sections separately
-  const mainScores = useMemo(() => {
-    const s: { [key: string]: number } = {};
-    mainQuestions.forEach((q, index) => {
-      const answer = useGovernmentSurveyStore.getState().answers[index] || null;
-      // This part needs to be more robust to calculate scores based on answer type
-      // For now, assuming simple number answers for main questions
-      if (answer?.score && !isNaN(Number(answer.score))) {
-        s[q.criterion] =
-          (s[q.criterion] || 0) + Number(answer.score) * q.weight;
-      }
-    });
-    return s;
-  }, [mainQuestions]);
-
-  const specialScores = useMemo(() => {
-    const s: { [key: string]: number } = {};
-    specialQuestions.forEach((q) => {
-      // Adjust index for special questions based on their position in the original 'questions' array
-      const originalIndex = questions.indexOf(q);
-      const answer =
-        useGovernmentSurveyStore.getState().answers[originalIndex] || null;
-      // This part needs to be more robust to calculate scores based on answer type
-      // For now, assuming simple number answers for special questions
-      if (answer?.score && !isNaN(Number(answer.score))) {
-        s[q.criterion] =
-          (s[q.criterion] || 0) + Number(answer.score) * q.weight;
-      }
-    });
-    return s;
-  }, [specialQuestions]);
-
-  const overallStage = getMaturityStage(averageScore);
+  const overallStage = getMaturityStage(mainAverageScore);
 
   return (
     <main className="h-full flex-1 flex justify-center items-center p-8">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold  mb-8">Ваш результат</h1>
+        <h1 className="text-4xl font-bold mb-8">Ваш результат</h1>
         <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,auto] gap-6">
-          {/* Left Block - Circle and Stage */}
-          <div className=" bg-white  rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center ">
+          {/* Левый блок - Круг и стадия (только основные уровни) */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
             <p className="text-xl font-semibold text-gray-700 mb-4">
               Стадия: {overallStage}
             </p>
-            <ScoreCircle scores={scores} criteria={criteria} />
+            <ScoreCircle scores={mainScores} criteria={mainCriteria} />
           </div>
-          {/* Top Right Block - Main Score Table */}
-          <div className=" lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
+
+          {/* Правый верхний блок - Таблица основных баллов */}
+          <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-4">
               Оценка цифровой зрелости гос. услуг
             </h2>
             <ScoreTable
               scores={mainScores}
               criteria={mainCriteria}
-              averageScore={averageScore}
+              averageScore={mainTableAverageScore}
               getMaturityStage={getMaturityStage}
             />
           </div>
-          {/* Bottom Right Block - Special Score Table */}
-          <div className="lg:col-start-2 max-w-xl  bg-white rounded-2xl shadow-lg p-8">
+
+          {/* Правый нижний блок - Таблица специальных разделов */}
+          <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-4">Специальные разделы</h2>
             <ScoreTable
               scores={specialScores}
               criteria={specialCriteria}
-              averageScore={averageScore}
+              averageScore={specialTableAverageScore}
               getMaturityStage={getMaturityStage}
             />
           </div>

@@ -7,17 +7,24 @@ import type { Question } from "../components/Question/model/types";
 export function expandServiceTemplates(questions: Question[]): Question[] {
   const serviceCodes: ServiceCode[] = SERVICES.map((s) => s.code);
   const expanded: Question[] = [];
+  let nextId = 1; // Начинаем с 1 для последовательных ID
+
   for (const q of questions) {
     if (q.inputType !== "service-template") {
-      expanded.push(q);
-      continue;
-    }
-    const targetServices =
-      q.services && q.services.length > 0 ? q.services : serviceCodes;
-    targetServices.forEach((svc, idx) => {
       expanded.push({
         ...q,
-        id: q.id * 10 + (idx + 1),
+        id: nextId++,
+      });
+      continue;
+    }
+
+    const targetServices =
+      q.services && q.services.length > 0 ? q.services : serviceCodes;
+
+    targetServices.forEach((svc) => {
+      expanded.push({
+        ...q,
+        id: nextId++,
         inputType: "radio",
         service: svc,
         services: undefined,

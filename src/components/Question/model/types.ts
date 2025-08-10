@@ -27,7 +27,8 @@ export interface Question {
   question: string;
   options?: QuestionOption[];
   followUp?: FollowUp;
-  weight: number;
+  // Ранее использовался вес вопроса; теперь игнорируем. Оставлен опционально для совместимости JSON
+  weight?: number;
   placeholder?: string; // For simple text inputs
   scoring?: { [key: string]: number };
   // Service-specific fields

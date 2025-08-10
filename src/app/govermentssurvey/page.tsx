@@ -13,6 +13,10 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios"; // Import AxiosError
 import { useRouter } from "next/navigation";
 import { expandServiceTemplates } from "@/lib/survey";
+import type {
+  GovernmentSurveyResponseDTO,
+  GovernmentSurveySubmitDataDTO,
+} from "@/api/types";
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
@@ -55,21 +59,23 @@ const GovermentsSurveyPage = () => {
     setLocation,
     finalThoughts,
     setFinalThoughts,
-    answers, // Explicitly get answers
+    responses, // Получаем responses из useSurvey
   } = useSurvey(
     useGovernmentSurveyStore,
     allQuestions,
     "/resultsgovermentserice"
   );
 
-  type SubmitData = {
-    location: { country: string; region: string };
-    finalThoughts: string;
-    answers: Record<number, Answer>;
-  };
+  // Получаем store для работы с responses
+  const { setResponse } = useGovernmentSurveyStore();
+
   type SubmitResponse = { message: string; resultId: string };
 
-  const submitSurvey = useMutation<SubmitResponse, AxiosError, SubmitData>({
+  const submitSurvey = useMutation<
+    SubmitResponse,
+    AxiosError,
+    GovernmentSurveySubmitDataDTO
+  >({
     mutationFn: (data) => axios.post("/api/submit-government-survey", data),
     onSuccess: () => {
       router.push("/resultsgovermentserice");
@@ -83,11 +89,11 @@ const GovermentsSurveyPage = () => {
   });
 
   const handleFinalSubmit = () => {
-    // Collect all data from Zustand store
-    const dataToSend: SubmitData = {
+    // Теперь просто отправляем responses из store
+    const dataToSend: GovernmentSurveySubmitDataDTO = {
       location,
       finalThoughts,
-      answers, // Raw answers from Zustand
+      responses,
     };
     submitSurvey.mutate(dataToSend);
   };
@@ -129,6 +135,7 @@ const GovermentsSurveyPage = () => {
           onSectorChange={() => {}} // No-op for government survey
           initialFinalThoughts={finalThoughts}
           onFinalThoughtsChange={setFinalThoughts}
+          onResponseChange={setResponse} // Передаем функцию для сохранения responses
         />
       </div>
     </main>

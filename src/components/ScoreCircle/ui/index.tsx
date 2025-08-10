@@ -2,7 +2,7 @@ import React from "react";
 
 interface ScoreCircleProps {
   scores: { [key: string]: number };
-  criteria: { [key: string]: { color: string; weight: number } };
+  criteria: { [key: string]: { color: string } };
 }
 
 const ScoreCircle: React.FC<ScoreCircleProps> = ({ scores, criteria }) => {
@@ -10,18 +10,13 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({ scores, criteria }) => {
     (acc, score) => acc + score,
     0
   );
-  const totalWeight = Object.values(criteria).reduce(
-    (acc, { weight }) => acc + weight,
-    0
-  );
-  const averageScore = totalWeight > 0 ? totalScore / totalWeight : 0;
+  const criteriaCount = Object.keys(criteria).length;
+  const averageScore = criteriaCount > 0 ? totalScore / criteriaCount : 0;
 
   let accumulatedPercentage = 0;
 
   return (
     <div className="relative size-full">
-      {" "}
-      {/* Reverted to original size */}
       <svg className="w-full h-full" viewBox="0 0 250 250">
         {/* Background circle */}
         <circle
@@ -29,7 +24,7 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({ scores, criteria }) => {
           cy="125"
           r="100"
           fill="transparent"
-          stroke="#e5e7eb" // A light gray color for the background track
+          stroke="#e5e7eb"
           strokeWidth="25"
         />
         {/* Render segments only if totalScore is greater than 0 */}

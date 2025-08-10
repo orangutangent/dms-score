@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { Answer } from '../components/Question/model/types';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type { GovernmentSurveyResponseDTO } from "@/api/types";
 
 interface LocationState {
   country: string;
@@ -8,29 +8,44 @@ interface LocationState {
 }
 
 interface GovernmentSurveyState {
-  answers: Record<number, Answer>;
+  responses: GovernmentSurveyResponseDTO[];
   location: LocationState;
   finalThoughts: string;
-  setAnswer: (questionIndex: number, answer: Answer) => void;
+  setResponse: (response: GovernmentSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
   setFinalThoughts: (thoughts: string) => void;
+  clearResponses: () => void;
 }
 
 export const useGovernmentSurveyStore = create<GovernmentSurveyState>()(
   persist(
-    (set) => ({
-      answers: {},
-      location: { country: '', region: '' },
-      finalThoughts: '',
-      setAnswer: (questionIndex, answer) =>
-        set((state) => ({
-          answers: { ...state.answers, [questionIndex]: answer },
-        })),
+    (set, get) => ({
+      responses: [],
+      location: { country: "", region: "" },
+      finalThoughts: "",
+      setResponse: (response) =>
+        set((state) => {
+          const existingIndex = state.responses.findIndex(
+            (r) =>
+              r.questionId === response.questionId &&
+              r.service === response.service
+          );
+          if (existingIndex >= 0) {
+            // Обновляем существующий ответ
+            const updated = [...state.responses];
+            updated[existingIndex] = response;
+            return { responses: updated };
+          } else {
+            // Добавляем новый ответ
+            return { responses: [...state.responses, response] };
+          }
+        }),
       setLocation: (location) => set({ location }),
       setFinalThoughts: (thoughts) => set({ finalThoughts: thoughts }),
+      clearResponses: () => set({ responses: [] }),
     }),
     {
-      name: 'dms-government-survey-storage',
+      name: "dms-government-survey-storage",
     }
   )
 );

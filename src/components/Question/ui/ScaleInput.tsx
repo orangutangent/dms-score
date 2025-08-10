@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ScaleInputProps {
   options: string[];
@@ -6,7 +6,11 @@ interface ScaleInputProps {
   onChange: (value: string) => void;
 }
 
-const ScaleInput: React.FC<ScaleInputProps> = ({ options, selectedValue, onChange }) => {
+const ScaleInput: React.FC<ScaleInputProps> = ({
+  options,
+  selectedValue,
+  onChange,
+}) => {
   return (
     <div className="flex gap-4 items-center mt-6">
       {options.map((option) => (

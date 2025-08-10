@@ -2,7 +2,7 @@ import React from "react";
 
 interface ScoreTableProps {
   scores: { [key: string]: number };
-  criteria: { [key: string]: { color: string; weight: number } };
+  criteria: { [key: string]: { color: string } };
   averageScore: number;
   getMaturityStage: (score: number) => string;
   scoreColumnTitle?: string;

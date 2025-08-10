@@ -3,9 +3,14 @@ import React from "react";
 interface ScoreCircleProps {
   scores: { [key: string]: number };
   criteria: { [key: string]: { color: string } };
+  title?: string;
 }
 
-const ScoreCircle: React.FC<ScoreCircleProps> = ({ scores, criteria }) => {
+const ScoreCircle: React.FC<ScoreCircleProps> = ({
+  scores,
+  criteria,
+  title = "Ваша оценка",
+}) => {
   const totalScore = Object.values(scores).reduce(
     (acc, score) => acc + score,
     0
@@ -58,7 +63,7 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({ scores, criteria }) => {
           })}
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-gray-500">Ваша оценка</span>
+        <span className="text-gray-500">{title}</span>
         <span className="text-[2.5rem] font-bold text-foreground">
           {averageScore.toFixed(2)}
         </span>

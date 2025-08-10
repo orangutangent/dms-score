@@ -1,1 +1,2 @@
-export { default } from './ui';
+export { default } from "./ui";
+export { ServiceStatsTable } from "./ui";

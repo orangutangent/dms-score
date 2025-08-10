@@ -16,11 +16,33 @@ interface SurveyStats {
   average: number;
 }
 
+interface GovernmentSurveyStats extends SurveyStats {
+  levels: Record<string, CriterionStat>; // Только критерии уровней
+  specialSections: Record<string, CriterionStat>; // Специальные разделы
+  services: Record<string, SurveyStats>; // Статистика по видам услуг
+}
+
 interface CountryStats {
   digitalMaturity: SurveyStats;
-  government: SurveyStats;
+  government: GovernmentSurveyStats;
   governmentByService: Record<ServiceCode, SurveyStats>;
 }
+
+// Критерии уровней (основные критерии)
+const LEVEL_CRITERIA = [
+  "Инфраструктурный уровень",
+  "Государственный уровень",
+  "Уровень бизнеса",
+  "Персональный уровень",
+  "Уровень экосистемы",
+];
+
+// Специальные разделы
+const SPECIAL_SECTION_CRITERIA = [
+  "Специальный раздел 1",
+  "Специальный раздел 2",
+  "Специальный раздел 3",
+];
 
 export async function GET() {
   try {
@@ -56,7 +78,15 @@ export async function GET() {
             criterion: {},
             average: 0,
           },
-          government: { count: 0, totalScore: 0, criterion: {}, average: 0 },
+          government: {
+            count: 0,
+            totalScore: 0,
+            criterion: {},
+            average: 0,
+            levels: {},
+            specialSections: {},
+            services: {},
+          },
           governmentByService: SERVICES.reduce((acc, s) => {
             acc[s.code] = {
               count: 0,
@@ -98,7 +128,15 @@ export async function GET() {
             criterion: {},
             average: 0,
           },
-          government: { count: 0, totalScore: 0, criterion: {}, average: 0 },
+          government: {
+            count: 0,
+            totalScore: 0,
+            criterion: {},
+            average: 0,
+            levels: {},
+            specialSections: {},
+            services: {},
+          },
           governmentByService: SERVICES.reduce((acc, s) => {
             acc[s.code] = {
               count: 0,
@@ -116,6 +154,7 @@ export async function GET() {
       for (const [criterion, score] of Object.entries(
         result.criterionScores as Record<string, number>
       )) {
+        // Общая статистика по всем критериям
         if (!statsByCountry[country].government.criterion[criterion]) {
           statsByCountry[country].government.criterion[criterion] = {
             total: 0,
@@ -125,6 +164,30 @@ export async function GET() {
         }
         statsByCountry[country].government.criterion[criterion].total += score;
         statsByCountry[country].government.criterion[criterion].count++;
+
+        // Разделяем на уровни и специальные разделы
+        if (LEVEL_CRITERIA.includes(criterion)) {
+          if (!statsByCountry[country].government.levels[criterion]) {
+            statsByCountry[country].government.levels[criterion] = {
+              total: 0,
+              count: 0,
+              average: 0,
+            };
+          }
+          statsByCountry[country].government.levels[criterion].total += score;
+          statsByCountry[country].government.levels[criterion].count++;
+        } else if (SPECIAL_SECTION_CRITERIA.includes(criterion)) {
+          if (!statsByCountry[country].government.specialSections[criterion]) {
+            statsByCountry[country].government.specialSections[criterion] = {
+              total: 0,
+              count: 0,
+              average: 0,
+            };
+          }
+          statsByCountry[country].government.specialSections[criterion].total +=
+            score;
+          statsByCountry[country].government.specialSections[criterion].count++;
+        }
       }
     });
 
@@ -166,8 +229,22 @@ export async function GET() {
       if (countryStats.government.count > 0) {
         countryStats.government.average =
           countryStats.government.totalScore / countryStats.government.count;
+
+        // Общие критерии
         for (const criterion in countryStats.government.criterion) {
           const crit = countryStats.government.criterion[criterion];
+          crit.average = crit.total / crit.count;
+        }
+
+        // Уровни
+        for (const criterion in countryStats.government.levels) {
+          const crit = countryStats.government.levels[criterion];
+          crit.average = crit.total / crit.count;
+        }
+
+        // Специальные разделы
+        for (const criterion in countryStats.government.specialSections) {
+          const crit = countryStats.government.specialSections[criterion];
           crit.average = crit.total / crit.count;
         }
       }

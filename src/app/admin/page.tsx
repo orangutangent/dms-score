@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Select from "@/components/ui/Select";
 import ScoreCircle from "@/components/ScoreCircle";
-import ScoreTable from "@/components/ScoreTable";
+import ScoreTable, { ServiceStatsTable } from "@/components/ScoreTable";
 import { getStage } from "@/lib/stage";
 import { criteriaColors } from "@/config/criteriaColors";
+import { GOVERNMENT_COLORS, BUSINESS_COLORS } from "@/config/colors";
 import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
 import { CountryStats } from "@/api/admin-stats-api";
+import { SERVICES } from "@/config/services";
 
 const AdminPage = () => {
   const { data: stats, isLoading, error } = useAdminStats();
@@ -49,46 +51,190 @@ const AdminPage = () => {
       );
     }
 
-    const criteria = Object.keys(data.criterion).reduce((acc, key, index) => {
-      acc[key] = {
-        color: criteriaColors[index % criteriaColors.length],
-        weight: 1,
-      }; // Using dummy weight as it's not needed for average display
-      return acc;
-    }, {} as Record<string, { color: string; weight: number }>);
+    if (activeTab === "government") {
+      const govData = countryData.government;
 
-    const scores = Object.entries(data.criterion).reduce(
-      (acc, [key, value]) => {
+      const levelCriteria = Object.keys(govData.levels).reduce(
+        (acc, key, index) => {
+          acc[key] = {
+            color: GOVERNMENT_COLORS[index % GOVERNMENT_COLORS.length],
+            weight: 1,
+          };
+          return acc;
+        },
+        {} as Record<string, { color: string; weight: number }>
+      );
+
+      const levelScores = Object.entries(govData.levels).reduce(
+        (acc, [key, value]) => {
+          acc[key] = value.average;
+          return acc;
+        },
+        {} as Record<string, number>
+      );
+
+      // Рассчитываем среднюю оценку только по уровням
+      const levelAverage =
+        Object.values(govData.levels).reduce(
+          (sum, level) => sum + level.average,
+          0
+        ) / Object.keys(govData.levels).length;
+
+      // Критерии для специальных разделов
+      const specialSectionCriteria = Object.keys(
+        govData.specialSections
+      ).reduce((acc, key, index) => {
+        acc[key] = {
+          color: GOVERNMENT_COLORS[index % GOVERNMENT_COLORS.length],
+          weight: 1,
+        };
+        return acc;
+      }, {} as Record<string, { color: string; weight: number }>);
+
+      const specialSectionScores = Object.entries(
+        govData.specialSections
+      ).reduce((acc, [key, value]) => {
         acc[key] = value.average;
         return acc;
-      },
-      {} as Record<string, number>
-    );
+      }, {} as Record<string, number>);
 
-    return (
-      <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,auto] gap-6 mt-6">
-        <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
-          <p className="text-xl font-semibold text-gray-700 mb-4">
-            Стадия: {getMaturityStage(data.average)}
-          </p>
-          <ScoreCircle scores={scores} criteria={criteria} />
+      // Рассчитываем среднюю оценку только по специальным разделам
+      const specialSectionAverage =
+        Object.keys(govData.specialSections).length > 0
+          ? Object.values(govData.specialSections).reduce(
+              (sum, section) => sum + section.average,
+              0
+            ) / Object.keys(govData.specialSections).length
+          : 0;
+
+      // Статистика по видам услуг
+      const serviceStats = Object.entries(countryData.governmentByService)
+        .filter(([, serviceData]) => serviceData.count > 0)
+        .map(([serviceCode, serviceData]) => ({
+          code: serviceCode,
+          label:
+            SERVICES.find((s) => s.code === serviceCode)?.label || serviceCode,
+          average: serviceData.average,
+          count: serviceData.count,
+        }));
+
+      return (
+        <div className="grid grid-cols-1 w-full lg:grid-cols-2 gap-6 mt-6">
+          {/* Первый ряд: круг и таблица уровней */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
+            <p className="text-xl font-semibold text-gray-700 mb-4">
+              Стадия: {getMaturityStage(levelAverage)}
+            </p>
+            <div className="size-[25rem]">
+              <ScoreCircle
+                title="Средняя оценка"
+                scores={levelScores}
+                criteria={levelCriteria}
+              />
+            </div>
+            <p className="text-sm text-gray-500 mt-2 text-center">
+              Средняя оценка по уровням
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">
+              Оценка цифровой зрелости гос. услуг
+            </h2>
+
+            {/* Таблица уровней */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4">
+                Уровни цифровой зрелости
+              </h3>
+              <ScoreTable
+                scores={levelScores}
+                criteria={levelCriteria}
+                averageScore={levelAverage}
+                getMaturityStage={getMaturityStage}
+                scoreColumnTitle="Средняя оценка"
+                showColors={true}
+                customColors={GOVERNMENT_COLORS}
+              />
+            </div>
+          </div>
+
+          {/* Второй ряд: таблица услуг и специальные разделы */}
+          <div>
+            <ServiceStatsTable
+              serviceStats={serviceStats}
+              showColors={false}
+              customColors={GOVERNMENT_COLORS}
+            />
+          </div>
+
+          {Object.keys(govData.specialSections).length > 0 && (
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h3 className="text-lg font-semibold mb-4">
+                Специальные разделы
+              </h3>
+              <ScoreTable
+                scores={specialSectionScores}
+                criteria={specialSectionCriteria}
+                averageScore={specialSectionAverage}
+                getMaturityStage={getMaturityStage}
+                scoreColumnTitle="Средняя оценка"
+                showColors={false}
+              />
+            </div>
+          )}
         </div>
-        <div className="max-w-xl lg:col-start-2 bg-white rounded-2xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold mb-4">
-            {activeTab === "government"
-              ? "Оценка цифровой зрелости гос. услуг"
-              : "Оценка цифровой зрелости бизнеса"}
-          </h2>
-          <ScoreTable
-            scores={scores}
-            criteria={criteria}
-            averageScore={data.average}
-            getMaturityStage={getMaturityStage}
-            scoreColumnTitle="Средняя оценка"
-          />
+      );
+    } else {
+      // Для digitalMaturity используем бизнес-цвета
+      const criteria = Object.keys(data.criterion).reduce((acc, key, index) => {
+        acc[key] = {
+          color: BUSINESS_COLORS[index % BUSINESS_COLORS.length],
+          weight: 1,
+        };
+        return acc;
+      }, {} as Record<string, { color: string; weight: number }>);
+
+      const scores = Object.entries(data.criterion).reduce(
+        (acc, [key, value]) => {
+          acc[key] = value.average;
+          return acc;
+        },
+        {} as Record<string, number>
+      );
+
+      // Рассчитываем среднюю оценку только по критериям
+      const criteriaAverage =
+        Object.values(data.criterion).reduce(
+          (sum, criterion) => sum + criterion.average,
+          0
+        ) / Object.keys(data.criterion).length;
+
+      return (
+        <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,auto] gap-6 mt-6">
+          <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
+            <p className="text-xl font-semibold text-gray-700 mb-4">
+              Стадия: {getMaturityStage(criteriaAverage)}
+            </p>
+            <ScoreCircle scores={scores} criteria={criteria} />
+          </div>
+          <div className="max-w-xl lg:col-start-2 bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold mb-4">
+              Оценка цифровой зрелости бизнеса
+            </h2>
+            <ScoreTable
+              scores={scores}
+              criteria={criteria}
+              averageScore={criteriaAverage}
+              getMaturityStage={getMaturityStage}
+              scoreColumnTitle="Ваша оценка"
+              showColors={true}
+              customColors={BUSINESS_COLORS}
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   };
 
   return (

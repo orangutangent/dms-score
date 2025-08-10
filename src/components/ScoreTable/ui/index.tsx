@@ -6,6 +6,8 @@ interface ScoreTableProps {
   averageScore: number;
   getMaturityStage: (score: number) => string;
   scoreColumnTitle?: string;
+  showColors?: boolean;
+  customColors?: string[];
 }
 
 const ScoreTable: React.FC<ScoreTableProps> = ({
@@ -14,6 +16,8 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
   averageScore,
   getMaturityStage,
   scoreColumnTitle = "Ваша оценка",
+  showColors = true,
+  customColors,
 }) => {
   return (
     <div>
@@ -23,9 +27,15 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
         <div className="text-center">Стадия</div>
       </div>
       <div className="mt-4 space-y-4">
-        {Object.entries(criteria).map(([criterion, { color }]) => {
+        {Object.entries(criteria).map(([criterion, { color }], index) => {
           const score = scores[criterion] || 0;
           const stage = getMaturityStage(score).split(" - ")[0];
+
+          // Определяем цвет для отображения
+          let displayColor = color;
+          if (customColors && customColors[index]) {
+            displayColor = customColors[index];
+          }
 
           return (
             <div
@@ -33,10 +43,12 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
               className="grid grid-cols-3 gap-4 items-center"
             >
               <div className="flex items-center">
-                <span
-                  className="w-3 h-3 rounded-full mr-3 flex-shrink-0" // Added flex-shrink-0
-                  style={{ backgroundColor: color }}
-                ></span>
+                {showColors && (
+                  <span
+                    className="w-3 h-3 rounded-full mr-3 flex-shrink-0"
+                    style={{ backgroundColor: displayColor }}
+                  ></span>
+                )}
                 <span>{criterion}</span>
               </div>
               <div className="text-center font-semibold">
@@ -60,3 +72,4 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
 };
 
 export default ScoreTable;
+export { default as ServiceStatsTable } from "./ServiceStatsTable";

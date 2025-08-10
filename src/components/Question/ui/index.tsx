@@ -72,14 +72,15 @@ const Question: React.FC<QuestionProps> = ({
     let score01 = 0;
 
     if (question.inputType === "radio") {
-      score01 = calculateRadioScore(ans.value, question.options?.length || 0);
+      if (ans.score) score01 = ans.score;
+      else
+        score01 = calculateRadioScore(ans.value, question.options?.length || 0); //!ERROR
     } else if (question.inputType === "scale") {
       score01 = calculateScaleScore(ans.value, question.options?.length);
     } else if (
       question.inputType === "scale-service-template" ||
       question.inputType === "yes-no-service-template"
     ) {
-      // Для новых типов используем уже вычисленный score
       score01 = ans.score || 0;
     }
 
@@ -212,7 +213,7 @@ const Question: React.FC<QuestionProps> = ({
                     score01: newAnswer.score || 0,
                     answerValue: newAnswer.value,
                   };
-                  console.log("yes-or-no response");
+                  // console.log("yes-or-no response");
                   onResponseChange(response);
                 });
               }
@@ -248,14 +249,18 @@ const Question: React.FC<QuestionProps> = ({
                 value={option.value}
                 checked={answer?.value === option.value}
                 onChange={(value) => {
+                  // console.log("yes-or-no radio response: ", value);
                   // Для radio тоже считаем score если есть scoring
                   let score = 0;
                   if (question.scoring && option.value in question.scoring) {
                     score = question.scoring[option.value];
+                    // console.log("score: ", score);
                   }
                   const newAnswer = { value: option.value, score };
                   setAnswer(newAnswer);
+                  // console.log("new answer: ", newAnswer);
                   const response = createResponse(newAnswer);
+                  // console.log("resp ", response);
                   if (response && onResponseChange) {
                     onResponseChange(response);
                   }

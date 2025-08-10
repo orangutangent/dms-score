@@ -5,10 +5,15 @@ import ScaleInput from "./ScaleInput";
 import Radio from "../../ui/Radio";
 import Textarea from "../../ui/Textarea";
 import FinalThoughtsInput from "./FinalThoughtsInput";
+import ScaleServiceTemplateInput from "./ScaleServiceTemplateInput";
+import YesNoServiceTemplateInput from "./YesNoServiceTemplateInput";
 import { Question as QuestionType, Answer } from "../model/types";
 import { SERVICE_MAP, type ServiceCode } from "@/config/services";
 import { calculateRadioScore, calculateScaleScore } from "@/lib/scoring";
-import type { GovernmentSurveyResponseDTO } from "@/api/types";
+import type {
+  GovernmentSurveyResponseDTO,
+  BusinessSurveyResponseDTO,
+} from "@/api/types";
 
 interface QuestionProps {
   question: QuestionType;
@@ -26,7 +31,9 @@ interface QuestionProps {
   initialFinalThoughts: string;
   onFinalThoughtsChange: (thoughts: string) => void;
   // New prop for storing responses
-  onResponseChange?: (response: GovernmentSurveyResponseDTO) => void;
+  onResponseChange?: (
+    response: GovernmentSurveyResponseDTO | BusinessSurveyResponseDTO
+  ) => void;
 }
 
 const Question: React.FC<QuestionProps> = ({
@@ -52,7 +59,9 @@ const Question: React.FC<QuestionProps> = ({
   }, [initialAnswer]);
 
   // Создает response DTO из ответа пользователя
-  const createResponse = (ans: Answer): GovernmentSurveyResponseDTO | null => {
+  const createResponse = (
+    ans: Answer
+  ): GovernmentSurveyResponseDTO | BusinessSurveyResponseDTO | null => {
     if (!ans || ans.value === undefined || ans.value === null) return null;
 
     // Для специальных типов вопросов не создаем response
@@ -66,6 +75,12 @@ const Question: React.FC<QuestionProps> = ({
       score01 = calculateRadioScore(ans.value, question.options?.length || 0);
     } else if (question.inputType === "scale") {
       score01 = calculateScaleScore(ans.value, question.options?.length);
+    } else if (
+      question.inputType === "scale-service-template" ||
+      question.inputType === "yes-no-service-template"
+    ) {
+      // Для новых типов используем уже вычисленный score
+      score01 = ans.score || 0;
     }
 
     return {
@@ -104,6 +119,8 @@ const Question: React.FC<QuestionProps> = ({
       case "radio":
       case "location":
       case "sector":
+      case "scale-service-template":
+      case "yes-no-service-template":
         return "Выберите ответ:";
       case "text":
       case "final-thoughts":
@@ -154,6 +171,52 @@ const Question: React.FC<QuestionProps> = ({
               onChange={(e) => setAnswer({ value: e.target.value })}
             />
           </div>
+        );
+      case "scale-service-template":
+        return (
+          <ScaleServiceTemplateInput
+            question={question}
+            initialAnswer={initialAnswer}
+            onAnswerChange={(newAnswer) => {
+              setAnswer(newAnswer);
+              // Для template вопросов создаем отдельные ответы для каждого сервиса
+              if (newAnswer && question.subQuestions && onResponseChange) {
+                question.subQuestions.forEach((subQ) => {
+                  const response = {
+                    questionId: question.id,
+                    criterion: question.criterion,
+                    service: subQ.service,
+                    score01: newAnswer.score || 0,
+                    answerValue: newAnswer.value,
+                  };
+                  onResponseChange(response);
+                });
+              }
+            }}
+          />
+        );
+      case "yes-no-service-template":
+        return (
+          <YesNoServiceTemplateInput
+            question={question}
+            initialAnswer={initialAnswer}
+            onAnswerChange={(newAnswer) => {
+              setAnswer(newAnswer);
+              // Для template вопросов создаем отдельные ответы для каждого сервиса
+              if (newAnswer && question.subQuestions && onResponseChange) {
+                question.subQuestions.forEach((subQ) => {
+                  const response = {
+                    questionId: question.id,
+                    criterion: question.criterion,
+                    service: subQ.service,
+                    score01: newAnswer.score || 0,
+                    answerValue: newAnswer.value,
+                  };
+                  onResponseChange(response);
+                });
+              }
+            }}
+          />
         );
       case "radio":
         return (
@@ -224,6 +287,14 @@ const Question: React.FC<QuestionProps> = ({
     if (question.inputType === "location") return !initialLocation.country;
     if (question.inputType === "sector") return !answer?.value;
     if (question.inputType === "final-thoughts") return false; // Can proceed with empty thoughts
+    if (
+      question.inputType === "scale-service-template" ||
+      question.inputType === "yes-no-service-template"
+    ) {
+      // Для новых типов проверяем, что все подвопросы отвечены
+      if (!question.subQuestions) return true;
+      return !answer || answer.value === "";
+    }
     return answer === null || answer.value === "";
   };
 
@@ -243,9 +314,17 @@ const Question: React.FC<QuestionProps> = ({
       <div>
         <h2 className="text-[1.75rem] font-semibold text-foreground-secondary">
           {(() => {
+            // Для новых типов МСП опроса показываем только основной вопрос
+            if (
+              question.inputType === "scale-service-template" ||
+              question.inputType === "yes-no-service-template"
+            ) {
+              return <>{question.question} </>;
+            }
+
             const sc = question.service as ServiceCode | undefined;
             if (!sc) {
-              return <>{question.question}</>;
+              return <>{question.question} </>;
             }
             const info = SERVICE_MAP[sc];
             const q = question.question || "";

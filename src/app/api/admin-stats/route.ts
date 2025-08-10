@@ -22,10 +22,15 @@ interface GovernmentSurveyStats extends SurveyStats {
   services: Record<string, SurveyStats>; // Статистика по видам услуг
 }
 
+interface DigitalMaturitySurveyStats extends SurveyStats {
+  services: Record<string, SurveyStats>; // Статистика по видам услуг
+}
+
 interface CountryStats {
-  digitalMaturity: SurveyStats;
+  digitalMaturity: DigitalMaturitySurveyStats;
   government: GovernmentSurveyStats;
   governmentByService: Record<ServiceCode, SurveyStats>;
+  digitalMaturityByService: Record<ServiceCode, SurveyStats>;
 }
 
 // Критерии уровней (основные критерии)
@@ -64,6 +69,21 @@ export async function GET() {
     >(
       'SELECT "resultId", "serviceCode", "overallScore", "criterionScores" FROM "public"."GovernmentSurveyServiceScore"'
     );
+    const digitalMaturityServiceRows: Array<{
+      resultId: string;
+      serviceCode: string;
+      overallScore: number;
+      criterionScores: Record<string, number>;
+    }> = await prisma.$queryRawUnsafe<
+      Array<{
+        resultId: string;
+        serviceCode: string;
+        overallScore: number;
+        criterionScores: Record<string, number>;
+      }>
+    >(
+      'SELECT "resultId", "serviceCode", "overallScore", "criterionScores" FROM "public"."DigitalMaturitySurveyServiceScore"'
+    );
 
     const statsByCountry: Record<string, CountryStats> = {};
 
@@ -77,6 +97,7 @@ export async function GET() {
             totalScore: 0,
             criterion: {},
             average: 0,
+            services: {},
           },
           government: {
             count: 0,
@@ -88,6 +109,15 @@ export async function GET() {
             services: {},
           },
           governmentByService: SERVICES.reduce((acc, s) => {
+            acc[s.code] = {
+              count: 0,
+              totalScore: 0,
+              criterion: {},
+              average: 0,
+            };
+            return acc;
+          }, {} as Record<ServiceCode, SurveyStats>),
+          digitalMaturityByService: SERVICES.reduce((acc, s) => {
             acc[s.code] = {
               count: 0,
               totalScore: 0,
@@ -127,6 +157,7 @@ export async function GET() {
             totalScore: 0,
             criterion: {},
             average: 0,
+            services: {},
           },
           government: {
             count: 0,
@@ -138,6 +169,15 @@ export async function GET() {
             services: {},
           },
           governmentByService: SERVICES.reduce((acc, s) => {
+            acc[s.code] = {
+              count: 0,
+              totalScore: 0,
+              criterion: {},
+              average: 0,
+            };
+            return acc;
+          }, {} as Record<ServiceCode, SurveyStats>),
+          digitalMaturityByService: SERVICES.reduce((acc, s) => {
             acc[s.code] = {
               count: 0,
               totalScore: 0,
@@ -214,6 +254,29 @@ export async function GET() {
       }
     });
 
+    // Process per-service rows for digital maturity (join by resultId to country)
+    const digitalMaturityResultIdToCountry: Record<string, string> = {};
+    digitalMaturityResults.forEach((r) => {
+      digitalMaturityResultIdToCountry[r.id] = r.country;
+    });
+    digitalMaturityServiceRows.forEach((row) => {
+      const country = digitalMaturityResultIdToCountry[row.resultId];
+      if (!country) return;
+      const svc = row.serviceCode as ServiceCode;
+      const bucket = statsByCountry[country].digitalMaturityByService[svc];
+      bucket.count++;
+      bucket.totalScore += row.overallScore;
+      for (const [criterion, score] of Object.entries(
+        row.criterionScores || {}
+      )) {
+        if (!bucket.criterion[criterion]) {
+          bucket.criterion[criterion] = { total: 0, count: 0, average: 0 };
+        }
+        bucket.criterion[criterion].total += score;
+        bucket.criterion[criterion].count++;
+      }
+    });
+
     // Calculate averages
     for (const country in statsByCountry) {
       const countryStats = statsByCountry[country];
@@ -252,6 +315,18 @@ export async function GET() {
       // service averages
       for (const svc of SERVICES) {
         const s = countryStats.governmentByService[svc.code];
+        if (s.count > 0) {
+          s.average = s.totalScore / s.count;
+          for (const criterion in s.criterion) {
+            const crit = s.criterion[criterion];
+            crit.average = crit.total / crit.count;
+          }
+        }
+      }
+
+      // digital maturity service averages
+      for (const svc of SERVICES) {
+        const s = countryStats.digitalMaturityByService[svc.code];
         if (s.count > 0) {
           s.average = s.totalScore / s.count;
           for (const criterion in s.criterion) {

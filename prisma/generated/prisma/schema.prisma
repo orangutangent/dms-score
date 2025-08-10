@@ -16,15 +16,16 @@ datasource db {
 }
 
 model DigitalMaturitySurveyResult {
-  id              String   @id @default(uuid())
+  id              String                              @id @default(uuid())
   country         String
-  region          String   @default("")
-  sector          String   @default("")
+  region          String                              @default("")
+  sector          String                              @default("")
   overallScore    Float
-  finalThoughts   String   @default("")
+  finalThoughts   String                              @default("")
   criterionScores Json
   rawAnswers      Json
-  createdAt       DateTime @default(now())
+  createdAt       DateTime                            @default(now())
+  serviceScores   DigitalMaturitySurveyServiceScore[]
 }
 
 model GovernmentSurveyResult {
@@ -49,6 +50,19 @@ model GovernmentSurveyServiceScore {
   createdAt       DateTime @default(now())
 
   result GovernmentSurveyResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
+
+  @@index([resultId])
+}
+
+model DigitalMaturitySurveyServiceScore {
+  id              String   @id @default(uuid())
+  resultId        String
+  serviceCode     String
+  overallScore    Float
+  criterionScores Json
+  createdAt       DateTime @default(now())
+
+  result DigitalMaturitySurveyResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
 
   @@index([resultId])
 }

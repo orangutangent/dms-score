@@ -5,10 +5,9 @@ import Select from "@/components/ui/Select";
 import ScoreCircle from "@/components/ScoreCircle";
 import ScoreTable, { ServiceStatsTable } from "@/components/ScoreTable";
 import { getStage } from "@/lib/stage";
-import { criteriaColors } from "@/config/criteriaColors";
 import { GOVERNMENT_COLORS, BUSINESS_COLORS } from "@/config/colors";
 import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
-import { CountryStats } from "@/api/admin-stats-api";
+import { CountryStats, SurveyStats } from "@/api/admin-stats-api";
 import { SERVICES } from "@/config/services";
 
 const AdminPage = () => {
@@ -210,16 +209,34 @@ const AdminPage = () => {
           0
         ) / Object.keys(data.criterion).length;
 
+      // Статистика по видам услуг для бизнес опроса
+      const businessServiceStats = Object.entries(
+        countryData.digitalMaturityByService
+      )
+        .filter(([, serviceData]) => (serviceData as SurveyStats).count > 0)
+        .map(([serviceCode, serviceData]) => ({
+          code: serviceCode,
+          label:
+            SERVICES.find((s) => s.code === serviceCode)?.label || serviceCode,
+          average: (serviceData as SurveyStats).average,
+          count: (serviceData as SurveyStats).count,
+        }));
+
       return (
-        <div className="grid grid-cols-1 w-full lg:grid-cols-[28rem,auto] gap-6 mt-6">
+        <div className="grid grid-cols-1 w-full lg:grid-cols-2 gap-6 mt-6">
+          {/* Первый ряд: круг и таблица критериев */}
           <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
             <p className="text-xl font-semibold text-gray-700 mb-4">
               Стадия: {getMaturityStage(criteriaAverage)}
             </p>
             <ScoreCircle scores={scores} criteria={criteria} />
+            <p className="text-sm text-gray-500 mt-2 text-center">
+              Средняя оценка по критериям
+            </p>
           </div>
-          <div className="max-w-xl lg:col-start-2 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">
+
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold mb-6">
               Оценка цифровой зрелости бизнеса
             </h2>
             <ScoreTable
@@ -227,9 +244,18 @@ const AdminPage = () => {
               criteria={criteria}
               averageScore={criteriaAverage}
               getMaturityStage={getMaturityStage}
-              scoreColumnTitle="Ваша оценка"
+              scoreColumnTitle="Средняя оценка"
               showColors={true}
               customColors={BUSINESS_COLORS}
+            />
+          </div>
+
+          {/* Второй ряд: таблица услуг */}
+          <div className="lg:col-span-2">
+            <ServiceStatsTable
+              serviceStats={businessServiceStats}
+              showColors={true}
+              customColors={SERVICES.map((s) => s.color)}
             />
           </div>
         </div>

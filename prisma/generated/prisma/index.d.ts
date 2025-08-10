@@ -28,6 +28,11 @@ export type GovernmentSurveyResult = $Result.DefaultSelection<Prisma.$Government
  * 
  */
 export type GovernmentSurveyServiceScore = $Result.DefaultSelection<Prisma.$GovernmentSurveyServiceScorePayload>
+/**
+ * Model DigitalMaturitySurveyServiceScore
+ * 
+ */
+export type DigitalMaturitySurveyServiceScore = $Result.DefaultSelection<Prisma.$DigitalMaturitySurveyServiceScorePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,6 +188,16 @@ export class PrismaClient<
     * ```
     */
   get governmentSurveyServiceScore(): Prisma.GovernmentSurveyServiceScoreDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.digitalMaturitySurveyServiceScore`: Exposes CRUD operations for the **DigitalMaturitySurveyServiceScore** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DigitalMaturitySurveyServiceScores
+    * const digitalMaturitySurveyServiceScores = await prisma.digitalMaturitySurveyServiceScore.findMany()
+    * ```
+    */
+  get digitalMaturitySurveyServiceScore(): Prisma.DigitalMaturitySurveyServiceScoreDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -625,7 +640,8 @@ export namespace Prisma {
   export const ModelName: {
     DigitalMaturitySurveyResult: 'DigitalMaturitySurveyResult',
     GovernmentSurveyResult: 'GovernmentSurveyResult',
-    GovernmentSurveyServiceScore: 'GovernmentSurveyServiceScore'
+    GovernmentSurveyServiceScore: 'GovernmentSurveyServiceScore',
+    DigitalMaturitySurveyServiceScore: 'DigitalMaturitySurveyServiceScore'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "digitalMaturitySurveyResult" | "governmentSurveyResult" | "governmentSurveyServiceScore"
+      modelProps: "digitalMaturitySurveyResult" | "governmentSurveyResult" | "governmentSurveyServiceScore" | "digitalMaturitySurveyServiceScore"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -870,6 +886,80 @@ export namespace Prisma {
           }
         }
       }
+      DigitalMaturitySurveyServiceScore: {
+        payload: Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>
+        fields: Prisma.DigitalMaturitySurveyServiceScoreFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>
+          }
+          findFirst: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>
+          }
+          findMany: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>[]
+          }
+          create: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>
+          }
+          createMany: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>[]
+          }
+          delete: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>
+          }
+          update: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>
+          }
+          deleteMany: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>[]
+          }
+          upsert: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DigitalMaturitySurveyServiceScorePayload>
+          }
+          aggregate: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDigitalMaturitySurveyServiceScore>
+          }
+          groupBy: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DigitalMaturitySurveyServiceScoreGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DigitalMaturitySurveyServiceScoreCountArgs<ExtArgs>
+            result: $Utils.Optional<DigitalMaturitySurveyServiceScoreCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -965,6 +1055,7 @@ export namespace Prisma {
     digitalMaturitySurveyResult?: DigitalMaturitySurveyResultOmit
     governmentSurveyResult?: GovernmentSurveyResultOmit
     governmentSurveyServiceScore?: GovernmentSurveyServiceScoreOmit
+    digitalMaturitySurveyServiceScore?: DigitalMaturitySurveyServiceScoreOmit
   }
 
   /* Types for Logging */
@@ -1057,6 +1148,37 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type DigitalMaturitySurveyResultCountOutputType
+   */
+
+  export type DigitalMaturitySurveyResultCountOutputType = {
+    serviceScores: number
+  }
+
+  export type DigitalMaturitySurveyResultCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    serviceScores?: boolean | DigitalMaturitySurveyResultCountOutputTypeCountServiceScoresArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DigitalMaturitySurveyResultCountOutputType without action
+   */
+  export type DigitalMaturitySurveyResultCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyResultCountOutputType
+     */
+    select?: DigitalMaturitySurveyResultCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DigitalMaturitySurveyResultCountOutputType without action
+   */
+  export type DigitalMaturitySurveyResultCountOutputTypeCountServiceScoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+  }
 
 
   /**
@@ -1316,6 +1438,8 @@ export namespace Prisma {
     criterionScores?: boolean
     rawAnswers?: boolean
     createdAt?: boolean
+    serviceScores?: boolean | DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs>
+    _count?: boolean | DigitalMaturitySurveyResultCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["digitalMaturitySurveyResult"]>
 
   export type DigitalMaturitySurveyResultSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1355,10 +1479,18 @@ export namespace Prisma {
   }
 
   export type DigitalMaturitySurveyResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "region" | "sector" | "overallScore" | "finalThoughts" | "criterionScores" | "rawAnswers" | "createdAt", ExtArgs["result"]["digitalMaturitySurveyResult"]>
+  export type DigitalMaturitySurveyResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    serviceScores?: boolean | DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs>
+    _count?: boolean | DigitalMaturitySurveyResultCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DigitalMaturitySurveyResultIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DigitalMaturitySurveyResultIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $DigitalMaturitySurveyResultPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DigitalMaturitySurveyResult"
-    objects: {}
+    objects: {
+      serviceScores: Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       country: string
@@ -1763,6 +1895,7 @@ export namespace Prisma {
    */
   export interface Prisma__DigitalMaturitySurveyResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    serviceScores<T extends DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs> = {}>(args?: Subset<T, DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1818,6 +1951,10 @@ export namespace Prisma {
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    /**
      * Filter, which DigitalMaturitySurveyResult to fetch.
      */
     where: DigitalMaturitySurveyResultWhereUniqueInput
@@ -1836,6 +1973,10 @@ export namespace Prisma {
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    /**
      * Filter, which DigitalMaturitySurveyResult to fetch.
      */
     where: DigitalMaturitySurveyResultWhereUniqueInput
@@ -1853,6 +1994,10 @@ export namespace Prisma {
      * Omit specific fields from the DigitalMaturitySurveyResult
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
     /**
      * Filter, which DigitalMaturitySurveyResult to fetch.
      */
@@ -1902,6 +2047,10 @@ export namespace Prisma {
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    /**
      * Filter, which DigitalMaturitySurveyResult to fetch.
      */
     where?: DigitalMaturitySurveyResultWhereInput
@@ -1950,6 +2099,10 @@ export namespace Prisma {
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    /**
      * Filter, which DigitalMaturitySurveyResults to fetch.
      */
     where?: DigitalMaturitySurveyResultWhereInput
@@ -1992,6 +2145,10 @@ export namespace Prisma {
      * Omit specific fields from the DigitalMaturitySurveyResult
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
     /**
      * The data needed to create a DigitalMaturitySurveyResult.
      */
@@ -2040,6 +2197,10 @@ export namespace Prisma {
      * Omit specific fields from the DigitalMaturitySurveyResult
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
     /**
      * The data needed to update a DigitalMaturitySurveyResult.
      */
@@ -2107,6 +2268,10 @@ export namespace Prisma {
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    /**
      * The filter to search for the DigitalMaturitySurveyResult to update in case it exists.
      */
     where: DigitalMaturitySurveyResultWhereUniqueInput
@@ -2133,6 +2298,10 @@ export namespace Prisma {
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    /**
      * Filter which DigitalMaturitySurveyResult to delete.
      */
     where: DigitalMaturitySurveyResultWhereUniqueInput
@@ -2153,6 +2322,30 @@ export namespace Prisma {
   }
 
   /**
+   * DigitalMaturitySurveyResult.serviceScores
+   */
+  export type DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    orderBy?: DigitalMaturitySurveyServiceScoreOrderByWithRelationInput | DigitalMaturitySurveyServiceScoreOrderByWithRelationInput[]
+    cursor?: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DigitalMaturitySurveyServiceScoreScalarFieldEnum | DigitalMaturitySurveyServiceScoreScalarFieldEnum[]
+  }
+
+  /**
    * DigitalMaturitySurveyResult without action
    */
   export type DigitalMaturitySurveyResultDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2164,6 +2357,10 @@ export namespace Prisma {
      * Omit specific fields from the DigitalMaturitySurveyResult
      */
     omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
   }
 
 
@@ -4413,6 +4610,1107 @@ export namespace Prisma {
 
 
   /**
+   * Model DigitalMaturitySurveyServiceScore
+   */
+
+  export type AggregateDigitalMaturitySurveyServiceScore = {
+    _count: DigitalMaturitySurveyServiceScoreCountAggregateOutputType | null
+    _avg: DigitalMaturitySurveyServiceScoreAvgAggregateOutputType | null
+    _sum: DigitalMaturitySurveyServiceScoreSumAggregateOutputType | null
+    _min: DigitalMaturitySurveyServiceScoreMinAggregateOutputType | null
+    _max: DigitalMaturitySurveyServiceScoreMaxAggregateOutputType | null
+  }
+
+  export type DigitalMaturitySurveyServiceScoreAvgAggregateOutputType = {
+    overallScore: number | null
+  }
+
+  export type DigitalMaturitySurveyServiceScoreSumAggregateOutputType = {
+    overallScore: number | null
+  }
+
+  export type DigitalMaturitySurveyServiceScoreMinAggregateOutputType = {
+    id: string | null
+    resultId: string | null
+    serviceCode: string | null
+    overallScore: number | null
+    createdAt: Date | null
+  }
+
+  export type DigitalMaturitySurveyServiceScoreMaxAggregateOutputType = {
+    id: string | null
+    resultId: string | null
+    serviceCode: string | null
+    overallScore: number | null
+    createdAt: Date | null
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCountAggregateOutputType = {
+    id: number
+    resultId: number
+    serviceCode: number
+    overallScore: number
+    criterionScores: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type DigitalMaturitySurveyServiceScoreAvgAggregateInputType = {
+    overallScore?: true
+  }
+
+  export type DigitalMaturitySurveyServiceScoreSumAggregateInputType = {
+    overallScore?: true
+  }
+
+  export type DigitalMaturitySurveyServiceScoreMinAggregateInputType = {
+    id?: true
+    resultId?: true
+    serviceCode?: true
+    overallScore?: true
+    createdAt?: true
+  }
+
+  export type DigitalMaturitySurveyServiceScoreMaxAggregateInputType = {
+    id?: true
+    resultId?: true
+    serviceCode?: true
+    overallScore?: true
+    createdAt?: true
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCountAggregateInputType = {
+    id?: true
+    resultId?: true
+    serviceCode?: true
+    overallScore?: true
+    criterionScores?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type DigitalMaturitySurveyServiceScoreAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DigitalMaturitySurveyServiceScore to aggregate.
+     */
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DigitalMaturitySurveyServiceScores to fetch.
+     */
+    orderBy?: DigitalMaturitySurveyServiceScoreOrderByWithRelationInput | DigitalMaturitySurveyServiceScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DigitalMaturitySurveyServiceScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DigitalMaturitySurveyServiceScores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DigitalMaturitySurveyServiceScores
+    **/
+    _count?: true | DigitalMaturitySurveyServiceScoreCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DigitalMaturitySurveyServiceScoreAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DigitalMaturitySurveyServiceScoreSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DigitalMaturitySurveyServiceScoreMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DigitalMaturitySurveyServiceScoreMaxAggregateInputType
+  }
+
+  export type GetDigitalMaturitySurveyServiceScoreAggregateType<T extends DigitalMaturitySurveyServiceScoreAggregateArgs> = {
+        [P in keyof T & keyof AggregateDigitalMaturitySurveyServiceScore]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDigitalMaturitySurveyServiceScore[P]>
+      : GetScalarType<T[P], AggregateDigitalMaturitySurveyServiceScore[P]>
+  }
+
+
+
+
+  export type DigitalMaturitySurveyServiceScoreGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    orderBy?: DigitalMaturitySurveyServiceScoreOrderByWithAggregationInput | DigitalMaturitySurveyServiceScoreOrderByWithAggregationInput[]
+    by: DigitalMaturitySurveyServiceScoreScalarFieldEnum[] | DigitalMaturitySurveyServiceScoreScalarFieldEnum
+    having?: DigitalMaturitySurveyServiceScoreScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DigitalMaturitySurveyServiceScoreCountAggregateInputType | true
+    _avg?: DigitalMaturitySurveyServiceScoreAvgAggregateInputType
+    _sum?: DigitalMaturitySurveyServiceScoreSumAggregateInputType
+    _min?: DigitalMaturitySurveyServiceScoreMinAggregateInputType
+    _max?: DigitalMaturitySurveyServiceScoreMaxAggregateInputType
+  }
+
+  export type DigitalMaturitySurveyServiceScoreGroupByOutputType = {
+    id: string
+    resultId: string
+    serviceCode: string
+    overallScore: number
+    criterionScores: JsonValue
+    createdAt: Date
+    _count: DigitalMaturitySurveyServiceScoreCountAggregateOutputType | null
+    _avg: DigitalMaturitySurveyServiceScoreAvgAggregateOutputType | null
+    _sum: DigitalMaturitySurveyServiceScoreSumAggregateOutputType | null
+    _min: DigitalMaturitySurveyServiceScoreMinAggregateOutputType | null
+    _max: DigitalMaturitySurveyServiceScoreMaxAggregateOutputType | null
+  }
+
+  type GetDigitalMaturitySurveyServiceScoreGroupByPayload<T extends DigitalMaturitySurveyServiceScoreGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DigitalMaturitySurveyServiceScoreGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DigitalMaturitySurveyServiceScoreGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DigitalMaturitySurveyServiceScoreGroupByOutputType[P]>
+            : GetScalarType<T[P], DigitalMaturitySurveyServiceScoreGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DigitalMaturitySurveyServiceScoreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    resultId?: boolean
+    serviceCode?: boolean
+    overallScore?: boolean
+    criterionScores?: boolean
+    createdAt?: boolean
+    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["digitalMaturitySurveyServiceScore"]>
+
+  export type DigitalMaturitySurveyServiceScoreSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    resultId?: boolean
+    serviceCode?: boolean
+    overallScore?: boolean
+    criterionScores?: boolean
+    createdAt?: boolean
+    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["digitalMaturitySurveyServiceScore"]>
+
+  export type DigitalMaturitySurveyServiceScoreSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    resultId?: boolean
+    serviceCode?: boolean
+    overallScore?: boolean
+    criterionScores?: boolean
+    createdAt?: boolean
+    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["digitalMaturitySurveyServiceScore"]>
+
+  export type DigitalMaturitySurveyServiceScoreSelectScalar = {
+    id?: boolean
+    resultId?: boolean
+    serviceCode?: boolean
+    overallScore?: boolean
+    criterionScores?: boolean
+    createdAt?: boolean
+  }
+
+  export type DigitalMaturitySurveyServiceScoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "resultId" | "serviceCode" | "overallScore" | "criterionScores" | "createdAt", ExtArgs["result"]["digitalMaturitySurveyServiceScore"]>
+  export type DigitalMaturitySurveyServiceScoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+  }
+  export type DigitalMaturitySurveyServiceScoreIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+  }
+  export type DigitalMaturitySurveyServiceScoreIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+  }
+
+  export type $DigitalMaturitySurveyServiceScorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DigitalMaturitySurveyServiceScore"
+    objects: {
+      result: Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      resultId: string
+      serviceCode: string
+      overallScore: number
+      criterionScores: Prisma.JsonValue
+      createdAt: Date
+    }, ExtArgs["result"]["digitalMaturitySurveyServiceScore"]>
+    composites: {}
+  }
+
+  type DigitalMaturitySurveyServiceScoreGetPayload<S extends boolean | null | undefined | DigitalMaturitySurveyServiceScoreDefaultArgs> = $Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload, S>
+
+  type DigitalMaturitySurveyServiceScoreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DigitalMaturitySurveyServiceScoreFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DigitalMaturitySurveyServiceScoreCountAggregateInputType | true
+    }
+
+  export interface DigitalMaturitySurveyServiceScoreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DigitalMaturitySurveyServiceScore'], meta: { name: 'DigitalMaturitySurveyServiceScore' } }
+    /**
+     * Find zero or one DigitalMaturitySurveyServiceScore that matches the filter.
+     * @param {DigitalMaturitySurveyServiceScoreFindUniqueArgs} args - Arguments to find a DigitalMaturitySurveyServiceScore
+     * @example
+     * // Get one DigitalMaturitySurveyServiceScore
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DigitalMaturitySurveyServiceScoreFindUniqueArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreFindUniqueArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DigitalMaturitySurveyServiceScore that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DigitalMaturitySurveyServiceScoreFindUniqueOrThrowArgs} args - Arguments to find a DigitalMaturitySurveyServiceScore
+     * @example
+     * // Get one DigitalMaturitySurveyServiceScore
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DigitalMaturitySurveyServiceScoreFindUniqueOrThrowArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DigitalMaturitySurveyServiceScore that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DigitalMaturitySurveyServiceScoreFindFirstArgs} args - Arguments to find a DigitalMaturitySurveyServiceScore
+     * @example
+     * // Get one DigitalMaturitySurveyServiceScore
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DigitalMaturitySurveyServiceScoreFindFirstArgs>(args?: SelectSubset<T, DigitalMaturitySurveyServiceScoreFindFirstArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DigitalMaturitySurveyServiceScore that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DigitalMaturitySurveyServiceScoreFindFirstOrThrowArgs} args - Arguments to find a DigitalMaturitySurveyServiceScore
+     * @example
+     * // Get one DigitalMaturitySurveyServiceScore
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DigitalMaturitySurveyServiceScoreFindFirstOrThrowArgs>(args?: SelectSubset<T, DigitalMaturitySurveyServiceScoreFindFirstOrThrowArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DigitalMaturitySurveyServiceScores that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DigitalMaturitySurveyServiceScoreFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DigitalMaturitySurveyServiceScores
+     * const digitalMaturitySurveyServiceScores = await prisma.digitalMaturitySurveyServiceScore.findMany()
+     * 
+     * // Get first 10 DigitalMaturitySurveyServiceScores
+     * const digitalMaturitySurveyServiceScores = await prisma.digitalMaturitySurveyServiceScore.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const digitalMaturitySurveyServiceScoreWithIdOnly = await prisma.digitalMaturitySurveyServiceScore.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DigitalMaturitySurveyServiceScoreFindManyArgs>(args?: SelectSubset<T, DigitalMaturitySurveyServiceScoreFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DigitalMaturitySurveyServiceScore.
+     * @param {DigitalMaturitySurveyServiceScoreCreateArgs} args - Arguments to create a DigitalMaturitySurveyServiceScore.
+     * @example
+     * // Create one DigitalMaturitySurveyServiceScore
+     * const DigitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.create({
+     *   data: {
+     *     // ... data to create a DigitalMaturitySurveyServiceScore
+     *   }
+     * })
+     * 
+     */
+    create<T extends DigitalMaturitySurveyServiceScoreCreateArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreCreateArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DigitalMaturitySurveyServiceScores.
+     * @param {DigitalMaturitySurveyServiceScoreCreateManyArgs} args - Arguments to create many DigitalMaturitySurveyServiceScores.
+     * @example
+     * // Create many DigitalMaturitySurveyServiceScores
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DigitalMaturitySurveyServiceScoreCreateManyArgs>(args?: SelectSubset<T, DigitalMaturitySurveyServiceScoreCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DigitalMaturitySurveyServiceScores and returns the data saved in the database.
+     * @param {DigitalMaturitySurveyServiceScoreCreateManyAndReturnArgs} args - Arguments to create many DigitalMaturitySurveyServiceScores.
+     * @example
+     * // Create many DigitalMaturitySurveyServiceScores
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DigitalMaturitySurveyServiceScores and only return the `id`
+     * const digitalMaturitySurveyServiceScoreWithIdOnly = await prisma.digitalMaturitySurveyServiceScore.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DigitalMaturitySurveyServiceScoreCreateManyAndReturnArgs>(args?: SelectSubset<T, DigitalMaturitySurveyServiceScoreCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DigitalMaturitySurveyServiceScore.
+     * @param {DigitalMaturitySurveyServiceScoreDeleteArgs} args - Arguments to delete one DigitalMaturitySurveyServiceScore.
+     * @example
+     * // Delete one DigitalMaturitySurveyServiceScore
+     * const DigitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.delete({
+     *   where: {
+     *     // ... filter to delete one DigitalMaturitySurveyServiceScore
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DigitalMaturitySurveyServiceScoreDeleteArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreDeleteArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DigitalMaturitySurveyServiceScore.
+     * @param {DigitalMaturitySurveyServiceScoreUpdateArgs} args - Arguments to update one DigitalMaturitySurveyServiceScore.
+     * @example
+     * // Update one DigitalMaturitySurveyServiceScore
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DigitalMaturitySurveyServiceScoreUpdateArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreUpdateArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DigitalMaturitySurveyServiceScores.
+     * @param {DigitalMaturitySurveyServiceScoreDeleteManyArgs} args - Arguments to filter DigitalMaturitySurveyServiceScores to delete.
+     * @example
+     * // Delete a few DigitalMaturitySurveyServiceScores
+     * const { count } = await prisma.digitalMaturitySurveyServiceScore.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DigitalMaturitySurveyServiceScoreDeleteManyArgs>(args?: SelectSubset<T, DigitalMaturitySurveyServiceScoreDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DigitalMaturitySurveyServiceScores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DigitalMaturitySurveyServiceScoreUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DigitalMaturitySurveyServiceScores
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DigitalMaturitySurveyServiceScoreUpdateManyArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DigitalMaturitySurveyServiceScores and returns the data updated in the database.
+     * @param {DigitalMaturitySurveyServiceScoreUpdateManyAndReturnArgs} args - Arguments to update many DigitalMaturitySurveyServiceScores.
+     * @example
+     * // Update many DigitalMaturitySurveyServiceScores
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DigitalMaturitySurveyServiceScores and only return the `id`
+     * const digitalMaturitySurveyServiceScoreWithIdOnly = await prisma.digitalMaturitySurveyServiceScore.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DigitalMaturitySurveyServiceScoreUpdateManyAndReturnArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DigitalMaturitySurveyServiceScore.
+     * @param {DigitalMaturitySurveyServiceScoreUpsertArgs} args - Arguments to update or create a DigitalMaturitySurveyServiceScore.
+     * @example
+     * // Update or create a DigitalMaturitySurveyServiceScore
+     * const digitalMaturitySurveyServiceScore = await prisma.digitalMaturitySurveyServiceScore.upsert({
+     *   create: {
+     *     // ... data to create a DigitalMaturitySurveyServiceScore
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DigitalMaturitySurveyServiceScore we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DigitalMaturitySurveyServiceScoreUpsertArgs>(args: SelectSubset<T, DigitalMaturitySurveyServiceScoreUpsertArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyServiceScoreClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DigitalMaturitySurveyServiceScores.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DigitalMaturitySurveyServiceScoreCountArgs} args - Arguments to filter DigitalMaturitySurveyServiceScores to count.
+     * @example
+     * // Count the number of DigitalMaturitySurveyServiceScores
+     * const count = await prisma.digitalMaturitySurveyServiceScore.count({
+     *   where: {
+     *     // ... the filter for the DigitalMaturitySurveyServiceScores we want to count
+     *   }
+     * })
+    **/
+    count<T extends DigitalMaturitySurveyServiceScoreCountArgs>(
+      args?: Subset<T, DigitalMaturitySurveyServiceScoreCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DigitalMaturitySurveyServiceScoreCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DigitalMaturitySurveyServiceScore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DigitalMaturitySurveyServiceScoreAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DigitalMaturitySurveyServiceScoreAggregateArgs>(args: Subset<T, DigitalMaturitySurveyServiceScoreAggregateArgs>): Prisma.PrismaPromise<GetDigitalMaturitySurveyServiceScoreAggregateType<T>>
+
+    /**
+     * Group by DigitalMaturitySurveyServiceScore.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DigitalMaturitySurveyServiceScoreGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DigitalMaturitySurveyServiceScoreGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DigitalMaturitySurveyServiceScoreGroupByArgs['orderBy'] }
+        : { orderBy?: DigitalMaturitySurveyServiceScoreGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DigitalMaturitySurveyServiceScoreGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDigitalMaturitySurveyServiceScoreGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DigitalMaturitySurveyServiceScore model
+   */
+  readonly fields: DigitalMaturitySurveyServiceScoreFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DigitalMaturitySurveyServiceScore.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DigitalMaturitySurveyServiceScoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    result<T extends DigitalMaturitySurveyResultDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DigitalMaturitySurveyResultDefaultArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyResultClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DigitalMaturitySurveyServiceScore model
+   */
+  interface DigitalMaturitySurveyServiceScoreFieldRefs {
+    readonly id: FieldRef<"DigitalMaturitySurveyServiceScore", 'String'>
+    readonly resultId: FieldRef<"DigitalMaturitySurveyServiceScore", 'String'>
+    readonly serviceCode: FieldRef<"DigitalMaturitySurveyServiceScore", 'String'>
+    readonly overallScore: FieldRef<"DigitalMaturitySurveyServiceScore", 'Float'>
+    readonly criterionScores: FieldRef<"DigitalMaturitySurveyServiceScore", 'Json'>
+    readonly createdAt: FieldRef<"DigitalMaturitySurveyServiceScore", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DigitalMaturitySurveyServiceScore findUnique
+   */
+  export type DigitalMaturitySurveyServiceScoreFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which DigitalMaturitySurveyServiceScore to fetch.
+     */
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore findUniqueOrThrow
+   */
+  export type DigitalMaturitySurveyServiceScoreFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which DigitalMaturitySurveyServiceScore to fetch.
+     */
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore findFirst
+   */
+  export type DigitalMaturitySurveyServiceScoreFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which DigitalMaturitySurveyServiceScore to fetch.
+     */
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DigitalMaturitySurveyServiceScores to fetch.
+     */
+    orderBy?: DigitalMaturitySurveyServiceScoreOrderByWithRelationInput | DigitalMaturitySurveyServiceScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DigitalMaturitySurveyServiceScores.
+     */
+    cursor?: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DigitalMaturitySurveyServiceScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DigitalMaturitySurveyServiceScores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DigitalMaturitySurveyServiceScores.
+     */
+    distinct?: DigitalMaturitySurveyServiceScoreScalarFieldEnum | DigitalMaturitySurveyServiceScoreScalarFieldEnum[]
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore findFirstOrThrow
+   */
+  export type DigitalMaturitySurveyServiceScoreFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which DigitalMaturitySurveyServiceScore to fetch.
+     */
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DigitalMaturitySurveyServiceScores to fetch.
+     */
+    orderBy?: DigitalMaturitySurveyServiceScoreOrderByWithRelationInput | DigitalMaturitySurveyServiceScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DigitalMaturitySurveyServiceScores.
+     */
+    cursor?: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DigitalMaturitySurveyServiceScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DigitalMaturitySurveyServiceScores.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DigitalMaturitySurveyServiceScores.
+     */
+    distinct?: DigitalMaturitySurveyServiceScoreScalarFieldEnum | DigitalMaturitySurveyServiceScoreScalarFieldEnum[]
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore findMany
+   */
+  export type DigitalMaturitySurveyServiceScoreFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * Filter, which DigitalMaturitySurveyServiceScores to fetch.
+     */
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DigitalMaturitySurveyServiceScores to fetch.
+     */
+    orderBy?: DigitalMaturitySurveyServiceScoreOrderByWithRelationInput | DigitalMaturitySurveyServiceScoreOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DigitalMaturitySurveyServiceScores.
+     */
+    cursor?: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DigitalMaturitySurveyServiceScores from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DigitalMaturitySurveyServiceScores.
+     */
+    skip?: number
+    distinct?: DigitalMaturitySurveyServiceScoreScalarFieldEnum | DigitalMaturitySurveyServiceScoreScalarFieldEnum[]
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore create
+   */
+  export type DigitalMaturitySurveyServiceScoreCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DigitalMaturitySurveyServiceScore.
+     */
+    data: XOR<DigitalMaturitySurveyServiceScoreCreateInput, DigitalMaturitySurveyServiceScoreUncheckedCreateInput>
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore createMany
+   */
+  export type DigitalMaturitySurveyServiceScoreCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DigitalMaturitySurveyServiceScores.
+     */
+    data: DigitalMaturitySurveyServiceScoreCreateManyInput | DigitalMaturitySurveyServiceScoreCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore createManyAndReturn
+   */
+  export type DigitalMaturitySurveyServiceScoreCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * The data used to create many DigitalMaturitySurveyServiceScores.
+     */
+    data: DigitalMaturitySurveyServiceScoreCreateManyInput | DigitalMaturitySurveyServiceScoreCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore update
+   */
+  export type DigitalMaturitySurveyServiceScoreUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DigitalMaturitySurveyServiceScore.
+     */
+    data: XOR<DigitalMaturitySurveyServiceScoreUpdateInput, DigitalMaturitySurveyServiceScoreUncheckedUpdateInput>
+    /**
+     * Choose, which DigitalMaturitySurveyServiceScore to update.
+     */
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore updateMany
+   */
+  export type DigitalMaturitySurveyServiceScoreUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DigitalMaturitySurveyServiceScores.
+     */
+    data: XOR<DigitalMaturitySurveyServiceScoreUpdateManyMutationInput, DigitalMaturitySurveyServiceScoreUncheckedUpdateManyInput>
+    /**
+     * Filter which DigitalMaturitySurveyServiceScores to update
+     */
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    /**
+     * Limit how many DigitalMaturitySurveyServiceScores to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore updateManyAndReturn
+   */
+  export type DigitalMaturitySurveyServiceScoreUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * The data used to update DigitalMaturitySurveyServiceScores.
+     */
+    data: XOR<DigitalMaturitySurveyServiceScoreUpdateManyMutationInput, DigitalMaturitySurveyServiceScoreUncheckedUpdateManyInput>
+    /**
+     * Filter which DigitalMaturitySurveyServiceScores to update
+     */
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    /**
+     * Limit how many DigitalMaturitySurveyServiceScores to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore upsert
+   */
+  export type DigitalMaturitySurveyServiceScoreUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DigitalMaturitySurveyServiceScore to update in case it exists.
+     */
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    /**
+     * In case the DigitalMaturitySurveyServiceScore found by the `where` argument doesn't exist, create a new DigitalMaturitySurveyServiceScore with this data.
+     */
+    create: XOR<DigitalMaturitySurveyServiceScoreCreateInput, DigitalMaturitySurveyServiceScoreUncheckedCreateInput>
+    /**
+     * In case the DigitalMaturitySurveyServiceScore was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DigitalMaturitySurveyServiceScoreUpdateInput, DigitalMaturitySurveyServiceScoreUncheckedUpdateInput>
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore delete
+   */
+  export type DigitalMaturitySurveyServiceScoreDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+    /**
+     * Filter which DigitalMaturitySurveyServiceScore to delete.
+     */
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore deleteMany
+   */
+  export type DigitalMaturitySurveyServiceScoreDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DigitalMaturitySurveyServiceScores to delete
+     */
+    where?: DigitalMaturitySurveyServiceScoreWhereInput
+    /**
+     * Limit how many DigitalMaturitySurveyServiceScores to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DigitalMaturitySurveyServiceScore without action
+   */
+  export type DigitalMaturitySurveyServiceScoreDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyServiceScore
+     */
+    select?: DigitalMaturitySurveyServiceScoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyServiceScore
+     */
+    omit?: DigitalMaturitySurveyServiceScoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyServiceScoreInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4466,6 +5764,18 @@ export namespace Prisma {
   };
 
   export type GovernmentSurveyServiceScoreScalarFieldEnum = (typeof GovernmentSurveyServiceScoreScalarFieldEnum)[keyof typeof GovernmentSurveyServiceScoreScalarFieldEnum]
+
+
+  export const DigitalMaturitySurveyServiceScoreScalarFieldEnum: {
+    id: 'id',
+    resultId: 'resultId',
+    serviceCode: 'serviceCode',
+    overallScore: 'overallScore',
+    criterionScores: 'criterionScores',
+    createdAt: 'createdAt'
+  };
+
+  export type DigitalMaturitySurveyServiceScoreScalarFieldEnum = (typeof DigitalMaturitySurveyServiceScoreScalarFieldEnum)[keyof typeof DigitalMaturitySurveyServiceScoreScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4607,6 +5917,7 @@ export namespace Prisma {
     criterionScores?: JsonFilter<"DigitalMaturitySurveyResult">
     rawAnswers?: JsonFilter<"DigitalMaturitySurveyResult">
     createdAt?: DateTimeFilter<"DigitalMaturitySurveyResult"> | Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreListRelationFilter
   }
 
   export type DigitalMaturitySurveyResultOrderByWithRelationInput = {
@@ -4619,6 +5930,7 @@ export namespace Prisma {
     criterionScores?: SortOrder
     rawAnswers?: SortOrder
     createdAt?: SortOrder
+    serviceScores?: DigitalMaturitySurveyServiceScoreOrderByRelationAggregateInput
   }
 
   export type DigitalMaturitySurveyResultWhereUniqueInput = Prisma.AtLeast<{
@@ -4634,6 +5946,7 @@ export namespace Prisma {
     criterionScores?: JsonFilter<"DigitalMaturitySurveyResult">
     rawAnswers?: JsonFilter<"DigitalMaturitySurveyResult">
     createdAt?: DateTimeFilter<"DigitalMaturitySurveyResult"> | Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreListRelationFilter
   }, "id">
 
   export type DigitalMaturitySurveyResultOrderByWithAggregationInput = {
@@ -4807,6 +6120,68 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"GovernmentSurveyServiceScore"> | Date | string
   }
 
+  export type DigitalMaturitySurveyServiceScoreWhereInput = {
+    AND?: DigitalMaturitySurveyServiceScoreWhereInput | DigitalMaturitySurveyServiceScoreWhereInput[]
+    OR?: DigitalMaturitySurveyServiceScoreWhereInput[]
+    NOT?: DigitalMaturitySurveyServiceScoreWhereInput | DigitalMaturitySurveyServiceScoreWhereInput[]
+    id?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    resultId?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    serviceCode?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    overallScore?: FloatFilter<"DigitalMaturitySurveyServiceScore"> | number
+    criterionScores?: JsonFilter<"DigitalMaturitySurveyServiceScore">
+    createdAt?: DateTimeFilter<"DigitalMaturitySurveyServiceScore"> | Date | string
+    result?: XOR<DigitalMaturitySurveyResultScalarRelationFilter, DigitalMaturitySurveyResultWhereInput>
+  }
+
+  export type DigitalMaturitySurveyServiceScoreOrderByWithRelationInput = {
+    id?: SortOrder
+    resultId?: SortOrder
+    serviceCode?: SortOrder
+    overallScore?: SortOrder
+    criterionScores?: SortOrder
+    createdAt?: SortOrder
+    result?: DigitalMaturitySurveyResultOrderByWithRelationInput
+  }
+
+  export type DigitalMaturitySurveyServiceScoreWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: DigitalMaturitySurveyServiceScoreWhereInput | DigitalMaturitySurveyServiceScoreWhereInput[]
+    OR?: DigitalMaturitySurveyServiceScoreWhereInput[]
+    NOT?: DigitalMaturitySurveyServiceScoreWhereInput | DigitalMaturitySurveyServiceScoreWhereInput[]
+    resultId?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    serviceCode?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    overallScore?: FloatFilter<"DigitalMaturitySurveyServiceScore"> | number
+    criterionScores?: JsonFilter<"DigitalMaturitySurveyServiceScore">
+    createdAt?: DateTimeFilter<"DigitalMaturitySurveyServiceScore"> | Date | string
+    result?: XOR<DigitalMaturitySurveyResultScalarRelationFilter, DigitalMaturitySurveyResultWhereInput>
+  }, "id">
+
+  export type DigitalMaturitySurveyServiceScoreOrderByWithAggregationInput = {
+    id?: SortOrder
+    resultId?: SortOrder
+    serviceCode?: SortOrder
+    overallScore?: SortOrder
+    criterionScores?: SortOrder
+    createdAt?: SortOrder
+    _count?: DigitalMaturitySurveyServiceScoreCountOrderByAggregateInput
+    _avg?: DigitalMaturitySurveyServiceScoreAvgOrderByAggregateInput
+    _max?: DigitalMaturitySurveyServiceScoreMaxOrderByAggregateInput
+    _min?: DigitalMaturitySurveyServiceScoreMinOrderByAggregateInput
+    _sum?: DigitalMaturitySurveyServiceScoreSumOrderByAggregateInput
+  }
+
+  export type DigitalMaturitySurveyServiceScoreScalarWhereWithAggregatesInput = {
+    AND?: DigitalMaturitySurveyServiceScoreScalarWhereWithAggregatesInput | DigitalMaturitySurveyServiceScoreScalarWhereWithAggregatesInput[]
+    OR?: DigitalMaturitySurveyServiceScoreScalarWhereWithAggregatesInput[]
+    NOT?: DigitalMaturitySurveyServiceScoreScalarWhereWithAggregatesInput | DigitalMaturitySurveyServiceScoreScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DigitalMaturitySurveyServiceScore"> | string
+    resultId?: StringWithAggregatesFilter<"DigitalMaturitySurveyServiceScore"> | string
+    serviceCode?: StringWithAggregatesFilter<"DigitalMaturitySurveyServiceScore"> | string
+    overallScore?: FloatWithAggregatesFilter<"DigitalMaturitySurveyServiceScore"> | number
+    criterionScores?: JsonWithAggregatesFilter<"DigitalMaturitySurveyServiceScore">
+    createdAt?: DateTimeWithAggregatesFilter<"DigitalMaturitySurveyServiceScore"> | Date | string
+  }
+
   export type DigitalMaturitySurveyResultCreateInput = {
     id?: string
     country: string
@@ -4817,6 +6192,7 @@ export namespace Prisma {
     criterionScores: JsonNullValueInput | InputJsonValue
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreCreateNestedManyWithoutResultInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedCreateInput = {
@@ -4829,6 +6205,7 @@ export namespace Prisma {
     criterionScores: JsonNullValueInput | InputJsonValue
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
   }
 
   export type DigitalMaturitySurveyResultUpdateInput = {
@@ -4841,6 +6218,7 @@ export namespace Prisma {
     criterionScores?: JsonNullValueInput | InputJsonValue
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreUpdateManyWithoutResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedUpdateInput = {
@@ -4853,6 +6231,7 @@ export namespace Prisma {
     criterionScores?: JsonNullValueInput | InputJsonValue
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultCreateManyInput = {
@@ -5041,6 +6420,68 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type DigitalMaturitySurveyServiceScoreCreateInput = {
+    id?: string
+    serviceCode: string
+    overallScore: number
+    criterionScores: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    result: DigitalMaturitySurveyResultCreateNestedOneWithoutServiceScoresInput
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedCreateInput = {
+    id?: string
+    resultId: string
+    serviceCode: string
+    overallScore: number
+    criterionScores: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceCode?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    result?: DigitalMaturitySurveyResultUpdateOneRequiredWithoutServiceScoresNestedInput
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resultId?: StringFieldUpdateOperationsInput | string
+    serviceCode?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCreateManyInput = {
+    id?: string
+    resultId: string
+    serviceCode: string
+    overallScore: number
+    criterionScores: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceCode?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resultId?: StringFieldUpdateOperationsInput | string
+    serviceCode?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5099,6 +6540,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreListRelationFilter = {
+    every?: DigitalMaturitySurveyServiceScoreWhereInput
+    some?: DigitalMaturitySurveyServiceScoreWhereInput
+    none?: DigitalMaturitySurveyServiceScoreWhereInput
+  }
+
+  export type DigitalMaturitySurveyServiceScoreOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type DigitalMaturitySurveyResultCountOrderByAggregateInput = {
@@ -5355,6 +6806,58 @@ export namespace Prisma {
     overallScore?: SortOrder
   }
 
+  export type DigitalMaturitySurveyResultScalarRelationFilter = {
+    is?: DigitalMaturitySurveyResultWhereInput
+    isNot?: DigitalMaturitySurveyResultWhereInput
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCountOrderByAggregateInput = {
+    id?: SortOrder
+    resultId?: SortOrder
+    serviceCode?: SortOrder
+    overallScore?: SortOrder
+    criterionScores?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DigitalMaturitySurveyServiceScoreAvgOrderByAggregateInput = {
+    overallScore?: SortOrder
+  }
+
+  export type DigitalMaturitySurveyServiceScoreMaxOrderByAggregateInput = {
+    id?: SortOrder
+    resultId?: SortOrder
+    serviceCode?: SortOrder
+    overallScore?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DigitalMaturitySurveyServiceScoreMinOrderByAggregateInput = {
+    id?: SortOrder
+    resultId?: SortOrder
+    serviceCode?: SortOrder
+    overallScore?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DigitalMaturitySurveyServiceScoreSumOrderByAggregateInput = {
+    overallScore?: SortOrder
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCreateNestedManyWithoutResultInput = {
+    create?: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput> | DigitalMaturitySurveyServiceScoreCreateWithoutResultInput[] | DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput[]
+    connectOrCreate?: DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput | DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput[]
+    createMany?: DigitalMaturitySurveyServiceScoreCreateManyResultInputEnvelope
+    connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput = {
+    create?: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput> | DigitalMaturitySurveyServiceScoreCreateWithoutResultInput[] | DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput[]
+    connectOrCreate?: DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput | DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput[]
+    createMany?: DigitalMaturitySurveyServiceScoreCreateManyResultInputEnvelope
+    connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -5369,6 +6872,34 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUpdateManyWithoutResultNestedInput = {
+    create?: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput> | DigitalMaturitySurveyServiceScoreCreateWithoutResultInput[] | DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput[]
+    connectOrCreate?: DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput | DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput[]
+    upsert?: DigitalMaturitySurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput | DigitalMaturitySurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput[]
+    createMany?: DigitalMaturitySurveyServiceScoreCreateManyResultInputEnvelope
+    set?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    disconnect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    delete?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    update?: DigitalMaturitySurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput | DigitalMaturitySurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput[]
+    updateMany?: DigitalMaturitySurveyServiceScoreUpdateManyWithWhereWithoutResultInput | DigitalMaturitySurveyServiceScoreUpdateManyWithWhereWithoutResultInput[]
+    deleteMany?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput = {
+    create?: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput> | DigitalMaturitySurveyServiceScoreCreateWithoutResultInput[] | DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput[]
+    connectOrCreate?: DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput | DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput[]
+    upsert?: DigitalMaturitySurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput | DigitalMaturitySurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput[]
+    createMany?: DigitalMaturitySurveyServiceScoreCreateManyResultInputEnvelope
+    set?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    disconnect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    delete?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+    update?: DigitalMaturitySurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput | DigitalMaturitySurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput[]
+    updateMany?: DigitalMaturitySurveyServiceScoreUpdateManyWithWhereWithoutResultInput | DigitalMaturitySurveyServiceScoreUpdateManyWithWhereWithoutResultInput[]
+    deleteMany?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
   }
 
   export type GovernmentSurveyServiceScoreCreateNestedManyWithoutResultInput = {
@@ -5425,6 +6956,20 @@ export namespace Prisma {
     upsert?: GovernmentSurveyResultUpsertWithoutServiceScoresInput
     connect?: GovernmentSurveyResultWhereUniqueInput
     update?: XOR<XOR<GovernmentSurveyResultUpdateToOneWithWhereWithoutServiceScoresInput, GovernmentSurveyResultUpdateWithoutServiceScoresInput>, GovernmentSurveyResultUncheckedUpdateWithoutServiceScoresInput>
+  }
+
+  export type DigitalMaturitySurveyResultCreateNestedOneWithoutServiceScoresInput = {
+    create?: XOR<DigitalMaturitySurveyResultCreateWithoutServiceScoresInput, DigitalMaturitySurveyResultUncheckedCreateWithoutServiceScoresInput>
+    connectOrCreate?: DigitalMaturitySurveyResultCreateOrConnectWithoutServiceScoresInput
+    connect?: DigitalMaturitySurveyResultWhereUniqueInput
+  }
+
+  export type DigitalMaturitySurveyResultUpdateOneRequiredWithoutServiceScoresNestedInput = {
+    create?: XOR<DigitalMaturitySurveyResultCreateWithoutServiceScoresInput, DigitalMaturitySurveyResultUncheckedCreateWithoutServiceScoresInput>
+    connectOrCreate?: DigitalMaturitySurveyResultCreateOrConnectWithoutServiceScoresInput
+    upsert?: DigitalMaturitySurveyResultUpsertWithoutServiceScoresInput
+    connect?: DigitalMaturitySurveyResultWhereUniqueInput
+    update?: XOR<XOR<DigitalMaturitySurveyResultUpdateToOneWithWhereWithoutServiceScoresInput, DigitalMaturitySurveyResultUpdateWithoutServiceScoresInput>, DigitalMaturitySurveyResultUncheckedUpdateWithoutServiceScoresInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5578,6 +7123,60 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type DigitalMaturitySurveyServiceScoreCreateWithoutResultInput = {
+    id?: string
+    serviceCode: string
+    overallScore: number
+    criterionScores: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput = {
+    id?: string
+    serviceCode: string
+    overallScore: number
+    criterionScores: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput = {
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    create: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput>
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCreateManyResultInputEnvelope = {
+    data: DigitalMaturitySurveyServiceScoreCreateManyResultInput | DigitalMaturitySurveyServiceScoreCreateManyResultInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput = {
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    update: XOR<DigitalMaturitySurveyServiceScoreUpdateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedUpdateWithoutResultInput>
+    create: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput>
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput = {
+    where: DigitalMaturitySurveyServiceScoreWhereUniqueInput
+    data: XOR<DigitalMaturitySurveyServiceScoreUpdateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedUpdateWithoutResultInput>
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUpdateManyWithWhereWithoutResultInput = {
+    where: DigitalMaturitySurveyServiceScoreScalarWhereInput
+    data: XOR<DigitalMaturitySurveyServiceScoreUpdateManyMutationInput, DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultInput>
+  }
+
+  export type DigitalMaturitySurveyServiceScoreScalarWhereInput = {
+    AND?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
+    OR?: DigitalMaturitySurveyServiceScoreScalarWhereInput[]
+    NOT?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
+    id?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    resultId?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    serviceCode?: StringFilter<"DigitalMaturitySurveyServiceScore"> | string
+    overallScore?: FloatFilter<"DigitalMaturitySurveyServiceScore"> | number
+    criterionScores?: JsonFilter<"DigitalMaturitySurveyServiceScore">
+    createdAt?: DateTimeFilter<"DigitalMaturitySurveyServiceScore"> | Date | string
+  }
+
   export type GovernmentSurveyServiceScoreCreateWithoutResultInput = {
     id?: string
     serviceCode: string
@@ -5694,6 +7293,102 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type DigitalMaturitySurveyResultCreateWithoutServiceScoresInput = {
+    id?: string
+    country: string
+    region?: string
+    sector?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type DigitalMaturitySurveyResultUncheckedCreateWithoutServiceScoresInput = {
+    id?: string
+    country: string
+    region?: string
+    sector?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type DigitalMaturitySurveyResultCreateOrConnectWithoutServiceScoresInput = {
+    where: DigitalMaturitySurveyResultWhereUniqueInput
+    create: XOR<DigitalMaturitySurveyResultCreateWithoutServiceScoresInput, DigitalMaturitySurveyResultUncheckedCreateWithoutServiceScoresInput>
+  }
+
+  export type DigitalMaturitySurveyResultUpsertWithoutServiceScoresInput = {
+    update: XOR<DigitalMaturitySurveyResultUpdateWithoutServiceScoresInput, DigitalMaturitySurveyResultUncheckedUpdateWithoutServiceScoresInput>
+    create: XOR<DigitalMaturitySurveyResultCreateWithoutServiceScoresInput, DigitalMaturitySurveyResultUncheckedCreateWithoutServiceScoresInput>
+    where?: DigitalMaturitySurveyResultWhereInput
+  }
+
+  export type DigitalMaturitySurveyResultUpdateToOneWithWhereWithoutServiceScoresInput = {
+    where?: DigitalMaturitySurveyResultWhereInput
+    data: XOR<DigitalMaturitySurveyResultUpdateWithoutServiceScoresInput, DigitalMaturitySurveyResultUncheckedUpdateWithoutServiceScoresInput>
+  }
+
+  export type DigitalMaturitySurveyResultUpdateWithoutServiceScoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    sector?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DigitalMaturitySurveyResultUncheckedUpdateWithoutServiceScoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    sector?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreCreateManyResultInput = {
+    id?: string
+    serviceCode: string
+    overallScore: number
+    criterionScores: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUpdateWithoutResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceCode?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedUpdateWithoutResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceCode?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceCode?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GovernmentSurveyServiceScoreCreateManyResultInput = {

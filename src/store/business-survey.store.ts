@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Answer } from "../components/Question/model/types";
-import type { GovernmentSurveyResponseDTO } from "@/api/types";
+import type { BusinessSurveyResponseDTO } from "@/api/types";
 
 interface LocationState {
   country: string;
@@ -9,11 +9,11 @@ interface LocationState {
 }
 
 interface BusinessSurveyState {
-  responses: GovernmentSurveyResponseDTO[];
+  responses: BusinessSurveyResponseDTO[];
   location: LocationState;
   sector: string;
   finalThoughts: string;
-  setResponse: (response: GovernmentSurveyResponseDTO) => void;
+  setResponse: (response: BusinessSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
   setSector: (sector: string) => void;
   setFinalThoughts: (thoughts: string) => void;

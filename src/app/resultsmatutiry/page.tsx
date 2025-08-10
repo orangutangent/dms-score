@@ -10,7 +10,7 @@ import questionsData from "../../questions.json";
 import { getStage } from "@/lib/stage";
 import { useBusinessSurveyStore } from "../../store/business-survey.store";
 
-const questions: Question[] = questionsData as Question[];
+const questions: Question[] = questionsData as unknown as Question[];
 
 const getMaturityStage = (score0to1: number) => {
   // Конвертируем score 0..1 в 0..10 для определения стадии

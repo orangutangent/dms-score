@@ -25,6 +25,7 @@ model DigitalMaturitySurveyResult {
   criterionScores Json
   rawAnswers      Json
   createdAt       DateTime  @default(now())
+  serviceScores   DigitalMaturitySurveyServiceScore[]
 }
 
 model GovernmentSurveyResult {
@@ -49,6 +50,19 @@ model GovernmentSurveyServiceScore {
   createdAt       DateTime @default(now())
 
   result GovernmentSurveyResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
+
+  @@index([resultId])
+}
+
+model DigitalMaturitySurveyServiceScore {
+  id              String   @id @default(uuid())
+  resultId        String
+  serviceCode     String
+  overallScore    Float
+  criterionScores Json
+  createdAt       DateTime @default(now())
+
+  result DigitalMaturitySurveyResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
 
   @@index([resultId])
 }

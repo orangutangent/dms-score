@@ -153,6 +153,15 @@ exports.Prisma.GovernmentSurveyServiceScoreScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.DigitalMaturitySurveyServiceScoreScalarFieldEnum = {
+  id: 'id',
+  resultId: 'resultId',
+  serviceCode: 'serviceCode',
+  overallScore: 'overallScore',
+  criterionScores: 'criterionScores',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -187,7 +196,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   DigitalMaturitySurveyResult: 'DigitalMaturitySurveyResult',
   GovernmentSurveyResult: 'GovernmentSurveyResult',
-  GovernmentSurveyServiceScore: 'GovernmentSurveyServiceScore'
+  GovernmentSurveyServiceScore: 'GovernmentSurveyServiceScore',
+  DigitalMaturitySurveyServiceScore: 'DigitalMaturitySurveyServiceScore'
 };
 
 /**

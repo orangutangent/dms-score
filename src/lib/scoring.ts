@@ -1,4 +1,7 @@
-import type { GovernmentSurveyResponseDTO } from "@/api/types";
+import type {
+  GovernmentSurveyResponseDTO,
+  BusinessSurveyResponseDTO,
+} from "@/api/types";
 import { SCALE_DEFAULT_STEPS } from "@/config/constants";
 
 /**
@@ -28,7 +31,9 @@ export function calculateScaleScore(value: string, maxSteps?: number): number {
 /**
  * Агрегирует responses по критериям
  */
-export function aggregateByCriteria(responses: GovernmentSurveyResponseDTO[]) {
+export function aggregateByCriteria(
+  responses: GovernmentSurveyResponseDTO[] | BusinessSurveyResponseDTO[]
+) {
   const criterionScores: Record<string, number> = {};
   let totalScore = 0;
   let totalQuestions = 0;
@@ -54,7 +59,9 @@ export function aggregateByCriteria(responses: GovernmentSurveyResponseDTO[]) {
 /**
  * Агрегирует responses по услугам
  */
-export function aggregateByServices(responses: GovernmentSurveyResponseDTO[]) {
+export function aggregateByServices(
+  responses: GovernmentSurveyResponseDTO[] | BusinessSurveyResponseDTO[]
+) {
   const serviceScores: Record<
     string,
     {

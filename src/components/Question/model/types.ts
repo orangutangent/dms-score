@@ -7,7 +7,9 @@ export type InputType =
   | "location"
   | "sector"
   | "final-thoughts"
-  | "service-template";
+  | "service-template"
+  | "scale-service-template"
+  | "yes-no-service-template";
 
 export interface QuestionOption {
   value: string;
@@ -34,6 +36,11 @@ export interface Question {
   // Service-specific fields
   service?: ServiceCode; // проставляется у развернутого вопроса
   services?: ServiceCode[]; // список услуг для шаблона (если не задан — берем все)
+  // New fields for MSP survey
+  subQuestions?: {
+    service: ServiceCode;
+    text: string;
+  }[];
 }
 
 export type Answer = {

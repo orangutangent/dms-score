@@ -18,10 +18,15 @@ export interface GovernmentSurveyStats extends SurveyStats {
   services: Record<string, SurveyStats>; // Статистика по видам услуг
 }
 
+export interface DigitalMaturitySurveyStats extends SurveyStats {
+  services: Record<string, SurveyStats>; // Статистика по видам услуг
+}
+
 export interface CountryStats {
-  digitalMaturity: SurveyStats;
+  digitalMaturity: DigitalMaturitySurveyStats;
   government: GovernmentSurveyStats;
   governmentByService: Record<string, SurveyStats>; // Статистика по услугам
+  digitalMaturityByService: Record<string, SurveyStats>; // Статистика по услугам для бизнеса
 }
 
 export type AdminStats = Record<string, CountryStats>;

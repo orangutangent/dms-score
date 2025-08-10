@@ -15,9 +15,10 @@ import { useBusinessSurveyStore } from "../../store/business-survey.store";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios"; // Import AxiosError
 import { useRouter } from "next/navigation";
-import type { GovernmentSurveyResponseDTO } from "@/api/types";
+import { expandServiceTemplates } from "@/lib/survey";
+import type { BusinessSurveyResponseDTO } from "@/api/types";
 
-const questions: QuestionType[] = questionsData as QuestionType[];
+const questions: QuestionType[] = questionsData as unknown as QuestionType[];
 
 const locationQuestion: QuestionType = {
   id: -1,
@@ -50,10 +51,11 @@ const finalThoughtsQuestion: QuestionType = {
   weight: 0,
 };
 
+const expandedQuestions = expandServiceTemplates(questions as QuestionType[]);
 const allQuestions = [
   locationQuestion,
   sectorQuestion,
-  ...questions,
+  ...expandedQuestions,
   finalThoughtsQuestion,
 ];
 
@@ -84,7 +86,7 @@ const DigitalMaturityPage = () => {
     location: { country: string; region: string };
     sector: string;
     finalThoughts: string;
-    responses: GovernmentSurveyResponseDTO[];
+    responses: BusinessSurveyResponseDTO[];
   };
   type SubmitResponse = { message: string; resultId: string };
 
@@ -153,7 +155,11 @@ const DigitalMaturityPage = () => {
           onFinalThoughtsChange={setFinalThoughts}
           onResponseChange={(response) => {
             // Store response in the store
-            useBusinessSurveyStore.getState().setResponse(response);
+            if (response.service) {
+              useBusinessSurveyStore
+                .getState()
+                .setResponse(response as BusinessSurveyResponseDTO);
+            }
           }}
         />
       </div>

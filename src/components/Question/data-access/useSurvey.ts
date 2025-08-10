@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Question, Answer } from "../model/types";
-import type { GovernmentSurveyResponseDTO } from "@/api/types";
+import type {
+  GovernmentSurveyResponseDTO,
+  BusinessSurveyResponseDTO,
+} from "@/api/types";
 
 type LocationState = {
   country: string;
@@ -20,11 +23,11 @@ type GovernmentSurveyStore = {
 };
 
 type BusinessSurveyStore = {
-  responses: GovernmentSurveyResponseDTO[];
+  responses: BusinessSurveyResponseDTO[];
   location: LocationState;
   sector: string;
   finalThoughts: string;
-  setResponse: (response: GovernmentSurveyResponseDTO) => void;
+  setResponse: (response: BusinessSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
   setSector: (sector: string) => void;
   setFinalThoughts: (thoughts: string) => void;

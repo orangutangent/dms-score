@@ -20,19 +20,12 @@ export async function POST(req: Request) {
     const serviceRows = SERVICES.map((svc) => {
       const serviceData = serviceScores[svc.code] || {
         criterionScores: {},
-        totalScore: 0,
-        questionCount: 0,
+        overallScore: 0,
       };
-
-      // Вычисляем средний балл для услуги
-      const overallScore =
-        serviceData.questionCount > 0
-          ? serviceData.totalScore / serviceData.questionCount
-          : 0;
 
       return {
         serviceCode: svc.code as ServiceCode,
-        overallScore,
+        overallScore: serviceData.overallScore,
         criterionScores: serviceData.criterionScores,
       };
     });

@@ -15,11 +15,35 @@ const questions: Question[] = expandServiceTemplates(
   questionsData as Question[]
 );
 
-const getMaturityStage = (score0to1: number) => {
-  // Конвертируем score 0..1 в 0..10 для определения стадии
-  const score0to10 = score0to1 * 10;
+const getMaturityStage = (score0to10: number) => {
   const stage = getStage(score0to10);
   return `${stage.letter} - ${stage.label}`;
+};
+
+const calculateScores = (responses: any[], relevantQuestions: Question[]) => {
+  const criterionStats: Record<string, { sum: number; count: number }> = {};
+
+  responses.forEach((response) => {
+    if (relevantQuestions.some((q) => q.criterion === response.criterion)) {
+      if (!criterionStats[response.criterion]) {
+        criterionStats[response.criterion] = { sum: 0, count: 0 };
+      }
+      criterionStats[response.criterion].sum += response.score01;
+      criterionStats[response.criterion].count++;
+    }
+  });
+
+  const finalScores: { [key: string]: number } = {};
+  for (const crit in criterionStats) {
+    const stats = criterionStats[crit];
+    if (stats.count > 0) {
+      finalScores[crit] = (stats.sum / stats.count) * 10;
+    } else {
+      finalScores[crit] = 0;
+    }
+  }
+
+  return finalScores;
 };
 
 const ResultsGovermentServicePage = () => {
@@ -44,75 +68,38 @@ const ResultsGovermentServicePage = () => {
     ].includes(q.criterion)
   );
 
-  // Вычисляем баллы для основных разделов (только для круга)
-  const mainScores = useMemo(() => {
-    const s: { [key: string]: number } = {};
+  // Вычисляем баллы для основных и специальных разделов
+  const mainScores = useMemo(
+    () => calculateScores(responses, mainQuestions),
+    [responses, mainQuestions]
+  );
+  const specialScores = useMemo(
+    () => calculateScores(responses, specialQuestions),
+    [responses, specialQuestions]
+  );
 
-    // Группируем responses по критериям для основных разделов
-    responses.forEach((response) => {
-      if (mainQuestions.some((q) => q.criterion === response.criterion)) {
-        if (!s[response.criterion]) {
-          s[response.criterion] = 0;
-        }
-        s[response.criterion] += response.score01;
-      }
-    });
-
-    return s;
-  }, [responses, mainQuestions]);
-
-  // Вычисляем баллы для специальных разделов
-  const specialScores = useMemo(() => {
-    const s: { [key: string]: number } = {};
-
-    // Группируем responses по критериям для специальных разделов
-    responses.forEach((response) => {
-      if (specialQuestions.some((q) => q.criterion === response.criterion)) {
-        if (!s[response.criterion]) {
-          s[response.criterion] = 0;
-        }
-        s[response.criterion] += response.score01;
-      }
-    });
-
-    return s;
-  }, [responses, specialQuestions]);
-
-  // Вычисляем средний балл ТОЛЬКО по основным критериям для круга
-  const mainAverageScore = useMemo(() => {
-    const criteriaScores = Object.values(mainScores);
+  // Вычисляем средний балл по всем критериям
+  const calculateAverage = (scores: { [key: string]: number }) => {
+    const criteriaScores = Object.values(scores);
     return criteriaScores.length > 0
       ? criteriaScores.reduce((sum, score) => sum + score, 0) /
           criteriaScores.length
       : 0;
-  }, [mainScores]);
+  };
 
-  // Вычисляем средний балл по основным критериям для таблицы
-  const mainTableAverageScore = useMemo(() => {
-    const criteriaScores = Object.values(mainScores);
-    return criteriaScores.length > 0
-      ? criteriaScores.reduce((sum, score) => sum + score, 0) /
-          criteriaScores.length
-      : 0;
-  }, [mainScores]);
+  const mainAverageScore = useMemo(() => calculateAverage(mainScores), [mainScores]);
+  const specialAverageScore = useMemo(() => calculateAverage(specialScores), [specialScores]);
 
-  // Вычисляем средний балл по специальным критериям для таблицы
-  const specialTableAverageScore = useMemo(() => {
-    const criteriaScores = Object.values(specialScores);
-    return criteriaScores.length > 0
-      ? criteriaScores.reduce((sum, score) => sum + score, 0) /
-          criteriaScores.length
-      : 0;
-  }, [specialScores]);
 
   const mainCriteria = useMemo(() => {
     const uniqueCriteria = [...new Set(mainQuestions.map((q) => q.criterion))];
     return uniqueCriteria.reduce((acc, criterion, index) => {
       acc[criterion] = {
         color: criteriaColors[index % criteriaColors.length],
+        weight: 1,
       };
       return acc;
-    }, {} as { [key: string]: { color: string } });
+    }, {} as { [key: string]: { color: string; weight: number } });
   }, [mainQuestions]);
 
   const specialCriteria = useMemo(() => {
@@ -125,9 +112,10 @@ const ResultsGovermentServicePage = () => {
           criteriaColors[
             (index + Object.keys(mainCriteria).length) % criteriaColors.length
           ],
+        weight: 1,
       };
       return acc;
-    }, {} as { [key: string]: { color: string } });
+    }, {} as { [key: string]: { color: string; weight: number } });
   }, [specialQuestions, mainCriteria]);
 
   const overallStage = getMaturityStage(mainAverageScore);
@@ -153,21 +141,23 @@ const ResultsGovermentServicePage = () => {
             <ScoreTable
               scores={mainScores}
               criteria={mainCriteria}
-              averageScore={mainTableAverageScore}
+              averageScore={mainAverageScore}
               getMaturityStage={getMaturityStage}
             />
           </div>
 
           {/* Правый нижний блок - Таблица специальных разделов */}
-          <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Специальные разделы</h2>
-            <ScoreTable
-              scores={specialScores}
-              criteria={specialCriteria}
-              averageScore={specialTableAverageScore}
-              getMaturityStage={getMaturityStage}
-            />
-          </div>
+          {Object.keys(specialScores).length > 0 && (
+            <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8 mt-6">
+              <h2 className="text-2xl font-bold mb-4">Специальные разделы</h2>
+              <ScoreTable
+                scores={specialScores}
+                criteria={specialCriteria}
+                averageScore={specialAverageScore}
+                getMaturityStage={getMaturityStage}
+              />
+            </div>
+          )}
         </div>
       </div>
     </main>

@@ -12,9 +12,7 @@ import { useBusinessSurveyStore } from "../../store/business-survey.store";
 
 const questions: Question[] = questionsData as unknown as Question[];
 
-const getMaturityStage = (score0to1: number) => {
-  // Конвертируем score 0..1 в 0..10 для определения стадии
-  const score0to10 = score0to1 * 10;
+const getMaturityStage = (score0to10: number) => {
   const stage = getStage(score0to10);
   return `${stage.letter} - ${stage.label}`;
 };
@@ -27,27 +25,40 @@ const ResultsMaturityPage = () => {
     return uniqueCriteria.reduce((acc, criterion, index) => {
       acc[criterion] = {
         color: criteriaColors[index % criteriaColors.length],
+        weight: 1, // Добавляем вес для ScoreCircle
       };
       return acc;
-    }, {} as { [key: string]: { color: string } });
+    }, {} as { [key: string]: { color: string; weight: number } });
   }, []);
 
-  // Вычисляем баллы по критериям
+  // Вычисляем баллы по критериям (новая логика, 10-балльная шкала)
   const scores = useMemo(() => {
-    const s: { [key: string]: number } = {};
+    const criterionStats: Record<string, { sum: number; count: number }> = {};
 
-    // Группируем responses по критериям
+    // Группируем и считаем сумму и кол-во по критериям
     responses.forEach((response) => {
-      if (!s[response.criterion]) {
-        s[response.criterion] = 0;
+      if (!criterionStats[response.criterion]) {
+        criterionStats[response.criterion] = { sum: 0, count: 0 };
       }
-      s[response.criterion] += response.score01;
+      criterionStats[response.criterion].sum += response.score01;
+      criterionStats[response.criterion].count++;
     });
 
-    return s;
+    // Считаем средний балл и приводим к 10-балльной шкале
+    const finalScores: { [key: string]: number } = {};
+    for (const crit in criterionStats) {
+      const stats = criterionStats[crit];
+      if (stats.count > 0) {
+        finalScores[crit] = (stats.sum / stats.count) * 10;
+      } else {
+        finalScores[crit] = 0;
+      }
+    }
+
+    return finalScores;
   }, [responses]);
 
-  // Вычисляем средний балл по критериям
+  // Вычисляем средний балл по всем критериям (уже в 10-балльной шкале)
   const averageScore = useMemo(() => {
     const criteriaScores = Object.values(scores);
     return criteriaScores.length > 0

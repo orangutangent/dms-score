@@ -24,6 +24,7 @@ export interface DigitalMaturitySurveyStats extends SurveyStats {
 
 export interface CountryStats {
   digitalMaturity: DigitalMaturitySurveyStats;
+  digitalMaturityBySector: Record<string, SurveyStats>; // Статистика по секторам для бизнеса
   government: GovernmentSurveyStats;
   governmentByService: Record<string, SurveyStats>; // Статистика по услугам
   digitalMaturityByService: Record<string, SurveyStats>; // Статистика по услугам для бизнеса

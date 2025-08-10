@@ -28,6 +28,7 @@ interface DigitalMaturitySurveyStats extends SurveyStats {
 
 interface CountryStats {
   digitalMaturity: DigitalMaturitySurveyStats;
+  digitalMaturityBySector: Record<string, SurveyStats>; // Статистика по секторам для бизнеса
   government: GovernmentSurveyStats;
   governmentByService: Record<ServiceCode, SurveyStats>;
   digitalMaturityByService: Record<ServiceCode, SurveyStats>;
@@ -90,6 +91,8 @@ export async function GET() {
     // Process digital maturity results
     digitalMaturityResults.forEach((result) => {
       const country = result.country;
+      const sector = result.sector || "Unknown"; // Убедимся, что сектор есть
+
       if (!statsByCountry[country]) {
         statsByCountry[country] = {
           digitalMaturity: {
@@ -99,6 +102,7 @@ export async function GET() {
             average: 0,
             services: {},
           },
+          digitalMaturityBySector: {},
           government: {
             count: 0,
             totalScore: 0,
@@ -128,6 +132,8 @@ export async function GET() {
           }, {} as Record<ServiceCode, SurveyStats>),
         };
       }
+
+      // Общая статистика по digital maturity
       statsByCountry[country].digitalMaturity.count++;
       statsByCountry[country].digitalMaturity.totalScore += result.overallScore;
 
@@ -145,12 +151,42 @@ export async function GET() {
           score;
         statsByCountry[country].digitalMaturity.criterion[criterion].count++;
       }
+
+      // Статистика по секторам
+      if (!statsByCountry[country].digitalMaturityBySector[sector]) {
+        statsByCountry[country].digitalMaturityBySector[sector] = {
+          count: 0,
+          totalScore: 0,
+          criterion: {},
+          average: 0,
+        };
+      }
+      const sectorStats =
+        statsByCountry[country].digitalMaturityBySector[sector];
+      sectorStats.count++;
+      sectorStats.totalScore += result.overallScore;
+
+      for (const [criterion, score] of Object.entries(
+        result.criterionScores as Record<string, number>
+      )) {
+        if (!sectorStats.criterion[criterion]) {
+          sectorStats.criterion[criterion] = {
+            total: 0,
+            count: 0,
+            average: 0,
+          };
+        }
+        sectorStats.criterion[criterion].total += score;
+        sectorStats.criterion[criterion].count++;
+      }
     });
 
     // Process government results
     governmentResults.forEach((result) => {
       const country = result.country;
       if (!statsByCountry[country]) {
+        // This case should ideally not happen if there's at least one digital maturity survey
+        // But as a fallback:
         statsByCountry[country] = {
           digitalMaturity: {
             count: 0,
@@ -159,6 +195,7 @@ export async function GET() {
             average: 0,
             services: {},
           },
+          digitalMaturityBySector: {},
           government: {
             count: 0,
             totalScore: 0,
@@ -280,6 +317,7 @@ export async function GET() {
     // Calculate averages
     for (const country in statsByCountry) {
       const countryStats = statsByCountry[country];
+      // digital maturity averages
       if (countryStats.digitalMaturity.count > 0) {
         countryStats.digitalMaturity.average =
           countryStats.digitalMaturity.totalScore /
@@ -289,6 +327,19 @@ export async function GET() {
           crit.average = crit.total / crit.count;
         }
       }
+      // digital maturity by sector averages
+      for (const sector in countryStats.digitalMaturityBySector) {
+        const sectorStats = countryStats.digitalMaturityBySector[sector];
+        if (sectorStats.count > 0) {
+          sectorStats.average = sectorStats.totalScore / sectorStats.count;
+          for (const criterion in sectorStats.criterion) {
+            const crit = sectorStats.criterion[criterion];
+            crit.average = crit.total / crit.count;
+          }
+        }
+      }
+
+      // government averages
       if (countryStats.government.count > 0) {
         countryStats.government.average =
           countryStats.government.totalScore / countryStats.government.count;

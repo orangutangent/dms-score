@@ -231,13 +231,13 @@ const AdminPage = () => {
             </p>
             <ScoreCircle scores={scores} criteria={criteria} />
             <p className="text-sm text-gray-500 mt-2 text-center">
-              Средняя оценка по критериям
+              Средняя оценка по критериям (все сектора)
             </p>
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-6">
-              Оценка цифровой зрелости бизнеса
+              Оценка цифровой зрелости бизнеса (все сектора)
             </h2>
             <ScoreTable
               scores={scores}
@@ -250,6 +250,61 @@ const AdminPage = () => {
             />
           </div>
 
+          {/* Детализация по каждому сектору экономики */}
+          {countryData.digitalMaturityBySector &&
+            Object.entries(countryData.digitalMaturityBySector)
+              .filter(([, sectorData]) => sectorData.count > 0)
+              .map(([sector, sectorData]) => {
+                const sectorCriteria = Object.keys(sectorData.criterion).reduce(
+                  (acc, key, index) => {
+                    acc[key] = {
+                      color: BUSINESS_COLORS[index % BUSINESS_COLORS.length],
+                      weight: 1,
+                    };
+                    return acc;
+                  },
+                  {} as Record<string, { color: string; weight: number }>
+                );
+
+                const sectorScores = Object.entries(
+                  sectorData.criterion
+                ).reduce((acc, [key, value]) => {
+                  acc[key] = value.average;
+                  return acc;
+                }, {} as Record<string, number>);
+
+                return (
+                  <React.Fragment key={sector}>
+                    <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
+                      <p className="text-xl font-semibold text-gray-700 mb-4">
+                        Стадия: {getMaturityStage(sectorData.average)}
+                      </p>
+                      <ScoreCircle
+                        scores={sectorScores}
+                        criteria={sectorCriteria}
+                      />
+                      <p className="text-sm text-gray-500 mt-2 text-center">
+                        Средняя оценка по критериям для сектора
+                      </p>
+                    </div>
+                    <div className="bg-white rounded-2xl shadow-lg p-8">
+                      <h2 className="text-2xl font-bold mb-6">
+                        Оценка цифровой зрелости бизнеса в секторе {sector} (
+                        {sectorData.count} прохождений)
+                      </h2>
+                      <ScoreTable
+                        scores={sectorScores}
+                        criteria={sectorCriteria}
+                        averageScore={sectorData.average}
+                        getMaturityStage={getMaturityStage}
+                        scoreColumnTitle="Средняя оценка"
+                        showColors={true}
+                        customColors={BUSINESS_COLORS}
+                      />
+                    </div>
+                  </React.Fragment>
+                );
+              })}
           {/* Второй ряд: таблица услуг */}
           <div className="lg:col-span-2">
             <ServiceStatsTable

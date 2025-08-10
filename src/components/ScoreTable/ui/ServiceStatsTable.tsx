@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface ServiceStat {
   code: string;
@@ -18,17 +19,18 @@ const ServiceStatsTable: React.FC<ServiceStatsTableProps> = ({
   showColors = true,
   customColors,
 }) => {
+  const t = useTranslations("ScoreComponents");
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6">
-      <h3 className="text-lg font-semibold mb-4">Статистика по видам услуг</h3>
+      <h3 className="text-lg font-semibold mb-4">{t("serviceStatsTitle")}</h3>
       <div>
         <div
           className="grid grid-cols-3 gap-4 text-sm border-b pb-2"
           style={{ color: "#727F88" }}
         >
-          <div>Вид услуги</div>
-          <div className="text-center">Средняя оценка</div>
-          <div className="text-center">Количество</div>
+          <div>{t("serviceTypeColumn")}</div>
+          <div className="text-center">{t("averageScore")}</div>
+          <div className="text-center">{t("countColumn")}</div>
         </div>
         <div className="mt-4 space-y-4">
           {serviceStats.map((service, index) => {
@@ -62,7 +64,7 @@ const ServiceStatsTable: React.FC<ServiceStatsTableProps> = ({
           {/* Overall Average Row */}
           {serviceStats.length > 0 && (
             <div className="grid grid-cols-3 gap-4 items-center font-bold border-t pt-4 mt-4">
-              <div>Среднее значение</div>
+              <div>{t("averageValue")}</div>
               <div className="text-center">
                 {(
                   serviceStats.reduce((sum, s) => sum + s.average, 0) /

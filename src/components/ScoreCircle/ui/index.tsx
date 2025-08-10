@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface ScoreCircleProps {
   scores: { [key: string]: number };
@@ -9,8 +10,9 @@ interface ScoreCircleProps {
 const ScoreCircle: React.FC<ScoreCircleProps> = ({
   scores,
   criteria,
-  title = "Ваша оценка",
+  title,
 }) => {
+  const t = useTranslations("ScoreComponents");
   const totalScore = Object.values(scores).reduce(
     (acc, score) => acc + score,
     0
@@ -63,7 +65,7 @@ const ScoreCircle: React.FC<ScoreCircleProps> = ({
           })}
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-gray-500">{title}</span>
+        <span className="text-gray-500">{title || t("yourScore")}</span>
         <span className="text-[2.5rem] font-bold text-foreground">
           {averageScore.toFixed(2)}
         </span>

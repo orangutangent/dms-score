@@ -1,31 +1,29 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Button from "../components/ui/Button";
 
 export default function Home() {
+  const t = useTranslations("IndexPage");
+
   return (
     <main className="flex-1 flex items-center justify-center p-8">
       <div className="w-full max-w-5xl ">
         <h1 className="text-[1.75rem] font-bold  mb-4">
-          Оценка зрелости государственных услуг и цифровой зрелости бизнеса
+          {t("mainTitle")}
         </h1>
         <p className="mt-6 text-lg text-gray-600  ">
-          Пройдите тестирование, чтобы получить персональную оценку цифровой
-          зрелости вашего бизнеса или государства. По результатам тестирования
-          вы узнаете на какой стадии развития находится ваша компания, ее
-          основное «узкое место» и получите рекомендации по его устранению и
-          поймете, какие шаги действительно приблизят ваш бизнес к следующему
-          уровню эффективности и конкурентоспособности.
+          {t("mainDescription")}
         </p>
         <div className="mt-6 space-y-2 text-gray-500">
-          <p>Время прохождения: ~ 5 минут</p>
-          <p>~25 вопросов</p>
+          <p>{t("timeToComplete")}</p>
+          <p>{t("questionCount")}</p>
         </div>
         <div className="mt-12 flex flex-col lg:flex-row gap-6">
           <Link href="/digitalmaturity">
-            <Button>Начать тестирование для МСП</Button>
+            <Button>{t("startMspButton")}</Button>
           </Link>
           <Link href="/govermentssurvey">
-            <Button>Начать тестирование для гос.служащих</Button>
+            <Button>{t("startGovButton")}</Button>
           </Link>
         </div>
       </div>

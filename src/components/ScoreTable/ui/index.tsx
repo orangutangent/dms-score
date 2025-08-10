@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface ScoreTableProps {
   scores: { [key: string]: number };
@@ -15,16 +16,17 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
   criteria,
   averageScore,
   getMaturityStage,
-  scoreColumnTitle = "Ваша оценка",
+  scoreColumnTitle,
   showColors = true,
   customColors,
 }) => {
+  const t = useTranslations("ScoreComponents");
   return (
     <div>
       <div className="grid grid-cols-3 gap-4 text-sm text-gray-500 border-b pb-2">
-        <div>Критерий оценки</div>
-        <div className="text-center">{scoreColumnTitle}</div>
-        <div className="text-center">Стадия</div>
+        <div>{t("criterionColumn")}</div>
+        <div className="text-center">{scoreColumnTitle || t("averageScore")}</div>
+        <div className="text-center">{t("stageColumn")}</div>
       </div>
       <div className="mt-4 space-y-4">
         {Object.entries(criteria).map(([criterion, { color }], index) => {
@@ -60,7 +62,7 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
         })}
         {/* Overall Average Row */}
         <div className="grid grid-cols-3 gap-4 items-center font-bold border-t pt-4 mt-4">
-          <div>Среднее значение</div>
+          <div>{t("averageValue")}</div>
           <div className="text-center">{averageScore.toFixed(1)}</div>
           <div className="text-center">
             {getMaturityStage(averageScore).split(" - ")[0]}

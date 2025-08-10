@@ -17,6 +17,7 @@ import type {
   GovernmentSurveyResponseDTO,
   GovernmentSurveySubmitDataDTO,
 } from "@/api/types";
+import { useTranslations } from "next-intl";
 
 const questions: QuestionType[] = questionsData as QuestionType[];
 
@@ -46,6 +47,7 @@ const allQuestions = [
 ];
 
 const GovermentsSurveyPage = () => {
+  const t = useTranslations("SurveyPage");
   const router = useRouter();
   const {
     currentQuestion,
@@ -112,8 +114,8 @@ const GovermentsSurveyPage = () => {
   if (!currentQuestion) {
     return (
       <main className="flex flex-1 flex-col items-center justify-center p-6">
-        <h1 className="text-2xl font-bold">Опрос в разработке</h1>
-        <p className="mt-4">Этот раздел скоро будет доступен.</p>
+        <h1 className="text-2xl font-bold">{t("inDevelopmentTitle")}</h1>
+        <p className="mt-4">{t("inDevelopmentDescription")}</p>
       </main>
     );
   }

@@ -1,38 +1,38 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import { Providers } from "./providers";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import { Providers } from "./providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "DMS Score - Digital Maturity and Government Service Assessment",
-  description: "Assess the digital maturity of your business or government services with our comprehensive survey. Get personalized scores and recommendations to drive improvement.",
+export const metadata = {
+  title: "Digital Maturity Score",
+  description: "Digital Maturity Score for Governments and Businesses",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${inter.className} antialiased min-h-screen flex flex-col`}
       >
-        <Header />
-        <div className="pt-20 flex-1 flex flex-col ">
-          <Providers>{children}</Providers>
-        </div>
+        <Providers>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Header />
+            <div className="pt-20 flex-1 flex flex-col ">
+              {children}
+            </div>
+          </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );

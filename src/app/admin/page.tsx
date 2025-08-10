@@ -9,8 +9,10 @@ import { GOVERNMENT_COLORS, BUSINESS_COLORS } from "@/config/colors";
 import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
 import { CountryStats, SurveyStats } from "@/api/admin-stats-api";
 import { SERVICES } from "@/config/services";
+import { useTranslations } from "next-intl";
 
 const AdminPage = () => {
+  const t = useTranslations("AdminPage"); // Added a comment to force recompile
   const { data: stats, isLoading, error } = useAdminStats();
   const [selectedCountry, setSelectedCountry] = useState("");
   const [activeTab, setActiveTab] = useState<"government" | "digitalMaturity">(
@@ -23,13 +25,13 @@ const AdminPage = () => {
     }
   }, [stats, selectedCountry]);
 
-  if (isLoading) return <div className="text-center p-8">Loading...</div>;
+  if (isLoading) return <div className="text-center p-8">{t("loading")}</div>;
   if (error)
     return (
-      <div className="text-center p-8 text-red-500">Error fetching stats</div>
+      <div className="text-center p-8 text-red-500">{t("errorFetchingStats")}</div>
     );
   if (!stats || Object.keys(stats).length === 0)
-    return <div className="text-center p-8">No stats available</div>;
+    return <div className="text-center p-8">{t("noStatsAvailable")}</div>;
 
   const countryData: CountryStats | undefined = stats[selectedCountry];
 
@@ -40,13 +42,13 @@ const AdminPage = () => {
 
   const renderContent = () => {
     if (!countryData) {
-      return <p className="text-center p-8">Please select a country.</p>;
+      return <p className="text-center p-8">{t("selectCountry")}</p>;
     }
 
     const data = countryData[activeTab];
     if (!data || data.count === 0) {
       return (
-        <p className="text-center p-8">No survey data for this category.</p>
+        <p className="text-center p-8">{t("noSurveyData")}</p>
       );
     }
 
@@ -126,32 +128,32 @@ const AdminPage = () => {
             </p>
             <div className="size-[25rem]">
               <ScoreCircle
-                title="Средняя оценка"
+                title={t("averageScore")}
                 scores={levelScores}
                 criteria={levelCriteria}
               />
             </div>
             <p className="text-sm text-gray-500 mt-2 text-center">
-              Средняя оценка по уровням
+              {t("averageScoreByLevels")}
             </p>
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-6">
-              Оценка цифровой зрелости гос. услуг
+              {t("govMaturityTitle")}
             </h2>
 
             {/* Таблица уровней */}
             <div className="mb-8">
               <h3 className="text-lg font-semibold mb-4">
-                Уровни цифровой зрелости
+                {t("maturityLevels")}
               </h3>
               <ScoreTable
                 scores={levelScores}
                 criteria={levelCriteria}
                 averageScore={levelAverage}
                 getMaturityStage={getMaturityStage}
-                scoreColumnTitle="Средняя оценка"
+                scoreColumnTitle={t("averageScore")}
                 showColors={true}
                 customColors={GOVERNMENT_COLORS}
               />
@@ -170,14 +172,14 @@ const AdminPage = () => {
           {Object.keys(govData.specialSections).length > 0 && (
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h3 className="text-lg font-semibold mb-4">
-                Специальные разделы
+                {t("specialSectionsTitle")}
               </h3>
               <ScoreTable
                 scores={specialSectionScores}
                 criteria={specialSectionCriteria}
                 averageScore={specialSectionAverage}
                 getMaturityStage={getMaturityStage}
-                scoreColumnTitle="Средняя оценка"
+                scoreColumnTitle={t("averageScore")}
                 showColors={false}
               />
             </div>
@@ -234,22 +236,22 @@ const AdminPage = () => {
             <p className="text-xl font-semibold text-gray-700 mb-4">
               Стадия: {getMaturityStage(criteriaAverage)}
             </p>
-            <ScoreCircle scores={scores} criteria={criteria} />
+            <ScoreCircle scores={scores} criteria={criteria} title={t("averageScore")} />
             <p className="text-sm text-gray-500 mt-2 text-center">
-              Средняя оценка по критериям (все сектора)
+              {t("averageScoreByCriteriaAllSectors")}
             </p>
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-6">
-              Оценка цифровой зрелости бизнеса (все сектора)
+              {t("businessMaturityTitle")}
             </h2>
             <ScoreTable
               scores={scores}
               criteria={criteria}
               averageScore={criteriaAverage}
               getMaturityStage={getMaturityStage}
-              scoreColumnTitle="Средняя оценка"
+              scoreColumnTitle={t("averageScore")}
               showColors={true}
               customColors={BUSINESS_COLORS}
             />
@@ -300,22 +302,22 @@ const AdminPage = () => {
                       <ScoreCircle
                         scores={sectorScores}
                         criteria={sectorCriteria}
+                        title={t("averageScore")}
                       />
                       <p className="text-sm text-gray-500 mt-2 text-center">
-                        Средняя оценка по критериям для сектора
+                        {t("averageScoreByCriteriaForSector")}
                       </p>
                     </div>
                     <div className="bg-white rounded-2xl shadow-lg p-8">
                       <h2 className="text-2xl font-bold mb-6">
-                        Оценка цифровой зрелости бизнеса в секторе {sector} (
-                        {sectorData.count} прохождений)
+                        {t("sectorDetails", { sector, count: sectorData.count })}
                       </h2>
                       <ScoreTable
                         scores={sectorScores}
                         criteria={sectorCriteria}
                         averageScore={sectorAverage}
                         getMaturityStage={getMaturityStage}
-                        scoreColumnTitle="Средняя оценка"
+                        scoreColumnTitle={t("averageScore")}
                         showColors={true}
                         customColors={BUSINESS_COLORS}
                       />
@@ -349,7 +351,7 @@ const AdminPage = () => {
                   : "bg-white"
               }`}
             >
-              Оценка зрелости государственных услуг
+              {t("govSurveyButton")}
             </button>
             <button
               onClick={() => setActiveTab("digitalMaturity")}
@@ -359,7 +361,7 @@ const AdminPage = () => {
                   : "bg-white"
               }`}
             >
-              Оценка цифровой зрелости бизнеса
+              {t("digitalMaturityButton")}
             </button>
           </div>
         </div>
@@ -374,11 +376,11 @@ const AdminPage = () => {
             }))}
           />
           <div className="bg-white p-3 rounded-lg shadow-sm lg:w-md">
-            Кол-во прохождений гос. служащими:{" "}
+            {t("govPassCount")}{" "}
             {countryData?.government.count || 0}
           </div>
           <div className="bg-white p-3 rounded-lg shadow-sm lg:w-md">
-            Кол-во прохождений бизнесом:{" "}
+            {t("businessPassCount")}{" "}
             {countryData?.digitalMaturity.count || 0}
           </div>
         </div>

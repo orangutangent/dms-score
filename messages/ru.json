@@ -1,0 +1,74 @@
+{
+  "Header": {
+    "title": "Оценка цифровой зрелости",
+    "admin": "Админка"
+  },
+  "IndexPage": {
+    "title": "Главная страница",
+    "description": "Выберите один из опросов ниже.",
+    "digitalMaturityTitle": "Цифровая зрелость",
+    "digitalMaturityDescription": "Пройдите опрос о цифровой зрелости вашего бизнеса.",
+    "governmentSurveyTitle": "Опрос для госслужащих",
+    "governmentSurveyDescription": "Пройдите опрос о государственных услугах.",
+    "adminTitle": "Админка",
+    "adminDescription": "Страница администратора для просмотра результатов.",
+    "mainTitle": "Оценка зрелости государственных услуг и цифровой зрелости бизнеса",
+    "mainDescription": "Пройдите тестирование, чтобы получить персональную оценку цифровой зрелости вашего бизнеса или государства. По результатам тестирования вы узнаете на какой стадии развития находится ваша компания, ее основное «узкое место» и получите рекомендации по его устранению и поймете, какие шаги действительно приблизят ваш бизнес к следующему уровню эффективности и конкурентоспособности.",
+    "timeToComplete": "Время прохождения: ~ 5 минут",
+    "questionCount": "~25 вопросов",
+    "startMspButton": "Начать тестирование для МСП",
+    "startGovButton": "Начать тестирование для гос.служащих"
+  },
+  "QuestionComponent": {
+    "questionLabel": "Вопрос {questionNumber} из {totalQuestions}",
+    "selectAnswer": "Выберите ответ:",
+    "leaveAnswer": "Оставьте ответ:",
+    "backButton": "Назад",
+    "continueButton": "Продолжить",
+    "finishButton": "Завершить",
+    "submittingButton": "Отправка..."
+  },
+  "SurveyPage": {
+    "inDevelopmentTitle": "Опрос в разработке",
+    "inDevelopmentDescription": "Этот раздел скоро будет доступен."
+  },
+  "ResultsPage": {
+    "yourResult": "Ваш результат",
+    "stageLabel": "Стадия: {stage}",
+    "smeMaturityTitle": "Оценка цифровой зрелости МСП",
+    "govMaturityTitle": "Оценка цифровой зрелости гос. услуг",
+    "specialSectionsTitle": "Специальные разделы",
+    "averageScore": "Средняя оценка",
+    "yourScore": "Ваша оценка"
+  },
+  "AdminPage": {
+    "loading": "Загрузка...",
+    "errorFetchingStats": "Ошибка при загрузке статистики",
+    "noStatsAvailable": "Статистика недоступна",
+    "selectCountry": "Пожалуйста, выберите страну.",
+    "noSurveyData": "Нет данных опроса для этой категории.",
+    "govSurveyButton": "Оценка зрелости государственных услуг",
+    "digitalMaturityButton": "Оценка цифровой зрелости бизнеса",
+    "govPassCount": "Кол-во прохождений гос. служащими:",
+    "businessPassCount": "Кол-во прохождений бизнесом:",
+    "averageScore": "Средняя оценка",
+    "averageScoreByLevels": "Средняя оценка по уровням",
+    "govMaturityTitle": "Оценка цифровой зрелости гос. услуг",
+    "maturityLevels": "Уровни цифровой зрелости",
+    "businessMaturityTitle": "Оценка цифровой зрелости бизнеса (все сектора)",
+    "averageScoreByCriteriaAllSectors": "Средняя оценка по критериям (все сектора)",
+    "sectorDetails": "Детализация по сектору: {sector} ({count} прохождений)",
+    "averageScoreByCriteriaForSector": "Средняя оценка по критериям для сектора",
+    "specialSectionsTitle": "Специальные разделы"
+  },
+  "ScoreComponents": {
+    "yourScore": "Ваша оценка",
+    "criterionColumn": "Критерий оценки",
+    "stageColumn": "Стадия",
+    "averageValue": "Среднее значение",
+    "serviceStatsTitle": "Статистика по видам услуг",
+    "serviceTypeColumn": "Вид услуги",
+    "countColumn": "Количество",
+    "averageScore": "Средняя оценка"
+  }
+}

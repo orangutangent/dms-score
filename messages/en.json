@@ -1,0 +1,74 @@
+{
+  "Header": {
+    "title": "Digital Maturity Score",
+    "admin": "Admin"
+  },
+  "IndexPage": {
+    "title": "Home Page",
+    "description": "Choose one of the surveys below.",
+    "digitalMaturityTitle": "Digital Maturity",
+    "digitalMaturityDescription": "Take the digital maturity survey for your business.",
+    "governmentSurveyTitle": "Government Survey",
+    "governmentSurveyDescription": "Take the government services survey.",
+    "adminTitle": "Admin",
+    "adminDescription": "Admin page for viewing survey results.",
+    "mainTitle": "Assessment of the maturity of public services and the digital maturity of business",
+    "mainDescription": "Take the test to get a personal assessment of the digital maturity of your business or state. Based on the test results, you will find out what stage of development your company is at, its main “bottleneck” and receive recommendations for its elimination and understand what steps will really bring your business to the next level of efficiency and competitiveness.",
+    "timeToComplete": "Time to complete: ~ 5 minutes",
+    "questionCount": "~25 questions",
+    "startMspButton": "Start testing for SMEs",
+    "startGovButton": "Start testing for civil servants"
+  },
+  "QuestionComponent": {
+    "questionLabel": "Question {questionNumber} of {totalQuestions}",
+    "selectAnswer": "Select an answer:",
+    "leaveAnswer": "Leave an answer:",
+    "backButton": "Back",
+    "continueButton": "Continue",
+    "finishButton": "Finish",
+    "submittingButton": "Submitting..."
+  },
+  "SurveyPage": {
+    "inDevelopmentTitle": "Survey in development",
+    "inDevelopmentDescription": "This section will be available soon."
+  },
+  "ResultsPage": {
+    "yourResult": "Your Result",
+    "stageLabel": "Stage: {stage}",
+    "smeMaturityTitle": "SME Digital Maturity Assessment",
+    "govMaturityTitle": "Digital maturity assessment of public services",
+    "specialSectionsTitle": "Special Sections",
+    "averageScore": "Average Score",
+    "yourScore": "Your Score"
+  },
+  "AdminPage": {
+    "loading": "Loading...",
+    "errorFetchingStats": "Error fetching stats",
+    "noStatsAvailable": "No stats available",
+    "selectCountry": "Please select a country.",
+    "noSurveyData": "No survey data for this category.",
+    "govSurveyButton": "Government Services Maturity Assessment",
+    "digitalMaturityButton": "Business Digital Maturity Assessment",
+    "govPassCount": "Number of government passes:",
+    "businessPassCount": "Number of business passes:",
+    "averageScore": "Average Score",
+    "averageScoreByLevels": "Average score by levels",
+    "govMaturityTitle": "Digital maturity assessment of public services",
+    "maturityLevels": "Digital Maturity Levels",
+    "businessMaturityTitle": "Business Digital Maturity Assessment (all sectors)",
+    "averageScoreByCriteriaAllSectors": "Average score by criteria (all sectors)",
+    "sectorDetails": "Sector details: {sector} ({count} passes)",
+    "averageScoreByCriteriaForSector": "Average score by criteria for sector",
+    "specialSectionsTitle": "Special Sections"
+  },
+  "ScoreComponents": {
+    "yourScore": "Your Score",
+    "criterionColumn": "Assessment Criterion",
+    "stageColumn": "Stage",
+    "averageValue": "Average Value",
+    "serviceStatsTitle": "Service Type Statistics",
+    "serviceTypeColumn": "Service Type",
+    "countColumn": "Count",
+    "averageScore": "Average Score"
+  }
+}

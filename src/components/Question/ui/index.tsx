@@ -10,6 +10,7 @@ import YesNoServiceTemplateInput from "./YesNoServiceTemplateInput";
 import { Question as QuestionType, Answer } from "../model/types";
 import { SERVICE_MAP, type ServiceCode } from "@/config/services";
 import { calculateRadioScore, calculateScaleScore } from "@/lib/scoring";
+import { useTranslations } from "next-intl";
 import type {
   GovernmentSurveyResponseDTO,
   BusinessSurveyResponseDTO,
@@ -56,6 +57,7 @@ const Question: React.FC<QuestionProps> = ({
   isLastQuestion,
   onResponseChange,
 }) => {
+  const t = useTranslations("QuestionComponent");
   const [answer, setAnswer] = useState<Answer>(initialAnswer);
 
   useEffect(() => {
@@ -126,10 +128,10 @@ const Question: React.FC<QuestionProps> = ({
       case "sector":
       case "scale-service-template":
       case "yes-no-service-template":
-        return "Выберите ответ:";
+        return t("selectAnswer");
       case "text":
       case "final-thoughts":
-        return "Оставьте ответ:";
+        return t("leaveAnswer");
       default:
         return "";
     }
@@ -319,7 +321,7 @@ const Question: React.FC<QuestionProps> = ({
     <div className="space-y-12">
       <div className="space-y-2">
         <div className="text-left text-gray-500">
-          Вопрос {questionNumber} из {totalQuestions}
+          {t("questionLabel", { questionNumber, totalQuestions })}
         </div>
         <div className="w-full bg-white rounded-full h-2.5 mb-4">
           <div
@@ -377,7 +379,7 @@ const Question: React.FC<QuestionProps> = ({
       <div className="flex gap-4">
         {questionNumber > 1 && (
           <Button onClick={onBack} variant="secondary">
-            Назад
+            {t("backButton")}
           </Button>
         )}
         <Button
@@ -386,10 +388,10 @@ const Question: React.FC<QuestionProps> = ({
           className="py-3"
         >
           {isSubmitting
-            ? "Отправка..."
+            ? t("submittingButton")
             : isLastQuestion
-            ? "Завершить"
-            : "Продолжить"}
+            ? t("finishButton")
+            : t("continueButton")}
         </Button>
       </div>
     </div>

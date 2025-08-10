@@ -1,0 +1,1 @@
+// This file has been replaced by src/i18n/request.ts

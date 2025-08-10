@@ -3,13 +3,13 @@
 import React, { useMemo } from "react";
 import ScoreCircle from "../../components/ScoreCircle";
 import ScoreTable from "../../components/ScoreTable";
-import { useSurveyResults } from "../../components/ScoreCircle/data-access/useSurveyResults";
 import { criteriaColors } from "../../config/criteriaColors";
 import { Question } from "../../components/Question/model/types";
 import questionsData from "../../govermentssurvey.json";
 import { expandServiceTemplates } from "@/lib/survey";
 import { getStage } from "@/lib/stage";
 import { useGovernmentSurveyStore } from "../../store/government-survey.store";
+import { GovernmentSurveyResponseDTO } from "@/api/types";
 
 const questions: Question[] = expandServiceTemplates(
   questionsData as Question[]
@@ -20,7 +20,10 @@ const getMaturityStage = (score0to10: number) => {
   return `${stage.letter} - ${stage.label}`;
 };
 
-const calculateScores = (responses: any[], relevantQuestions: Question[]) => {
+const calculateScores = (
+  responses: GovernmentSurveyResponseDTO[],
+  relevantQuestions: Question[]
+) => {
   const criterionStats: Record<string, { sum: number; count: number }> = {};
 
   responses.forEach((response) => {
@@ -87,9 +90,14 @@ const ResultsGovermentServicePage = () => {
       : 0;
   };
 
-  const mainAverageScore = useMemo(() => calculateAverage(mainScores), [mainScores]);
-  const specialAverageScore = useMemo(() => calculateAverage(specialScores), [specialScores]);
-
+  const mainAverageScore = useMemo(
+    () => calculateAverage(mainScores),
+    [mainScores]
+  );
+  const specialAverageScore = useMemo(
+    () => calculateAverage(specialScores),
+    [specialScores]
+  );
 
   const mainCriteria = useMemo(() => {
     const uniqueCriteria = [...new Set(mainQuestions.map((q) => q.criterion))];

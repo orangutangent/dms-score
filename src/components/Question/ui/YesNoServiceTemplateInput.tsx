@@ -72,13 +72,19 @@ const YesNoServiceTemplateInput: React.FC<YesNoServiceTemplateInputProps> = ({
             <h4 className="font-medium text-gray-900">{subQ.text}</h4>
           </div>
 
-          <div className="ml-7">
-            <Radio
-              options={question.options || []}
-              value={answers[subQ.service] || ""}
-              onChange={(value) => handleServiceAnswer(subQ.service, value)}
-              name={`yes-no-service-${subQ.service}`}
-            />
+          <div className="ml-7 flex items-center gap-4">
+            {(question.options || []).map((option) => (
+              <Radio
+                key={option.value}
+                label={option.label}
+                value={option.value}
+                checked={answers[subQ.service] === option.value}
+                onChange={(e) =>
+                  handleServiceAnswer(subQ.service, e.target.value)
+                }
+                name={`yes-no-service-${subQ.service}`}
+              />
+            ))}
           </div>
         </div>
       ))}

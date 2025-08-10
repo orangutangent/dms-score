@@ -1,1 +1,0 @@
-// This file is no longer needed for the current i18n setup.

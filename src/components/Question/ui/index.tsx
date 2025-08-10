@@ -212,8 +212,28 @@ const Question: React.FC<QuestionProps> = ({
                     score01: newAnswer.score || 0,
                     answerValue: newAnswer.value,
                   };
+                  console.log("yes-or-no response");
                   onResponseChange(response);
                 });
+              }
+            }}
+          />
+        );
+      case "scale":
+        return (
+          <ScaleInput
+            options={question.options?.map((o) => o.value) || []}
+            selectedValue={answer?.value || null}
+            onChange={(value) => {
+              // Считаем нормализованный балл
+              const max = (question.options?.length ?? 6) - 1;
+              const score = max > 0 ? Number(value) / max : 0;
+              const newAnswer = { value, score };
+              setAnswer(newAnswer);
+              // Создаем response сразу при выборе
+              const response = createResponse(newAnswer);
+              if (response && onResponseChange) {
+                onResponseChange(response);
               }
             }}
           />
@@ -228,9 +248,13 @@ const Question: React.FC<QuestionProps> = ({
                 value={option.value}
                 checked={answer?.value === option.value}
                 onChange={(value) => {
-                  const newAnswer = { value: option.value };
+                  // Для radio тоже считаем score если есть scoring
+                  let score = 0;
+                  if (question.scoring && option.value in question.scoring) {
+                    score = question.scoring[option.value];
+                  }
+                  const newAnswer = { value: option.value, score };
                   setAnswer(newAnswer);
-                  // Создаем response сразу при выборе
                   const response = createResponse(newAnswer);
                   if (response && onResponseChange) {
                     onResponseChange(response);
@@ -251,22 +275,6 @@ const Question: React.FC<QuestionProps> = ({
                 </div>
               )}
           </div>
-        );
-      case "scale":
-        return (
-          <ScaleInput
-            options={question.options?.map((opt) => opt.label) || []}
-            selectedValue={answer?.value || null}
-            onChange={(value) => {
-              const newAnswer = { value };
-              setAnswer(newAnswer);
-              // Создаем response сразу при выборе
-              const response = createResponse(newAnswer);
-              if (response && onResponseChange) {
-                onResponseChange(response);
-              }
-            }}
-          />
         );
       case "text":
         return (

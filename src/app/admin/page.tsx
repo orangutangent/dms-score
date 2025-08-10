@@ -185,8 +185,18 @@ const AdminPage = () => {
         </div>
       );
     } else {
+      const EXCLUDED_CRITERIA = [
+        "Регистрация МСП",
+        "Открытие бизнеса",
+        "Кредитно-грантовая поддержка",
+      ];
+
       // Для digitalMaturity используем бизнес-цвета
-      const criteria = Object.keys(data.criterion).reduce((acc, key, index) => {
+      const filteredOverallCriterion = Object.entries(data.criterion).filter(
+        ([key]) => !EXCLUDED_CRITERIA.includes(key)
+      );
+
+      const criteria = filteredOverallCriterion.reduce((acc, [key], index) => {
         acc[key] = {
           color: BUSINESS_COLORS[index % BUSINESS_COLORS.length],
           weight: 1,
@@ -194,20 +204,15 @@ const AdminPage = () => {
         return acc;
       }, {} as Record<string, { color: string; weight: number }>);
 
-      const scores = Object.entries(data.criterion).reduce(
-        (acc, [key, value]) => {
-          acc[key] = value.average;
-          return acc;
-        },
-        {} as Record<string, number>
-      );
+      const scores = filteredOverallCriterion.reduce((acc, [key, value]) => {
+        acc[key] = value.average;
+        return acc;
+      }, {} as Record<string, number>);
 
       // Рассчитываем среднюю оценку только по критериям
       const criteriaAverage =
-        Object.values(data.criterion).reduce(
-          (sum, criterion) => sum + criterion.average,
-          0
-        ) / Object.keys(data.criterion).length;
+        filteredOverallCriterion.reduce((sum, [, value]) => sum + value.average, 0) /
+        filteredOverallCriterion.length;
 
       // Статистика по видам услуг для бизнес опроса
       const businessServiceStats = Object.entries(
@@ -255,8 +260,14 @@ const AdminPage = () => {
             Object.entries(countryData.digitalMaturityBySector)
               .filter(([, sectorData]) => sectorData.count > 0)
               .map(([sector, sectorData]) => {
-                const sectorCriteria = Object.keys(sectorData.criterion).reduce(
-                  (acc, key, index) => {
+                const filteredSectorCriterion = Object.entries(
+                  sectorData.criterion
+                ).filter(([key]) => !EXCLUDED_CRITERIA.includes(key));
+
+                if (filteredSectorCriterion.length === 0) return null;
+
+                const sectorCriteria = filteredSectorCriterion.reduce(
+                  (acc, [key], index) => {
                     acc[key] = {
                       color: BUSINESS_COLORS[index % BUSINESS_COLORS.length],
                       weight: 1,
@@ -266,18 +277,25 @@ const AdminPage = () => {
                   {} as Record<string, { color: string; weight: number }>
                 );
 
-                const sectorScores = Object.entries(
-                  sectorData.criterion
-                ).reduce((acc, [key, value]) => {
-                  acc[key] = value.average;
-                  return acc;
-                }, {} as Record<string, number>);
+                const sectorScores = filteredSectorCriterion.reduce(
+                  (acc, [key, value]) => {
+                    acc[key] = value.average;
+                    return acc;
+                  },
+                  {} as Record<string, number>
+                );
+
+                const sectorAverage =
+                  filteredSectorCriterion.reduce(
+                    (sum, [, value]) => sum + value.average,
+                    0
+                  ) / filteredSectorCriterion.length;
 
                 return (
                   <React.Fragment key={sector}>
                     <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
                       <p className="text-xl font-semibold text-gray-700 mb-4">
-                        Стадия: {getMaturityStage(sectorData.average)}
+                        Стадия: {getMaturityStage(sectorAverage)}
                       </p>
                       <ScoreCircle
                         scores={sectorScores}
@@ -295,7 +313,7 @@ const AdminPage = () => {
                       <ScoreTable
                         scores={sectorScores}
                         criteria={sectorCriteria}
-                        averageScore={sectorData.average}
+                        averageScore={sectorAverage}
                         getMaturityStage={getMaturityStage}
                         scoreColumnTitle="Средняя оценка"
                         showColors={true}

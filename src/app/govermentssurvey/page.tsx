@@ -136,6 +136,8 @@ const GovermentsSurveyPage = () => {
           initialFinalThoughts={finalThoughts}
           onFinalThoughtsChange={setFinalThoughts}
           onResponseChange={setResponse} // Передаем функцию для сохранения responses
+          isSubmitting={submitSurvey.isPending}
+          isLastQuestion={currentQuestionIndex === allQuestions.length - 1}
         />
       </div>
     </main>

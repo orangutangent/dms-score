@@ -30,6 +30,8 @@ interface QuestionProps {
   onSectorChange?: (sector: string) => void; // Made optional
   initialFinalThoughts: string;
   onFinalThoughtsChange: (thoughts: string) => void;
+  isSubmitting: boolean;
+  isLastQuestion: boolean;
   // New prop for storing responses
   onResponseChange?: (
     response: GovernmentSurveyResponseDTO | BusinessSurveyResponseDTO
@@ -50,6 +52,8 @@ const Question: React.FC<QuestionProps> = ({
   onSectorChange,
   initialFinalThoughts,
   onFinalThoughtsChange,
+  isSubmitting,
+  isLastQuestion,
   onResponseChange,
 }) => {
   const [answer, setAnswer] = useState<Answer>(initialAnswer);
@@ -378,10 +382,14 @@ const Question: React.FC<QuestionProps> = ({
         )}
         <Button
           onClick={handleContinue}
-          disabled={isNextDisabled()}
+          disabled={isNextDisabled() || isSubmitting}
           className="py-3"
         >
-          Продолжить
+          {isSubmitting
+            ? "Отправка..."
+            : isLastQuestion
+            ? "Завершить"
+            : "Продолжить"}
         </Button>
       </div>
     </div>

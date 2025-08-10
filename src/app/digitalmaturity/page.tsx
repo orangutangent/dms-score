@@ -153,6 +153,8 @@ const DigitalMaturityPage = () => {
           onSectorChange={setSector}
           initialFinalThoughts={finalThoughts}
           onFinalThoughtsChange={setFinalThoughts}
+          isSubmitting={submitSurvey.isPending}
+          isLastQuestion={currentQuestionIndex === allQuestions.length - 1}
           onResponseChange={(response) => {
             // Store response in the store
             if (response.service) {

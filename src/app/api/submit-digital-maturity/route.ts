@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
-import { Question, Answer } from "../../../components/Question/model/types";
-import questionsData from "../../../questions.json";
+
 import type { BusinessSurveyResponseDTO } from "@/api/types";
 import { SERVICES, type ServiceCode } from "@/config/services";
 import { aggregateByCriteria, aggregateByServices } from "@/lib/scoring";
-
-const questions: Question[] = questionsData as unknown as Question[];
 
 export async function POST(req: Request) {
   try {

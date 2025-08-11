@@ -4,16 +4,16 @@
     "admin": "Admin"
   },
   "IndexPage": {
-    "title": "Home Page",
-    "description": "Choose one of the surveys below.",
+    "title": "Assessment of the digital maturity of public services and SME digital maturity",
+    "description": "Take part in the survey for a comprehensive assessment of the digital maturity level of your organization - a government agency or enterprise.",
     "digitalMaturityTitle": "Digital Maturity",
     "digitalMaturityDescription": "Take the digital maturity survey for your business.",
     "governmentSurveyTitle": "Government Survey",
     "governmentSurveyDescription": "Take the government services survey.",
     "adminTitle": "Admin",
     "adminDescription": "Admin page for viewing survey results.",
-    "mainTitle": "Assessment of the maturity of public services and the digital maturity of business",
-    "mainDescription": "Take the test to get a personal assessment of the digital maturity of your business or state. Based on the test results, you will find out what stage of development your company is at, its main “bottleneck” and receive recommendations for its elimination and understand what steps will really bring your business to the next level of efficiency and competitiveness.",
+    "mainTitle": "Assessment of the digital maturity of public services and SME digital maturity",
+    "mainDescription": "Take part in the survey for a comprehensive assessment of the digital maturity level of your organization - a government agency or enterprise. The results will allow you to determine the current stage of digital development, identify key limitations and receive targeted recommendations for overcoming them. This will form the basis for planning effective steps aimed at improving the quality of work, the level of services provided and the competitiveness of your organization in the digital environment.",
     "timeToComplete": "Time to complete: ~ 5 minutes",
     "questionCount": "~25 questions",
     "startMspButton": "Start testing for SMEs",
@@ -72,12 +72,12 @@
     "averageScore": "Average Score"
   },
   "HardcodedQuestions": {
-    "location": "In which country are you located?",
-    "sector": "To which economic sector do you belong?",
+    "location": "In which country, city, region are you registered as an SME?",
+    "sector": "In which economic sector do you provide your services?",
     "sectorOptions": {
-      "healthcare": "Healthcare",
-      "education": "Education",
-      "other": "Other"
+      "healthcare": "healthcare",
+      "education": "education",
+      "other": "other"
     },
     "finalThoughts": "You can leave your suggestions for improving digital services, if you wish.",
     "finalThoughtsPlaceholder": "Enter your suggestions",

@@ -3,7 +3,6 @@
 import React, { useMemo } from "react";
 import ScoreCircle from "../../components/ScoreCircle";
 import ScoreTable from "../../components/ScoreTable";
-import { useSurveyResults } from "../../components/ScoreCircle/data-access/useSurveyResults";
 import { criteriaColors } from "../../config/criteriaColors";
 import { Question } from "../../components/Question/model/types";
 import questionsData from "../../questions.json";
@@ -81,14 +80,16 @@ const ResultsMaturityPage = () => {
             <p className="text-xl font-semibold text-gray-700 mb-4">
               {t("stageLabel", { stage: overallStage })}
             </p>
-            <ScoreCircle scores={scores} criteria={criteria} title={t("yourScore")} />
+            <ScoreCircle
+              scores={scores}
+              criteria={criteria}
+              title={t("yourScore")}
+            />
           </div>
 
           {/* Правый блок - Таблица баллов */}
           <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">
-              {t("smeMaturityTitle")}
-            </h2>
+            <h2 className="text-2xl font-bold mb-4">{t("smeMaturityTitle")}</h2>
             <ScoreTable
               scores={scores}
               criteria={criteria}

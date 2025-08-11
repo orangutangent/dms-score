@@ -1,10 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  useSurvey,
-  useBusinessSurvey,
-} from "../../components/Question/data-access/useSurvey";
+import { useBusinessSurvey } from "../../components/Question/data-access/useSurvey";
 import Question from "../../components/Question";
 import {
   Question as QuestionType,

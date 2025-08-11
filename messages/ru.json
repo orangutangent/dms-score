@@ -70,5 +70,18 @@
     "serviceTypeColumn": "Вид услуги",
     "countColumn": "Количество",
     "averageScore": "Средняя оценка"
+  },
+  "HardcodedQuestions": {
+    "location": "В какой стране вы находитесь?",
+    "sector": "К какому сектору экономики вы относитесь?",
+    "sectorOptions": {
+      "healthcare": "Здравоохранение",
+      "education": "Образование",
+      "other": "Другое"
+    },
+    "finalThoughts": "Можете оставить свои пожелания по улучшению цифровых услуг при желании.",
+    "finalThoughtsPlaceholder": "Введите свои пожелания",
+    "selectCountryPlaceholder": "Выберите страну",
+    "regionPlaceholder": "Укажите регион (Опционально)"
   }
 }

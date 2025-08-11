@@ -70,5 +70,18 @@
     "serviceTypeColumn": "Service Type",
     "countColumn": "Count",
     "averageScore": "Average Score"
+  },
+  "HardcodedQuestions": {
+    "location": "In which country are you located?",
+    "sector": "To which economic sector do you belong?",
+    "sectorOptions": {
+      "healthcare": "Healthcare",
+      "education": "Education",
+      "other": "Other"
+    },
+    "finalThoughts": "You can leave your suggestions for improving digital services, if you wish.",
+    "finalThoughtsPlaceholder": "Enter your suggestions",
+    "selectCountryPlaceholder": "Select a country",
+    "regionPlaceholder": "Enter region (Optional)"
   }
 }

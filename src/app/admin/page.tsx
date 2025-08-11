@@ -8,7 +8,7 @@ import { getStage } from "@/lib/stage";
 import { GOVERNMENT_COLORS, BUSINESS_COLORS } from "@/config/colors";
 import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
 import { CountryStats, SurveyStats } from "@/api/admin-stats-api";
-import { SERVICES } from "@/config/services";
+import { ServiceCode, SERVICES } from "@/config/services";
 import { useTranslations } from "next-intl";
 
 const AdminPage = () => {
@@ -28,7 +28,9 @@ const AdminPage = () => {
   if (isLoading) return <div className="text-center p-8">{t("loading")}</div>;
   if (error)
     return (
-      <div className="text-center p-8 text-red-500">{t("errorFetchingStats")}</div>
+      <div className="text-center p-8 text-red-500">
+        {t("errorFetchingStats")}
+      </div>
     );
   if (!stats || Object.keys(stats).length === 0)
     return <div className="text-center p-8">{t("noStatsAvailable")}</div>;
@@ -47,9 +49,7 @@ const AdminPage = () => {
 
     const data = countryData[activeTab];
     if (!data || data.count === 0) {
-      return (
-        <p className="text-center p-8">{t("noSurveyData")}</p>
-      );
+      return <p className="text-center p-8">{t("noSurveyData")}</p>;
     }
 
     if (activeTab === "government") {
@@ -139,9 +139,7 @@ const AdminPage = () => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">
-              {t("govMaturityTitle")}
-            </h2>
+            <h2 className="text-2xl font-bold mb-6">{t("govMaturityTitle")}</h2>
 
             {/* Таблица уровней */}
             <div className="mb-8">
@@ -187,15 +185,11 @@ const AdminPage = () => {
         </div>
       );
     } else {
-      const EXCLUDED_CRITERIA = [
-        "Регистрация МСП",
-        "Открытие бизнеса",
-        "Кредитно-грантовая поддержка",
-      ];
+      const EXCLUDED_CRITERIA = SERVICES.map((s) => s.code);
 
       // Для digitalMaturity используем бизнес-цвета
       const filteredOverallCriterion = Object.entries(data.criterion).filter(
-        ([key]) => !EXCLUDED_CRITERIA.includes(key)
+        ([key]) => !EXCLUDED_CRITERIA.includes(key as ServiceCode)
       );
 
       const criteria = filteredOverallCriterion.reduce((acc, [key], index) => {
@@ -213,8 +207,10 @@ const AdminPage = () => {
 
       // Рассчитываем среднюю оценку только по критериям
       const criteriaAverage =
-        filteredOverallCriterion.reduce((sum, [, value]) => sum + value.average, 0) /
-        filteredOverallCriterion.length;
+        filteredOverallCriterion.reduce(
+          (sum, [, value]) => sum + value.average,
+          0
+        ) / filteredOverallCriterion.length;
 
       // Статистика по видам услуг для бизнес опроса
       const businessServiceStats = Object.entries(
@@ -236,7 +232,11 @@ const AdminPage = () => {
             <p className="text-xl font-semibold text-gray-700 mb-4">
               Стадия: {getMaturityStage(criteriaAverage)}
             </p>
-            <ScoreCircle scores={scores} criteria={criteria} title={t("averageScore")} />
+            <ScoreCircle
+              scores={scores}
+              criteria={criteria}
+              title={t("averageScore")}
+            />
             <p className="text-sm text-gray-500 mt-2 text-center">
               {t("averageScoreByCriteriaAllSectors")}
             </p>
@@ -264,7 +264,9 @@ const AdminPage = () => {
               .map(([sector, sectorData]) => {
                 const filteredSectorCriterion = Object.entries(
                   sectorData.criterion
-                ).filter(([key]) => !EXCLUDED_CRITERIA.includes(key));
+                ).filter(
+                  ([key]) => !EXCLUDED_CRITERIA.includes(key as ServiceCode)
+                );
 
                 if (filteredSectorCriterion.length === 0) return null;
 
@@ -310,7 +312,10 @@ const AdminPage = () => {
                     </div>
                     <div className="bg-white rounded-2xl shadow-lg p-8">
                       <h2 className="text-2xl font-bold mb-6">
-                        {t("sectorDetails", { sector, count: sectorData.count })}
+                        {t("sectorDetails", {
+                          sector,
+                          count: sectorData.count,
+                        })}
                       </h2>
                       <ScoreTable
                         scores={sectorScores}
@@ -376,12 +381,10 @@ const AdminPage = () => {
             }))}
           />
           <div className="bg-white p-3 rounded-lg shadow-sm lg:w-md">
-            {t("govPassCount")}{" "}
-            {countryData?.government.count || 0}
+            {t("govPassCount")} {countryData?.government.count || 0}
           </div>
           <div className="bg-white p-3 rounded-lg shadow-sm lg:w-md">
-            {t("businessPassCount")}{" "}
-            {countryData?.digitalMaturity.count || 0}
+            {t("businessPassCount")} {countryData?.digitalMaturity.count || 0}
           </div>
         </div>
 

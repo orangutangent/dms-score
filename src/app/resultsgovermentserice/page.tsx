@@ -57,19 +57,19 @@ const ResultsGovermentServicePage = () => {
   // Разделяем вопросы на основные и специальные разделы
   const mainQuestions = questions.filter((q) =>
     [
-      "Инфраструктурный уровень",
-      "Государственный уровень",
-      "Уровень бизнеса",
-      "Персональный уровень",
-      "Уровень экосистемы",
+      "INFRASTRUCTURE_LEVEL",
+      "GOVERNMENT_LEVEL",
+      "BUSINESS_LEVEL",
+      "PERSONAL_LEVEL",
+      "ECOSYSTEM_LEVEL",
     ].includes(q.criterion)
   );
 
   const specialQuestions = questions.filter((q) =>
     [
-      "Специальный раздел 1",
-      "Специальный раздел 2",
-      "Специальный раздел 3",
+      "SPECIAL_SECTION_1",
+      "SPECIAL_SECTION_2",
+      "SPECIAL_SECTION_3",
     ].includes(q.criterion)
   );
 

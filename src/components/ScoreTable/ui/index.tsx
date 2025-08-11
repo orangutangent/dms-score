@@ -1,5 +1,7 @@
 import React from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { CRITERIA_MAP } from "@/config/criteria";
+import { CriterionCode } from "@/config/criteria";
 
 interface ScoreTableProps {
   scores: { [key: string]: number };
@@ -21,6 +23,8 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
   customColors,
 }) => {
   const t = useTranslations("ScoreComponents");
+  const locale = useLocale();
+
   return (
     <div>
       <div className="grid grid-cols-3 gap-4 text-sm text-gray-500 border-b pb-2">
@@ -32,8 +36,8 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
         {Object.entries(criteria).map(([criterion, { color }], index) => {
           const score = scores[criterion] || 0;
           const stage = getMaturityStage(score).split(" - ")[0];
+          const label = CRITERIA_MAP[criterion as CriterionCode] ? CRITERIA_MAP[criterion as CriterionCode][locale as keyof typeof CRITERIA_MAP[keyof typeof CRITERIA_MAP]] : criterion;
 
-          // Определяем цвет для отображения
           let displayColor = color;
           if (customColors && customColors[index]) {
             displayColor = customColors[index];
@@ -51,7 +55,7 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
                     style={{ backgroundColor: displayColor }}
                   ></span>
                 )}
-                <span>{criterion}</span>
+                <span>{label}</span>
               </div>
               <div className="text-center font-semibold">
                 {score.toFixed(1)}
@@ -60,7 +64,6 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
             </div>
           );
         })}
-        {/* Overall Average Row */}
         <div className="grid grid-cols-3 gap-4 items-center font-bold border-t pt-4 mt-4">
           <div>{t("averageValue")}</div>
           <div className="text-center">{averageScore.toFixed(1)}</div>

@@ -72,8 +72,8 @@
     "averageScore": "Average Score"
   },
   "HardcodedQuestions": {
-    "location": "In which country, city, region are you registered as an SME?",
-    "sector": "In which economic sector do you provide your services?",
+    "location": "In which country, city, region do you provide DGS for SMEs?",
+    "sector": "Which department or public sector do you represent?",
     "sectorOptions": {
       "healthcare": "healthcare",
       "education": "education",

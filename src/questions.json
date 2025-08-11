@@ -2,7 +2,7 @@
   {
     "id": 1,
     "criterion": "GOV_INTERACTION_LEVEL",
-    "inputType": "radio",
+    "inputType": "service-template",
     "question": {
       "ru": "Оцените свою удовлетворенность удобством использования услуг",
       "en": "Rate your satisfaction with the usability of services"

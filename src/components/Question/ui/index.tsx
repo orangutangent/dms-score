@@ -4,7 +4,6 @@ import LocationInput from "./LocationInput";
 import ScaleInput from "./ScaleInput";
 import Radio from "../../ui/Radio";
 import Textarea from "../../ui/Textarea";
-import FinalThoughtsInput from "./FinalThoughtsInput";
 import ScaleServiceTemplateInput from "./ScaleServiceTemplateInput";
 import YesNoServiceTemplateInput from "./YesNoServiceTemplateInput";
 import { Question as QuestionType, Answer } from "../model/types";
@@ -158,7 +157,11 @@ const Question: React.FC<QuestionProps> = ({
             {question.options?.map((option) => (
               <Radio
                 key={option.value}
-                label={option.label}
+                label={
+                  typeof option.label === "string"
+                    ? option.label
+                    : option.label.en
+                }
                 value={option.value}
                 checked={answer?.value === option.value}
                 onChange={(value) => {
@@ -251,7 +254,11 @@ const Question: React.FC<QuestionProps> = ({
             {question.options?.map((option) => (
               <Radio
                 key={option.value}
-                label={option.label}
+                label={
+                  typeof option.label === "string"
+                    ? option.label
+                    : option.label.en
+                }
                 value={option.value}
                 checked={answer?.value === option.value}
                 onChange={(value) => {
@@ -277,7 +284,11 @@ const Question: React.FC<QuestionProps> = ({
               answer?.value === question.followUp.triggerValue && (
                 <div className="mt-4">
                   <Textarea
-                    placeholder={question.followUp.placeholder}
+                    placeholder={
+                      typeof question.followUp.placeholder === "string"
+                        ? question.followUp.placeholder
+                        : question.followUp.placeholder.en
+                    }
                     value={answer?.details || ""}
                     onChange={(e) =>
                       setAnswer({ ...answer, details: e.target.value })

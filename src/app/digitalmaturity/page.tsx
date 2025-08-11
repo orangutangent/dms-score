@@ -1,68 +1,76 @@
 "use client";
 
 import React from "react";
-import {
-  useSurvey,
-  useBusinessSurvey,
-} from "../../components/Question/data-access/useSurvey";
+import { useBusinessSurvey } from "../../components/Question/data-access/useSurvey";
 import Question from "../../components/Question";
 import {
   Question as QuestionType,
+  UnlocalizedQuestion as UnlocalizedQuestionType,
   Answer,
 } from "../../components/Question/model/types";
 import questionsData from "../../questions.json";
 import { useBusinessSurveyStore } from "../../store/business-survey.store";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios"; // Import AxiosError
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import { expandServiceTemplates } from "@/lib/survey";
+import { expandServiceTemplates, localizeQuestions } from "@/lib/survey";
 import type { BusinessSurveyResponseDTO } from "@/api/types";
-import { useTranslations } from "next-intl";
-
-const questions: QuestionType[] = questionsData as unknown as QuestionType[];
-
-const locationQuestion: QuestionType = {
-  id: -1,
-  inputType: "location",
-  criterion: "Location",
-  question: "В какой стране вы находитесь?",
-  weight: 0,
-};
-
-const sectorQuestion: QuestionType = {
-  id: -3,
-  inputType: "sector",
-  criterion: "Sector",
-  question: "К какому сектору экономики вы относитесь?",
-  options: [
-    { value: "healthcare", label: "Здравоохранение" },
-    { value: "education", label: "Образование" },
-    { value: "other", label: "Другое" },
-  ],
-  weight: 0,
-};
-
-const finalThoughtsQuestion: QuestionType = {
-  id: -2,
-  inputType: "final-thoughts",
-  criterion: "Feedback",
-  question:
-    "Можете оставить свои пожелания по улучшению цифровых услуг при желании",
-  placeholder: "Введите свои пожелания",
-  weight: 0,
-};
-
-const expandedQuestions = expandServiceTemplates(questions as QuestionType[]);
-const allQuestions = [
-  locationQuestion,
-  sectorQuestion,
-  ...expandedQuestions,
-  finalThoughtsQuestion,
-];
+import { useTranslations, useLocale } from "next-intl";
 
 const DigitalMaturityPage = () => {
-  const t = useTranslations("SurveyPage");
+  const t = useTranslations();
   const router = useRouter();
+  const locale = useLocale();
+
+  const localizedQuestionsData = localizeQuestions(
+    questionsData as unknown as QuestionType[],
+    locale
+  );
+
+  const locationQuestion: QuestionType = {
+    id: -1,
+    inputType: "location",
+    criterion: "Location",
+    question: t("HardcodedQuestions.location"),
+    weight: 0,
+  };
+
+  const sectorQuestion: QuestionType = {
+    id: -3,
+    inputType: "sector",
+    criterion: "Sector",
+    question: t("HardcodedQuestions.sector"),
+    options: [
+      {
+        value: "healthcare",
+        label: t("HardcodedQuestions.sectorOptions.healthcare"),
+      },
+      {
+        value: "education",
+        label: t("HardcodedQuestions.sectorOptions.education"),
+      },
+      { value: "other", label: t("HardcodedQuestions.sectorOptions.other") },
+    ],
+    weight: 0,
+  };
+
+  const finalThoughtsQuestion: QuestionType = {
+    id: -2,
+    inputType: "final-thoughts",
+    criterion: "Feedback",
+    question: t("HardcodedQuestions.finalThoughts"),
+    placeholder: t("HardcodedQuestions.finalThoughtsPlaceholder"),
+    weight: 0,
+  };
+
+  const expandedQuestions = expandServiceTemplates(localizedQuestionsData);
+  const allQuestions = [
+    locationQuestion,
+    sectorQuestion,
+    ...expandedQuestions,
+    finalThoughtsQuestion,
+  ];
+
   const {
     currentQuestion,
     currentQuestionIndex,
@@ -77,7 +85,7 @@ const DigitalMaturityPage = () => {
     setSector,
     finalThoughts,
     setFinalThoughts,
-    responses, // Get responses from store
+    responses,
   } = useBusinessSurvey(
     useBusinessSurveyStore,
     allQuestions,
@@ -106,23 +114,19 @@ const DigitalMaturityPage = () => {
   });
 
   const handleFinalSubmit = () => {
-    // Collect all data from Zustand store
     const dataToSend: SubmitData = {
       location,
       sector: sector || "",
       finalThoughts,
-      responses, // Use responses from store
+      responses,
     };
-
     console.log("Submitting survey data:", dataToSend);
     submitSurvey.mutate(dataToSend);
   };
 
-  // Override handleNext for the last question to trigger submission
   const customHandleNext = (answer: Answer) => {
     if (currentQuestionIndex === allQuestions.length - 1) {
-      // This is the final question (final thoughts)
-      setFinalThoughts(answer?.value || ""); // Ensure final thoughts are saved
+      setFinalThoughts(answer?.value || "");
       handleFinalSubmit();
     } else {
       handleNext(answer);
@@ -132,8 +136,10 @@ const DigitalMaturityPage = () => {
   if (!currentQuestion) {
     return (
       <main className="flex flex-1 flex-col items-center justify-center p-6">
-        <h1 className="text-2xl font-bold">{t("inDevelopmentTitle")}</h1>
-        <p className="mt-4">{t("inDevelopmentDescription")}</p>
+        <h1 className="text-2xl font-bold">
+          {t("SurveyPage.inDevelopmentTitle")}
+        </h1>
+        <p className="mt-4">{t("SurveyPage.inDevelopmentDescription")}</p>
       </main>
     );
   }
@@ -158,7 +164,6 @@ const DigitalMaturityPage = () => {
           isSubmitting={submitSurvey.isPending}
           isLastQuestion={currentQuestionIndex === allQuestions.length - 1}
           onResponseChange={(response) => {
-            // Store response in the store
             if (response.service) {
               useBusinessSurveyStore
                 .getState()

@@ -76,7 +76,11 @@ const YesNoServiceTemplateInput: React.FC<YesNoServiceTemplateInputProps> = ({
             {(question.options || []).map((option) => (
               <Radio
                 key={option.value}
-                label={option.label}
+                label={
+                  typeof option.label === "string"
+                    ? option.label
+                    : option.label.en
+                }
                 value={option.value}
                 checked={answers[subQ.service] === option.value}
                 onChange={(e) =>

@@ -2,8 +2,11 @@
   {
     "id": 1,
     "criterion": "GOV_INTERACTION_LEVEL",
-    "inputType": "yes-no-service-template",
-    "question": "Оцените свою удовлетворенность удобством использования услуг",
+    "inputType": "service-template",
+    "question": {
+      "ru": "Оцените свою удовлетворенность удобством использования услуг",
+      "en": "Rate your satisfaction with the usability of services"
+    },
     "subQuestions": [
       {
         "service": "OPEN_BUSINESS",
@@ -21,23 +24,38 @@
     "options": [
       {
         "value": "1",
-        "label": "не удовлетворен(-а)"
+        "label": {
+          "ru": "не удовлетворен(-а)",
+          "en": "not satisfied"
+        }
       },
       {
         "value": "2",
-        "label": "скорее не удовлетворен(-а)"
+        "label": {
+          "ru": "скорее не удовлетворен(-а)",
+          "en": "rather not satisfied"
+        }
       },
       {
         "value": "3",
-        "label": "нейтрально"
+        "label": {
+          "ru": "нейтрально",
+          "en": "neutral"
+        }
       },
       {
         "value": "4",
-        "label": "скорее удовлетворен(-а)"
+        "label": {
+          "ru": "скорее удовлетворен(-а)",
+          "en": "rather satisfied"
+        }
       },
       {
         "value": "5",
-        "label": "полностью удовлетворен(-а)"
+        "label": {
+          "ru": "полностью удовлетворен(-а)",
+          "en": "completely satisfied"
+        }
       }
     ],
     "scoring": {
@@ -52,7 +70,10 @@
     "id": 2,
     "criterion": "GOV_INTERACTION_LEVEL",
     "inputType": "yes-no-service-template",
-    "question": "Понадобилось ли физическое присутствие для получения данных услуг?",
+    "question": {
+      "ru": "Понадобилось ли физическое присутствие для получения данных услуг?",
+      "en": "Was physical presence required to receive these services?"
+    },
     "subQuestions": [
       {
         "service": "OPEN_BUSINESS",
@@ -70,11 +91,17 @@
     "options": [
       {
         "value": "yes",
-        "label": "Да"
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
       },
       {
         "value": "no",
-        "label": "Нет"
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
       }
     ],
     "scoring": {
@@ -86,7 +113,10 @@
     "id": 3,
     "criterion": "GOV_INTERACTION_LEVEL",
     "inputType": "yes-no-service-template",
-    "question": "Был ли у вас доступ к онлайн-инструкциям или помощи при использовании данных услуг?",
+    "question": {
+      "ru": "Был ли у вас доступ к онлайн-инструкциям или помощи при использовании данных услуг?",
+      "en": "Did you have access to online instructions or assistance when using these services?"
+    },
     "subQuestions": [
       {
         "service": "OPEN_BUSINESS",
@@ -104,11 +134,17 @@
     "options": [
       {
         "value": "yes",
-        "label": "Да"
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
       },
       {
         "value": "no",
-        "label": "Нет"
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
       }
     ],
     "scoring": {
@@ -120,31 +156,52 @@
     "id": 4,
     "criterion": "INFRASTRUCTURE_LEVEL",
     "inputType": "radio",
-    "question": "Как работает интернет в вашем офисе для онлайн-работы?",
+    "question": {
+      "ru": "Как работает интернет в вашем офисе для онлайн-работы?",
+      "en": "How does the internet work in your office for online work?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "Интернет часто не работает или очень медленный, возникают частые перебои, онлайн-работа невозможна"
+        "label": {
+          "ru": "Интернет часто не работает или очень медленный, возникают частые перебои, онлайн-работа невозможна.",
+          "en": "Internet often does not work or is very slow, frequent interruptions occur, online work is impossible."
+        }
       },
       {
         "value": "1",
-        "label": "Интернет нестабильный, скорость низкая, часто прерывается соединение"
+        "label": {
+          "ru": "Интернет нестабильный, скорость низкая, часто прерывается соединение.",
+          "en": "Internet is unstable, speed is low, connection is often interrupted."
+        }
       },
       {
         "value": "2",
-        "label": "Интернет в целом работает, но бывает нестабильность, низкая скорость в часы пик"
+        "label": {
+          "ru": "Интернет в целом работает, но бывает нестабильность, низкая скорость в часы пик.",
+          "en": "Internet generally works, but there can be instability, low speed during peak hours."
+        }
       },
       {
         "value": "3",
-        "label": "Интернет стабильный и подходит для большинства задач, но нет резервного канала"
+        "label": {
+          "ru": "Интернет стабильный и подходит для большинства задач, но нет резервного канала.",
+          "en": "Internet is stable and suitable for most tasks, but there is no backup channel."
+        }
       },
       {
         "value": "4",
-        "label": "Интернет быстрый, надёжный, подходит для всех видов онлайн-работы, но без резервного подключения"
+        "label": {
+          "ru": "Интернет быстрый, надёжный, подходит для всех видов онлайн-работы, но без резервного подключения.",
+          "en": "Internet is fast, reliable, suitable for all types of online work, but without a backup connection."
+        }
       },
       {
         "value": "5",
-        "label": "Интернет очень быстрый и стабильный, есть резервный канал на случай сбоев"
+        "label": {
+          "ru": "Интернет очень быстрый и стабильный, есть резервный канал на случай сбоев.",
+          "en": "Internet is very fast and stable, there is a backup channel in case of failures."
+        }
       }
     ],
     "scoring": {
@@ -160,31 +217,52 @@
     "id": 5,
     "criterion": "INFRASTRUCTURE_LEVEL",
     "inputType": "radio",
-    "question": "Как отделы компании (продажи, склад, финансы и др.) обмениваются данными?",
+    "question": {
+      "ru": "Как отделы компании (продажи, склад, финансы и др.) обмениваются данными?",
+      "en": "How do company departments (sales, warehouse, finance, etc.) exchange data?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "Каждый отдел работает обособленно, использует свои таблицы/документы, данные не синхронизированы"
+        "label": {
+          "ru": "Каждый отдел работает обособленно, использует свои таблицы/документы, данные не синхронизированы.",
+          "en": "Each department works in isolation, uses its own tables/documents, data is not synchronized."
+        }
       },
       {
         "value": "1",
-        "label": "Некоторые отделы обмениваются файлами вручную (по почте или мессенджерам), что часто вызывает ошибки или дубли"
+        "label": {
+          "ru": "Некоторые отделы обмениваются файлами вручную (по почте или мессенджерам), что часто вызывает ошибки или дубли.",
+          "en": "Some departments exchange files manually (by mail or messengers), which often causes errors or duplicates."
+        }
       },
       {
         "value": "2",
-        "label": "Отделы используют разные программы, передача данных возможна, но требует ручного переноса или согласования"
+        "label": {
+          "ru": "Отделы используют разные специализированные программы, передача данных возможна, но требует ручного переноса или согласования.",
+          "en": "Departments use different specialized programs, data transfer is possible, but requires manual transfer or coordination."
+        }
       },
       {
         "value": "3",
-        "label": "Между отделами есть частичная интеграция через локальные или облачные решения, но не все процессы автоматизированы"
+        "label": {
+          "ru": "Между отделами есть частичная интеграция через локальные или облачные решения, но не все процессы автоматизированы.",
+          "en": "There is partial integration between departments through local or cloud solutions, but not all processes are automated."
+        }
       },
       {
         "value": "4",
-        "label": "Отделы используют единую систему, но некоторые данные всё ещё требуют ручного ввода или подтверждения"
+        "label": {
+          "ru": "Отделы используют единую систему, но некоторые данные всё ещё требуют ручного ввода или подтверждения.",
+          "en": "Departments use a single system, but some data still requires manual entry or confirmation."
+        }
       },
       {
         "value": "5",
-        "label": "Все отделы работают в единой цифровой системе, данные доступны в режиме реального времени, автоматический обмен без дублирования"
+        "label": {
+          "ru": "Все отделы работают в единой цифровой системе, данные доступны в режиме реального времени, автоматический обмен без дублирования.",
+          "en": "All departments work in a single digital system, data is available in real time, automatic exchange without duplication."
+        }
       }
     ],
     "scoring": {
@@ -200,31 +278,52 @@
     "id": 6,
     "criterion": "ONLINE_PRESENCE_LEVEL",
     "inputType": "radio",
-    "question": "Какую долю заказов ваша компания получает через онлайн-каналы (веб-сайт, соцсети и др.), по вашим ощущениям?",
+    "question": {
+      "ru": "Какую долю заказов ваша компания получает через онлайн-каналы (веб-сайт, соцсети и др.), по вашим ощущениям?",
+      "en": "What percentage of orders does your company receive through online channels (website, social networks, etc.), according to your estimates?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "0–20% заказов приходят через онлайн-каналы, основной поток — офлайн, по телефону или лично"
+        "label": {
+          "ru": "0–20% заказов приходят через онлайн-каналы, основной поток — офлайн, по телефону или лично.",
+          "en": "0–20% of orders come through online channels, the main flow is offline, by phone or in person."
+        }
       },
       {
         "value": "1",
-        "label": "20–40% заказов поступают онлайн, но основная часть всё ещё офлайн"
+        "label": {
+          "ru": "20–40% заказов поступают онлайн, но основная часть всё ещё офлайн.",
+          "en": "20–40% of orders come online, but the main part is still offline."
+        }
       },
       {
         "value": "2",
-        "label": "40–60% заказов поступают через онлайн-каналы, заметный переход к цифровым продажам"
+        "label": {
+          "ru": "40–60% заказов поступают через онлайн-каналы, заметный переход к цифровым продажам.",
+          "en": "40–60% of orders come through online channels, a noticeable shift to digital sales."
+        }
       },
       {
         "value": "3",
-        "label": "60–80% заказов онлайн, офлайн-источники играют второстепенную роль"
+        "label": {
+          "ru": "60–80% заказов онлайн, офлайн-источники играют второстепенную роль.",
+          "en": "60–80% of orders online, offline sources play a secondary role."
+        }
       },
       {
         "value": "4",
-        "label": "80–95% заказов приходят через сайт, соцсети или мессенджеры, офлайн почти не используется"
+        "label": {
+          "ru": "80–95% заказов приходят через сайт, соцсети или мессенджеры, офлайн почти не используется.",
+          "en": "80–95% of orders come through the website, social networks or messengers, offline is almost not used."
+        }
       },
       {
         "value": "5",
-        "label": "95–100% заказов оформляются онлайн, все продажи полностью цифровые"
+        "label": {
+          "ru": "95–100% заказов оформляются онлайн, все продажи полностью цифровые.",
+          "en": "95–100% of orders are placed online, all sales are completely digital."
+        }
       }
     ],
     "scoring": {
@@ -240,31 +339,52 @@
     "id": 7,
     "criterion": "ONLINE_PRESENCE_LEVEL",
     "inputType": "radio",
-    "question": "Могут ли клиенты оформить заказ или получить поддержку без звонка, в режиме 24/7 (через чат-бот, онлайн-форму)?",
+    "question": {
+      "ru": "Могут ли клиенты оформить заказ или получить поддержку без звонка, в режиме 24/7 (через чат-бот, онлайн-форму)?",
+      "en": "Can clients place an order or receive support without a call, 24/7 (via chatbot, online form)?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "Заказ или поддержка возможны только по телефону и только в рабочее время"
+        "label": {
+          "ru": "Заказ или поддержка возможны только по телефону и только в рабочее время.",
+          "en": "Order or support is only possible by phone and only during business hours."
+        }
       },
       {
         "value": "1",
-        "label": "Есть возможность написать в мессенджер или e-mail, но ответы только в рабочие часы"
+        "label": {
+          "ru": "Есть возможность написать в мессенджер или на e-mail, но ответы предоставляются только в рабочие часы.",
+          "en": "It is possible to write in a messenger or e-mail, but responses are provided only during business hours."
+        }
       },
       {
         "value": "2",
-        "label": "Есть онлайн-форма или чат, но она работает ограниченно, без автоматизации"
+        "label": {
+          "ru": "Есть онлайн-форма или чат-бот, но они работают ограниченно, без автоматизации.",
+          "en": "There is an online form or chatbot, but they work limitedly, without automation."
+        }
       },
       {
         "value": "3",
-        "label": "Внедрены базовые элементы самообслуживания (чат-бот, шаблоны ответов), но не все вопросы можно решить без оператора"
+        "label": {
+          "ru": "Внедрены базовые элементы самообслуживания (чат-бот, шаблоны ответов), но не все вопросы можно решить без оператора.",
+          "en": "Basic self-service elements (chatbot, response templates) have been implemented, but not all issues can be resolved without an operator."
+        }
       },
       {
         "value": "4",
-        "label": "Клиенты могут оформить заказ и получить базовую поддержку 24/7, сложные вопросы обрабатываются позже"
+        "label": {
+          "ru": "Клиенты могут оформить заказ и получить базовую поддержку 24/7, сложные вопросы обрабатываются позже.",
+          "en": "Clients can place an order and receive basic support 24/7, complex issues are processed later."
+        }
       },
       {
         "value": "5",
-        "label": "Полностью автоматизированная система самообслуживания: заказы и поддержка доступны круглосуточно без участия сотрудников"
+        "label": {
+          "ru": "Полностью автоматизированная система самообслуживания: заказы и поддержка доступны круглосуточно без участия сотрудников.",
+          "en": "Fully automated self-service system: orders and support are available 24/7 without employee participation."
+        }
       }
     ],
     "scoring": {
@@ -280,31 +400,52 @@
     "id": 8,
     "criterion": "DATA_STORAGE_LEVEL",
     "inputType": "radio",
-    "question": "Насколько легко в вашей компании получить актуальные данные о продажах, затратах и прибыли “в один клик”?",
+    "question": {
+      "ru": "Насколько легко в вашей компании получить актуальные данные о продажах, затратах и прибыли “в один клик”?",
+      "en": "How easy is it to get up-to-date data on sales, costs, and profits in your company “in one click”?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "Данные собираются вручную из разных источников, высока вероятность ошибок и задержек"
+        "label": {
+          "ru": "Данные собираются вручную из разных источников, высока вероятность ошибок и задержек.",
+          "en": "Data is collected manually from various sources, high probability of errors and delays."
+        }
       },
       {
         "value": "1",
-        "label": "Есть частично автоматизированные таблицы, требуется ручной ввод и сверка данных"
+        "label": {
+          "ru": "Есть частично автоматизированные таблицы, требуется ручной ввод и сверка данных.",
+          "en": "There are partially automated tables, manual data entry and reconciliation are required."
+        }
       },
       {
         "value": "2",
-        "label": "Используются разные цифровые инструменты, но нет единого представления: для анализа нужно переключаться между системами"
+        "label": {
+          "ru": "Используются разные цифровые инструменты, но нет единого представления: для анализа нужно переключаться между системами.",
+          "en": "Different digital tools are used, but there is no single view: analysis requires switching between systems."
+        }
       },
       {
         "value": "3",
-        "label": "Имеется базовая дашборд-система, но не все показатели охвачены"
+        "label": {
+          "ru": "Имеется базовая дашборд-система, но не все показатели в ней охвачены.",
+          "en": "There is a basic dashboard system, but not all indicators are covered."
+        }
       },
       {
         "value": "4",
-        "label": "Есть централизованная панель мониторинга, большинство данных поступает автоматически, обновляется с задержкой"
+        "label": {
+          "ru": "Есть централизованная панель мониторинга, большинство данных поступает автоматически, обновляется с задержкой.",
+          "en": "There is a centralized monitoring panel, most data arrives automatically, updated with a delay."
+        }
       },
       {
         "value": "5",
-        "label": "Все ключевые финансовые и операционные данные доступны на автоматически обновляемой панели в реальном времени"
+        "label": {
+          "ru": "Все ключевые финансовые и операционные данные доступны на автоматически обновляемой панели в реальном времени.",
+          "en": "All key financial and operational data are available on an automatically updated dashboard in real time."
+        }
       }
     ],
     "scoring": {
@@ -320,31 +461,52 @@
     "id": 9,
     "criterion": "DATA_STORAGE_LEVEL",
     "inputType": "radio",
-    "question": "Используете ли вы данные о клиентах для персонализированных предложений или улучшения продукта?",
+    "question": {
+      "ru": "Используете ли вы данные о клиентах для персонализированных предложений или улучшения продукта?",
+      "en": "Do you use customer data for personalized offers or product improvement?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "Клиентские данные не собираются и не анализируются"
+        "label": {
+          "ru": "Клиентские данные не собираются и не анализируются.",
+          "en": "Customer data is not collected or analyzed."
+        }
       },
       {
         "value": "1",
-        "label": "Данные собираются (например, контакты), но не используются для персонализации"
+        "label": {
+          "ru": "Данные собираются (например, контакты), но не используются для персонализации.",
+          "en": "Data is collected (e.g., contacts), but not used for personalization."
+        }
       },
       {
         "value": "2",
-        "label": "Данные используются для базовой сегментации (например, по полу, возрасту, региону)"
+        "label": {
+          "ru": "Данные используются для базовой сегментации (например, по полу, возрасту, региону).",
+          "en": "Data is used for basic segmentation (e.g., by gender, age, region)."
+        }
       },
       {
         "value": "3",
-        "label": "Клиентам отправляются персонализированные предложения, основанные на истории покупок или поведении"
+        "label": {
+          "ru": "Клиентам отправляются персонализированные предложения, основанные на истории покупок или поведении.",
+          "en": "Personalized offers are sent to customers based on purchase history or behavior."
+        }
       },
       {
         "value": "4",
-        "label": "Анализ данных позволяет регулярно адаптировать продукт/услугу под нужды клиентов"
+        "label": {
+          "ru": "Анализ данных позволяет регулярно адаптировать продукт/услугу под нужды клиентов.",
+          "en": "Data analysis allows regularly adapting the product/service to customer needs."
+        }
       },
       {
         "value": "5",
-        "label": "Используются инструменты машинного обучения или ИИ для глубокой персонализации предложений и улучшения продукта"
+        "label": {
+          "ru": "Используются инструменты машинного обучения или ИИ для глубокой персонализации предложений и улучшения продукта.",
+          "en": "Machine learning or AI tools are used for deep personalization of offers and product improvement."
+        }
       }
     ],
     "scoring": {
@@ -360,31 +522,52 @@
     "id": 10,
     "criterion": "OPERATIONAL_LEVEL",
     "inputType": "radio",
-    "question": "Насколько хорошо защищены данные и устройства в вашей компании (антивирус, резервное копирование)?",
+    "question": {
+      "ru": "Насколько хорошо защищены данные и устройства в вашей компании (антивирус, резервное копирование)?",
+      "en": "How well are data and devices protected in your company (antivirus, backup)?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "Устройства не защищены, антивирус и резервное копирование отсутствуют"
+        "label": {
+          "ru": "Устройства не защищены, антивирус и резервное копирование отсутствуют.",
+          "en": "Devices are not protected, antivirus and backup are absent."
+        }
       },
       {
         "value": "1",
-        "label": "Базовый антивирус установлен на некоторых устройствах, копии данных создаются вручную и нерегулярно"
+        "label": {
+          "ru": "Базовый антивирус установлен на некоторых устройствах, копии данных создаются вручную и нерегулярно.",
+          "en": "Basic antivirus is installed on some devices, data copies are created manually and irregularly."
+        }
       },
       {
         "value": "2",
-        "label": "Антивирус есть на всех устройствах, но резервное копирование не автоматизировано"
+        "label": {
+          "ru": "Антивирус есть на всех устройствах, но резервное копирование не автоматизировано.",
+          "en": "Antivirus is on all devices, but backup is not automated."
+        }
       },
       {
         "value": "3",
-        "label": "Защита и автоматическое копирование настроены на большинстве устройств, но не централизовано"
+        "label": {
+          "ru": "Защита и автоматическое копирование настроены на большинстве устройств, но не централизовано.",
+          "en": "Protection and automatic copying are configured on most devices, but not centrally."
+        }
       },
       {
         "value": "4",
-        "label": "Централизованная защита и автоматические резервные копии есть, но покрывают не все устройства или не обновляются регулярно"
+        "label": {
+          "ru": "Централизованная защита и автоматические резервные копии есть, но покрывают не все устройства или не обновляются регулярно.",
+          "en": "Centralized protection and automatic backups are available, but do not cover all devices or are not updated regularly."
+        }
       },
       {
         "value": "5",
-        "label": "Все устройства подключены к централизованной системе безопасности, антивирус обновляется автоматически, данные регулярно и надёжно копируются"
+        "label": {
+          "ru": "Все устройства подключены к централизованной системе безопасности, антивирус обновляется автоматически, данные регулярно и надёжно копируются.",
+          "en": "All devices are connected to a centralized security system, antivirus is updated automatically, data is regularly and reliably copied."
+        }
       }
     ],
     "scoring": {
@@ -400,31 +583,52 @@
     "id": 11,
     "criterion": "OPERATIONAL_LEVEL",
     "inputType": "radio",
-    "question": "Насколько автоматизированы рутинные задачи в вашей компании (выставление счетов, уведомления, учёт запасов и т.д.)?",
+    "question": {
+      "ru": "Насколько автоматизированы рутинные задачи в вашей компании (выставление счетов, уведомления, учёт запасов и т.д.)?",
+      "en": "How automated are routine tasks in your company (invoicing, notifications, inventory accounting, etc.)?"
+    },
     "options": [
       {
         "value": "0",
-        "label": "Все задачи выполняются вручную, без использования цифровых инструментов"
+        "label": {
+          "ru": "Все задачи выполняются вручную, без использования цифровых инструментов.",
+          "en": "All tasks are performed manually, without the use of digital tools."
+        }
       },
       {
         "value": "1",
-        "label": "Некоторые задачи автоматизированы (например, напоминания), но основная часть выполняется вручную"
+        "label": {
+          "ru": "Некоторые задачи автоматизированы (например, напоминания), но основная часть выполняется вручную.",
+          "en": "Some tasks are automated (e.g., reminders), but the main part is performed manually."
+        }
       },
       {
         "value": "2",
-        "label": "Автоматизировано до 40% задач, используются простые инструменты"
+        "label": {
+          "ru": "Автоматизировано до 40% задач, используются простые инструменты.",
+          "en": "Up to 40% of tasks are automated, simple tools are used."
+        }
       },
       {
         "value": "3",
-        "label": "Используются специализированные программы, автоматизация охватывает около половины рутинных процессов"
+        "label": {
+          "ru": "Используются специализированные программы, автоматизация охватывает около половины рутинных процессов.",
+          "en": "Specialized programs are used, automation covers about half of routine processes."
+        }
       },
       {
         "value": "4",
-        "label": "Большинство задач (60–80%) автоматизировано с помощью CRM, ERP или других систем"
+        "label": {
+          "ru": "Большинство задач (60–80%) автоматизировано с помощью CRM, ERP или других систем.",
+          "en": "Most tasks (60–80%) are automated using CRM, ERP, or other systems."
+        }
       },
       {
         "value": "5",
-        "label": "Более 80% рутинных задач выполняются автоматически, процессы полностью выстроены и требуют минимального участия человека"
+        "label": {
+          "ru": "Более 80% рутинных задач выполняются автоматически, процессы полностью выстроены и требуют минимального участия человека.",
+          "en": "More than 80% of routine tasks are performed automatically, processes are fully built and require minimal human involvement."
+        }
       }
     ],
     "scoring": {

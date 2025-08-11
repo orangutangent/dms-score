@@ -13,7 +13,7 @@ import { GovernmentSurveyResponseDTO } from "@/api/types";
 import { useTranslations } from "next-intl";
 
 const questions: Question[] = expandServiceTemplates(
-  questionsData as Question[]
+  questionsData as unknown as Question[]
 );
 
 const getMaturityStage = (score0to10: number) => {
@@ -66,11 +66,9 @@ const ResultsGovermentServicePage = () => {
   );
 
   const specialQuestions = questions.filter((q) =>
-    [
-      "SPECIAL_SECTION_1",
-      "SPECIAL_SECTION_2",
-      "SPECIAL_SECTION_3",
-    ].includes(q.criterion)
+    ["SPECIAL_SECTION_1", "SPECIAL_SECTION_2", "SPECIAL_SECTION_3"].includes(
+      q.criterion
+    )
   );
 
   // Вычисляем баллы для основных и специальных разделов
@@ -140,14 +138,16 @@ const ResultsGovermentServicePage = () => {
             <p className="text-xl font-semibold text-gray-700 mb-4">
               {t("stageLabel", { stage: overallStage })}
             </p>
-            <ScoreCircle scores={mainScores} criteria={mainCriteria} title={t("yourScore")} />
+            <ScoreCircle
+              scores={mainScores}
+              criteria={mainCriteria}
+              title={t("yourScore")}
+            />
           </div>
 
           {/* Правый верхний блок - Таблица основных баллов */}
           <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">
-              {t("govMaturityTitle")}
-            </h2>
+            <h2 className="text-2xl font-bold mb-4">{t("govMaturityTitle")}</h2>
             <ScoreTable
               scores={mainScores}
               criteria={mainCriteria}
@@ -160,7 +160,9 @@ const ResultsGovermentServicePage = () => {
           {/* Правый нижний блок - Таблица специальных разделов */}
           {Object.keys(specialScores).length > 0 && (
             <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8 mt-6">
-              <h2 className="text-2xl font-bold mb-4">{t("specialSectionsTitle")}</h2>
+              <h2 className="text-2xl font-bold mb-4">
+                {t("specialSectionsTitle")}
+              </h2>
               <ScoreTable
                 scores={specialScores}
                 criteria={specialCriteria}

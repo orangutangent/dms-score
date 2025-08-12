@@ -39,7 +39,7 @@ const DigitalMaturityPage = () => {
     id: -3,
     inputType: "sector",
     criterion: "Sector",
-    question: t("HardcodedQuestions.sector"),
+    question: t("HardcodedQuestions.sectorBusiness"),
     options: [
       {
         value: "healthcare",

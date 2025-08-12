@@ -13,9 +13,9 @@
     "adminTitle": "Admin",
     "adminDescription": "Admin page for viewing survey results.",
     "mainTitle": "Assessment of the digital maturity of public services and SME digital maturity",
-    "mainDescription": "Take part in the survey for a comprehensive assessment of the digital maturity level of your organization - a government agency or enterprise. The results will allow you to determine the current stage of digital development, identify key limitations and receive targeted recommendations for overcoming them. This will form the basis for planning effective steps aimed at improving the quality of work, the level of services provided and the competitiveness of your organization in the digital environment.",
+    "mainDescription": "This survey is a comprehensive assessment of the digital maturity level of your organisation, government agency, or business. The answers to this survey will allow you to assess the current stage of your digital development at multiple levels, highlight the main challenges your organisation is currently facing, and provide targeted recommendations for addressing them. These recommendations will serve as a foundation for planning further steps aimed at enhancing service availability and increasing your organisation's competitiveness in the digital landscape. The survey was prepared as part of the UNESCAP project \"Strengthening the policy and regulatory framework of digital public services for small and medium enterprises (SMEs) in North and Central Asia in support of the Asia-Pacific Information Superhighway (APIS) Action Plan 2022-2026\", implemented with the support of the Russian Federation. The results of this survey will be presented as part of the Regional Roundtable on Digital Public Services for Small and Medium-sized Enterprises, which will be held on August 26-27, 2025, in St. Petersburg, Russian Federation. More detailed information is available here: https://www.unescap.org/events/2025/regional-roundtable-digital-public-services-small-and-medium-sized-enterprises",
     "timeToComplete": "Time to complete: ~ 5 minutes",
-    "questionCount": "~25 questions",
+    "questionCount": "~21 questions",
     "startMspButton": "Start testing for SMEs",
     "startGovButton": "Start testing for civil servants"
   },
@@ -74,6 +74,7 @@
   "HardcodedQuestions": {
     "location": "In which country, city, region do you provide DGS for SMEs?",
     "locationGov": "In which country, city, region do you provide DGS for SMEs?",
+    "sectorBusiness": "In which sector of the economy do you provide your services?",
     "locationBusiness": "In which country, city, and region is your SME registered?",
     "sector": "Which department or public sector do you represent?",
     "departmentGov": "Which ministry or public sector do you represent?",
@@ -81,7 +82,7 @@
     "sectorOptions": {
       "healthcare": "healthcare",
       "education": "education",
-      "other": "other"
+      "other": "Other (please define your version)"
     },
     "finalThoughts": "You can leave your suggestions for improving digital services, if you wish.",
     "finalThoughtsPlaceholder": "Enter your suggestions",

@@ -15,6 +15,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model ContactInfo {
+  id          String                      @id @default(uuid())
+  name        String
+  affiliation String
+  email       String
+  tel         String?
+  resultId    String                      @unique
+  result      DigitalMaturitySurveyResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
+  createdAt   DateTime                    @default(now())
+}
+
 model DigitalMaturitySurveyResult {
   id              String                              @id @default(uuid())
   country         String
@@ -26,6 +37,7 @@ model DigitalMaturitySurveyResult {
   rawAnswers      Json
   createdAt       DateTime                            @default(now())
   serviceScores   DigitalMaturitySurveyServiceScore[]
+  contactInfo     ContactInfo?
 }
 
 model GovernmentSurveyResult {

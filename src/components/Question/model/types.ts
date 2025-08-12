@@ -15,7 +15,8 @@ export type InputType =
   | "final-thoughts"
   | "service-template"
   | "scale-service-template"
-  | "yes-no-service-template";
+  | "yes-no-service-template"
+  | "contacts";
 
 export interface QuestionOption {
   value: string;

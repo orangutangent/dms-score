@@ -7,12 +7,13 @@ import { aggregateByCriteria, aggregateByServices } from "@/lib/scoring";
 
 export async function POST(req: Request) {
   try {
-    const { responses, location, sector, finalThoughts } =
+    const { responses, location, sector, finalThoughts, contacts } =
       (await req.json()) as {
         responses: BusinessSurveyResponseDTO[];
         location: { country: string; region: string };
         sector: string;
         finalThoughts: string;
+        contacts: { name: string; affiliation: string; email: string; tel: string };
       };
 
     // Используем утилиты для агрегации, как в правительственном опросе
@@ -50,6 +51,14 @@ export async function POST(req: Request) {
             // Prisma Json type expects `unknown` cast to avoid `any`
             criterionScores: r.criterionScores as unknown as object,
           })),
+        },
+        contactInfo: {
+          create: {
+            name: contacts.name || "",
+            affiliation: contacts.affiliation || "",
+            email: contacts.email || "",
+            tel: contacts.tel || "",
+          },
         },
       },
     });

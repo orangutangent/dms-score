@@ -6,6 +6,7 @@ import Radio from "../../ui/Radio";
 import Textarea from "../../ui/Textarea";
 import ScaleServiceTemplateInput from "./ScaleServiceTemplateInput";
 import YesNoServiceTemplateInput from "./YesNoServiceTemplateInput";
+import { ContactsInput } from "./ContactsInput"; // Added import
 import {
   Question as QuestionType,
   Answer,
@@ -37,6 +38,18 @@ interface QuestionProps {
   onDepartmentChange?: (department: string) => void;
   initialFinalThoughts: string;
   onFinalThoughtsChange: (thoughts: string) => void;
+  initialContacts: {
+    name: string;
+    affiliation: string;
+    email: string;
+    tel: string;
+  }; // Added prop
+  onContactsChange: (contacts: {
+    name: string;
+    affiliation: string;
+    email: string;
+    tel: string;
+  }) => void; // Added prop
   isSubmitting: boolean;
   isLastQuestion: boolean;
   // New prop for storing responses
@@ -62,6 +75,8 @@ const Question: React.FC<QuestionProps> = ({
   onDepartmentChange,
   initialFinalThoughts,
   onFinalThoughtsChange,
+  initialContacts, // Added prop
+  onContactsChange, // Added prop
   isSubmitting,
   isLastQuestion,
   onResponseChange,
@@ -72,14 +87,19 @@ const Question: React.FC<QuestionProps> = ({
   const locale = useLocale();
 
   useEffect(() => {
-    if (question.inputType === 'department') {
-      setAnswer({ value: initialDepartment || '' });
-    } else if (question.inputType === 'final-thoughts') {
+    if (question.inputType === "department") {
+      setAnswer({ value: initialDepartment || "" });
+    } else if (question.inputType === "final-thoughts") {
       setAnswer({ value: initialFinalThoughts });
     } else {
       setAnswer(initialAnswer);
     }
-  }, [initialAnswer, initialDepartment, initialFinalThoughts, question.inputType]);
+  }, [
+    initialAnswer,
+    initialDepartment,
+    initialFinalThoughts,
+    question.inputType,
+  ]);
 
   // Создает response DTO из ответа пользователя
   const createResponse = (
@@ -88,7 +108,16 @@ const Question: React.FC<QuestionProps> = ({
     if (!ans || ans.value === undefined || ans.value === null) return null;
 
     // Для специальных типов вопросов не создаем response
-    if (["location", "sector", "department", "final-thoughts"].includes(question.inputType)) {
+    if (
+      [
+        "location",
+        "sector",
+        "department",
+        "final-thoughts",
+        "contacts",
+      ].includes(question.inputType)
+    ) {
+      // Added "contacts"
       return null;
     }
 
@@ -129,6 +158,9 @@ const Question: React.FC<QuestionProps> = ({
     } else if (question.inputType === "final-thoughts") {
       onFinalThoughtsChange(answer?.value || ""); // Use selected answer value
       onNext(answer); // Pass answer for final thoughts question
+    } else if (question.inputType === "contacts") {
+      // Added case
+      onNext(null);
     } else if (answer !== null) {
       // Создаем и сохраняем response
       const response = createResponse(answer);
@@ -152,6 +184,7 @@ const Question: React.FC<QuestionProps> = ({
         return t("selectAnswer");
       case "text":
       case "final-thoughts":
+      case "contacts": // Added case
         return t("leaveAnswer");
       default:
         return "";
@@ -213,6 +246,13 @@ const Question: React.FC<QuestionProps> = ({
               onChange={(e) => setAnswer({ value: e.target.value })}
             />
           </div>
+        );
+      case "contacts": // Added case
+        return (
+          <ContactsInput
+            initialContacts={initialContacts}
+            onContactsChange={onContactsChange}
+          />
         );
       case "scale-service-template":
         return (
@@ -350,6 +390,7 @@ const Question: React.FC<QuestionProps> = ({
     if (question.inputType === "sector") return !answer?.value;
     if (question.inputType === "department") return !answer?.value;
     if (question.inputType === "final-thoughts") return false; // Can proceed with empty thoughts
+    if (question.inputType === "contacts") return false; // Can proceed
     if (
       question.inputType === "scale-service-template" ||
       question.inputType === "yes-no-service-template"
@@ -377,7 +418,7 @@ const Question: React.FC<QuestionProps> = ({
       <div>
         <h2 className="text-[1.75rem] font-semibold text-foreground-secondary">
           {(() => {
-            if (surveyType === 'business') {
+            if (surveyType === "business") {
               return <>{question.question}</>;
             }
 

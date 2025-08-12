@@ -84,8 +84,13 @@
       "education": "education",
       "other": "Other (please define your version)"
     },
-    "finalThoughts": "You can leave your suggestions for improving digital services, if you wish.",
+    "finalThoughts": "Any suggestions you would like to provide to improve digital government services?",
     "finalThoughtsPlaceholder": "Enter your suggestions",
+    "contacts": "Please leave your contact information if you would like to contribute to this Survey further:",
+    "contactsName": "Name",
+    "contactsAffiliation": "Affiliation",
+    "contactsEmail": "Email",
+    "contactsTel": "Tel (optional)",
     "selectCountryPlaceholder": "Select a country",
     "regionPlaceholder": "Enter region (Optional)"
   }

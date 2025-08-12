@@ -11,6 +11,13 @@ type LocationState = {
   region: string;
 };
 
+type ContactsState = { // Added type
+  name: string;
+  affiliation: string;
+  email: string;
+  tel: string;
+};
+
 type GovernmentSurveyStore = {
   responses: GovernmentSurveyResponseDTO[];
   location: LocationState;
@@ -27,10 +34,12 @@ type BusinessSurveyStore = {
   location: LocationState;
   sector: string;
   finalThoughts: string;
+  contacts: ContactsState; // Added field
   setResponse: (response: BusinessSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
   setSector: (sector: string) => void;
   setFinalThoughts: (thoughts: string) => void;
+  setContacts: (contacts: ContactsState) => void; // Added field
 };
 
 export const useSurvey = (
@@ -131,6 +140,7 @@ export const useBusinessSurvey = (
       currentQuestion.inputType !== "location" &&
       currentQuestion.inputType !== "sector" &&
       currentQuestion.inputType !== "final-thoughts" &&
+      currentQuestion.inputType !== "contacts" && // Added
       answer
     ) {
       // Сохраняем ответ в store
@@ -164,7 +174,8 @@ export const useBusinessSurvey = (
   if (
     currentQuestion.inputType !== "location" &&
     currentQuestion.inputType !== "sector" &&
-    currentQuestion.inputType !== "final-thoughts"
+    currentQuestion.inputType !== "final-thoughts" &&
+    currentQuestion.inputType !== "contacts" // Added
   ) {
     const existingResponse = store.responses.find(
       (r) =>
@@ -194,5 +205,7 @@ export const useBusinessSurvey = (
     setSector: store.setSector,
     finalThoughts: store.finalThoughts,
     setFinalThoughts: store.setFinalThoughts,
+    contacts: store.contacts, // Added
+    setContacts: store.setContacts, // Added
   };
 };

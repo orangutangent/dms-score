@@ -120,6 +120,16 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.ContactInfoScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  affiliation: 'affiliation',
+  email: 'email',
+  tel: 'tel',
+  resultId: 'resultId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.DigitalMaturitySurveyResultScalarFieldEnum = {
   id: 'id',
   country: 'country',
@@ -182,19 +192,20 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 
 exports.Prisma.ModelName = {
+  ContactInfo: 'ContactInfo',
   DigitalMaturitySurveyResult: 'DigitalMaturitySurveyResult',
   GovernmentSurveyResult: 'GovernmentSurveyResult',
   GovernmentSurveyServiceScore: 'GovernmentSurveyServiceScore',

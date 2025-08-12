@@ -5,42 +5,42 @@
     "inputType": "service-template",
     "question": {
       "ru": "Какова онлайн доступность услуги?",
-      "en": "What is the online availability of services?"
+      "en": "What is the online availability of the business service?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Услугу можно получить только при физическом присутствии заявителя в министерстве/ведомстве.",
-          "en": "The service can only be obtained with the physical presence of the applicant at the ministry/department."
+          "en": "The service can only be obtained in person at the ministry/agency."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Услуга частично доступна на веб-портале министерства/ведомства (например, запись на получение услуги).",
-          "en": "The service is partially available on the ministry/department website (e.g., appointment booking)."
+          "en": "The service is partially available on the ministry/agency’s web portal (e.g., booking an appointment)."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Услугу можно получить при физическом присутствии заявителя в центрах предоставления ЦГУ и/или специализированных центрах поддержки бизнеса/МСП.",
-          "en": "The service can be obtained with the physical presence of the applicant at public service centers and/or specialized business/SME support centers."
+          "en": "The service can be obtained in person at public service centres and/or specialised business/SME support centres."
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "Услуга доступна в режиме онлайн на едином портале государственных услуг.",
-          "en": "The service is available online on the unified public services portal."
+          "en": "The service is available online on the unified government services portal."
         }
       },
       {
         "value": "5",
         "label": {
           "ru": "Услуга доступна также в мобильном приложении Единого портала государственных услуг и/или на специализированной платформе для бизнеса/МСП.",
-          "en": "The service is also available in the mobile application of the Unified Public Services Portal and/or on a specialized platform for business/SMEs."
+          "en": "The service is also available in the mobile application of the unified government services portal and/or on a specialised platform for businesses/SMEs."
         }
       },
       {
@@ -58,49 +58,49 @@
     "inputType": "service-template",
     "question": {
       "ru": "Как организован обмен информацией по данной услуге между ответственными ведомствами/министерствами?",
-      "en": "How is information exchange organized for this service between responsible departments/ministries?"
+      "en": "How is the exchange of information on this service organised between the responsible ministries/agencies?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Обмен документами полностью осуществляется на бумажных носителях с использованием почты.",
-          "en": "Document exchange is entirely carried out on paper using mail."
+          "en": "Document exchange is entirely carried out on paper using postal services."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Большая часть обмена документами (60-90%) осуществляется на бумажных носителях, некоторые процессы организованы с помощью электронных средств межведомственной коммуникации.",
-          "en": "Most document exchange (60-90%) is carried out on paper, some processes are organized using electronic interdepartmental communication means."
+          "en": "The majority of document exchange (60–90%) is paper-based, with some processes organised via electronic inter-agency communication tools."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Существует межведомственная система электронного документооборота, но обмен документами по данной услуге, по большей части, все еще происходит через обмен бумажными носителями информации.",
-          "en": "There is an interdepartmental electronic document management system, but document exchange for this service mostly still occurs through paper information carriers."
+          "en": "There is an inter-agency electronic document management system, but most document exchange for this service still occurs through paper."
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "Обмен документами по данной услуге организован через специализированную (60-90%); некоторые процессы все еще требуют бумажного носителя, например, для юридически значимого обмена (особенно, на региональном/муниципальных уровнях).",
-          "en": "Document exchange for this service is organized through a specialized system (60-90%); some processes still require a paper medium, for example, for legally significant exchange (especially at regional/municipal levels)."
+          "en": "Document exchange for this service is organised through a specialised system (60–90%); some processes still require paper documents for legally significant exchanges (especially at regional/municipal levels)."
         }
       },
       {
         "value": "5",
         "label": {
           "ru": "Обмен документами с полным юридическим признанием по данной услуге организован через единую специализированную систему электронного документооборота.",
-          "en": "Document exchange with full legal recognition for this service is organized through a single specialized electronic document management system."
+          "en": "Document exchange with full legal recognition for this service is organised through a unified specialised electronic document management system."
         }
       },
       {
         "value": "6",
         "label": {
           "ru": "Ответственные ведомства/министерства используют для предоставления услуги хранилища данных/ витрины данных для получения актуальных данных в режиме реального времени.",
-          "en": "Responsible departments/ministries use data warehouses/data marts to provide the service to obtain up-to-date data in real time."
+          "en": "Responsible ministries/agencies use data repositories/data marts to obtain up-to-date information in real time."
         }
       }
     ]
@@ -111,35 +111,35 @@
     "inputType": "service-template",
     "question": {
       "ru": "Существует ли норма, стандарт или другой документ, описывающий или регламентирующий предоставление услуги?",
-      "en": "Is there a norm, standard, or other document describing or regulating the provision of the service?"
+      "en": "Is there a regulation, standard, or other document describing or regulating the provision of this service?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Единого регламента предоставления услуг нет.",
-          "en": "There is no single regulation for service provision."
+          "en": "No unified regulation for service provision exists."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Предоставление данной услуги основано на общей для всех услуг процедуре или регламенте.",
-          "en": "The provision of this service is based on a general procedure or regulation for all services."
+          "en": "The provision of this service is based on a general procedure or regulation standard for all services."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Услуга имеет свой собственный регламент/процедуру",
-          "en": "The service has its own regulation/procedure"
+          "en": "The service has its regulations and procedures."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Услуга имеет свою собственную общедоступную процедуру или регламент, которые предусматривают сроки предоставления, основания для отказа или задержки рассмотрения, определяют ответственное лицо, содержат условия для проактивного предоставления услуги.",
-          "en": "The service has its own publicly available procedure or regulation, which provides for terms of provision, grounds for refusal or delay in consideration, defines the responsible person, and contains conditions for proactive service provision."
+          "ru": "Услуга имеет свою собственную общедоступную процедуру или регламент, содержат условия для проактивного предоставления услуги.",
+          "en": "The service has its own publicly accessible procedure or regulation that specifies service timelines, grounds for refusal or delay, identifies the responsible person, and includes conditions for proactive service provision."
         }
       }
     ]
@@ -150,74 +150,60 @@
     "inputType": "service-template",
     "question": {
       "ru": "Может ли заявитель получить услугу с использованием документов (заявления, сопутствующих документов), подписанных электронной подписью?",
-      "en": "Can the applicant receive the service using documents (applications, supporting documents) signed with an electronic signature?"
+      "en": "Can the applicant obtain the service using documents (applications, supporting documents) signed with an electronic signature?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Нет, такой функционал отсутствует.",
-          "en": "No, such functionality is absent."
+          "en": "No, this functionality is absent."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Да, заявитель может получить услугу, используя электронную подпись, выпущенную аккредитованным центром.",
-          "en": "Yes, the applicant can receive the service using an electronic signature issued by an accredited center."
+          "en": "Yes, the applicant can obtain the service using an electronic signature issued by an accredited centre."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Да, заявитель может получить услугу, используя мобильное приложение третьих сторон (например, банковские приложения).",
-          "en": "Yes, the applicant can receive the service using a third-party mobile application (e.g., banking applications)."
+          "en": "Yes, the applicant can obtain the service using a third-party mobile application (e.g., banking apps)."
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "Да, заявитель может получить услугу с помощью электронной системы идентификации, предоставляемой МСП со стороны государства, без затрат на выпуск электронной подписи в аккредитованных центрах.",
-          "en": "Yes, the applicant can receive the service using an electronic identification system provided by the state to SMEs, without the cost of issuing an electronic signature in accredited centers."
+          "en": "Yes, the applicant can obtain the service using a government-provided SME electronic identification system without the need to get an electronic signature from accredited centres."
         }
       }
     ]
   },
   {
     "id": 5,
-    "criterion": "OPERATIONAL_LEVEL",
+    "criterion": "GOVERNMENT_LEVEL",
     "inputType": "service-template",
     "question": {
-      "ru": "Имеет ли услуга функцию автоматического заполнения информации?",
-      "en": "Does the service have an automatic information filling function?"
+      "ru": "Имеется ли система самосовершенствования процедуры ЦГУ для МСП",
+      "en": "Is there a system for the continuous improvement of public services for SMEs?"
     },
     "options": [
       {
         "value": "1",
         "label": {
-          "ru": "Нет, такого функционала нет.",
-          "en": "No, such functionality is not available."
+          "ru": "нет",
+          "en": "No"
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Да, в форме заявки автоматически заполняется общая информация о личности заявителя и регистрационные данные компании.",
-          "en": "Yes, the application form automatically fills in general information about the applicant's identity and company registration data."
-        }
-      },
-      {
-        "value": "3",
-        "label": {
-          "ru": "Да, в форме заявки автоматически заполняется общая информация, а также дополнительная информация необходимая для предоставления услуги (например, банковские реквизиты, информация о наличии лицензии, налоговая информация и пр.).",
-          "en": "Yes, the application form automatically fills in general information, as well as additional information necessary for the provision of the service (e.g., bank details, license information, tax information, etc.)."
-        }
-      },
-      {
-        "value": "4",
-        "label": {
-          "ru": "Да, вся дополнительная информация добавляется путем ссылки на личный кабинет/регистрацию заявителя в государственной информационной системе.",
-          "en": "Yes, all additional information is added by linking to the applicant's personal account/registration in the state information system."
+          "ru": "да",
+          "en": "Yes"
         }
       }
     ]
@@ -227,61 +213,100 @@
     "criterion": "OPERATIONAL_LEVEL",
     "inputType": "service-template",
     "question": {
-      "ru": "Как был оптимизирован процесс предоставления данной услуги, чтобы ускорить сроки ее предоставления?",
-      "en": "How has the process of providing this service been optimized to speed up its delivery times?"
+      "ru": "Имеет ли услуга функцию автоматического заполнения информации?",
+      "en": "Does the service have an auto-fill function for information?"
     },
     "options": [
       {
         "value": "1",
         "label": {
-          "ru": "Услуга предоставляется в рамках нескольких государственных услуг на порталах или с физическим присутствием в нескольких ответственных ведомствах/агентствах. Услуга должна быть запрошена несколько раз.",
-          "en": "The service is provided within the framework of several public services on portals or with physical presence in several responsible departments/agencies. The service must be requested several times."
+          "ru": "Нет, такого функционала нет.",
+          "en": "No, such functionality is absent."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Услуга предоставляется в рамках нескольких государственных услуг в режиме «одного окна». Услуга должна быть запрошена несколько раз.",
-          "en": "The service is provided within the framework of several public services in a 'single window' mode. The service must be requested several times."
+          "ru": "Да, в форме заявки автоматически заполняется общая информация о личности заявителя и регистрационные данные компании.",
+          "en": "Yes, the application form automatically fills in general information about the applicant and company registration data."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Услуга включена в «суперсервис» с упрощенной онлайн подачей заявления и сопутствующих оригиналов цифровых документов в «один клик».",
-          "en": "The service is included in a 'superservice' with simplified online application submission and accompanying original digital documents in 'one click'."
+          "ru": "Да, в форме заявки автоматически заполняется общая информация, а также дополнительная информация необходимая для предоставления услуги (например, банковские реквизиты, информация о наличии лицензии, налоговая информация и пр.).",
+          "en": "Yes, the application form automatically fills in general information as well as additional data required for service provision (e.g., bank details, licensing information, tax data, etc.)."
+        }
+      },
+      {
+        "value": "4",
+        "label": {
+          "ru": "Да, вся дополнительная информация добавляется путем ссылки на личный кабинет/регистрацию заявителя в государственной информационной системе.",
+          "en": "Yes, all additional information is added through a link to the applicant’s personal account/registration in a government information system."
         }
       }
     ]
   },
   {
     "id": 7,
+    "criterion": "OPERATIONAL_LEVEL",
+    "inputType": "service-template",
+    "question": {
+      "ru": "Как был оптимизирован процесс предоставления данной услуги, чтобы ускорить сроки ее предоставления?",
+      "en": "How has the process of providing this service been optimised to speed up delivery times?"
+    },
+    "options": [
+      {
+        "value": "1",
+        "label": {
+          "ru": "Услуга предоставляется в рамках нескольких государственных услуг на порталах или с физическим присутствием в нескольких ответственных ведомствах/агентствах. Услуга должна быть запрошена несколько раз для различных элементов получения услуги.",
+          "en": "The service is provided as part of several government services on portals or with physical presence at multiple responsible agencies; the service must be requested several times."
+        }
+      },
+      {
+        "value": "2",
+        "label": {
+          "ru": "Услуга предоставляется в режиме «одного окна».",
+          "en": "The service is provided as part of several government services in a “one-stop shop” mode; the service must be requested several times."
+        }
+      },
+      {
+        "value": "3",
+        "label": {
+          "ru": "Услуга включена в «суперсервис» с упрощенной онлайн подачей заявления и сопутствующих оригиналов цифровых документов в «один клик».",
+          "en": "The service is included in a “super service” with simplified online submission of the application and accompanying original digital documents in “one click.”"
+        }
+      }
+    ]
+  },
+  {
+    "id": 8,
     "criterion": "PERSONAL_LEVEL",
     "inputType": "service-template",
     "question": {
       "ru": "Есть ли возможность подать заявление на данную услугу и сопутствующие документы в цифровом виде?",
-      "en": "Is it possible to submit an application for this service and supporting documents digitally?"
+      "en": "Is it possible to submit an application for this service and supporting documents in digital form?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Физические копии заявления на получение услуги и сопутствующих документов.",
-          "en": "Physical copies of the application for the service and supporting documents."
+          "en": "Physical copies of the service application and supporting documents."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Цифровое заявление на получение услуги и физические копии сопутствующих документов.",
-          "en": "Digital application for the service and physical copies of supporting documents."
+          "en": "Digital service application and physical copies of supporting documents."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Цифровое заявление на получение услуги на едином портале госуслуг и цифровые копии сопутствующих документов.",
-          "en": "Digital application for the service on the unified public services portal and digital copies of supporting documents."
+          "en": "Digital service application on the unified government services portal and digital copies of supporting documents."
         }
       },
       {
@@ -294,58 +319,58 @@
     ]
   },
   {
-    "id": 8,
+    "id": 9,
     "criterion": "PERSONAL_LEVEL",
     "inputType": "service-template",
     "question": {
       "ru": "Каково среднее время предоставление услуги?",
-      "en": "What is the average service delivery time?"
+      "en": "What is the average time for service provision?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "20-30 дней.",
-          "en": "20-30 days."
+          "en": "20–30 days"
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "10-19 дней.",
-          "en": "10-19 days."
+          "en": "10–19 days"
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "5-9 дней.",
-          "en": "5-9 days."
+          "en": "5–9 days"
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "1-4 дней.",
-          "en": "1-4 days."
+          "en": "1–4 days"
         }
       },
       {
         "value": "5",
         "label": {
           "ru": "Несколько часов.",
-          "en": "Several hours."
+          "en": "Several hours"
         }
       }
     ]
   },
   {
-    "id": 9,
+    "id": 10,
     "criterion": "ECOSYSTEM_LEVEL",
     "inputType": "service-template",
     "question": {
       "ru": "Где представители МСП могут узнать информацию о получении необходимой ему услуги?",
-      "en": "Where can SME representatives find information about obtaining the necessary service?"
+      "en": "Where can SME representatives find information on obtaining the required service?"
     },
     "options": [
       {
@@ -359,21 +384,21 @@
         "value": "2",
         "label": {
           "ru": "На веб-страницах государственных органов.",
-          "en": "On government websites."
+          "en": "On government agencies’ websites."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "На веб-страницах Единого портала государственных услуг.",
-          "en": "On the websites of the Unified Public Services Portal."
+          "en": "On the unified government services portal."
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "В специализированных чат-ботах на Едином портале государственных услуг или через социальные сети/мессенджеры.",
-          "en": "In specialized chatbots on the Unified Public Services Portal or through social networks/messengers."
+          "en": "In specialised chatbots on the unified government services portal or via social media/messengers."
         }
       },
       {
@@ -386,79 +411,33 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "criterion": "ECOSYSTEM_LEVEL",
     "inputType": "service-template",
     "question": {
-      "ru": "Учет международной практики и возможность трансграничного обмена данными по результату предоставления услуги",
-      "en": "Accounting for international practice and the possibility of cross-border data exchange based on the result of service provision"
+      "ru": "Как проводится учет международной практики и возможность трансграничного обмена данными по результату предоставления услуги",
+      "en": "How is international best practice and the possibility of cross-border data exchange taken into account in the results of the service provision?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Результаты оказания услуги доступны только на государственном языке, трансграничный обмен данными не предусмотрен",
-          "en": "Service results are available only in the state language, cross-border data exchange is not provided"
+          "en": "Service results are available only in the official language, with no cross-border data exchange."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Результаты оказания услуги доступны в справочном режиме на других кроме государственного языках, трансграничный обмен данными не предусмотрен.",
-          "en": "Service results are available in reference mode in languages other than the state language, cross-border data exchange is not provided."
+          "en": "Service results are available for reference in languages other than the official one, but no cross-border data exchange is provided."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Результаты оказания услуги доступны в справочном режиме на других кроме государственного языках, трансграничный обмен данными между системами электронного правительства осуществляется на основе существующих межгосударственных соглашений.",
-          "en": "Service results are available in reference mode in languages other than the state language, cross-border data exchange between e-government systems is carried out on the basis of existing interstate agreements."
-        }
-      }
-    ]
-  },
-  {
-    "id": 11,
-    "criterion": "SPECIAL_SECTION_1",
-    "inputType": "radio",
-    "question": {
-      "ru": "Интегрирована ли система раннего оповещения о различных опасностях (MHEWS) в систему предоставления цифровых государственных услуг (ЦГУ)?",
-      "en": "Is the early warning system for various hazards (MHEWS) integrated into the digital public services (DPS) delivery system?"
-    },
-    "options": [
-      {
-        "value": "1",
-        "label": {
-          "ru": "Не интегрирована",
-          "en": "Not integrated"
-        }
-      },
-      {
-        "value": "2",
-        "label": {
-          "ru": "Интеграция обсуждается/обсуждается план имплементации",
-          "en": "Integration is being discussed/implementation plan is being discussed"
-        }
-      },
-      {
-        "value": "3",
-        "label": {
-          "ru": "Частично интегрирована/запущены пилотные проекты в отдельных регионах или для отдельных ведомств.",
-          "en": "Partially integrated/pilot projects launched in individual regions or for individual departments."
-        }
-      },
-      {
-        "value": "4",
-        "label": {
-          "ru": "Интегрирована, но с ограниченным функционалом или охватом",
-          "en": "Integrated, but with limited functionality or coverage"
-        }
-      },
-      {
-        "value": "5",
-        "label": {
-          "ru": "Полностью интегрирована, используется, и в полной мере стандартизирована.",
-          "en": "Fully integrated, used, and fully standardized."
+          "en": "Service results are available for reference in languages other than the official one, and cross-border data exchange between e-government systems is carried out based on existing intergovernmental agreements."
         }
       }
     ]
@@ -468,89 +447,89 @@
     "criterion": "SPECIAL_SECTION_1",
     "inputType": "radio",
     "question": {
-      "ru": "Существуют ли стандартизированные документы или руководства для многорубежных систем раннего предупреждения (MHEWS) в рамках системы предоставления (ЦГУ)?",
-      "en": "Are there standardized documents or guidelines for multi-hazard early warning systems (MHEWS) within the DPS delivery system?"
+      "ru": "Интегрирована ли система раннего оповещения о различных опасностях (MHEWS) в систему предоставления цифровых государственных услуг (ЦГУ)?",
+      "en": "Is the multi-hazard early warning system (MHEWS) integrated into the public digital services system?"
     },
     "options": [
       {
         "value": "1",
         "label": {
-          "ru": "Стандартов, руководств или нормативных документов не существует.",
-          "en": "No standards, guidelines, or regulatory documents exist."
+          "ru": "Не интегрирована",
+          "en": "Not integrated."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Проекты находятся в стадии разработки или обсуждения, но официально ничего не утверждено.",
-          "en": "Projects are under development or discussion, but nothing has been officially approved."
+          "ru": "Интеграция обсуждается/обсуждается план имплементации",
+          "en": "Integration is being discussed/planning is underway."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Существуют предварительные или отраслевые стандарты, применимые только в ограниченном контексте.",
-          "en": "Preliminary or industry standards exist, applicable only in a limited context."
+          "ru": "Частично интегрирована/запущены пилотные проекты в отдельных регионах или для отдельных ведомств.",
+          "en": "Partially integrated/pilot projects launched in specific regions or agencies."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Официально утвержденные стандарты/руководства используются в отдельных ведомствах или регионах.",
-          "en": "Officially approved standards/guidelines are used in individual departments or regions."
+          "ru": "Интегрирована, но с ограниченным функционалом или охватом",
+          "en": "Integrated, but with limited functionality or coverage."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Национальные или региональные стандарты официально приняты и применяются во всей системе предоставления услуг ЦГУ.",
-          "en": "National or regional standards are officially adopted and applied throughout the entire DPS delivery system."
+          "ru": "Полностью интегрирована, используется, и в полной мере стандартизирована.",
+          "en": "Fully integrated, operational, and fully standardised."
         }
       }
     ]
   },
   {
     "id": 13,
-    "criterion": "SPECIAL_SECTION_2",
+    "criterion": "SPECIAL_SECTION_1",
     "inputType": "radio",
     "question": {
-      "ru": "Могут ли образовательные учреждения и предприятия напрямую регистрировать свою интеллектуальную собственность через цифровую платформу, доступную для регистрации институционального контента и интеллектуальной собственности в области EdTech?",
-      "en": "Can educational institutions and enterprises directly register their intellectual property through a digital platform available for registering institutional content and intellectual property in the EdTech field?"
+      "ru": "Существуют ли стандартизированные документы или руководства для многорубежных систем раннего предупреждения  (MHEWS) в рамках системы предоставления (ЦГУ)?",
+      "en": "Are there standardised documents or guidelines for MHEWS within the public services system?"
     },
     "options": [
       {
         "value": "1",
         "label": {
-          "ru": "Доступ отсутствует",
-          "en": "Access denied"
+          "ru": "Стандартов, руководств или нормативных документов не существует.",
+          "en": "No standards, guidelines, or regulations exist."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Подача только через государственных посредников",
-          "en": "Submission only through state intermediaries"
+          "ru": "Проекты находятся в стадии разработки или обсуждения, но официально ничего не утверждено.",
+          "en": "Drafts are being developed or discussed, but nothing is officially approved."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Процесс подачи офлайн",
-          "en": "Offline submission process"
+          "ru": "Существуют предварительные или отраслевые стандарты, применимые только в ограниченном контексте.",
+          "en": "Preliminary or sector-specific standards exist, applicable only in limited contexts."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Онлайн-подача с аутентификацией",
-          "en": "Online submission with authentication"
+          "ru": "Официально утвержденные стандарты/руководства используются в отдельных ведомствах или регионах.",
+          "en": "Officially approved standards/guidelines are used in certain agencies or regions."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Полностью цифровизированный процесс подачи заявлений",
-          "en": "Fully digitized application submission process"
+          "ru": "Национальные или региональные стандарты официально приняты и применяются во всей системе предоставления услуг ЦГУ.",
+          "en": "National or regional standards are formally adopted and applied throughout the public services system."
         }
       }
     ]
@@ -560,29 +539,75 @@
     "criterion": "SPECIAL_SECTION_2",
     "inputType": "radio",
     "question": {
+      "ru": "Могут ли образовательные учреждения и предприятия напрямую регистрировать свою интеллектуальную собственность через цифровую платформу, доступную для регистрации институционального контента и интеллектуальной собственности в области EdTech?",
+      "en": "Can educational institutions and enterprises directly register their intellectual property via a digital platform for institutional content and EdTech IP registration?"
+    },
+    "options": [
+      {
+        "value": "1",
+        "label": {
+          "ru": "Доступ отсутствует",
+          "en": "No access."
+        }
+      },
+      {
+        "value": "2",
+        "label": {
+          "ru": "Подача только через государственных посредников",
+          "en": "Submission only via government intermediaries."
+        }
+      },
+      {
+        "value": "3",
+        "label": {
+          "ru": "Процесс подачи доступен для заявителя только очно",
+          "en": "Offline submission process."
+        }
+      },
+      {
+        "value": "4",
+        "label": {
+          "ru": "Доступна подача заявки на регистрацию онлайн с  использованием системы аутентификации",
+          "en": "Online submission with authentication."
+        }
+      },
+      {
+        "value": "5",
+        "label": {
+          "ru": "Полностью цифровизированный процесс подачи заявлений",
+          "en": "Fully digitalised application submission process."
+        }
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "criterion": "SPECIAL_SECTION_2",
+    "inputType": "radio",
+    "question": {
       "ru": "Позволяет ли платформа размещать различные типы интеллектуальной собственности в сфере образования, такие как учебные документы, приложения EdTech и учебные пособия?",
-      "en": "Does the platform allow placing various types of intellectual property in education, such as educational documents, EdTech applications, and textbooks?"
+      "en": "Does the platform allow for the submission of various types of educational intellectual property, such as learning materials, EdTech applications, and teaching aids?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Платформа не поддерживает отправку контента для регистрации прав интеллектуальной собственности.",
-          "en": "The platform does not support content submission for intellectual property rights registration."
+          "en": "The platform does not support the submission of content for IP rights registration."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Поддержка отправки контента находится в стадии планирования или разработки.",
-          "en": "Content submission support is in the planning or development stage."
+          "en": "Support for content submission is in planning or development."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Можно отправить только несколько определённых типов контента (например, только текстовый контент).",
-          "en": "Only a few specific content types can be submitted (e.g., text-only content)."
+          "en": "Only a few specific content types can be submitted (e.g., text only)."
         }
       },
       {
@@ -602,7 +627,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 16,
     "criterion": "SPECIAL_SECTION_2",
     "inputType": "radio",
     "question": {
@@ -614,14 +639,14 @@
         "value": "1",
         "label": {
           "ru": "Система отслеживания статуса заявки отсутствует.",
-          "en": "Application status tracking system is absent."
+          "en": "No tracking system exists."
         }
       },
       {
         "value": "2",
         "label": {
           "ru": "Отслеживание осуществляется вручную или доступно только офлайн.",
-          "en": "Tracking is done manually or available only offline."
+          "en": "Tracking is manual or only available offline."
         }
       },
       {
@@ -635,25 +660,25 @@
         "value": "4",
         "label": {
           "ru": "Большинство этапов отслеживаются в цифровом формате, а уведомления отправляются по электронной почте или SMS.",
-          "en": "Most stages are tracked digitally, and notifications are sent via email or SMS."
+          "en": "Most stages are tracked digitally, with notifications sent via email or SMS."
         }
       },
       {
         "value": "5",
         "label": {
           "ru": "Все этапы отслеживаются в режиме реального времени с помощью панели управления пользователя и автоматических оповещений.",
-          "en": "All stages are tracked in real time using the user dashboard and automatic notifications."
+          "en": "All stages are tracked in real time through a user dashboard and automatic alerts."
         }
       }
     ]
   },
   {
-    "id": 16,
+    "id": 17,
     "criterion": "SPECIAL_SECTION_3",
     "inputType": "radio",
     "question": {
       "ru": "Поддерживает ли платформа цифровых медицинских карт несколько учреждений, включая больницы, клиники, лаборатории и аптеки?",
-      "en": "Does the digital health records platform support multiple institutions, including hospitals, clinics, laboratories, and pharmacies?"
+      "en": "Does the digital medical records platform support multiple institutions, including hospitals, clinics, laboratories, and pharmacies?"
     },
     "options": [
       {
@@ -667,7 +692,7 @@
         "value": "2",
         "label": {
           "ru": "Расширение охвата на большее количество учреждений, но покрытие неполное.",
-          "en": "Expanding coverage to more institutions, but coverage is incomplete."
+          "en": "Expanding coverage to more institutions is underway, but the process remains incomplete."
         }
       },
       {
@@ -688,53 +713,7 @@
         "value": "5",
         "label": {
           "ru": "Полная поддержка многопрофильного покрытия по всей стране.",
-          "en": "Full support for multi-disciplinary coverage nationwide."
-        }
-      }
-    ]
-  },
-  {
-    "id": 17,
-    "criterion": "SPECIAL_SECTION_3",
-    "inputType": "radio",
-    "question": {
-      "ru": "Могут ли поставщики медицинских услуг беспрепятственно отправлять, обновлять и извлекать данные о здоровье пациентов в цифровом виде через платформу?",
-      "en": "Can healthcare providers seamlessly submit, update, and retrieve patient health data digitally through the platform?"
-    },
-    "options": [
-      {
-        "value": "1",
-        "label": {
-          "ru": "Отсутствуют возможности цифровой отправки и поиска.",
-          "en": "No digital submission and retrieval capabilities."
-        }
-      },
-      {
-        "value": "2",
-        "label": {
-          "ru": "Цифровая отправка доступна, но с ручной или офлайн-обработкой.",
-          "en": "Digital submission is available, but with manual or offline processing."
-        }
-      },
-      {
-        "value": "3",
-        "label": {
-          "ru": "Частично реализованы функции цифровой отправки и поиска.",
-          "en": "Partially implemented digital submission and retrieval functions."
-        }
-      },
-      {
-        "value": "4",
-        "label": {
-          "ru": "В основном, цифровая отправка и поиск с некоторыми ограничениями.",
-          "en": "Mostly digital submission and retrieval with some limitations."
-        }
-      },
-      {
-        "value": "5",
-        "label": {
-          "ru": "Полностью цифровая, бесперебойная отправка, обновление и поиск с синхронизацией в реальном времени.",
-          "en": "Fully digital, seamless submission, update, and retrieval with real-time synchronization."
+          "en": "Full multi-institutional coverage nationwide."
         }
       }
     ]
@@ -744,15 +723,61 @@
     "criterion": "SPECIAL_SECTION_3",
     "inputType": "radio",
     "question": {
+      "ru": "Могут ли поставщики медицинских услуг беспрепятственно отправлять, обновлять и извлекать данные о здоровье пациентов в цифровом виде через платформу?",
+      "en": "Can healthcare providers seamlessly send, update, and retrieve patient health data digitally through the platform?"
+    },
+    "options": [
+      {
+        "value": "1",
+        "label": {
+          "ru": "Отсутствуют возможности цифровой отправки и поиска.",
+          "en": "No digital sending or retrieval capabilities."
+        }
+      },
+      {
+        "value": "2",
+        "label": {
+          "ru": "Цифровая отправка доступна, но с ручной или офлайн-обработкой.",
+          "en": "Digital sending is available, but with manual or offline processing."
+        }
+      },
+      {
+        "value": "3",
+        "label": {
+          "ru": "Частично реализованы функции цифровой отправки и поиска.",
+          "en": "Partial implementation of digital sending and retrieval."
+        }
+      },
+      {
+        "value": "4",
+        "label": {
+          "ru": "В основном, цифровая отправка и поиск с некоторыми ограничениями.",
+          "en": "Mostly digital sending and retrieval with some limitations."
+        }
+      },
+      {
+        "value": "5",
+        "label": {
+          "ru": "Полностью цифровая, бесперебойная отправка, обновление и поиск с синхронизацией в реальном времени.",
+          "en": "Fully digital, seamless sending, updating, and retrieval with real-time synchronisation."
+        }
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "criterion": "SPECIAL_SECTION_3",
+    "inputType": "radio",
+    "question": {
       "ru": "В какой степени платформа цифровых медицинских карт совместима с другими национальными системами медицинской информации и поставщиками медицинских услуг?",
-      "en": "To what extent is the digital health records platform compatible with other national health information systems and healthcare providers?"
+      "en": "To what extent is the digital medical records platform compatible with other national health information systems and healthcare providers?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Интеграция с другими системами здравоохранения отсутствует.",
-          "en": "No integration with other healthcare systems."
+          "en": "No integration with other health systems."
         }
       },
       {
@@ -766,21 +791,21 @@
         "value": "3",
         "label": {
           "ru": "Частичная интеграция с отдельными системами.",
-          "en": "Partial integration with individual systems."
+          "en": "Partial integration with specific systems."
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "Полуавтоматическая интеграция с основными базами данных здравоохранения.",
-          "en": "Semi-automatic integration with main healthcare databases."
+          "en": "Semi-automated integration with major health databases."
         }
       },
       {
         "value": "5",
         "label": {
           "ru": "Полная интеграция и взаимодействие со всеми соответствующими системами здравоохранения.",
-          "en": "Full integration and interoperability with all relevant healthcare systems."
+          "en": "Full integration and interoperability with all relevant health systems."
         }
       }
     ]

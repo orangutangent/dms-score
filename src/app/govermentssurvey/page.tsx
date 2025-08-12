@@ -52,12 +52,21 @@ const GovermentsSurveyPage = () => {
     weight: 0,
   };
 
+  const contactsQuestion: QuestionType = { // Added
+    id: -4,
+    inputType: "contacts",
+    criterion: "Feedback",
+    question: t("HardcodedQuestions.contactsGov"),
+    weight: 0,
+  };
+
   const expandedQuestions = expandServiceTemplates(localizedQuestionsData);
   const allQuestions = [
     locationQuestion,
     departmentQuestion,
     ...expandedQuestions,
     finalThoughtsQuestion,
+    contactsQuestion, // Added
   ];
 
   const {
@@ -72,6 +81,8 @@ const GovermentsSurveyPage = () => {
     setLocation,
     finalThoughts,
     setFinalThoughts,
+    contacts, // Added
+    setContacts, // Added
     responses,
   } = useSurvey(
     useGovernmentSurveyStore,
@@ -105,6 +116,7 @@ const GovermentsSurveyPage = () => {
       location,
       department,
       finalThoughts: finalThoughtsValue ?? finalThoughts,
+      contacts, // Added
       responses,
     };
     submitSurvey.mutate(dataToSend);
@@ -152,6 +164,8 @@ const GovermentsSurveyPage = () => {
           onSectorChange={() => {}}
           initialFinalThoughts={finalThoughts}
           onFinalThoughtsChange={setFinalThoughts}
+          initialContacts={contacts} // Added
+          onContactsChange={setContacts} // Added
           onResponseChange={setResponse}
           isSubmitting={submitSurvey.isPending}
           isLastQuestion={currentQuestionIndex === allQuestions.length - 1}

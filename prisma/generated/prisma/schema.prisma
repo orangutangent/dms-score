@@ -16,14 +16,16 @@ datasource db {
 }
 
 model ContactInfo {
-  id          String                      @id @default(uuid())
-  name        String
-  affiliation String
-  email       String
-  tel         String?
-  resultId    String                      @unique
-  result      DigitalMaturitySurveyResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
-  createdAt   DateTime                    @default(now())
+  id                      String                       @id @default(uuid())
+  name                    String
+  affiliation             String
+  email                   String
+  tel                     String?
+  digitalMaturityResultId String?                      @unique
+  digitalMaturityResult   DigitalMaturitySurveyResult? @relation(fields: [digitalMaturityResultId], references: [id], onDelete: Cascade)
+  governmentResultId      String?                      @unique
+  governmentResult        GovernmentSurveyResult?      @relation(fields: [governmentResultId], references: [id], onDelete: Cascade)
+  createdAt               DateTime                     @default(now())
 }
 
 model DigitalMaturitySurveyResult {
@@ -52,6 +54,7 @@ model GovernmentSurveyResult {
   createdAt       DateTime                       @default(now())
   sectionScores   Json?
   serviceScores   GovernmentSurveyServiceScore[]
+  contactInfo     ContactInfo? // Add relation
 }
 
 model GovernmentSurveyServiceScore {

@@ -126,7 +126,8 @@ exports.Prisma.ContactInfoScalarFieldEnum = {
   affiliation: 'affiliation',
   email: 'email',
   tel: 'tel',
-  resultId: 'resultId',
+  digitalMaturityResultId: 'digitalMaturityResultId',
+  governmentResultId: 'governmentResultId',
   createdAt: 'createdAt'
 };
 

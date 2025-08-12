@@ -84,13 +84,18 @@
       "education": "education",
       "other": "Other (please define your version)"
     },
-    "finalThoughts": "Any suggestions you would like to provide to improve digital government services?",
+    "finalThoughts": "Form for proposals and comments on the development of public services for SMEs:",
     "finalThoughtsPlaceholder": "Enter your suggestions",
     "contacts": "Please leave your contact information if you would like to contribute to this Survey further:",
     "contactsName": "Name",
     "contactsAffiliation": "Affiliation",
     "contactsEmail": "Email",
     "contactsTel": "Tel (optional)",
+    "contactsGov": "Please leave your contact information if you would like to contribute to this Survey further:",
+    "contactsGovName": "Name",
+    "contactsGovAffiliation": "Affiliation",
+    "contactsGovEmail": "Email",
+    "contactsGovTel": "Tel (optional)",
     "selectCountryPlaceholder": "Select a country",
     "regionPlaceholder": "Enter region (Optional)"
   }

@@ -1323,7 +1323,8 @@ export namespace Prisma {
     affiliation: string | null
     email: string | null
     tel: string | null
-    resultId: string | null
+    digitalMaturityResultId: string | null
+    governmentResultId: string | null
     createdAt: Date | null
   }
 
@@ -1333,7 +1334,8 @@ export namespace Prisma {
     affiliation: string | null
     email: string | null
     tel: string | null
-    resultId: string | null
+    digitalMaturityResultId: string | null
+    governmentResultId: string | null
     createdAt: Date | null
   }
 
@@ -1343,7 +1345,8 @@ export namespace Prisma {
     affiliation: number
     email: number
     tel: number
-    resultId: number
+    digitalMaturityResultId: number
+    governmentResultId: number
     createdAt: number
     _all: number
   }
@@ -1355,7 +1358,8 @@ export namespace Prisma {
     affiliation?: true
     email?: true
     tel?: true
-    resultId?: true
+    digitalMaturityResultId?: true
+    governmentResultId?: true
     createdAt?: true
   }
 
@@ -1365,7 +1369,8 @@ export namespace Prisma {
     affiliation?: true
     email?: true
     tel?: true
-    resultId?: true
+    digitalMaturityResultId?: true
+    governmentResultId?: true
     createdAt?: true
   }
 
@@ -1375,7 +1380,8 @@ export namespace Prisma {
     affiliation?: true
     email?: true
     tel?: true
-    resultId?: true
+    digitalMaturityResultId?: true
+    governmentResultId?: true
     createdAt?: true
     _all?: true
   }
@@ -1458,7 +1464,8 @@ export namespace Prisma {
     affiliation: string
     email: string
     tel: string | null
-    resultId: string
+    digitalMaturityResultId: string | null
+    governmentResultId: string | null
     createdAt: Date
     _count: ContactInfoCountAggregateOutputType | null
     _min: ContactInfoMinAggregateOutputType | null
@@ -1485,9 +1492,11 @@ export namespace Prisma {
     affiliation?: boolean
     email?: boolean
     tel?: boolean
-    resultId?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
     createdAt?: boolean
-    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
   }, ExtArgs["result"]["contactInfo"]>
 
   export type ContactInfoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1496,9 +1505,11 @@ export namespace Prisma {
     affiliation?: boolean
     email?: boolean
     tel?: boolean
-    resultId?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
     createdAt?: boolean
-    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
   }, ExtArgs["result"]["contactInfo"]>
 
   export type ContactInfoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1507,9 +1518,11 @@ export namespace Prisma {
     affiliation?: boolean
     email?: boolean
     tel?: boolean
-    resultId?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
     createdAt?: boolean
-    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
   }, ExtArgs["result"]["contactInfo"]>
 
   export type ContactInfoSelectScalar = {
@@ -1518,25 +1531,30 @@ export namespace Prisma {
     affiliation?: boolean
     email?: boolean
     tel?: boolean
-    resultId?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
     createdAt?: boolean
   }
 
-  export type ContactInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "affiliation" | "email" | "tel" | "resultId" | "createdAt", ExtArgs["result"]["contactInfo"]>
+  export type ContactInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "affiliation" | "email" | "tel" | "digitalMaturityResultId" | "governmentResultId" | "createdAt", ExtArgs["result"]["contactInfo"]>
   export type ContactInfoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
   }
   export type ContactInfoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
   }
   export type ContactInfoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    result?: boolean | DigitalMaturitySurveyResultDefaultArgs<ExtArgs>
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
   }
 
   export type $ContactInfoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ContactInfo"
     objects: {
-      result: Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs>
+      digitalMaturityResult: Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs> | null
+      governmentResult: Prisma.$GovernmentSurveyResultPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1544,7 +1562,8 @@ export namespace Prisma {
       affiliation: string
       email: string
       tel: string | null
-      resultId: string
+      digitalMaturityResultId: string | null
+      governmentResultId: string | null
       createdAt: Date
     }, ExtArgs["result"]["contactInfo"]>
     composites: {}
@@ -1940,7 +1959,8 @@ export namespace Prisma {
    */
   export interface Prisma__ContactInfoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    result<T extends DigitalMaturitySurveyResultDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DigitalMaturitySurveyResultDefaultArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyResultClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    digitalMaturityResult<T extends ContactInfo$digitalMaturityResultArgs<ExtArgs> = {}>(args?: Subset<T, ContactInfo$digitalMaturityResultArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyResultClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    governmentResult<T extends ContactInfo$governmentResultArgs<ExtArgs> = {}>(args?: Subset<T, ContactInfo$governmentResultArgs<ExtArgs>>): Prisma__GovernmentSurveyResultClient<$Result.GetResult<Prisma.$GovernmentSurveyResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1975,7 +1995,8 @@ export namespace Prisma {
     readonly affiliation: FieldRef<"ContactInfo", 'String'>
     readonly email: FieldRef<"ContactInfo", 'String'>
     readonly tel: FieldRef<"ContactInfo", 'String'>
-    readonly resultId: FieldRef<"ContactInfo", 'String'>
+    readonly digitalMaturityResultId: FieldRef<"ContactInfo", 'String'>
+    readonly governmentResultId: FieldRef<"ContactInfo", 'String'>
     readonly createdAt: FieldRef<"ContactInfo", 'DateTime'>
   }
     
@@ -2370,6 +2391,44 @@ export namespace Prisma {
      * Limit how many ContactInfos to delete.
      */
     limit?: number
+  }
+
+  /**
+   * ContactInfo.digitalMaturityResult
+   */
+  export type ContactInfo$digitalMaturityResultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyResult
+     */
+    select?: DigitalMaturitySurveyResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyResult
+     */
+    omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    where?: DigitalMaturitySurveyResultWhereInput
+  }
+
+  /**
+   * ContactInfo.governmentResult
+   */
+  export type ContactInfo$governmentResultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GovernmentSurveyResult
+     */
+    select?: GovernmentSurveyResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GovernmentSurveyResult
+     */
+    omit?: GovernmentSurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GovernmentSurveyResultInclude<ExtArgs> | null
+    where?: GovernmentSurveyResultWhereInput
   }
 
   /**
@@ -3789,6 +3848,7 @@ export namespace Prisma {
     createdAt?: boolean
     sectionScores?: boolean
     serviceScores?: boolean | GovernmentSurveyResult$serviceScoresArgs<ExtArgs>
+    contactInfo?: boolean | GovernmentSurveyResult$contactInfoArgs<ExtArgs>
     _count?: boolean | GovernmentSurveyResultCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["governmentSurveyResult"]>
 
@@ -3834,6 +3894,7 @@ export namespace Prisma {
   export type GovernmentSurveyResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "region" | "department" | "overallScore" | "finalThoughts" | "criterionScores" | "rawAnswers" | "createdAt" | "sectionScores", ExtArgs["result"]["governmentSurveyResult"]>
   export type GovernmentSurveyResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     serviceScores?: boolean | GovernmentSurveyResult$serviceScoresArgs<ExtArgs>
+    contactInfo?: boolean | GovernmentSurveyResult$contactInfoArgs<ExtArgs>
     _count?: boolean | GovernmentSurveyResultCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GovernmentSurveyResultIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3843,6 +3904,7 @@ export namespace Prisma {
     name: "GovernmentSurveyResult"
     objects: {
       serviceScores: Prisma.$GovernmentSurveyServiceScorePayload<ExtArgs>[]
+      contactInfo: Prisma.$ContactInfoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4250,6 +4312,7 @@ export namespace Prisma {
   export interface Prisma__GovernmentSurveyResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     serviceScores<T extends GovernmentSurveyResult$serviceScoresArgs<ExtArgs> = {}>(args?: Subset<T, GovernmentSurveyResult$serviceScoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GovernmentSurveyServiceScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contactInfo<T extends GovernmentSurveyResult$contactInfoArgs<ExtArgs> = {}>(args?: Subset<T, GovernmentSurveyResult$contactInfoArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4698,6 +4761,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GovernmentSurveyServiceScoreScalarFieldEnum | GovernmentSurveyServiceScoreScalarFieldEnum[]
+  }
+
+  /**
+   * GovernmentSurveyResult.contactInfo
+   */
+  export type GovernmentSurveyResult$contactInfoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    where?: ContactInfoWhereInput
   }
 
   /**
@@ -6941,7 +7023,8 @@ export namespace Prisma {
     affiliation: 'affiliation',
     email: 'email',
     tel: 'tel',
-    resultId: 'resultId',
+    digitalMaturityResultId: 'digitalMaturityResultId',
+    governmentResultId: 'governmentResultId',
     createdAt: 'createdAt'
   };
 
@@ -7138,9 +7221,11 @@ export namespace Prisma {
     affiliation?: StringFilter<"ContactInfo"> | string
     email?: StringFilter<"ContactInfo"> | string
     tel?: StringNullableFilter<"ContactInfo"> | string | null
-    resultId?: StringFilter<"ContactInfo"> | string
+    digitalMaturityResultId?: StringNullableFilter<"ContactInfo"> | string | null
+    governmentResultId?: StringNullableFilter<"ContactInfo"> | string | null
     createdAt?: DateTimeFilter<"ContactInfo"> | Date | string
-    result?: XOR<DigitalMaturitySurveyResultScalarRelationFilter, DigitalMaturitySurveyResultWhereInput>
+    digitalMaturityResult?: XOR<DigitalMaturitySurveyResultNullableScalarRelationFilter, DigitalMaturitySurveyResultWhereInput> | null
+    governmentResult?: XOR<GovernmentSurveyResultNullableScalarRelationFilter, GovernmentSurveyResultWhereInput> | null
   }
 
   export type ContactInfoOrderByWithRelationInput = {
@@ -7149,14 +7234,17 @@ export namespace Prisma {
     affiliation?: SortOrder
     email?: SortOrder
     tel?: SortOrderInput | SortOrder
-    resultId?: SortOrder
+    digitalMaturityResultId?: SortOrderInput | SortOrder
+    governmentResultId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    result?: DigitalMaturitySurveyResultOrderByWithRelationInput
+    digitalMaturityResult?: DigitalMaturitySurveyResultOrderByWithRelationInput
+    governmentResult?: GovernmentSurveyResultOrderByWithRelationInput
   }
 
   export type ContactInfoWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    resultId?: string
+    digitalMaturityResultId?: string
+    governmentResultId?: string
     AND?: ContactInfoWhereInput | ContactInfoWhereInput[]
     OR?: ContactInfoWhereInput[]
     NOT?: ContactInfoWhereInput | ContactInfoWhereInput[]
@@ -7165,8 +7253,9 @@ export namespace Prisma {
     email?: StringFilter<"ContactInfo"> | string
     tel?: StringNullableFilter<"ContactInfo"> | string | null
     createdAt?: DateTimeFilter<"ContactInfo"> | Date | string
-    result?: XOR<DigitalMaturitySurveyResultScalarRelationFilter, DigitalMaturitySurveyResultWhereInput>
-  }, "id" | "resultId">
+    digitalMaturityResult?: XOR<DigitalMaturitySurveyResultNullableScalarRelationFilter, DigitalMaturitySurveyResultWhereInput> | null
+    governmentResult?: XOR<GovernmentSurveyResultNullableScalarRelationFilter, GovernmentSurveyResultWhereInput> | null
+  }, "id" | "digitalMaturityResultId" | "governmentResultId">
 
   export type ContactInfoOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7174,7 +7263,8 @@ export namespace Prisma {
     affiliation?: SortOrder
     email?: SortOrder
     tel?: SortOrderInput | SortOrder
-    resultId?: SortOrder
+    digitalMaturityResultId?: SortOrderInput | SortOrder
+    governmentResultId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: ContactInfoCountOrderByAggregateInput
     _max?: ContactInfoMaxOrderByAggregateInput
@@ -7190,7 +7280,8 @@ export namespace Prisma {
     affiliation?: StringWithAggregatesFilter<"ContactInfo"> | string
     email?: StringWithAggregatesFilter<"ContactInfo"> | string
     tel?: StringNullableWithAggregatesFilter<"ContactInfo"> | string | null
-    resultId?: StringWithAggregatesFilter<"ContactInfo"> | string
+    digitalMaturityResultId?: StringNullableWithAggregatesFilter<"ContactInfo"> | string | null
+    governmentResultId?: StringNullableWithAggregatesFilter<"ContactInfo"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ContactInfo"> | Date | string
   }
 
@@ -7289,6 +7380,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GovernmentSurveyResult"> | Date | string
     sectionScores?: JsonNullableFilter<"GovernmentSurveyResult">
     serviceScores?: GovernmentSurveyServiceScoreListRelationFilter
+    contactInfo?: XOR<ContactInfoNullableScalarRelationFilter, ContactInfoWhereInput> | null
   }
 
   export type GovernmentSurveyResultOrderByWithRelationInput = {
@@ -7303,6 +7395,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     sectionScores?: SortOrderInput | SortOrder
     serviceScores?: GovernmentSurveyServiceScoreOrderByRelationAggregateInput
+    contactInfo?: ContactInfoOrderByWithRelationInput
   }
 
   export type GovernmentSurveyResultWhereUniqueInput = Prisma.AtLeast<{
@@ -7320,6 +7413,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GovernmentSurveyResult"> | Date | string
     sectionScores?: JsonNullableFilter<"GovernmentSurveyResult">
     serviceScores?: GovernmentSurveyServiceScoreListRelationFilter
+    contactInfo?: XOR<ContactInfoNullableScalarRelationFilter, ContactInfoWhereInput> | null
   }, "id">
 
   export type GovernmentSurveyResultOrderByWithAggregationInput = {
@@ -7487,7 +7581,8 @@ export namespace Prisma {
     email: string
     tel?: string | null
     createdAt?: Date | string
-    result: DigitalMaturitySurveyResultCreateNestedOneWithoutContactInfoInput
+    digitalMaturityResult?: DigitalMaturitySurveyResultCreateNestedOneWithoutContactInfoInput
+    governmentResult?: GovernmentSurveyResultCreateNestedOneWithoutContactInfoInput
   }
 
   export type ContactInfoUncheckedCreateInput = {
@@ -7496,7 +7591,8 @@ export namespace Prisma {
     affiliation: string
     email: string
     tel?: string | null
-    resultId: string
+    digitalMaturityResultId?: string | null
+    governmentResultId?: string | null
     createdAt?: Date | string
   }
 
@@ -7507,7 +7603,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     tel?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    result?: DigitalMaturitySurveyResultUpdateOneRequiredWithoutContactInfoNestedInput
+    digitalMaturityResult?: DigitalMaturitySurveyResultUpdateOneWithoutContactInfoNestedInput
+    governmentResult?: GovernmentSurveyResultUpdateOneWithoutContactInfoNestedInput
   }
 
   export type ContactInfoUncheckedUpdateInput = {
@@ -7516,7 +7613,8 @@ export namespace Prisma {
     affiliation?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     tel?: NullableStringFieldUpdateOperationsInput | string | null
-    resultId?: StringFieldUpdateOperationsInput | string
+    digitalMaturityResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentResultId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7526,7 +7624,8 @@ export namespace Prisma {
     affiliation: string
     email: string
     tel?: string | null
-    resultId: string
+    digitalMaturityResultId?: string | null
+    governmentResultId?: string | null
     createdAt?: Date | string
   }
 
@@ -7545,7 +7644,8 @@ export namespace Prisma {
     affiliation?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     tel?: NullableStringFieldUpdateOperationsInput | string | null
-    resultId?: StringFieldUpdateOperationsInput | string
+    digitalMaturityResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentResultId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7560,7 +7660,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreCreateNestedManyWithoutResultInput
-    contactInfo?: ContactInfoCreateNestedOneWithoutResultInput
+    contactInfo?: ContactInfoCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedCreateInput = {
@@ -7574,7 +7674,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
-    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutResultInput
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultUpdateInput = {
@@ -7588,7 +7688,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreUpdateManyWithoutResultNestedInput
-    contactInfo?: ContactInfoUpdateOneWithoutResultNestedInput
+    contactInfo?: ContactInfoUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedUpdateInput = {
@@ -7602,7 +7702,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
-    contactInfo?: ContactInfoUncheckedUpdateOneWithoutResultNestedInput
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultCreateManyInput = {
@@ -7653,6 +7753,7 @@ export namespace Prisma {
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreCreateNestedManyWithoutResultInput
+    contactInfo?: ContactInfoCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultUncheckedCreateInput = {
@@ -7667,6 +7768,7 @@ export namespace Prisma {
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultUpdateInput = {
@@ -7681,6 +7783,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreUpdateManyWithoutResultNestedInput
+    contactInfo?: ContactInfoUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type GovernmentSurveyResultUncheckedUpdateInput = {
@@ -7695,6 +7798,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type GovernmentSurveyResultCreateManyInput = {
@@ -7901,9 +8005,14 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type DigitalMaturitySurveyResultScalarRelationFilter = {
-    is?: DigitalMaturitySurveyResultWhereInput
-    isNot?: DigitalMaturitySurveyResultWhereInput
+  export type DigitalMaturitySurveyResultNullableScalarRelationFilter = {
+    is?: DigitalMaturitySurveyResultWhereInput | null
+    isNot?: DigitalMaturitySurveyResultWhereInput | null
+  }
+
+  export type GovernmentSurveyResultNullableScalarRelationFilter = {
+    is?: GovernmentSurveyResultWhereInput | null
+    isNot?: GovernmentSurveyResultWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -7917,7 +8026,8 @@ export namespace Prisma {
     affiliation?: SortOrder
     email?: SortOrder
     tel?: SortOrder
-    resultId?: SortOrder
+    digitalMaturityResultId?: SortOrder
+    governmentResultId?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -7927,7 +8037,8 @@ export namespace Prisma {
     affiliation?: SortOrder
     email?: SortOrder
     tel?: SortOrder
-    resultId?: SortOrder
+    digitalMaturityResultId?: SortOrder
+    governmentResultId?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -7937,7 +8048,8 @@ export namespace Prisma {
     affiliation?: SortOrder
     email?: SortOrder
     tel?: SortOrder
-    resultId?: SortOrder
+    digitalMaturityResultId?: SortOrder
+    governmentResultId?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -8260,6 +8372,11 @@ export namespace Prisma {
     overallScore?: SortOrder
   }
 
+  export type DigitalMaturitySurveyResultScalarRelationFilter = {
+    is?: DigitalMaturitySurveyResultWhereInput
+    isNot?: DigitalMaturitySurveyResultWhereInput
+  }
+
   export type DigitalMaturitySurveyServiceScoreCountOrderByAggregateInput = {
     id?: SortOrder
     resultId?: SortOrder
@@ -8299,6 +8416,12 @@ export namespace Prisma {
     connect?: DigitalMaturitySurveyResultWhereUniqueInput
   }
 
+  export type GovernmentSurveyResultCreateNestedOneWithoutContactInfoInput = {
+    create?: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+    connectOrCreate?: GovernmentSurveyResultCreateOrConnectWithoutContactInfoInput
+    connect?: GovernmentSurveyResultWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -8311,12 +8434,24 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type DigitalMaturitySurveyResultUpdateOneRequiredWithoutContactInfoNestedInput = {
+  export type DigitalMaturitySurveyResultUpdateOneWithoutContactInfoNestedInput = {
     create?: XOR<DigitalMaturitySurveyResultCreateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput>
     connectOrCreate?: DigitalMaturitySurveyResultCreateOrConnectWithoutContactInfoInput
     upsert?: DigitalMaturitySurveyResultUpsertWithoutContactInfoInput
+    disconnect?: DigitalMaturitySurveyResultWhereInput | boolean
+    delete?: DigitalMaturitySurveyResultWhereInput | boolean
     connect?: DigitalMaturitySurveyResultWhereUniqueInput
     update?: XOR<XOR<DigitalMaturitySurveyResultUpdateToOneWithWhereWithoutContactInfoInput, DigitalMaturitySurveyResultUpdateWithoutContactInfoInput>, DigitalMaturitySurveyResultUncheckedUpdateWithoutContactInfoInput>
+  }
+
+  export type GovernmentSurveyResultUpdateOneWithoutContactInfoNestedInput = {
+    create?: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+    connectOrCreate?: GovernmentSurveyResultCreateOrConnectWithoutContactInfoInput
+    upsert?: GovernmentSurveyResultUpsertWithoutContactInfoInput
+    disconnect?: GovernmentSurveyResultWhereInput | boolean
+    delete?: GovernmentSurveyResultWhereInput | boolean
+    connect?: GovernmentSurveyResultWhereUniqueInput
+    update?: XOR<XOR<GovernmentSurveyResultUpdateToOneWithWhereWithoutContactInfoInput, GovernmentSurveyResultUpdateWithoutContactInfoInput>, GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput>
   }
 
   export type DigitalMaturitySurveyServiceScoreCreateNestedManyWithoutResultInput = {
@@ -8326,9 +8461,9 @@ export namespace Prisma {
     connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
   }
 
-  export type ContactInfoCreateNestedOneWithoutResultInput = {
-    create?: XOR<ContactInfoCreateWithoutResultInput, ContactInfoUncheckedCreateWithoutResultInput>
-    connectOrCreate?: ContactInfoCreateOrConnectWithoutResultInput
+  export type ContactInfoCreateNestedOneWithoutDigitalMaturityResultInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
     connect?: ContactInfoWhereUniqueInput
   }
 
@@ -8339,9 +8474,9 @@ export namespace Prisma {
     connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
   }
 
-  export type ContactInfoUncheckedCreateNestedOneWithoutResultInput = {
-    create?: XOR<ContactInfoCreateWithoutResultInput, ContactInfoUncheckedCreateWithoutResultInput>
-    connectOrCreate?: ContactInfoCreateOrConnectWithoutResultInput
+  export type ContactInfoUncheckedCreateNestedOneWithoutDigitalMaturityResultInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
     connect?: ContactInfoWhereUniqueInput
   }
 
@@ -8367,14 +8502,14 @@ export namespace Prisma {
     deleteMany?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
   }
 
-  export type ContactInfoUpdateOneWithoutResultNestedInput = {
-    create?: XOR<ContactInfoCreateWithoutResultInput, ContactInfoUncheckedCreateWithoutResultInput>
-    connectOrCreate?: ContactInfoCreateOrConnectWithoutResultInput
-    upsert?: ContactInfoUpsertWithoutResultInput
+  export type ContactInfoUpdateOneWithoutDigitalMaturityResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
+    upsert?: ContactInfoUpsertWithoutDigitalMaturityResultInput
     disconnect?: ContactInfoWhereInput | boolean
     delete?: ContactInfoWhereInput | boolean
     connect?: ContactInfoWhereUniqueInput
-    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutResultInput, ContactInfoUpdateWithoutResultInput>, ContactInfoUncheckedUpdateWithoutResultInput>
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutDigitalMaturityResultInput, ContactInfoUpdateWithoutDigitalMaturityResultInput>, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
   }
 
   export type DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput = {
@@ -8391,14 +8526,14 @@ export namespace Prisma {
     deleteMany?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
   }
 
-  export type ContactInfoUncheckedUpdateOneWithoutResultNestedInput = {
-    create?: XOR<ContactInfoCreateWithoutResultInput, ContactInfoUncheckedCreateWithoutResultInput>
-    connectOrCreate?: ContactInfoCreateOrConnectWithoutResultInput
-    upsert?: ContactInfoUpsertWithoutResultInput
+  export type ContactInfoUncheckedUpdateOneWithoutDigitalMaturityResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
+    upsert?: ContactInfoUpsertWithoutDigitalMaturityResultInput
     disconnect?: ContactInfoWhereInput | boolean
     delete?: ContactInfoWhereInput | boolean
     connect?: ContactInfoWhereUniqueInput
-    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutResultInput, ContactInfoUpdateWithoutResultInput>, ContactInfoUncheckedUpdateWithoutResultInput>
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutDigitalMaturityResultInput, ContactInfoUpdateWithoutDigitalMaturityResultInput>, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
   }
 
   export type GovernmentSurveyServiceScoreCreateNestedManyWithoutResultInput = {
@@ -8408,11 +8543,23 @@ export namespace Prisma {
     connect?: GovernmentSurveyServiceScoreWhereUniqueInput | GovernmentSurveyServiceScoreWhereUniqueInput[]
   }
 
+  export type ContactInfoCreateNestedOneWithoutGovernmentResultInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    connect?: ContactInfoWhereUniqueInput
+  }
+
   export type GovernmentSurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput = {
     create?: XOR<GovernmentSurveyServiceScoreCreateWithoutResultInput, GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput> | GovernmentSurveyServiceScoreCreateWithoutResultInput[] | GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput[]
     connectOrCreate?: GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput | GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput[]
     createMany?: GovernmentSurveyServiceScoreCreateManyResultInputEnvelope
     connect?: GovernmentSurveyServiceScoreWhereUniqueInput | GovernmentSurveyServiceScoreWhereUniqueInput[]
+  }
+
+  export type ContactInfoUncheckedCreateNestedOneWithoutGovernmentResultInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    connect?: ContactInfoWhereUniqueInput
   }
 
   export type GovernmentSurveyServiceScoreUpdateManyWithoutResultNestedInput = {
@@ -8429,6 +8576,16 @@ export namespace Prisma {
     deleteMany?: GovernmentSurveyServiceScoreScalarWhereInput | GovernmentSurveyServiceScoreScalarWhereInput[]
   }
 
+  export type ContactInfoUpdateOneWithoutGovernmentResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    upsert?: ContactInfoUpsertWithoutGovernmentResultInput
+    disconnect?: ContactInfoWhereInput | boolean
+    delete?: ContactInfoWhereInput | boolean
+    connect?: ContactInfoWhereUniqueInput
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutGovernmentResultInput, ContactInfoUpdateWithoutGovernmentResultInput>, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
+  }
+
   export type GovernmentSurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput = {
     create?: XOR<GovernmentSurveyServiceScoreCreateWithoutResultInput, GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput> | GovernmentSurveyServiceScoreCreateWithoutResultInput[] | GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput[]
     connectOrCreate?: GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput | GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput[]
@@ -8441,6 +8598,16 @@ export namespace Prisma {
     update?: GovernmentSurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput | GovernmentSurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput[]
     updateMany?: GovernmentSurveyServiceScoreUpdateManyWithWhereWithoutResultInput | GovernmentSurveyServiceScoreUpdateManyWithWhereWithoutResultInput[]
     deleteMany?: GovernmentSurveyServiceScoreScalarWhereInput | GovernmentSurveyServiceScoreScalarWhereInput[]
+  }
+
+  export type ContactInfoUncheckedUpdateOneWithoutGovernmentResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    upsert?: ContactInfoUpsertWithoutGovernmentResultInput
+    disconnect?: ContactInfoWhereInput | boolean
+    delete?: ContactInfoWhereInput | boolean
+    connect?: ContactInfoWhereUniqueInput
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutGovernmentResultInput, ContactInfoUpdateWithoutGovernmentResultInput>, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
   }
 
   export type GovernmentSurveyResultCreateNestedOneWithoutServiceScoresInput = {
@@ -8684,6 +8851,39 @@ export namespace Prisma {
     create: XOR<DigitalMaturitySurveyResultCreateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput>
   }
 
+  export type GovernmentSurveyResultCreateWithoutContactInfoInput = {
+    id?: string
+    country: string
+    region?: string
+    department?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreCreateNestedManyWithoutResultInput
+  }
+
+  export type GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput = {
+    id?: string
+    country: string
+    region?: string
+    department?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
+  }
+
+  export type GovernmentSurveyResultCreateOrConnectWithoutContactInfoInput = {
+    where: GovernmentSurveyResultWhereUniqueInput
+    create: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+  }
+
   export type DigitalMaturitySurveyResultUpsertWithoutContactInfoInput = {
     update: XOR<DigitalMaturitySurveyResultUpdateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedUpdateWithoutContactInfoInput>
     create: XOR<DigitalMaturitySurveyResultCreateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput>
@@ -8721,6 +8921,45 @@ export namespace Prisma {
     serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
   }
 
+  export type GovernmentSurveyResultUpsertWithoutContactInfoInput = {
+    update: XOR<GovernmentSurveyResultUpdateWithoutContactInfoInput, GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput>
+    create: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+    where?: GovernmentSurveyResultWhereInput
+  }
+
+  export type GovernmentSurveyResultUpdateToOneWithWhereWithoutContactInfoInput = {
+    where?: GovernmentSurveyResultWhereInput
+    data: XOR<GovernmentSurveyResultUpdateWithoutContactInfoInput, GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput>
+  }
+
+  export type GovernmentSurveyResultUpdateWithoutContactInfoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreUpdateManyWithoutResultNestedInput
+  }
+
+  export type GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
+  }
+
   export type DigitalMaturitySurveyServiceScoreCreateWithoutResultInput = {
     id?: string
     serviceCode: string
@@ -8747,27 +8986,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ContactInfoCreateWithoutResultInput = {
+  export type ContactInfoCreateWithoutDigitalMaturityResultInput = {
     id?: string
     name: string
     affiliation: string
     email: string
     tel?: string | null
     createdAt?: Date | string
+    governmentResult?: GovernmentSurveyResultCreateNestedOneWithoutContactInfoInput
   }
 
-  export type ContactInfoUncheckedCreateWithoutResultInput = {
+  export type ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput = {
     id?: string
     name: string
     affiliation: string
     email: string
     tel?: string | null
+    governmentResultId?: string | null
     createdAt?: Date | string
   }
 
-  export type ContactInfoCreateOrConnectWithoutResultInput = {
+  export type ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput = {
     where: ContactInfoWhereUniqueInput
-    create: XOR<ContactInfoCreateWithoutResultInput, ContactInfoUncheckedCreateWithoutResultInput>
+    create: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
   }
 
   export type DigitalMaturitySurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput = {
@@ -8798,32 +9039,34 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"DigitalMaturitySurveyServiceScore"> | Date | string
   }
 
-  export type ContactInfoUpsertWithoutResultInput = {
-    update: XOR<ContactInfoUpdateWithoutResultInput, ContactInfoUncheckedUpdateWithoutResultInput>
-    create: XOR<ContactInfoCreateWithoutResultInput, ContactInfoUncheckedCreateWithoutResultInput>
+  export type ContactInfoUpsertWithoutDigitalMaturityResultInput = {
+    update: XOR<ContactInfoUpdateWithoutDigitalMaturityResultInput, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
+    create: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
     where?: ContactInfoWhereInput
   }
 
-  export type ContactInfoUpdateToOneWithWhereWithoutResultInput = {
+  export type ContactInfoUpdateToOneWithWhereWithoutDigitalMaturityResultInput = {
     where?: ContactInfoWhereInput
-    data: XOR<ContactInfoUpdateWithoutResultInput, ContactInfoUncheckedUpdateWithoutResultInput>
+    data: XOR<ContactInfoUpdateWithoutDigitalMaturityResultInput, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
   }
 
-  export type ContactInfoUpdateWithoutResultInput = {
+  export type ContactInfoUpdateWithoutDigitalMaturityResultInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     affiliation?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     tel?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    governmentResult?: GovernmentSurveyResultUpdateOneWithoutContactInfoNestedInput
   }
 
-  export type ContactInfoUncheckedUpdateWithoutResultInput = {
+  export type ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     affiliation?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     tel?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentResultId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -8851,6 +9094,31 @@ export namespace Prisma {
   export type GovernmentSurveyServiceScoreCreateManyResultInputEnvelope = {
     data: GovernmentSurveyServiceScoreCreateManyResultInput | GovernmentSurveyServiceScoreCreateManyResultInput[]
     skipDuplicates?: boolean
+  }
+
+  export type ContactInfoCreateWithoutGovernmentResultInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    createdAt?: Date | string
+    digitalMaturityResult?: DigitalMaturitySurveyResultCreateNestedOneWithoutContactInfoInput
+  }
+
+  export type ContactInfoUncheckedCreateWithoutGovernmentResultInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    digitalMaturityResultId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContactInfoCreateOrConnectWithoutGovernmentResultInput = {
+    where: ContactInfoWhereUniqueInput
+    create: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
   }
 
   export type GovernmentSurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput = {
@@ -8881,6 +9149,37 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GovernmentSurveyServiceScore"> | Date | string
   }
 
+  export type ContactInfoUpsertWithoutGovernmentResultInput = {
+    update: XOR<ContactInfoUpdateWithoutGovernmentResultInput, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
+    create: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    where?: ContactInfoWhereInput
+  }
+
+  export type ContactInfoUpdateToOneWithWhereWithoutGovernmentResultInput = {
+    where?: ContactInfoWhereInput
+    data: XOR<ContactInfoUpdateWithoutGovernmentResultInput, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
+  }
+
+  export type ContactInfoUpdateWithoutGovernmentResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    digitalMaturityResult?: DigitalMaturitySurveyResultUpdateOneWithoutContactInfoNestedInput
+  }
+
+  export type ContactInfoUncheckedUpdateWithoutGovernmentResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    digitalMaturityResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type GovernmentSurveyResultCreateWithoutServiceScoresInput = {
     id?: string
     country: string
@@ -8892,6 +9191,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultUncheckedCreateWithoutServiceScoresInput = {
@@ -8905,6 +9205,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultCreateOrConnectWithoutServiceScoresInput = {
@@ -8934,6 +9235,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type GovernmentSurveyResultUncheckedUpdateWithoutServiceScoresInput = {
@@ -8947,6 +9249,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultCreateWithoutServiceScoresInput = {
@@ -8959,7 +9262,7 @@ export namespace Prisma {
     criterionScores: JsonNullValueInput | InputJsonValue
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    contactInfo?: ContactInfoCreateNestedOneWithoutResultInput
+    contactInfo?: ContactInfoCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedCreateWithoutServiceScoresInput = {
@@ -8972,7 +9275,7 @@ export namespace Prisma {
     criterionScores: JsonNullValueInput | InputJsonValue
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutResultInput
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultCreateOrConnectWithoutServiceScoresInput = {
@@ -9001,7 +9304,7 @@ export namespace Prisma {
     criterionScores?: JsonNullValueInput | InputJsonValue
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    contactInfo?: ContactInfoUpdateOneWithoutResultNestedInput
+    contactInfo?: ContactInfoUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedUpdateWithoutServiceScoresInput = {
@@ -9014,7 +9317,7 @@ export namespace Prisma {
     criterionScores?: JsonNullValueInput | InputJsonValue
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    contactInfo?: ContactInfoUncheckedUpdateOneWithoutResultNestedInput
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyServiceScoreCreateManyResultInput = {

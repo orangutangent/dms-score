@@ -5,6 +5,13 @@ export interface LocationData {
   region: string;
 }
 
+export interface ContactsState {
+  name: string;
+  affiliation: string;
+  email: string;
+  tel: string;
+}
+
 export interface GovernmentSurveyResponseDTO {
   questionId: number;
   criterion: string;
@@ -18,6 +25,7 @@ export interface GovernmentSurveySubmitDataDTO {
   department: string;
   finalThoughts: string;
   responses: GovernmentSurveyResponseDTO[];
+  contacts: ContactsState;
 }
 
 export interface GovernmentSurveySubmitResultDTO {
@@ -39,6 +47,7 @@ export interface BusinessSurveySubmitDataDTO {
   sector: string;
   finalThoughts: string;
   responses: BusinessSurveyResponseDTO[];
+  contacts: ContactsState;
 }
 
 export interface BusinessSurveySubmitResultDTO {

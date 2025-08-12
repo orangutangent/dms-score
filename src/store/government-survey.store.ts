@@ -7,15 +7,24 @@ interface LocationState {
   region: string;
 }
 
+interface ContactsState {
+  name: string;
+  affiliation: string;
+  email: string;
+  tel: string;
+}
+
 interface GovernmentSurveyState {
   responses: GovernmentSurveyResponseDTO[];
   location: LocationState;
   department: string;
   finalThoughts: string;
+  contacts: ContactsState;
   setResponse: (response: GovernmentSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
   setDepartment: (department: string) => void;
   setFinalThoughts: (thoughts: string) => void;
+  setContacts: (contacts: ContactsState) => void;
   clearResponses: () => void;
 }
 
@@ -26,6 +35,7 @@ export const useGovernmentSurveyStore = create<GovernmentSurveyState>()(
       location: { country: "", region: "" },
       department: "",
       finalThoughts: "",
+      contacts: { name: "", affiliation: "", email: "", tel: "" },
       setResponse: (response) =>
         set((state) => {
           const existingIndex = state.responses.findIndex(
@@ -46,7 +56,8 @@ export const useGovernmentSurveyStore = create<GovernmentSurveyState>()(
       setLocation: (location) => set({ location }),
       setDepartment: (department) => set({ department }),
       setFinalThoughts: (thoughts) => set({ finalThoughts: thoughts }),
-      clearResponses: () => set({ responses: [], location: { country: "", region: "" }, department: "", finalThoughts: "" }),
+      setContacts: (contacts) => set({ contacts }),
+      clearResponses: () => set({ responses: [], location: { country: "", region: "" }, department: "", finalThoughts: "", contacts: { name: "", affiliation: "", email: "", tel: "" } }),
     }),
     {
       name: "dms-government-survey-storage",

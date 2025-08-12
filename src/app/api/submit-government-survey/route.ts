@@ -9,7 +9,7 @@ import { aggregateByCriteria, aggregateByServices } from "@/lib/scoring";
 
 export async function POST(req: Request) {
   try {
-    const { responses, location, finalThoughts } =
+    const { responses, location, department, finalThoughts } =
       (await req.json()) as GovernmentSurveySubmitDataDTO;
 
     // Используем новые утилиты для агрегации
@@ -34,6 +34,7 @@ export async function POST(req: Request) {
       data: {
         country: location.country || "",
         region: location.region || "",
+        department: department || "",
         overallScore,
         finalThoughts: finalThoughts || "",
         criterionScores,

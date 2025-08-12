@@ -32,6 +32,7 @@ model GovernmentSurveyResult {
   id              String                         @id @default(uuid())
   country         String
   region          String                         @default("")
+  department      String                         @default("")
   overallScore    Float
   finalThoughts   String                         @default("")
   criterionScores Json

@@ -113,11 +113,11 @@ const DigitalMaturityPage = () => {
     },
   });
 
-  const handleFinalSubmit = () => {
+  const handleFinalSubmit = (finalThoughtsValue?: string) => {
     const dataToSend: SubmitData = {
       location,
       sector: sector || "",
-      finalThoughts,
+      finalThoughts: finalThoughtsValue ?? finalThoughts,
       responses,
     };
     console.log("Submitting survey data:", dataToSend);
@@ -126,8 +126,7 @@ const DigitalMaturityPage = () => {
 
   const customHandleNext = (answer: Answer) => {
     if (currentQuestionIndex === allQuestions.length - 1) {
-      setFinalThoughts(answer?.value || "");
-      handleFinalSubmit();
+      handleFinalSubmit(answer?.value);
     } else {
       handleNext(answer);
     }

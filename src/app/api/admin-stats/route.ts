@@ -36,11 +36,11 @@ interface CountryStats {
 
 // Критерии уровней (основные критерии)
 const LEVEL_CRITERIA = [
-  "Инфраструктурный уровень",
-  "Государственный уровень",
-  "Уровень бизнеса",
-  "Персональный уровень",
-  "Уровень экосистемы",
+  "INFRASTRUCTURE_LEVEL",
+  "GOVERNMENT_LEVEL",
+  "OPERATIONAL_LEVEL",
+  "PERSONAL_LEVEL",
+  "ECOSYSTEM_LEVEL",
 ];
 
 // Специальные разделы

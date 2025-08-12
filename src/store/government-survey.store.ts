@@ -10,9 +10,11 @@ interface LocationState {
 interface GovernmentSurveyState {
   responses: GovernmentSurveyResponseDTO[];
   location: LocationState;
+  department: string;
   finalThoughts: string;
   setResponse: (response: GovernmentSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
+  setDepartment: (department: string) => void;
   setFinalThoughts: (thoughts: string) => void;
   clearResponses: () => void;
 }
@@ -22,6 +24,7 @@ export const useGovernmentSurveyStore = create<GovernmentSurveyState>()(
     (set, get) => ({
       responses: [],
       location: { country: "", region: "" },
+      department: "",
       finalThoughts: "",
       setResponse: (response) =>
         set((state) => {
@@ -41,8 +44,9 @@ export const useGovernmentSurveyStore = create<GovernmentSurveyState>()(
           }
         }),
       setLocation: (location) => set({ location }),
+      setDepartment: (department) => set({ department }),
       setFinalThoughts: (thoughts) => set({ finalThoughts: thoughts }),
-      clearResponses: () => set({ responses: [] }),
+      clearResponses: () => set({ responses: [], location: { country: "", region: "" }, department: "", finalThoughts: "" }),
     }),
     {
       name: "dms-government-survey-storage",

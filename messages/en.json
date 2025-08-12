@@ -76,6 +76,8 @@
     "locationGov": "In which country, city, region do you provide DGS for SMEs?",
     "locationBusiness": "In which country, city, and region is your SME registered?",
     "sector": "Which department or public sector do you represent?",
+    "departmentGov": "Which ministry or public sector do you represent?",
+    "departmentGovPlaceholder": "Enter the name of your ministry/public sector",
     "sectorOptions": {
       "healthcare": "healthcare",
       "education": "education",

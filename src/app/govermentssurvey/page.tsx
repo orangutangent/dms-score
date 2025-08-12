@@ -34,6 +34,15 @@ const GovermentsSurveyPage = () => {
     weight: 0,
   };
 
+  const departmentQuestion: QuestionType = {
+    id: -3,
+    inputType: "department",
+    criterion: "Department",
+    question: t("HardcodedQuestions.departmentGov"),
+    placeholder: t("HardcodedQuestions.departmentGovPlaceholder"),
+    weight: 0,
+  };
+
   const finalThoughtsQuestion: QuestionType = {
     id: -2,
     inputType: "final-thoughts",
@@ -46,6 +55,7 @@ const GovermentsSurveyPage = () => {
   const expandedQuestions = expandServiceTemplates(localizedQuestionsData);
   const allQuestions = [
     locationQuestion,
+    departmentQuestion,
     ...expandedQuestions,
     finalThoughtsQuestion,
   ];
@@ -69,7 +79,7 @@ const GovermentsSurveyPage = () => {
     "/resultsgovermentserice"
   );
 
-  const { setResponse } = useGovernmentSurveyStore();
+  const { setResponse, department, setDepartment } = useGovernmentSurveyStore();
 
   type SubmitResponse = { message: string; resultId: string };
 
@@ -90,19 +100,22 @@ const GovermentsSurveyPage = () => {
     },
   });
 
-  const handleFinalSubmit = () => {
+  const handleFinalSubmit = (finalThoughtsValue?: string) => {
     const dataToSend: GovernmentSurveySubmitDataDTO = {
       location,
-      finalThoughts,
+      department,
+      finalThoughts: finalThoughtsValue ?? finalThoughts,
       responses,
     };
     submitSurvey.mutate(dataToSend);
   };
 
   const customHandleNext = (answer: Answer) => {
+    if (currentQuestion.inputType === 'department') {
+      setDepartment(answer?.value || '');
+    }
     if (currentQuestionIndex === allQuestions.length - 1) {
-      setFinalThoughts(answer?.value || "");
-      handleFinalSubmit();
+      handleFinalSubmit(answer?.value);
     } else {
       handleNext(answer);
     }
@@ -133,6 +146,8 @@ const GovermentsSurveyPage = () => {
           initialAnswer={initialAnswer}
           initialLocation={location}
           onLocationChange={setLocation}
+          initialDepartment={department}
+          onDepartmentChange={setDepartment}
           initialSector={null}
           onSectorChange={() => {}}
           initialFinalThoughts={finalThoughts}

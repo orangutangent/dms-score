@@ -33,6 +33,8 @@ interface QuestionProps {
   onLocationChange: (location: { country: string; region: string }) => void;
   initialSector?: string | null; // Made optional
   onSectorChange?: (sector: string) => void; // Made optional
+  initialDepartment?: string;
+  onDepartmentChange?: (department: string) => void;
   initialFinalThoughts: string;
   onFinalThoughtsChange: (thoughts: string) => void;
   isSubmitting: boolean;
@@ -56,6 +58,8 @@ const Question: React.FC<QuestionProps> = ({
   onLocationChange,
   initialSector,
   onSectorChange,
+  initialDepartment,
+  onDepartmentChange,
   initialFinalThoughts,
   onFinalThoughtsChange,
   isSubmitting,
@@ -68,8 +72,14 @@ const Question: React.FC<QuestionProps> = ({
   const locale = useLocale();
 
   useEffect(() => {
-    setAnswer(initialAnswer);
-  }, [initialAnswer]);
+    if (question.inputType === 'department') {
+      setAnswer({ value: initialDepartment || '' });
+    } else if (question.inputType === 'final-thoughts') {
+      setAnswer({ value: initialFinalThoughts });
+    } else {
+      setAnswer(initialAnswer);
+    }
+  }, [initialAnswer, initialDepartment, initialFinalThoughts, question.inputType]);
 
   // Создает response DTO из ответа пользователя
   const createResponse = (
@@ -78,7 +88,7 @@ const Question: React.FC<QuestionProps> = ({
     if (!ans || ans.value === undefined || ans.value === null) return null;
 
     // Для специальных типов вопросов не создаем response
-    if (["location", "sector", "final-thoughts"].includes(question.inputType)) {
+    if (["location", "sector", "department", "final-thoughts"].includes(question.inputType)) {
       return null;
     }
 
@@ -110,12 +120,15 @@ const Question: React.FC<QuestionProps> = ({
     if (question.inputType === "location") {
       onLocationChange(initialLocation);
       onNext(null); // Pass null as answer for location question
+    } else if (question.inputType === "department") {
+      onDepartmentChange?.(answer?.value || "");
+      onNext(answer);
     } else if (question.inputType === "sector") {
       onSectorChange?.(answer?.value || ""); // Use selected answer value
-      onNext(null); // Pass null as answer for sector question
+      onNext(answer);
     } else if (question.inputType === "final-thoughts") {
       onFinalThoughtsChange(answer?.value || ""); // Use selected answer value
-      onNext(null); // Pass null as answer for final thoughts question
+      onNext(answer); // Pass answer for final thoughts question
     } else if (answer !== null) {
       // Создаем и сохраняем response
       const response = createResponse(answer);
@@ -133,6 +146,7 @@ const Question: React.FC<QuestionProps> = ({
       case "radio":
       case "location":
       case "sector":
+      case "department":
       case "scale-service-template":
       case "yes-no-service-template":
         return t("selectAnswer");
@@ -178,6 +192,16 @@ const Question: React.FC<QuestionProps> = ({
                 }}
               />
             ))}
+          </div>
+        );
+      case "department":
+        return (
+          <div className="mt-6">
+            <Textarea
+              placeholder={question.placeholder}
+              value={answer?.value || ""}
+              onChange={(e) => setAnswer({ value: e.target.value })}
+            />
           </div>
         );
       case "final-thoughts":
@@ -324,6 +348,7 @@ const Question: React.FC<QuestionProps> = ({
   const isNextDisabled = () => {
     if (question.inputType === "location") return !initialLocation.country;
     if (question.inputType === "sector") return !answer?.value;
+    if (question.inputType === "department") return !answer?.value;
     if (question.inputType === "final-thoughts") return false; // Can proceed with empty thoughts
     if (
       question.inputType === "scale-service-template" ||

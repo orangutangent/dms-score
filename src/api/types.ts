@@ -15,6 +15,7 @@ export interface GovernmentSurveyResponseDTO {
 
 export interface GovernmentSurveySubmitDataDTO {
   location: LocationData;
+  department: string;
   finalThoughts: string;
   responses: GovernmentSurveyResponseDTO[];
 }

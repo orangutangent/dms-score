@@ -136,6 +136,7 @@ exports.Prisma.GovernmentSurveyResultScalarFieldEnum = {
   id: 'id',
   country: 'country',
   region: 'region',
+  department: 'department',
   overallScore: 'overallScore',
   finalThoughts: 'finalThoughts',
   criterionScores: 'criterionScores',

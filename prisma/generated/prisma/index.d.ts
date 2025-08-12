@@ -2388,6 +2388,7 @@ export namespace Prisma {
     id: string | null
     country: string | null
     region: string | null
+    department: string | null
     overallScore: number | null
     finalThoughts: string | null
     createdAt: Date | null
@@ -2397,6 +2398,7 @@ export namespace Prisma {
     id: string | null
     country: string | null
     region: string | null
+    department: string | null
     overallScore: number | null
     finalThoughts: string | null
     createdAt: Date | null
@@ -2406,6 +2408,7 @@ export namespace Prisma {
     id: number
     country: number
     region: number
+    department: number
     overallScore: number
     finalThoughts: number
     criterionScores: number
@@ -2428,6 +2431,7 @@ export namespace Prisma {
     id?: true
     country?: true
     region?: true
+    department?: true
     overallScore?: true
     finalThoughts?: true
     createdAt?: true
@@ -2437,6 +2441,7 @@ export namespace Prisma {
     id?: true
     country?: true
     region?: true
+    department?: true
     overallScore?: true
     finalThoughts?: true
     createdAt?: true
@@ -2446,6 +2451,7 @@ export namespace Prisma {
     id?: true
     country?: true
     region?: true
+    department?: true
     overallScore?: true
     finalThoughts?: true
     criterionScores?: true
@@ -2545,6 +2551,7 @@ export namespace Prisma {
     id: string
     country: string
     region: string
+    department: string
     overallScore: number
     finalThoughts: string
     criterionScores: JsonValue
@@ -2576,6 +2583,7 @@ export namespace Prisma {
     id?: boolean
     country?: boolean
     region?: boolean
+    department?: boolean
     overallScore?: boolean
     finalThoughts?: boolean
     criterionScores?: boolean
@@ -2590,6 +2598,7 @@ export namespace Prisma {
     id?: boolean
     country?: boolean
     region?: boolean
+    department?: boolean
     overallScore?: boolean
     finalThoughts?: boolean
     criterionScores?: boolean
@@ -2602,6 +2611,7 @@ export namespace Prisma {
     id?: boolean
     country?: boolean
     region?: boolean
+    department?: boolean
     overallScore?: boolean
     finalThoughts?: boolean
     criterionScores?: boolean
@@ -2614,6 +2624,7 @@ export namespace Prisma {
     id?: boolean
     country?: boolean
     region?: boolean
+    department?: boolean
     overallScore?: boolean
     finalThoughts?: boolean
     criterionScores?: boolean
@@ -2622,7 +2633,7 @@ export namespace Prisma {
     sectionScores?: boolean
   }
 
-  export type GovernmentSurveyResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "region" | "overallScore" | "finalThoughts" | "criterionScores" | "rawAnswers" | "createdAt" | "sectionScores", ExtArgs["result"]["governmentSurveyResult"]>
+  export type GovernmentSurveyResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "region" | "department" | "overallScore" | "finalThoughts" | "criterionScores" | "rawAnswers" | "createdAt" | "sectionScores", ExtArgs["result"]["governmentSurveyResult"]>
   export type GovernmentSurveyResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     serviceScores?: boolean | GovernmentSurveyResult$serviceScoresArgs<ExtArgs>
     _count?: boolean | GovernmentSurveyResultCountOutputTypeDefaultArgs<ExtArgs>
@@ -2639,6 +2650,7 @@ export namespace Prisma {
       id: string
       country: string
       region: string
+      department: string
       overallScore: number
       finalThoughts: string
       criterionScores: Prisma.JsonValue
@@ -3072,6 +3084,7 @@ export namespace Prisma {
     readonly id: FieldRef<"GovernmentSurveyResult", 'String'>
     readonly country: FieldRef<"GovernmentSurveyResult", 'String'>
     readonly region: FieldRef<"GovernmentSurveyResult", 'String'>
+    readonly department: FieldRef<"GovernmentSurveyResult", 'String'>
     readonly overallScore: FieldRef<"GovernmentSurveyResult", 'Float'>
     readonly finalThoughts: FieldRef<"GovernmentSurveyResult", 'String'>
     readonly criterionScores: FieldRef<"GovernmentSurveyResult", 'Json'>
@@ -5743,6 +5756,7 @@ export namespace Prisma {
     id: 'id',
     country: 'country',
     region: 'region',
+    department: 'department',
     overallScore: 'overallScore',
     finalThoughts: 'finalThoughts',
     criterionScores: 'criterionScores',
@@ -5988,6 +6002,7 @@ export namespace Prisma {
     id?: StringFilter<"GovernmentSurveyResult"> | string
     country?: StringFilter<"GovernmentSurveyResult"> | string
     region?: StringFilter<"GovernmentSurveyResult"> | string
+    department?: StringFilter<"GovernmentSurveyResult"> | string
     overallScore?: FloatFilter<"GovernmentSurveyResult"> | number
     finalThoughts?: StringFilter<"GovernmentSurveyResult"> | string
     criterionScores?: JsonFilter<"GovernmentSurveyResult">
@@ -6001,6 +6016,7 @@ export namespace Prisma {
     id?: SortOrder
     country?: SortOrder
     region?: SortOrder
+    department?: SortOrder
     overallScore?: SortOrder
     finalThoughts?: SortOrder
     criterionScores?: SortOrder
@@ -6017,6 +6033,7 @@ export namespace Prisma {
     NOT?: GovernmentSurveyResultWhereInput | GovernmentSurveyResultWhereInput[]
     country?: StringFilter<"GovernmentSurveyResult"> | string
     region?: StringFilter<"GovernmentSurveyResult"> | string
+    department?: StringFilter<"GovernmentSurveyResult"> | string
     overallScore?: FloatFilter<"GovernmentSurveyResult"> | number
     finalThoughts?: StringFilter<"GovernmentSurveyResult"> | string
     criterionScores?: JsonFilter<"GovernmentSurveyResult">
@@ -6030,6 +6047,7 @@ export namespace Prisma {
     id?: SortOrder
     country?: SortOrder
     region?: SortOrder
+    department?: SortOrder
     overallScore?: SortOrder
     finalThoughts?: SortOrder
     criterionScores?: SortOrder
@@ -6050,6 +6068,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"GovernmentSurveyResult"> | string
     country?: StringWithAggregatesFilter<"GovernmentSurveyResult"> | string
     region?: StringWithAggregatesFilter<"GovernmentSurveyResult"> | string
+    department?: StringWithAggregatesFilter<"GovernmentSurveyResult"> | string
     overallScore?: FloatWithAggregatesFilter<"GovernmentSurveyResult"> | number
     finalThoughts?: StringWithAggregatesFilter<"GovernmentSurveyResult"> | string
     criterionScores?: JsonWithAggregatesFilter<"GovernmentSurveyResult">
@@ -6274,6 +6293,7 @@ export namespace Prisma {
     id?: string
     country: string
     region?: string
+    department?: string
     overallScore: number
     finalThoughts?: string
     criterionScores: JsonNullValueInput | InputJsonValue
@@ -6287,6 +6307,7 @@ export namespace Prisma {
     id?: string
     country: string
     region?: string
+    department?: string
     overallScore: number
     finalThoughts?: string
     criterionScores: JsonNullValueInput | InputJsonValue
@@ -6300,6 +6321,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     overallScore?: FloatFieldUpdateOperationsInput | number
     finalThoughts?: StringFieldUpdateOperationsInput | string
     criterionScores?: JsonNullValueInput | InputJsonValue
@@ -6313,6 +6335,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     overallScore?: FloatFieldUpdateOperationsInput | number
     finalThoughts?: StringFieldUpdateOperationsInput | string
     criterionScores?: JsonNullValueInput | InputJsonValue
@@ -6326,6 +6349,7 @@ export namespace Prisma {
     id?: string
     country: string
     region?: string
+    department?: string
     overallScore: number
     finalThoughts?: string
     criterionScores: JsonNullValueInput | InputJsonValue
@@ -6338,6 +6362,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     overallScore?: FloatFieldUpdateOperationsInput | number
     finalThoughts?: StringFieldUpdateOperationsInput | string
     criterionScores?: JsonNullValueInput | InputJsonValue
@@ -6350,6 +6375,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     overallScore?: FloatFieldUpdateOperationsInput | number
     finalThoughts?: StringFieldUpdateOperationsInput | string
     criterionScores?: JsonNullValueInput | InputJsonValue
@@ -6708,6 +6734,7 @@ export namespace Prisma {
     id?: SortOrder
     country?: SortOrder
     region?: SortOrder
+    department?: SortOrder
     overallScore?: SortOrder
     finalThoughts?: SortOrder
     criterionScores?: SortOrder
@@ -6724,6 +6751,7 @@ export namespace Prisma {
     id?: SortOrder
     country?: SortOrder
     region?: SortOrder
+    department?: SortOrder
     overallScore?: SortOrder
     finalThoughts?: SortOrder
     createdAt?: SortOrder
@@ -6733,6 +6761,7 @@ export namespace Prisma {
     id?: SortOrder
     country?: SortOrder
     region?: SortOrder
+    department?: SortOrder
     overallScore?: SortOrder
     finalThoughts?: SortOrder
     createdAt?: SortOrder
@@ -7235,6 +7264,7 @@ export namespace Prisma {
     id?: string
     country: string
     region?: string
+    department?: string
     overallScore: number
     finalThoughts?: string
     criterionScores: JsonNullValueInput | InputJsonValue
@@ -7247,6 +7277,7 @@ export namespace Prisma {
     id?: string
     country: string
     region?: string
+    department?: string
     overallScore: number
     finalThoughts?: string
     criterionScores: JsonNullValueInput | InputJsonValue
@@ -7275,6 +7306,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     overallScore?: FloatFieldUpdateOperationsInput | number
     finalThoughts?: StringFieldUpdateOperationsInput | string
     criterionScores?: JsonNullValueInput | InputJsonValue
@@ -7287,6 +7319,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
     overallScore?: FloatFieldUpdateOperationsInput | number
     finalThoughts?: StringFieldUpdateOperationsInput | string
     criterionScores?: JsonNullValueInput | InputJsonValue

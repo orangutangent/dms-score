@@ -11,6 +11,7 @@ export type InputType =
   | "text"
   | "location"
   | "sector"
+  | "department"
   | "final-thoughts"
   | "service-template"
   | "scale-service-template"

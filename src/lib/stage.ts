@@ -6,13 +6,13 @@ export type Stage = {
 /**
  * Определение стадии по шкале 0..10.
  * Правила:
- * - < 3.99  => A - Foundation
- * - 4 .. 7.99 => B - Adoption
+ * - < 4  => A - Foundation
+ * - 4 <= .. < 8 => B - Adoption
  * - >= 8 => C - Acceleration
  */
 export function getStage(score0to10: number): Stage {
-  if (score0to10 < 3.99) return { letter: "A", label: "Foundation" };
-  if (score0to10 < 7.99 && score0to10 >= 4)
+  if (score0to10 < 4) return { letter: "A", label: "Foundation" };
+  if (score0to10 < 8 && score0to10 >= 4)
     return { letter: "B", label: "Adoption" };
   return { letter: "C", label: "Acceleration" };
 }

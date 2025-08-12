@@ -73,6 +73,8 @@
   },
   "HardcodedQuestions": {
     "location": "In which country, city, region do you provide DGS for SMEs?",
+    "locationGov": "In which country, city, region do you provide DGS for SMEs?",
+    "locationBusiness": "In which country, city, and region is your SME registered?",
     "sector": "Which department or public sector do you represent?",
     "sectorOptions": {
       "healthcare": "healthcare",

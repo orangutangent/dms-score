@@ -31,7 +31,7 @@ const DigitalMaturityPage = () => {
     id: -1,
     inputType: "location",
     criterion: "Location",
-    question: t("HardcodedQuestions.location"),
+    question: t("HardcodedQuestions.locationBusiness"),
     weight: 0,
   };
 

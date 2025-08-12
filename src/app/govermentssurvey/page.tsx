@@ -30,7 +30,7 @@ const GovermentsSurveyPage = () => {
     id: -1,
     inputType: "location",
     criterion: "Location",
-    question: t("HardcodedQuestions.location"),
+    question: t("HardcodedQuestions.locationGov"),
     weight: 0,
   };
 

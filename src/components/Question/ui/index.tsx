@@ -26,6 +26,7 @@ interface QuestionProps {
   onNext: (answer: Answer) => void;
   onBack: () => void;
   progress: number;
+  surveyType: "business" | "government"; // Add surveyType prop
   // State handlers
   initialAnswer: Answer;
   initialLocation: { country: string; region: string };
@@ -49,6 +50,7 @@ const Question: React.FC<QuestionProps> = ({
   onNext,
   onBack,
   progress,
+  surveyType, // Destructure surveyType
   initialAnswer,
   initialLocation,
   onLocationChange,
@@ -350,6 +352,10 @@ const Question: React.FC<QuestionProps> = ({
       <div>
         <h2 className="text-[1.75rem] font-semibold text-foreground-secondary">
           {(() => {
+            if (surveyType === 'business') {
+              return <>{question.question}</>;
+            }
+
             // Для новых типов МСП опроса показываем только основной вопрос
             if (
               question.inputType === "scale-service-template" ||

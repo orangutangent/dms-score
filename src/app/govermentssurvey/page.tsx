@@ -129,6 +129,7 @@ const GovermentsSurveyPage = () => {
           onNext={customHandleNext}
           onBack={handleBack}
           progress={progress}
+          surveyType="government"
           initialAnswer={initialAnswer}
           initialLocation={location}
           onLocationChange={setLocation}

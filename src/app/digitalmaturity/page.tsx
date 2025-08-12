@@ -154,6 +154,7 @@ const DigitalMaturityPage = () => {
           onNext={customHandleNext}
           onBack={handleBack}
           progress={progress}
+          surveyType="business"
           initialAnswer={initialAnswer}
           initialLocation={location}
           onLocationChange={setLocation}

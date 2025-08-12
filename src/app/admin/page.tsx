@@ -9,7 +9,8 @@ import { GOVERNMENT_COLORS, BUSINESS_COLORS } from "@/config/colors";
 import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
 import { CountryStats, SurveyStats } from "@/api/admin-stats-api";
 import { ServiceCode, SERVICES } from "@/config/services";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { LocalizedString } from "@/components/Question/model/types";
 
 const AdminPage = () => {
   const t = useTranslations("AdminPage"); // Added a comment to force recompile
@@ -18,6 +19,8 @@ const AdminPage = () => {
   const [activeTab, setActiveTab] = useState<"government" | "digitalMaturity">(
     "government"
   );
+
+  const locale = useLocale();
 
   useEffect(() => {
     if (stats && Object.keys(stats).length > 0 && !selectedCountry) {
@@ -114,7 +117,9 @@ const AdminPage = () => {
         .map(([serviceCode, serviceData]) => ({
           code: serviceCode,
           label:
-            SERVICES.find((s) => s.code === serviceCode)?.label || serviceCode,
+            SERVICES.find((s) => s.code === serviceCode)?.label[
+              locale as keyof LocalizedString
+            ] || serviceCode,
           average: serviceData.average,
           count: serviceData.count,
         }));
@@ -217,13 +222,20 @@ const AdminPage = () => {
         countryData.digitalMaturityByService
       )
         .filter(([, serviceData]) => (serviceData as SurveyStats).count > 0)
-        .map(([serviceCode, serviceData]) => ({
-          code: serviceCode,
-          label:
-            SERVICES.find((s) => s.code === serviceCode)?.label || serviceCode,
-          average: (serviceData as SurveyStats).average,
-          count: (serviceData as SurveyStats).count,
-        }));
+        .map(([serviceCode, serviceData]) => {
+          const service = SERVICES.find((s) => s.code === serviceCode);
+          const label = service?.label
+            ? typeof service.label === "object"
+              ? service.label[locale as keyof typeof service.label]
+              : service.label
+            : serviceCode;
+          return {
+            code: serviceCode,
+            label: label,
+            average: (serviceData as SurveyStats).average,
+            count: (serviceData as SurveyStats).count,
+          };
+        });
 
       return (
         <div className="grid grid-cols-1 w-full lg:grid-cols-2 gap-6 mt-6">

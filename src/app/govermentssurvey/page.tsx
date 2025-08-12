@@ -5,7 +5,6 @@ import { useSurvey } from "../../components/Question/data-access/useSurvey";
 import Question from "../../components/Question";
 import {
   Question as QuestionType,
-  UnlocalizedQuestion as UnlocalizedQuestionType,
   Answer,
 } from "../../components/Question/model/types";
 import questionsData from "../../govermentssurvey.json";

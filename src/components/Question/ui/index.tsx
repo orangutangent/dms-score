@@ -6,10 +6,14 @@ import Radio from "../../ui/Radio";
 import Textarea from "../../ui/Textarea";
 import ScaleServiceTemplateInput from "./ScaleServiceTemplateInput";
 import YesNoServiceTemplateInput from "./YesNoServiceTemplateInput";
-import { Question as QuestionType, Answer } from "../model/types";
+import {
+  Question as QuestionType,
+  Answer,
+  LocalizedString,
+} from "../model/types";
 import { SERVICE_MAP, type ServiceCode } from "@/config/services";
 import { calculateRadioScore, calculateScaleScore } from "@/lib/scoring";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type {
   GovernmentSurveyResponseDTO,
   BusinessSurveyResponseDTO,
@@ -58,6 +62,8 @@ const Question: React.FC<QuestionProps> = ({
 }) => {
   const t = useTranslations("QuestionComponent");
   const [answer, setAnswer] = useState<Answer>(initialAnswer);
+
+  const locale = useLocale();
 
   useEffect(() => {
     setAnswer(initialAnswer);
@@ -364,7 +370,7 @@ const Question: React.FC<QuestionProps> = ({
                 <>
                   {q}{" "}
                   <span style={{ color: info.color, fontWeight: 700 }}>
-                    {info.label}
+                    {info.label[locale as keyof LocalizedString]}
                   </span>
                 </>
               );
@@ -375,7 +381,7 @@ const Question: React.FC<QuestionProps> = ({
               <>
                 {before}{" "}
                 <span style={{ color: info.color, fontWeight: 700 }}>
-                  {info.label}
+                  {info.label[locale as keyof LocalizedString]}
                 </span>
                 {after}
               </>

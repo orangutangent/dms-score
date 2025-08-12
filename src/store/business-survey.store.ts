@@ -8,15 +8,24 @@ interface LocationState {
   region: string;
 }
 
+interface ContactsState {
+  name: string;
+  affiliation: string;
+  email: string;
+  tel: string;
+}
+
 interface BusinessSurveyState {
   responses: BusinessSurveyResponseDTO[];
   location: LocationState;
   sector: string;
   finalThoughts: string;
+  contacts: ContactsState;
   setResponse: (response: BusinessSurveyResponseDTO) => void;
   setLocation: (location: LocationState) => void;
   setSector: (sector: string) => void;
   setFinalThoughts: (thoughts: string) => void;
+  setContacts: (contacts: ContactsState) => void;
   clearResponses: () => void;
 }
 
@@ -27,6 +36,7 @@ export const useBusinessSurveyStore = create<BusinessSurveyState>()(
       location: { country: "", region: "" },
       sector: "",
       finalThoughts: "",
+      contacts: { name: "", affiliation: "", email: "", tel: "" },
       setResponse: (response) =>
         set((state) => {
           const existingIndex = state.responses.findIndex(
@@ -47,7 +57,8 @@ export const useBusinessSurveyStore = create<BusinessSurveyState>()(
       setLocation: (location) => set({ location }),
       setSector: (sector) => set({ sector }),
       setFinalThoughts: (thoughts) => set({ finalThoughts: thoughts }),
-      clearResponses: () => set({ responses: [] }),
+      setContacts: (contacts) => set({ contacts }),
+      clearResponses: () => set({ responses: [], contacts: { name: "", affiliation: "", email: "", tel: "" } }),
     }),
     {
       name: "dms-business-survey-storage",

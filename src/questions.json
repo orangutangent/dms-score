@@ -11,21 +11,21 @@
       {
         "value": "0",
         "label": {
-          "ru": "Интернет часто не работает или очень медленный, с частыми перебоями; онлайн-работа невозможна.",
+          "ru": "Интернет часто не работает или очень медленный, возникают частые перебои, работа в цифровом формате невозможна.",
           "en": "The internet often does not work or is very slow, with frequent outages; online work is impossible."
         }
       },
       {
         "value": "1",
         "label": {
-          "ru": "Интернет нестабильный, с низкой скоростью и частыми отключениями.",
+          "ru": "Интернет нестабильный, скорость низкая, часто прерывается соединение.",
           "en": "The internet is unstable, with low speed and frequent disconnections."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Интернет в целом работает, но есть нестабильность и низкая скорость в пиковые часы.",
+          "ru": "Интернет в целом работает, но бывает нестабильность, низкая скорость в часы пик.",
           "en": "The internet generally works, but there is instability and low speed during peak hours."
         }
       },
@@ -39,14 +39,14 @@
       {
         "value": "4",
         "label": {
-          "ru": "Интернет быстрый и надежный, подходит для всех видов онлайн-работы, но без резервного подключения.",
+          "ru": "Интернет быстрый, надёжный, подходит для всех видов работы в цифровом формате, но без резервного подключения.",
           "en": "The internet is fast and reliable, suitable for all types of online work, but without backup connectivity."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Интернет высокоскоростной и стабильный, с резервным каналом на случай сбоев.",
+          "ru": "Интернет очень быстрый и стабильный, есть резервный канал на случай сбоев",
           "en": "The internet is high-speed and stable, with a backup channel in case of failures."
         }
       }
@@ -72,42 +72,42 @@
       {
         "value": "0",
         "label": {
-          "ru": "Каждый отдел работает независимо, используя свои таблицы/документы; данные не синхронизируются.",
-          "en": "Each department works independently, using its spreadsheets/documents; data is not synchronised."
+          "ru": "Каждый отдел работает обособленно, использует свои таблицы/документы, данные не синхронизированы.",
+          "en": "Each department operates independently, using separate spreadsheets/documents without data synchronisation."
         }
       },
       {
         "value": "1",
         "label": {
-          "ru": "Некоторые отделы обмениваются файлами вручную (по электронной почте или через мессенджеры), что часто приводит к ошибкам или дублированию.",
+          "ru": "Некоторые отделы обмениваются файлами вручную, используя разные цифровые каналы (по почте или через мессенджеры), что часто вызывает ошибки или дубли.",
           "en": "Some departments exchange files manually (by email or messengers), often causing errors or duplication."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Отделы используют разные специализированные программы; передача данных возможна, но требует ручного ввода или координации.",
+          "ru": "Отделы используют разные специализированные программы, передача данных между ними возможна, но требует ручного переноса или согласования.",
           "en": "Departments use different specialised programs; data transfer is possible but requires manual re-entry or coordination."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Существует частичная интеграция между отделами через локальные или облачные решения, но не все процессы автоматизированы.",
+          "ru": "Между отделами есть частичная интеграция через локальные или облачные решения, но не все процессы автоматизированы.",
           "en": "There is partial integration between departments through local or cloud solutions, but not all processes are automated."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Отделы используют единую систему, но некоторые данные все еще требуют ручного ввода или подтверждения.",
-          "en": "Departments use a unified system, but some data still requires manual entry or confirmation."
+          "ru": "Отделы используют единую систему, но некоторые данные всё ещё требуют ручного ввода или подтверждения.",
+          "en": "Departments use a unified system, but some data still requires manual entry or verification."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Все отделы работают в единой цифровой системе с доступом к данным в реальном времени и автоматическим обменом без дублирования.",
+          "ru": "Все отделы работают в единой цифровой системе, данные доступны в режиме реального времени, автоматический обмен без дублирования.",
           "en": "All departments work in a single digital system, with real-time data availability and automatic exchange without duplication."
         }
       }
@@ -126,49 +126,49 @@
     "criterion": "ONLINE_PRESENCE_LEVEL",
     "inputType": "radio",
     "question": {
-      "ru": "Какую долю заказов ваша организация получает через онлайн-каналы (веб-сайт, социальные сети и т.д.), по вашим оценкам?",
-      "en": "What proportion of orders does your organisation receive through online channels (website, social networks, etc.), according to your estimates?"
+      "ru": "Какую долю заказов ваша организации получает через онлайн-каналы (веб-сайт, соцсети и др.), по вашим оценкам?",
+      "en": "Approximately what percentage of your orders come through online channels (website, social media, etc.)?"
     },
     "options": [
       {
         "value": "0",
         "label": {
-          "ru": "0–20% заказов поступает через онлайн-каналы; основной поток — офлайн, по телефону или лично.",
+          "ru": "0–20% заказов приходят через онлайн-каналы, основной поток — офлайн, по телефону или лично.",
           "en": "0–20% of orders come through online channels; the main flow is offline, by phone, or in person."
         }
       },
       {
         "value": "1",
         "label": {
-          "ru": "20–40% заказов — онлайн, но большинство по-прежнему офлайн.",
+          "ru": "20–40% заказов поступают онлайн, но основная часть всё ещё офлайн.",
           "en": "20–40% of orders are online, but the majority are still offline."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "40–60% заказов — через онлайн-каналы, что свидетельствует о заметном сдвиге в сторону цифровых продаж.",
+          "ru": "40–60% заказов поступают через онлайн-каналы, заметный переход к цифровым продажам.",
           "en": "40–60% of orders are through online channels, indicating a noticeable shift to digital sales."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "60–80% заказов — онлайн; офлайн-источники играют второстепенную роль.",
+          "ru": "60–80% заказов онлайн, офлайн-заказы играют второстепенную роль.",
           "en": "60–80% of orders are online; offline sources play a secondary role."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "80–95% заказов поступает через веб-сайт, социальные сети или мессенджеры; офлайн почти не используется.",
+          "ru": "80–95% заказов приходят через сайт, соцсети или мессенджеры, офлайн почти не используется.",
           "en": "80–95% of orders come through the website, social networks, or messengers; offline is almost unused."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "95–100% заказов размещаются онлайн; все продажи полностью цифровые.",
+          "ru": "95–100% заказов оформляются онлайн, все продажи полностью цифровые.",
           "en": "95–100% of orders are placed online; all sales are fully digital."
         }
       }
@@ -187,49 +187,49 @@
     "criterion": "ONLINE_PRESENCE_LEVEL",
     "inputType": "radio",
     "question": {
-      "ru": "Могут ли клиенты разместить заказ, запросить услугу или получить поддержку без звонка, круглосуточно (через чат-бота или онлайн-форму)?",
-      "en": "Can clients place an order, request a service, or receive support without calling, 24/7 (via chatbot or online form)?"
+      "ru": "Могут ли клиенты оформить заказ, услугу или получить поддержку без звонка, в режиме 24/7 (через чат-бот, онлайн-форму)?",
+      "en": "Can clients place orders, request services, or receive support 24/7 without calling (e.g., via chatbot or online form)?"
     },
     "options": [
       {
         "value": "0",
         "label": {
-          "ru": "Заказы или поддержка возможны только по телефону и только в рабочее время.",
+          "ru": "Заказ или поддержка возможны только по телефону и только в рабочее время.",
           "en": "Orders or support are possible only by phone and only during working hours."
         }
       },
       {
         "value": "1",
         "label": {
-          "ru": "Можно написать через мессенджер или по электронной почте, но ответы предоставляются только в рабочее время.",
+          "ru": "Есть возможность написать в мессенджер или на e-mail, но ответы предоставляются только в рабочие часы.",
           "en": "It is possible to write via Messenger or email, but replies are provided only during working hours."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Есть онлайн-форма или чат-бот, но они работают в ограниченном режиме, без автоматизации.",
+          "ru": "Есть онлайн-форма или чат-бот, но они работают ограниченно, без автоматизации.",
           "en": "There is an online form or chatbot, but they operate in a limited capacity, without automation."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Реализованы базовые элементы самообслуживания (чат-бот, шаблонные ответы), но не все вопросы можно решить без оператора.",
+          "ru": "Внедрены базовые элементы самообслуживания (чат-бот, шаблоны ответов), но не все вопросы можно решить без оператора.",
           "en": "Basic self-service elements (chatbot, template replies) are implemented, but not all issues can be resolved without an operator."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Клиенты могут разместить заказ и получить базовую поддержку круглосуточно; сложные вопросы обрабатываются позже.",
+          "ru": "Клиенты могут оформить заказ и получить базовую поддержку 24/7, сложные вопросы обрабатываются позже.",
           "en": "Clients can place an order and receive basic support 24/7; complex issues are processed later."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Полностью автоматизированная система самообслуживания: заказы и поддержка доступны круглосуточно без участия персонала.",
+          "ru": "Полностью автоматизированная система самообслуживания: заказы и поддержка доступны круглосуточно без участия сотрудников.",
           "en": "Fully automated self-service system: orders and support are available round-the-clock without staff involvement."
         }
       }
@@ -248,49 +248,49 @@
     "criterion": "DATA_MANAGEMENT_LEVEL",
     "inputType": "radio",
     "question": {
-      "ru": "Насколько легко вашей компании получать актуальные данные о продажах, затратах и прибыли «в один клик»?",
-      "en": "How easy is it for your company to obtain up-to-date data on sales, costs, and profits “in one click”?"
+      "ru": "Насколько легко в вашей организации получить актуальные данные о продажах, затратах и прибыли “в один клик”?",
+      "en": "How easily can your company access up-to-date sales, cost, and profit data with a single click?"
     },
     "options": [
       {
         "value": "0",
         "label": {
-          "ru": "Данные собираются вручную из разных источников, что создает высокий риск ошибок и задержек.",
+          "ru": "Данные собираются вручную из разных источников, высока вероятность ошибок и задержек.",
           "en": "Data is collected manually from different sources, which poses a high risk of errors and delays."
         }
       },
       {
         "value": "1",
         "label": {
-          "ru": "Существуют частично автоматизированные таблицы, но требуется ручной ввод и сверка.",
+          "ru": "Есть частично автоматизированные таблицы, требуется ручной ввод и сверка данных.",
           "en": "Partially automated spreadsheets exist, but manual entry and reconciliation are required."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Используются разные цифровые инструменты, но нет единого представления; анализ требует переключения между системами.",
+          "ru": "Используются разные цифровые инструменты, но нет единого представления: для анализа нужно переключаться между системами.",
           "en": "Different digital tools are used, but there is no single view; analysis requires switching between systems."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Существует базовая система дашбордов, но охвачены не все показатели.",
+          "ru": "Имеется базовая дашборд-система, но не все показатели в ней охвачены.",
           "en": "A basic dashboard system exists, but not all indicators are covered."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Есть централизованная панель мониторинга; большинство данных поступает автоматически, но обновляется с задержками.",
+          "ru": "Есть централизованная панель мониторинга, большинство данных поступает автоматически, обновляется с задержкой.",
           "en": "There is a centralised monitoring panel; most data is fed automatically, but updated with delays."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Все ключевые финансовые и операционные данные доступны в автоматически обновляемом дашборде в реальном времени.",
+          "ru": "Все ключевые финансовые и операционные данные доступны на автоматически обновляемой панели в реальном времени.",
           "en": "All key financial and operational data are available in an automatically updated real-time dashboard."
         }
       }
@@ -310,13 +310,13 @@
     "inputType": "radio",
     "question": {
       "ru": "Используете ли вы данные о клиентах для персонализированных предложений или улучшения продукта?",
-      "en": "Do you use customer data for personalised offers or product improvement?"
+      "en": "Do you use customer data to personalise offers or improve products/services?"
     },
     "options": [
       {
         "value": "0",
         "label": {
-          "ru": "Данные о клиентах не собираются и не анализируются.",
+          "ru": "Данные клиентов не собираются и не анализируются.",
           "en": "Customer data is not collected or analysed."
         }
       },
@@ -330,28 +330,28 @@
       {
         "value": "2",
         "label": {
-          "ru": "Данные используются для базовой сегментации (например, по полу, возрасту, региону).",
+          "ru": "Данные используются для базового разделения базы клиента (например, по полу, возрасту, региону).",
           "en": "Data is used for basic segmentation (e.g., by gender, age, region)."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Клиентам направляются персонализированные предложения на основе истории покупок или поведения.",
+          "ru": "Клиентам отправляются персонализированные предложения, основанные на истории покупок или истории поиска.",
           "en": "Customers receive personalised offers based on purchase history or behaviour."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Анализ данных регулярно адаптирует продукт/услугу к потребностям клиентов.",
+          "ru": "Анализ данных позволяет регулярно адаптировать продукт/услугу под нужды клиентов.",
           "en": "Data analysis regularly adapts the product/service to customer needs."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Для глубокой персонализации и улучшения продукта используются инструменты машинного обучения или ИИ.",
+          "ru": "Используются инструменты машинного обучения или технологии ИИ для более глубокой персонализации предложений и улучшения качества продукта/услуги.",
           "en": "Machine learning or AI tools are used for deep personalisation and product improvement."
         }
       }
@@ -371,48 +371,48 @@
     "inputType": "radio",
     "question": {
       "ru": "Насколько хорошо защищены данные и устройства в вашей организации (антивирус, резервное копирование)?",
-      "en": "How well are data and devices in your organisation protected (antivirus, backups)?"
+      "en": "How well are your organisation’s data and devices protected (e.g., antivirus, backups)?"
     },
     "options": [
       {
         "value": "0",
         "label": {
-          "ru": "Устройства не защищены; антивирус и резервное копирование отсутствуют.",
+          "ru": "Устройства не защищены, антивирус и резервное копирование отсутствуют.",
           "en": "Devices are not protected; antivirus and backups are absent."
         }
       },
       {
         "value": "1",
         "label": {
-          "ru": "Базовый антивирус установлен на некоторых устройствах; резервное копирование создается вручную и нерегулярно.",
+          "ru": "Базовый антивирус установлен на некоторых устройствах, копии данных создаются вручную и нерегулярно.",
           "en": "Basic antivirus is installed on some devices; backups are created manually and irregularly."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "Антивирус установлен на всех устройствах, но резервное копирование не автоматизировано.",
+          "ru": "Антивирус есть на всех устройствах, но резервное копирование не автоматизировано.",
           "en": "Antivirus is installed on all devices, but backups are not automated."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Защита и автоматическое резервное копирование настроены на большинстве устройств, но не централизованно.",
+          "ru": "Антивирусная защита и автоматическое копирование настроены на большинстве устройств, но система не централизована.",
           "en": "Protection and automatic backups are set up on most devices, but not centrally."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Существует централизованная защита и автоматическое резервное копирование, но они не охватывают все устройства или не обновляются регулярно.",
+          "ru": "Централизованная антивирусная защита и автоматические резервные копии есть, но покрывают не все устройства или не обновляются регулярно.",
           "en": "Centralised protection and automatic backups exist, but do not cover all devices or are not updated regularly."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Все устройства подключены к централизованной системе безопасности; обновления антивируса устанавливаются автоматически; данные регулярно и надежно резервируются.",
+          "ru": "Все устройства подключены к централизованной системе безопасности, антивирус обновляется автоматически, данные регулярно и надёжно копируются.",
           "en": "All devices are connected to a centralised security system; antivirus updates are automatically installed; data is regularly and reliably backed up."
         }
       }
@@ -431,49 +431,49 @@
     "criterion": "OPERATIONAL_LEVEL",
     "inputType": "radio",
     "question": {
-      "ru": "Насколько автоматизированы рутинные задачи в вашей организации (выставление счетов, уведомления, учет запасов и т.д.)?",
-      "en": "How automated are routine tasks in your organisation (invoicing, notifications, inventory tracking, etc.)?"
+      "ru": "Насколько автоматизированы рутинные задачи в вашей организации (выставление счетов, уведомления, учёт запасов и т.д.)?",
+      "en": "To what extent are routine tasks (invoicing, notifications, inventory tracking, etc.) automated in your organisation?"
     },
     "options": [
       {
         "value": "0",
         "label": {
-          "ru": "Все задачи выполняются вручную, без цифровых инструментов.",
+          "ru": "Все задачи выполняются вручную, без использования цифровых инструментов.",
           "en": "All tasks are done manually, without digital tools."
         }
       },
       {
         "value": "1",
         "label": {
-          "ru": "Некоторые задачи автоматизированы (например, напоминания), но большинство — вручную.",
+          "ru": "Некоторые задачи автоматизированы (например, напоминания), но основная часть выполняется вручную.",
           "en": "Some tasks are automated (e.g., reminders), but most are manual."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "До 40% задач автоматизированы с использованием простых инструментов.",
+          "ru": "Автоматизировано до 40% задач, используются простые инструменты",
           "en": "Up to 40% of tasks are automated, using simple tools."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "Используется специализированное программное обеспечение; автоматизация охватывает около половины рутинных процессов.",
+          "ru": "Используются специализированные программы, автоматизация охватывает около половины рутинных процессов.",
           "en": "Specialised software is used; automation covers about half of routine processes."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "Большинство задач (60–80%) автоматизированы с помощью CRM, ERP или других систем.",
+          "ru": "Большинство задач (60–80%) автоматизировано с помощью CRM, ERP или других систем.",
           "en": "Most tasks (60–80%) are automated using CRM, ERP, or other systems."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Более 80% рутинных задач выполняются автоматически; процессы полностью структурированы и требуют минимального вмешательства человека.",
+          "ru": "Более 80% рутинных задач выполняются автоматически, процессы полностью выстроены и требуют минимального участия человека.",
           "en": "More than 80% of routine tasks are performed automatically; processes are fully structured and require minimal human intervention."
         }
       }
@@ -493,14 +493,29 @@
     "inputType": "radio",
     "service": "OPEN_BUSINESS",
     "question": {
-      "ru": "Удобно ли пользоваться цифровой государственной услугой (ЦГУ) по открытию бизнеса?",
+      "ru": "Удобно ли пользоваться цифровой  государственной услугой (ЦГУ) по открытию бизнеса?",
       "en": "Is it convenient to use the Digital Government Service (DPS) for opening a business?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 1, "no": 0 }
+    "scoring": {
+      "yes": 1,
+      "no": 0
+    }
   },
   {
     "id": 10,
@@ -508,14 +523,29 @@
     "inputType": "radio",
     "service": "OPEN_BUSINESS",
     "question": {
-      "ru": "Требуется ли ваше физическое присутствие для открытия бизнеса через ЦГУ?",
-      "en": "Is your physical presence required to open a business via DPS?"
+      "ru": "Необходимо ли Ваше физическое присутствие для получения ЦГУ по открытию бизнеса",
+      "en": "Is physical presence required to open a business through the DPS?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 0, "no": 1 }
+    "scoring": {
+      "yes": 0,
+      "no": 1
+    }
   },
   {
     "id": 11,
@@ -523,14 +553,29 @@
     "inputType": "radio",
     "service": "OPEN_BUSINESS",
     "question": {
-      "ru": "Есть ли доступ к онлайн-инструкциям или помощи при использовании услуги ЦГУ по открытию бизнеса?",
+      "ru": "Имеется ли доступ к онлайн-инструкциям ЦГУ  или помощь при использовании услуги по открытию бизнеса?",
       "en": "Is there access to online instructions or assistance for using the DPS business opening service?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 1, "no": 0 }
+    "scoring": {
+      "yes": 1,
+      "no": 0
+    }
   },
   {
     "id": 12,
@@ -538,14 +583,29 @@
     "inputType": "radio",
     "service": "REGISTER_SME",
     "question": {
-      "ru": "Удобно ли пользоваться услугой ЦГУ для регистрации МСП?",
+      "ru": "Удобно ли пользоваться цифровой  государственной услугой (ЦГУ) по регистрации в качестве МСП",
       "en": "Is it convenient to use the DPS service for registering an SME?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 1, "no": 0 }
+    "scoring": {
+      "yes": 1,
+      "no": 0
+    }
   },
   {
     "id": 13,
@@ -553,14 +613,29 @@
     "inputType": "radio",
     "service": "REGISTER_SME",
     "question": {
-      "ru": "Требуется ли ваше физическое присутствие для регистрации в качестве МСП?",
+      "ru": "Нужно ли Ваше физическое присутствие для получения ЦГУ по регистрации в качестве МСП?",
       "en": "Is your physical presence required to register as an SME?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 0, "no": 1 }
+    "scoring": {
+      "yes": 0,
+      "no": 1
+    }
   },
   {
     "id": 14,
@@ -568,14 +643,29 @@
     "inputType": "radio",
     "service": "REGISTER_SME",
     "question": {
-      "ru": "Имеется ли у вас доступ к онлайн-инструкциям или помощи по регистрации в качестве МСП?",
+      "ru": "Имеется ли у вас доступ к онлайн-инструкциям ЦГУ или помощи по регистрации в качестве МСП?",
       "en": "Do you have access to online instructions or assistance for SME registration?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 1, "no": 0 }
+    "scoring": {
+      "yes": 1,
+      "no": 0
+    }
   },
   {
     "id": 15,
@@ -583,14 +673,29 @@
     "inputType": "radio",
     "service": "APPLY_SUPPORT",
     "question": {
-      "ru": "Пользуетесь ли вы ЦГУ при получении кредитной или грантовой поддержки?",
+      "ru": "Пользуетесь ли вы ЦГУ при получении кредитно-грантовой поддержки?",
       "en": "Do you use DPS when obtaining credit or grant support?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 1, "no": 0 }
+    "scoring": {
+      "yes": 1,
+      "no": 0
+    }
   },
   {
     "id": 16,
@@ -598,14 +703,29 @@
     "inputType": "radio",
     "service": "APPLY_SUPPORT",
     "question": {
-      "ru": "Требуется ли ваше физическое присутствие для получения государственной цифровой услуги по кредитной/грантовой поддержке?",
+      "ru": "Необходимо ли ваше физическое присутствие для получения цифровой услуги государства по кредитно-грантовой поддержки?",
       "en": "Is your physical presence required to receive the government’s digital service for credit/grant support?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 0, "no": 1 }
+    "scoring": {
+      "yes": 0,
+      "no": 1
+    }
   },
   {
     "id": 17,
@@ -613,13 +733,28 @@
     "inputType": "radio",
     "service": "APPLY_SUPPORT",
     "question": {
-      "ru": "Был ли у вас доступ к онлайн-инструкциям или помощи по получению кредитной/грантовой поддержки?",
+      "ru": "Был ли у вас доступ к онлайн-инструкциям или помощи по получению кредитно-грантовой поддержки",
       "en": "Did you have access to online instructions or assistance for obtaining credit/grant support?"
     },
     "options": [
-      { "value": "yes", "label": { "ru": "Да", "en": "Yes" } },
-      { "value": "no", "label": { "ru": "Нет", "en": "No" } }
+      {
+        "value": "yes",
+        "label": {
+          "ru": "Да",
+          "en": "Yes"
+        }
+      },
+      {
+        "value": "no",
+        "label": {
+          "ru": "Нет",
+          "en": "No"
+        }
+      }
     ],
-    "scoring": { "yes": 1, "no": 0 }
+    "scoring": {
+      "yes": 1,
+      "no": 0
+    }
   }
 ]

@@ -14,6 +14,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model ContactInfo
+ * 
+ */
+export type ContactInfo = $Result.DefaultSelection<Prisma.$ContactInfoPayload>
+/**
  * Model DigitalMaturitySurveyResult
  * 
  */
@@ -41,8 +46,8 @@ export type DigitalMaturitySurveyServiceScore = $Result.DefaultSelection<Prisma.
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more DigitalMaturitySurveyResults
- * const digitalMaturitySurveyResults = await prisma.digitalMaturitySurveyResult.findMany()
+ * // Fetch zero or more ContactInfos
+ * const contactInfos = await prisma.contactInfo.findMany()
  * ```
  *
  *
@@ -62,8 +67,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more DigitalMaturitySurveyResults
-   * const digitalMaturitySurveyResults = await prisma.digitalMaturitySurveyResult.findMany()
+   * // Fetch zero or more ContactInfos
+   * const contactInfos = await prisma.contactInfo.findMany()
    * ```
    *
    *
@@ -160,6 +165,16 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.contactInfo`: Exposes CRUD operations for the **ContactInfo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContactInfos
+    * const contactInfos = await prisma.contactInfo.findMany()
+    * ```
+    */
+  get contactInfo(): Prisma.ContactInfoDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.digitalMaturitySurveyResult`: Exposes CRUD operations for the **DigitalMaturitySurveyResult** model.
     * Example usage:
     * ```ts
@@ -638,6 +653,7 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    ContactInfo: 'ContactInfo',
     DigitalMaturitySurveyResult: 'DigitalMaturitySurveyResult',
     GovernmentSurveyResult: 'GovernmentSurveyResult',
     GovernmentSurveyServiceScore: 'GovernmentSurveyServiceScore',
@@ -660,10 +676,84 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "digitalMaturitySurveyResult" | "governmentSurveyResult" | "governmentSurveyServiceScore" | "digitalMaturitySurveyServiceScore"
+      modelProps: "contactInfo" | "digitalMaturitySurveyResult" | "governmentSurveyResult" | "governmentSurveyServiceScore" | "digitalMaturitySurveyServiceScore"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      ContactInfo: {
+        payload: Prisma.$ContactInfoPayload<ExtArgs>
+        fields: Prisma.ContactInfoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContactInfoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContactInfoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          findFirst: {
+            args: Prisma.ContactInfoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContactInfoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          findMany: {
+            args: Prisma.ContactInfoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>[]
+          }
+          create: {
+            args: Prisma.ContactInfoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          createMany: {
+            args: Prisma.ContactInfoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContactInfoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>[]
+          }
+          delete: {
+            args: Prisma.ContactInfoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          update: {
+            args: Prisma.ContactInfoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContactInfoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContactInfoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContactInfoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContactInfoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInfoPayload>
+          }
+          aggregate: {
+            args: Prisma.ContactInfoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContactInfo>
+          }
+          groupBy: {
+            args: Prisma.ContactInfoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactInfoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContactInfoCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactInfoCountAggregateOutputType> | number
+          }
+        }
+      }
       DigitalMaturitySurveyResult: {
         payload: Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs>
         fields: Prisma.DigitalMaturitySurveyResultFieldRefs
@@ -1052,6 +1142,7 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    contactInfo?: ContactInfoOmit
     digitalMaturitySurveyResult?: DigitalMaturitySurveyResultOmit
     governmentSurveyResult?: GovernmentSurveyResultOmit
     governmentSurveyServiceScore?: GovernmentSurveyServiceScoreOmit
@@ -1215,6 +1306,1149 @@ export namespace Prisma {
   /**
    * Models
    */
+
+  /**
+   * Model ContactInfo
+   */
+
+  export type AggregateContactInfo = {
+    _count: ContactInfoCountAggregateOutputType | null
+    _min: ContactInfoMinAggregateOutputType | null
+    _max: ContactInfoMaxAggregateOutputType | null
+  }
+
+  export type ContactInfoMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    affiliation: string | null
+    email: string | null
+    tel: string | null
+    digitalMaturityResultId: string | null
+    governmentResultId: string | null
+    createdAt: Date | null
+  }
+
+  export type ContactInfoMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    affiliation: string | null
+    email: string | null
+    tel: string | null
+    digitalMaturityResultId: string | null
+    governmentResultId: string | null
+    createdAt: Date | null
+  }
+
+  export type ContactInfoCountAggregateOutputType = {
+    id: number
+    name: number
+    affiliation: number
+    email: number
+    tel: number
+    digitalMaturityResultId: number
+    governmentResultId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ContactInfoMinAggregateInputType = {
+    id?: true
+    name?: true
+    affiliation?: true
+    email?: true
+    tel?: true
+    digitalMaturityResultId?: true
+    governmentResultId?: true
+    createdAt?: true
+  }
+
+  export type ContactInfoMaxAggregateInputType = {
+    id?: true
+    name?: true
+    affiliation?: true
+    email?: true
+    tel?: true
+    digitalMaturityResultId?: true
+    governmentResultId?: true
+    createdAt?: true
+  }
+
+  export type ContactInfoCountAggregateInputType = {
+    id?: true
+    name?: true
+    affiliation?: true
+    email?: true
+    tel?: true
+    digitalMaturityResultId?: true
+    governmentResultId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ContactInfoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactInfo to aggregate.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContactInfos
+    **/
+    _count?: true | ContactInfoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContactInfoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContactInfoMaxAggregateInputType
+  }
+
+  export type GetContactInfoAggregateType<T extends ContactInfoAggregateArgs> = {
+        [P in keyof T & keyof AggregateContactInfo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContactInfo[P]>
+      : GetScalarType<T[P], AggregateContactInfo[P]>
+  }
+
+
+
+
+  export type ContactInfoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactInfoWhereInput
+    orderBy?: ContactInfoOrderByWithAggregationInput | ContactInfoOrderByWithAggregationInput[]
+    by: ContactInfoScalarFieldEnum[] | ContactInfoScalarFieldEnum
+    having?: ContactInfoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContactInfoCountAggregateInputType | true
+    _min?: ContactInfoMinAggregateInputType
+    _max?: ContactInfoMaxAggregateInputType
+  }
+
+  export type ContactInfoGroupByOutputType = {
+    id: string
+    name: string
+    affiliation: string
+    email: string
+    tel: string | null
+    digitalMaturityResultId: string | null
+    governmentResultId: string | null
+    createdAt: Date
+    _count: ContactInfoCountAggregateOutputType | null
+    _min: ContactInfoMinAggregateOutputType | null
+    _max: ContactInfoMaxAggregateOutputType | null
+  }
+
+  type GetContactInfoGroupByPayload<T extends ContactInfoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactInfoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContactInfoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactInfoGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactInfoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContactInfoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    affiliation?: boolean
+    email?: boolean
+    tel?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
+    createdAt?: boolean
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
+  }, ExtArgs["result"]["contactInfo"]>
+
+  export type ContactInfoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    affiliation?: boolean
+    email?: boolean
+    tel?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
+    createdAt?: boolean
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
+  }, ExtArgs["result"]["contactInfo"]>
+
+  export type ContactInfoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    affiliation?: boolean
+    email?: boolean
+    tel?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
+    createdAt?: boolean
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
+  }, ExtArgs["result"]["contactInfo"]>
+
+  export type ContactInfoSelectScalar = {
+    id?: boolean
+    name?: boolean
+    affiliation?: boolean
+    email?: boolean
+    tel?: boolean
+    digitalMaturityResultId?: boolean
+    governmentResultId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ContactInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "affiliation" | "email" | "tel" | "digitalMaturityResultId" | "governmentResultId" | "createdAt", ExtArgs["result"]["contactInfo"]>
+  export type ContactInfoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
+  }
+  export type ContactInfoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
+  }
+  export type ContactInfoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    digitalMaturityResult?: boolean | ContactInfo$digitalMaturityResultArgs<ExtArgs>
+    governmentResult?: boolean | ContactInfo$governmentResultArgs<ExtArgs>
+  }
+
+  export type $ContactInfoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContactInfo"
+    objects: {
+      digitalMaturityResult: Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs> | null
+      governmentResult: Prisma.$GovernmentSurveyResultPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      affiliation: string
+      email: string
+      tel: string | null
+      digitalMaturityResultId: string | null
+      governmentResultId: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["contactInfo"]>
+    composites: {}
+  }
+
+  type ContactInfoGetPayload<S extends boolean | null | undefined | ContactInfoDefaultArgs> = $Result.GetResult<Prisma.$ContactInfoPayload, S>
+
+  type ContactInfoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactInfoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactInfoCountAggregateInputType | true
+    }
+
+  export interface ContactInfoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContactInfo'], meta: { name: 'ContactInfo' } }
+    /**
+     * Find zero or one ContactInfo that matches the filter.
+     * @param {ContactInfoFindUniqueArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactInfoFindUniqueArgs>(args: SelectSubset<T, ContactInfoFindUniqueArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContactInfo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactInfoFindUniqueOrThrowArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactInfoFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactInfoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactInfo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoFindFirstArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactInfoFindFirstArgs>(args?: SelectSubset<T, ContactInfoFindFirstArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactInfo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoFindFirstOrThrowArgs} args - Arguments to find a ContactInfo
+     * @example
+     * // Get one ContactInfo
+     * const contactInfo = await prisma.contactInfo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactInfoFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactInfoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContactInfos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContactInfos
+     * const contactInfos = await prisma.contactInfo.findMany()
+     * 
+     * // Get first 10 ContactInfos
+     * const contactInfos = await prisma.contactInfo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contactInfoWithIdOnly = await prisma.contactInfo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContactInfoFindManyArgs>(args?: SelectSubset<T, ContactInfoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContactInfo.
+     * @param {ContactInfoCreateArgs} args - Arguments to create a ContactInfo.
+     * @example
+     * // Create one ContactInfo
+     * const ContactInfo = await prisma.contactInfo.create({
+     *   data: {
+     *     // ... data to create a ContactInfo
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContactInfoCreateArgs>(args: SelectSubset<T, ContactInfoCreateArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContactInfos.
+     * @param {ContactInfoCreateManyArgs} args - Arguments to create many ContactInfos.
+     * @example
+     * // Create many ContactInfos
+     * const contactInfo = await prisma.contactInfo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContactInfoCreateManyArgs>(args?: SelectSubset<T, ContactInfoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContactInfos and returns the data saved in the database.
+     * @param {ContactInfoCreateManyAndReturnArgs} args - Arguments to create many ContactInfos.
+     * @example
+     * // Create many ContactInfos
+     * const contactInfo = await prisma.contactInfo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContactInfos and only return the `id`
+     * const contactInfoWithIdOnly = await prisma.contactInfo.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContactInfoCreateManyAndReturnArgs>(args?: SelectSubset<T, ContactInfoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContactInfo.
+     * @param {ContactInfoDeleteArgs} args - Arguments to delete one ContactInfo.
+     * @example
+     * // Delete one ContactInfo
+     * const ContactInfo = await prisma.contactInfo.delete({
+     *   where: {
+     *     // ... filter to delete one ContactInfo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContactInfoDeleteArgs>(args: SelectSubset<T, ContactInfoDeleteArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContactInfo.
+     * @param {ContactInfoUpdateArgs} args - Arguments to update one ContactInfo.
+     * @example
+     * // Update one ContactInfo
+     * const contactInfo = await prisma.contactInfo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContactInfoUpdateArgs>(args: SelectSubset<T, ContactInfoUpdateArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContactInfos.
+     * @param {ContactInfoDeleteManyArgs} args - Arguments to filter ContactInfos to delete.
+     * @example
+     * // Delete a few ContactInfos
+     * const { count } = await prisma.contactInfo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContactInfoDeleteManyArgs>(args?: SelectSubset<T, ContactInfoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactInfos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContactInfos
+     * const contactInfo = await prisma.contactInfo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContactInfoUpdateManyArgs>(args: SelectSubset<T, ContactInfoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactInfos and returns the data updated in the database.
+     * @param {ContactInfoUpdateManyAndReturnArgs} args - Arguments to update many ContactInfos.
+     * @example
+     * // Update many ContactInfos
+     * const contactInfo = await prisma.contactInfo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContactInfos and only return the `id`
+     * const contactInfoWithIdOnly = await prisma.contactInfo.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContactInfoUpdateManyAndReturnArgs>(args: SelectSubset<T, ContactInfoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContactInfo.
+     * @param {ContactInfoUpsertArgs} args - Arguments to update or create a ContactInfo.
+     * @example
+     * // Update or create a ContactInfo
+     * const contactInfo = await prisma.contactInfo.upsert({
+     *   create: {
+     *     // ... data to create a ContactInfo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContactInfo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactInfoUpsertArgs>(args: SelectSubset<T, ContactInfoUpsertArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContactInfos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoCountArgs} args - Arguments to filter ContactInfos to count.
+     * @example
+     * // Count the number of ContactInfos
+     * const count = await prisma.contactInfo.count({
+     *   where: {
+     *     // ... the filter for the ContactInfos we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContactInfoCountArgs>(
+      args?: Subset<T, ContactInfoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactInfoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContactInfo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContactInfoAggregateArgs>(args: Subset<T, ContactInfoAggregateArgs>): Prisma.PrismaPromise<GetContactInfoAggregateType<T>>
+
+    /**
+     * Group by ContactInfo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInfoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContactInfoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactInfoGroupByArgs['orderBy'] }
+        : { orderBy?: ContactInfoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContactInfoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactInfoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContactInfo model
+   */
+  readonly fields: ContactInfoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContactInfo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactInfoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    digitalMaturityResult<T extends ContactInfo$digitalMaturityResultArgs<ExtArgs> = {}>(args?: Subset<T, ContactInfo$digitalMaturityResultArgs<ExtArgs>>): Prisma__DigitalMaturitySurveyResultClient<$Result.GetResult<Prisma.$DigitalMaturitySurveyResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    governmentResult<T extends ContactInfo$governmentResultArgs<ExtArgs> = {}>(args?: Subset<T, ContactInfo$governmentResultArgs<ExtArgs>>): Prisma__GovernmentSurveyResultClient<$Result.GetResult<Prisma.$GovernmentSurveyResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContactInfo model
+   */
+  interface ContactInfoFieldRefs {
+    readonly id: FieldRef<"ContactInfo", 'String'>
+    readonly name: FieldRef<"ContactInfo", 'String'>
+    readonly affiliation: FieldRef<"ContactInfo", 'String'>
+    readonly email: FieldRef<"ContactInfo", 'String'>
+    readonly tel: FieldRef<"ContactInfo", 'String'>
+    readonly digitalMaturityResultId: FieldRef<"ContactInfo", 'String'>
+    readonly governmentResultId: FieldRef<"ContactInfo", 'String'>
+    readonly createdAt: FieldRef<"ContactInfo", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContactInfo findUnique
+   */
+  export type ContactInfoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo findUniqueOrThrow
+   */
+  export type ContactInfoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo findFirst
+   */
+  export type ContactInfoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactInfos.
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactInfos.
+     */
+    distinct?: ContactInfoScalarFieldEnum | ContactInfoScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInfo findFirstOrThrow
+   */
+  export type ContactInfoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContactInfo to fetch.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactInfos.
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactInfos.
+     */
+    distinct?: ContactInfoScalarFieldEnum | ContactInfoScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInfo findMany
+   */
+  export type ContactInfoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * Filter, which ContactInfos to fetch.
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInfos to fetch.
+     */
+    orderBy?: ContactInfoOrderByWithRelationInput | ContactInfoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContactInfos.
+     */
+    cursor?: ContactInfoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInfos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInfos.
+     */
+    skip?: number
+    distinct?: ContactInfoScalarFieldEnum | ContactInfoScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInfo create
+   */
+  export type ContactInfoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ContactInfo.
+     */
+    data: XOR<ContactInfoCreateInput, ContactInfoUncheckedCreateInput>
+  }
+
+  /**
+   * ContactInfo createMany
+   */
+  export type ContactInfoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContactInfos.
+     */
+    data: ContactInfoCreateManyInput | ContactInfoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactInfo createManyAndReturn
+   */
+  export type ContactInfoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContactInfos.
+     */
+    data: ContactInfoCreateManyInput | ContactInfoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContactInfo update
+   */
+  export type ContactInfoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ContactInfo.
+     */
+    data: XOR<ContactInfoUpdateInput, ContactInfoUncheckedUpdateInput>
+    /**
+     * Choose, which ContactInfo to update.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo updateMany
+   */
+  export type ContactInfoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContactInfos.
+     */
+    data: XOR<ContactInfoUpdateManyMutationInput, ContactInfoUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactInfos to update
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * Limit how many ContactInfos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactInfo updateManyAndReturn
+   */
+  export type ContactInfoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * The data used to update ContactInfos.
+     */
+    data: XOR<ContactInfoUpdateManyMutationInput, ContactInfoUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactInfos to update
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * Limit how many ContactInfos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ContactInfo upsert
+   */
+  export type ContactInfoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ContactInfo to update in case it exists.
+     */
+    where: ContactInfoWhereUniqueInput
+    /**
+     * In case the ContactInfo found by the `where` argument doesn't exist, create a new ContactInfo with this data.
+     */
+    create: XOR<ContactInfoCreateInput, ContactInfoUncheckedCreateInput>
+    /**
+     * In case the ContactInfo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactInfoUpdateInput, ContactInfoUncheckedUpdateInput>
+  }
+
+  /**
+   * ContactInfo delete
+   */
+  export type ContactInfoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    /**
+     * Filter which ContactInfo to delete.
+     */
+    where: ContactInfoWhereUniqueInput
+  }
+
+  /**
+   * ContactInfo deleteMany
+   */
+  export type ContactInfoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactInfos to delete
+     */
+    where?: ContactInfoWhereInput
+    /**
+     * Limit how many ContactInfos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactInfo.digitalMaturityResult
+   */
+  export type ContactInfo$digitalMaturityResultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DigitalMaturitySurveyResult
+     */
+    select?: DigitalMaturitySurveyResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DigitalMaturitySurveyResult
+     */
+    omit?: DigitalMaturitySurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DigitalMaturitySurveyResultInclude<ExtArgs> | null
+    where?: DigitalMaturitySurveyResultWhereInput
+  }
+
+  /**
+   * ContactInfo.governmentResult
+   */
+  export type ContactInfo$governmentResultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GovernmentSurveyResult
+     */
+    select?: GovernmentSurveyResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GovernmentSurveyResult
+     */
+    omit?: GovernmentSurveyResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GovernmentSurveyResultInclude<ExtArgs> | null
+    where?: GovernmentSurveyResultWhereInput
+  }
+
+  /**
+   * ContactInfo without action
+   */
+  export type ContactInfoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+  }
+
 
   /**
    * Model DigitalMaturitySurveyResult
@@ -1439,6 +2673,7 @@ export namespace Prisma {
     rawAnswers?: boolean
     createdAt?: boolean
     serviceScores?: boolean | DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs>
+    contactInfo?: boolean | DigitalMaturitySurveyResult$contactInfoArgs<ExtArgs>
     _count?: boolean | DigitalMaturitySurveyResultCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["digitalMaturitySurveyResult"]>
 
@@ -1481,6 +2716,7 @@ export namespace Prisma {
   export type DigitalMaturitySurveyResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "region" | "sector" | "overallScore" | "finalThoughts" | "criterionScores" | "rawAnswers" | "createdAt", ExtArgs["result"]["digitalMaturitySurveyResult"]>
   export type DigitalMaturitySurveyResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     serviceScores?: boolean | DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs>
+    contactInfo?: boolean | DigitalMaturitySurveyResult$contactInfoArgs<ExtArgs>
     _count?: boolean | DigitalMaturitySurveyResultCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DigitalMaturitySurveyResultIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1490,6 +2726,7 @@ export namespace Prisma {
     name: "DigitalMaturitySurveyResult"
     objects: {
       serviceScores: Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>[]
+      contactInfo: Prisma.$ContactInfoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1896,6 +3133,7 @@ export namespace Prisma {
   export interface Prisma__DigitalMaturitySurveyResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     serviceScores<T extends DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs> = {}>(args?: Subset<T, DigitalMaturitySurveyResult$serviceScoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DigitalMaturitySurveyServiceScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contactInfo<T extends DigitalMaturitySurveyResult$contactInfoArgs<ExtArgs> = {}>(args?: Subset<T, DigitalMaturitySurveyResult$contactInfoArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2346,6 +3584,25 @@ export namespace Prisma {
   }
 
   /**
+   * DigitalMaturitySurveyResult.contactInfo
+   */
+  export type DigitalMaturitySurveyResult$contactInfoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    where?: ContactInfoWhereInput
+  }
+
+  /**
    * DigitalMaturitySurveyResult without action
    */
   export type DigitalMaturitySurveyResultDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2591,6 +3848,7 @@ export namespace Prisma {
     createdAt?: boolean
     sectionScores?: boolean
     serviceScores?: boolean | GovernmentSurveyResult$serviceScoresArgs<ExtArgs>
+    contactInfo?: boolean | GovernmentSurveyResult$contactInfoArgs<ExtArgs>
     _count?: boolean | GovernmentSurveyResultCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["governmentSurveyResult"]>
 
@@ -2636,6 +3894,7 @@ export namespace Prisma {
   export type GovernmentSurveyResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "region" | "department" | "overallScore" | "finalThoughts" | "criterionScores" | "rawAnswers" | "createdAt" | "sectionScores", ExtArgs["result"]["governmentSurveyResult"]>
   export type GovernmentSurveyResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     serviceScores?: boolean | GovernmentSurveyResult$serviceScoresArgs<ExtArgs>
+    contactInfo?: boolean | GovernmentSurveyResult$contactInfoArgs<ExtArgs>
     _count?: boolean | GovernmentSurveyResultCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GovernmentSurveyResultIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2645,6 +3904,7 @@ export namespace Prisma {
     name: "GovernmentSurveyResult"
     objects: {
       serviceScores: Prisma.$GovernmentSurveyServiceScorePayload<ExtArgs>[]
+      contactInfo: Prisma.$ContactInfoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3052,6 +4312,7 @@ export namespace Prisma {
   export interface Prisma__GovernmentSurveyResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     serviceScores<T extends GovernmentSurveyResult$serviceScoresArgs<ExtArgs> = {}>(args?: Subset<T, GovernmentSurveyResult$serviceScoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GovernmentSurveyServiceScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contactInfo<T extends GovernmentSurveyResult$contactInfoArgs<ExtArgs> = {}>(args?: Subset<T, GovernmentSurveyResult$contactInfoArgs<ExtArgs>>): Prisma__ContactInfoClient<$Result.GetResult<Prisma.$ContactInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3500,6 +4761,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GovernmentSurveyServiceScoreScalarFieldEnum | GovernmentSurveyServiceScoreScalarFieldEnum[]
+  }
+
+  /**
+   * GovernmentSurveyResult.contactInfo
+   */
+  export type GovernmentSurveyResult$contactInfoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInfo
+     */
+    select?: ContactInfoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInfo
+     */
+    omit?: ContactInfoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInfoInclude<ExtArgs> | null
+    where?: ContactInfoWhereInput
   }
 
   /**
@@ -5737,6 +7017,20 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const ContactInfoScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    affiliation: 'affiliation',
+    email: 'email',
+    tel: 'tel',
+    digitalMaturityResultId: 'digitalMaturityResultId',
+    governmentResultId: 'governmentResultId',
+    createdAt: 'createdAt'
+  };
+
+  export type ContactInfoScalarFieldEnum = (typeof ContactInfoScalarFieldEnum)[keyof typeof ContactInfoScalarFieldEnum]
+
+
   export const DigitalMaturitySurveyResultScalarFieldEnum: {
     id: 'id',
     country: 'country',
@@ -5823,6 +7117,14 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   export const JsonNullValueFilter: {
     DbNull: typeof DbNull,
     JsonNull: typeof JsonNull,
@@ -5830,14 +7132,6 @@ export namespace Prisma {
   };
 
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
-
-
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -5856,6 +7150,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -5888,20 +7196,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5918,6 +7212,79 @@ export namespace Prisma {
    */
 
 
+  export type ContactInfoWhereInput = {
+    AND?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    OR?: ContactInfoWhereInput[]
+    NOT?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    id?: StringFilter<"ContactInfo"> | string
+    name?: StringFilter<"ContactInfo"> | string
+    affiliation?: StringFilter<"ContactInfo"> | string
+    email?: StringFilter<"ContactInfo"> | string
+    tel?: StringNullableFilter<"ContactInfo"> | string | null
+    digitalMaturityResultId?: StringNullableFilter<"ContactInfo"> | string | null
+    governmentResultId?: StringNullableFilter<"ContactInfo"> | string | null
+    createdAt?: DateTimeFilter<"ContactInfo"> | Date | string
+    digitalMaturityResult?: XOR<DigitalMaturitySurveyResultNullableScalarRelationFilter, DigitalMaturitySurveyResultWhereInput> | null
+    governmentResult?: XOR<GovernmentSurveyResultNullableScalarRelationFilter, GovernmentSurveyResultWhereInput> | null
+  }
+
+  export type ContactInfoOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    affiliation?: SortOrder
+    email?: SortOrder
+    tel?: SortOrderInput | SortOrder
+    digitalMaturityResultId?: SortOrderInput | SortOrder
+    governmentResultId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    digitalMaturityResult?: DigitalMaturitySurveyResultOrderByWithRelationInput
+    governmentResult?: GovernmentSurveyResultOrderByWithRelationInput
+  }
+
+  export type ContactInfoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    digitalMaturityResultId?: string
+    governmentResultId?: string
+    AND?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    OR?: ContactInfoWhereInput[]
+    NOT?: ContactInfoWhereInput | ContactInfoWhereInput[]
+    name?: StringFilter<"ContactInfo"> | string
+    affiliation?: StringFilter<"ContactInfo"> | string
+    email?: StringFilter<"ContactInfo"> | string
+    tel?: StringNullableFilter<"ContactInfo"> | string | null
+    createdAt?: DateTimeFilter<"ContactInfo"> | Date | string
+    digitalMaturityResult?: XOR<DigitalMaturitySurveyResultNullableScalarRelationFilter, DigitalMaturitySurveyResultWhereInput> | null
+    governmentResult?: XOR<GovernmentSurveyResultNullableScalarRelationFilter, GovernmentSurveyResultWhereInput> | null
+  }, "id" | "digitalMaturityResultId" | "governmentResultId">
+
+  export type ContactInfoOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    affiliation?: SortOrder
+    email?: SortOrder
+    tel?: SortOrderInput | SortOrder
+    digitalMaturityResultId?: SortOrderInput | SortOrder
+    governmentResultId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ContactInfoCountOrderByAggregateInput
+    _max?: ContactInfoMaxOrderByAggregateInput
+    _min?: ContactInfoMinOrderByAggregateInput
+  }
+
+  export type ContactInfoScalarWhereWithAggregatesInput = {
+    AND?: ContactInfoScalarWhereWithAggregatesInput | ContactInfoScalarWhereWithAggregatesInput[]
+    OR?: ContactInfoScalarWhereWithAggregatesInput[]
+    NOT?: ContactInfoScalarWhereWithAggregatesInput | ContactInfoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContactInfo"> | string
+    name?: StringWithAggregatesFilter<"ContactInfo"> | string
+    affiliation?: StringWithAggregatesFilter<"ContactInfo"> | string
+    email?: StringWithAggregatesFilter<"ContactInfo"> | string
+    tel?: StringNullableWithAggregatesFilter<"ContactInfo"> | string | null
+    digitalMaturityResultId?: StringNullableWithAggregatesFilter<"ContactInfo"> | string | null
+    governmentResultId?: StringNullableWithAggregatesFilter<"ContactInfo"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ContactInfo"> | Date | string
+  }
+
   export type DigitalMaturitySurveyResultWhereInput = {
     AND?: DigitalMaturitySurveyResultWhereInput | DigitalMaturitySurveyResultWhereInput[]
     OR?: DigitalMaturitySurveyResultWhereInput[]
@@ -5932,6 +7299,7 @@ export namespace Prisma {
     rawAnswers?: JsonFilter<"DigitalMaturitySurveyResult">
     createdAt?: DateTimeFilter<"DigitalMaturitySurveyResult"> | Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreListRelationFilter
+    contactInfo?: XOR<ContactInfoNullableScalarRelationFilter, ContactInfoWhereInput> | null
   }
 
   export type DigitalMaturitySurveyResultOrderByWithRelationInput = {
@@ -5945,6 +7313,7 @@ export namespace Prisma {
     rawAnswers?: SortOrder
     createdAt?: SortOrder
     serviceScores?: DigitalMaturitySurveyServiceScoreOrderByRelationAggregateInput
+    contactInfo?: ContactInfoOrderByWithRelationInput
   }
 
   export type DigitalMaturitySurveyResultWhereUniqueInput = Prisma.AtLeast<{
@@ -5961,6 +7330,7 @@ export namespace Prisma {
     rawAnswers?: JsonFilter<"DigitalMaturitySurveyResult">
     createdAt?: DateTimeFilter<"DigitalMaturitySurveyResult"> | Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreListRelationFilter
+    contactInfo?: XOR<ContactInfoNullableScalarRelationFilter, ContactInfoWhereInput> | null
   }, "id">
 
   export type DigitalMaturitySurveyResultOrderByWithAggregationInput = {
@@ -6010,6 +7380,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GovernmentSurveyResult"> | Date | string
     sectionScores?: JsonNullableFilter<"GovernmentSurveyResult">
     serviceScores?: GovernmentSurveyServiceScoreListRelationFilter
+    contactInfo?: XOR<ContactInfoNullableScalarRelationFilter, ContactInfoWhereInput> | null
   }
 
   export type GovernmentSurveyResultOrderByWithRelationInput = {
@@ -6024,6 +7395,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     sectionScores?: SortOrderInput | SortOrder
     serviceScores?: GovernmentSurveyServiceScoreOrderByRelationAggregateInput
+    contactInfo?: ContactInfoOrderByWithRelationInput
   }
 
   export type GovernmentSurveyResultWhereUniqueInput = Prisma.AtLeast<{
@@ -6041,6 +7413,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GovernmentSurveyResult"> | Date | string
     sectionScores?: JsonNullableFilter<"GovernmentSurveyResult">
     serviceScores?: GovernmentSurveyServiceScoreListRelationFilter
+    contactInfo?: XOR<ContactInfoNullableScalarRelationFilter, ContactInfoWhereInput> | null
   }, "id">
 
   export type GovernmentSurveyResultOrderByWithAggregationInput = {
@@ -6201,6 +7574,81 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"DigitalMaturitySurveyServiceScore"> | Date | string
   }
 
+  export type ContactInfoCreateInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    createdAt?: Date | string
+    digitalMaturityResult?: DigitalMaturitySurveyResultCreateNestedOneWithoutContactInfoInput
+    governmentResult?: GovernmentSurveyResultCreateNestedOneWithoutContactInfoInput
+  }
+
+  export type ContactInfoUncheckedCreateInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    digitalMaturityResultId?: string | null
+    governmentResultId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContactInfoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    digitalMaturityResult?: DigitalMaturitySurveyResultUpdateOneWithoutContactInfoNestedInput
+    governmentResult?: GovernmentSurveyResultUpdateOneWithoutContactInfoNestedInput
+  }
+
+  export type ContactInfoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    digitalMaturityResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInfoCreateManyInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    digitalMaturityResultId?: string | null
+    governmentResultId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContactInfoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInfoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    digitalMaturityResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type DigitalMaturitySurveyResultCreateInput = {
     id?: string
     country: string
@@ -6212,6 +7660,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreCreateNestedManyWithoutResultInput
+    contactInfo?: ContactInfoCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedCreateInput = {
@@ -6225,6 +7674,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultUpdateInput = {
@@ -6238,6 +7688,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreUpdateManyWithoutResultNestedInput
+    contactInfo?: ContactInfoUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedUpdateInput = {
@@ -6251,6 +7702,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultCreateManyInput = {
@@ -6301,6 +7753,7 @@ export namespace Prisma {
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreCreateNestedManyWithoutResultInput
+    contactInfo?: ContactInfoCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultUncheckedCreateInput = {
@@ -6315,6 +7768,7 @@ export namespace Prisma {
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultUpdateInput = {
@@ -6329,6 +7783,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreUpdateManyWithoutResultNestedInput
+    contactInfo?: ContactInfoUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type GovernmentSurveyResultUncheckedUpdateInput = {
@@ -6343,6 +7798,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
     serviceScores?: GovernmentSurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type GovernmentSurveyResultCreateManyInput = {
@@ -6523,6 +7979,130 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type DigitalMaturitySurveyResultNullableScalarRelationFilter = {
+    is?: DigitalMaturitySurveyResultWhereInput | null
+    isNot?: DigitalMaturitySurveyResultWhereInput | null
+  }
+
+  export type GovernmentSurveyResultNullableScalarRelationFilter = {
+    is?: GovernmentSurveyResultWhereInput | null
+    isNot?: GovernmentSurveyResultWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type ContactInfoCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    affiliation?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    digitalMaturityResultId?: SortOrder
+    governmentResultId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ContactInfoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    affiliation?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    digitalMaturityResultId?: SortOrder
+    governmentResultId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ContactInfoMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    affiliation?: SortOrder
+    email?: SortOrder
+    tel?: SortOrder
+    digitalMaturityResultId?: SortOrder
+    governmentResultId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -6557,21 +8137,15 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type DigitalMaturitySurveyServiceScoreListRelationFilter = {
     every?: DigitalMaturitySurveyServiceScoreWhereInput
     some?: DigitalMaturitySurveyServiceScoreWhereInput
     none?: DigitalMaturitySurveyServiceScoreWhereInput
+  }
+
+  export type ContactInfoNullableScalarRelationFilter = {
+    is?: ContactInfoWhereInput | null
+    isNot?: ContactInfoWhereInput | null
   }
 
   export type DigitalMaturitySurveyServiceScoreOrderByRelationAggregateInput = {
@@ -6618,24 +8192,6 @@ export namespace Prisma {
     overallScore?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -6677,20 +8233,6 @@ export namespace Prisma {
     _min?: NestedJsonFilter<$PrismaModel>
     _max?: NestedJsonFilter<$PrismaModel>
   }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -6719,11 +8261,6 @@ export namespace Prisma {
     every?: GovernmentSurveyServiceScoreWhereInput
     some?: GovernmentSurveyServiceScoreWhereInput
     none?: GovernmentSurveyServiceScoreWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type GovernmentSurveyServiceScoreOrderByRelationAggregateInput = {
@@ -6873,11 +8410,61 @@ export namespace Prisma {
     overallScore?: SortOrder
   }
 
+  export type DigitalMaturitySurveyResultCreateNestedOneWithoutContactInfoInput = {
+    create?: XOR<DigitalMaturitySurveyResultCreateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput>
+    connectOrCreate?: DigitalMaturitySurveyResultCreateOrConnectWithoutContactInfoInput
+    connect?: DigitalMaturitySurveyResultWhereUniqueInput
+  }
+
+  export type GovernmentSurveyResultCreateNestedOneWithoutContactInfoInput = {
+    create?: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+    connectOrCreate?: GovernmentSurveyResultCreateOrConnectWithoutContactInfoInput
+    connect?: GovernmentSurveyResultWhereUniqueInput
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type DigitalMaturitySurveyResultUpdateOneWithoutContactInfoNestedInput = {
+    create?: XOR<DigitalMaturitySurveyResultCreateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput>
+    connectOrCreate?: DigitalMaturitySurveyResultCreateOrConnectWithoutContactInfoInput
+    upsert?: DigitalMaturitySurveyResultUpsertWithoutContactInfoInput
+    disconnect?: DigitalMaturitySurveyResultWhereInput | boolean
+    delete?: DigitalMaturitySurveyResultWhereInput | boolean
+    connect?: DigitalMaturitySurveyResultWhereUniqueInput
+    update?: XOR<XOR<DigitalMaturitySurveyResultUpdateToOneWithWhereWithoutContactInfoInput, DigitalMaturitySurveyResultUpdateWithoutContactInfoInput>, DigitalMaturitySurveyResultUncheckedUpdateWithoutContactInfoInput>
+  }
+
+  export type GovernmentSurveyResultUpdateOneWithoutContactInfoNestedInput = {
+    create?: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+    connectOrCreate?: GovernmentSurveyResultCreateOrConnectWithoutContactInfoInput
+    upsert?: GovernmentSurveyResultUpsertWithoutContactInfoInput
+    disconnect?: GovernmentSurveyResultWhereInput | boolean
+    delete?: GovernmentSurveyResultWhereInput | boolean
+    connect?: GovernmentSurveyResultWhereUniqueInput
+    update?: XOR<XOR<GovernmentSurveyResultUpdateToOneWithWhereWithoutContactInfoInput, GovernmentSurveyResultUpdateWithoutContactInfoInput>, GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput>
+  }
+
   export type DigitalMaturitySurveyServiceScoreCreateNestedManyWithoutResultInput = {
     create?: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput> | DigitalMaturitySurveyServiceScoreCreateWithoutResultInput[] | DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput[]
     connectOrCreate?: DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput | DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput[]
     createMany?: DigitalMaturitySurveyServiceScoreCreateManyResultInputEnvelope
     connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
+  }
+
+  export type ContactInfoCreateNestedOneWithoutDigitalMaturityResultInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
+    connect?: ContactInfoWhereUniqueInput
   }
 
   export type DigitalMaturitySurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput = {
@@ -6887,8 +8474,10 @@ export namespace Prisma {
     connect?: DigitalMaturitySurveyServiceScoreWhereUniqueInput | DigitalMaturitySurveyServiceScoreWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
+  export type ContactInfoUncheckedCreateNestedOneWithoutDigitalMaturityResultInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
+    connect?: ContactInfoWhereUniqueInput
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -6897,10 +8486,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type DigitalMaturitySurveyServiceScoreUpdateManyWithoutResultNestedInput = {
@@ -6917,6 +8502,16 @@ export namespace Prisma {
     deleteMany?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
   }
 
+  export type ContactInfoUpdateOneWithoutDigitalMaturityResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
+    upsert?: ContactInfoUpsertWithoutDigitalMaturityResultInput
+    disconnect?: ContactInfoWhereInput | boolean
+    delete?: ContactInfoWhereInput | boolean
+    connect?: ContactInfoWhereUniqueInput
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutDigitalMaturityResultInput, ContactInfoUpdateWithoutDigitalMaturityResultInput>, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
+  }
+
   export type DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput = {
     create?: XOR<DigitalMaturitySurveyServiceScoreCreateWithoutResultInput, DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput> | DigitalMaturitySurveyServiceScoreCreateWithoutResultInput[] | DigitalMaturitySurveyServiceScoreUncheckedCreateWithoutResultInput[]
     connectOrCreate?: DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput | DigitalMaturitySurveyServiceScoreCreateOrConnectWithoutResultInput[]
@@ -6931,6 +8526,16 @@ export namespace Prisma {
     deleteMany?: DigitalMaturitySurveyServiceScoreScalarWhereInput | DigitalMaturitySurveyServiceScoreScalarWhereInput[]
   }
 
+  export type ContactInfoUncheckedUpdateOneWithoutDigitalMaturityResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput
+    upsert?: ContactInfoUpsertWithoutDigitalMaturityResultInput
+    disconnect?: ContactInfoWhereInput | boolean
+    delete?: ContactInfoWhereInput | boolean
+    connect?: ContactInfoWhereUniqueInput
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutDigitalMaturityResultInput, ContactInfoUpdateWithoutDigitalMaturityResultInput>, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
+  }
+
   export type GovernmentSurveyServiceScoreCreateNestedManyWithoutResultInput = {
     create?: XOR<GovernmentSurveyServiceScoreCreateWithoutResultInput, GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput> | GovernmentSurveyServiceScoreCreateWithoutResultInput[] | GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput[]
     connectOrCreate?: GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput | GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput[]
@@ -6938,11 +8543,23 @@ export namespace Prisma {
     connect?: GovernmentSurveyServiceScoreWhereUniqueInput | GovernmentSurveyServiceScoreWhereUniqueInput[]
   }
 
+  export type ContactInfoCreateNestedOneWithoutGovernmentResultInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    connect?: ContactInfoWhereUniqueInput
+  }
+
   export type GovernmentSurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput = {
     create?: XOR<GovernmentSurveyServiceScoreCreateWithoutResultInput, GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput> | GovernmentSurveyServiceScoreCreateWithoutResultInput[] | GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput[]
     connectOrCreate?: GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput | GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput[]
     createMany?: GovernmentSurveyServiceScoreCreateManyResultInputEnvelope
     connect?: GovernmentSurveyServiceScoreWhereUniqueInput | GovernmentSurveyServiceScoreWhereUniqueInput[]
+  }
+
+  export type ContactInfoUncheckedCreateNestedOneWithoutGovernmentResultInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    connect?: ContactInfoWhereUniqueInput
   }
 
   export type GovernmentSurveyServiceScoreUpdateManyWithoutResultNestedInput = {
@@ -6959,6 +8576,16 @@ export namespace Prisma {
     deleteMany?: GovernmentSurveyServiceScoreScalarWhereInput | GovernmentSurveyServiceScoreScalarWhereInput[]
   }
 
+  export type ContactInfoUpdateOneWithoutGovernmentResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    upsert?: ContactInfoUpsertWithoutGovernmentResultInput
+    disconnect?: ContactInfoWhereInput | boolean
+    delete?: ContactInfoWhereInput | boolean
+    connect?: ContactInfoWhereUniqueInput
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutGovernmentResultInput, ContactInfoUpdateWithoutGovernmentResultInput>, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
+  }
+
   export type GovernmentSurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput = {
     create?: XOR<GovernmentSurveyServiceScoreCreateWithoutResultInput, GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput> | GovernmentSurveyServiceScoreCreateWithoutResultInput[] | GovernmentSurveyServiceScoreUncheckedCreateWithoutResultInput[]
     connectOrCreate?: GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput | GovernmentSurveyServiceScoreCreateOrConnectWithoutResultInput[]
@@ -6971,6 +8598,16 @@ export namespace Prisma {
     update?: GovernmentSurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput | GovernmentSurveyServiceScoreUpdateWithWhereUniqueWithoutResultInput[]
     updateMany?: GovernmentSurveyServiceScoreUpdateManyWithWhereWithoutResultInput | GovernmentSurveyServiceScoreUpdateManyWithWhereWithoutResultInput[]
     deleteMany?: GovernmentSurveyServiceScoreScalarWhereInput | GovernmentSurveyServiceScoreScalarWhereInput[]
+  }
+
+  export type ContactInfoUncheckedUpdateOneWithoutGovernmentResultNestedInput = {
+    create?: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    connectOrCreate?: ContactInfoCreateOrConnectWithoutGovernmentResultInput
+    upsert?: ContactInfoUpsertWithoutGovernmentResultInput
+    disconnect?: ContactInfoWhereInput | boolean
+    delete?: ContactInfoWhereInput | boolean
+    connect?: ContactInfoWhereUniqueInput
+    update?: XOR<XOR<ContactInfoUpdateToOneWithWhereWithoutGovernmentResultInput, ContactInfoUpdateWithoutGovernmentResultInput>, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
   }
 
   export type GovernmentSurveyResultCreateNestedOneWithoutServiceScoresInput = {
@@ -7015,15 +8652,18 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -7065,6 +8705,59 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -7103,31 +8796,6 @@ export namespace Prisma {
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -7150,6 +8818,146 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type DigitalMaturitySurveyResultCreateWithoutContactInfoInput = {
+    id?: string
+    country: string
+    region?: string
+    sector?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreCreateNestedManyWithoutResultInput
+  }
+
+  export type DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput = {
+    id?: string
+    country: string
+    region?: string
+    sector?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
+  }
+
+  export type DigitalMaturitySurveyResultCreateOrConnectWithoutContactInfoInput = {
+    where: DigitalMaturitySurveyResultWhereUniqueInput
+    create: XOR<DigitalMaturitySurveyResultCreateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput>
+  }
+
+  export type GovernmentSurveyResultCreateWithoutContactInfoInput = {
+    id?: string
+    country: string
+    region?: string
+    department?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreCreateNestedManyWithoutResultInput
+  }
+
+  export type GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput = {
+    id?: string
+    country: string
+    region?: string
+    department?: string
+    overallScore: number
+    finalThoughts?: string
+    criterionScores: JsonNullValueInput | InputJsonValue
+    rawAnswers: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreUncheckedCreateNestedManyWithoutResultInput
+  }
+
+  export type GovernmentSurveyResultCreateOrConnectWithoutContactInfoInput = {
+    where: GovernmentSurveyResultWhereUniqueInput
+    create: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+  }
+
+  export type DigitalMaturitySurveyResultUpsertWithoutContactInfoInput = {
+    update: XOR<DigitalMaturitySurveyResultUpdateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedUpdateWithoutContactInfoInput>
+    create: XOR<DigitalMaturitySurveyResultCreateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedCreateWithoutContactInfoInput>
+    where?: DigitalMaturitySurveyResultWhereInput
+  }
+
+  export type DigitalMaturitySurveyResultUpdateToOneWithWhereWithoutContactInfoInput = {
+    where?: DigitalMaturitySurveyResultWhereInput
+    data: XOR<DigitalMaturitySurveyResultUpdateWithoutContactInfoInput, DigitalMaturitySurveyResultUncheckedUpdateWithoutContactInfoInput>
+  }
+
+  export type DigitalMaturitySurveyResultUpdateWithoutContactInfoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    sector?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreUpdateManyWithoutResultNestedInput
+  }
+
+  export type DigitalMaturitySurveyResultUncheckedUpdateWithoutContactInfoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    sector?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceScores?: DigitalMaturitySurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
+  }
+
+  export type GovernmentSurveyResultUpsertWithoutContactInfoInput = {
+    update: XOR<GovernmentSurveyResultUpdateWithoutContactInfoInput, GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput>
+    create: XOR<GovernmentSurveyResultCreateWithoutContactInfoInput, GovernmentSurveyResultUncheckedCreateWithoutContactInfoInput>
+    where?: GovernmentSurveyResultWhereInput
+  }
+
+  export type GovernmentSurveyResultUpdateToOneWithWhereWithoutContactInfoInput = {
+    where?: GovernmentSurveyResultWhereInput
+    data: XOR<GovernmentSurveyResultUpdateWithoutContactInfoInput, GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput>
+  }
+
+  export type GovernmentSurveyResultUpdateWithoutContactInfoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreUpdateManyWithoutResultNestedInput
+  }
+
+  export type GovernmentSurveyResultUncheckedUpdateWithoutContactInfoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    region?: StringFieldUpdateOperationsInput | string
+    department?: StringFieldUpdateOperationsInput | string
+    overallScore?: FloatFieldUpdateOperationsInput | number
+    finalThoughts?: StringFieldUpdateOperationsInput | string
+    criterionScores?: JsonNullValueInput | InputJsonValue
+    rawAnswers?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    serviceScores?: GovernmentSurveyServiceScoreUncheckedUpdateManyWithoutResultNestedInput
   }
 
   export type DigitalMaturitySurveyServiceScoreCreateWithoutResultInput = {
@@ -7176,6 +8984,31 @@ export namespace Prisma {
   export type DigitalMaturitySurveyServiceScoreCreateManyResultInputEnvelope = {
     data: DigitalMaturitySurveyServiceScoreCreateManyResultInput | DigitalMaturitySurveyServiceScoreCreateManyResultInput[]
     skipDuplicates?: boolean
+  }
+
+  export type ContactInfoCreateWithoutDigitalMaturityResultInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    createdAt?: Date | string
+    governmentResult?: GovernmentSurveyResultCreateNestedOneWithoutContactInfoInput
+  }
+
+  export type ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    governmentResultId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContactInfoCreateOrConnectWithoutDigitalMaturityResultInput = {
+    where: ContactInfoWhereUniqueInput
+    create: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
   }
 
   export type DigitalMaturitySurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput = {
@@ -7206,6 +9039,37 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"DigitalMaturitySurveyServiceScore"> | Date | string
   }
 
+  export type ContactInfoUpsertWithoutDigitalMaturityResultInput = {
+    update: XOR<ContactInfoUpdateWithoutDigitalMaturityResultInput, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
+    create: XOR<ContactInfoCreateWithoutDigitalMaturityResultInput, ContactInfoUncheckedCreateWithoutDigitalMaturityResultInput>
+    where?: ContactInfoWhereInput
+  }
+
+  export type ContactInfoUpdateToOneWithWhereWithoutDigitalMaturityResultInput = {
+    where?: ContactInfoWhereInput
+    data: XOR<ContactInfoUpdateWithoutDigitalMaturityResultInput, ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput>
+  }
+
+  export type ContactInfoUpdateWithoutDigitalMaturityResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    governmentResult?: GovernmentSurveyResultUpdateOneWithoutContactInfoNestedInput
+  }
+
+  export type ContactInfoUncheckedUpdateWithoutDigitalMaturityResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type GovernmentSurveyServiceScoreCreateWithoutResultInput = {
     id?: string
     serviceCode: string
@@ -7230,6 +9094,31 @@ export namespace Prisma {
   export type GovernmentSurveyServiceScoreCreateManyResultInputEnvelope = {
     data: GovernmentSurveyServiceScoreCreateManyResultInput | GovernmentSurveyServiceScoreCreateManyResultInput[]
     skipDuplicates?: boolean
+  }
+
+  export type ContactInfoCreateWithoutGovernmentResultInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    createdAt?: Date | string
+    digitalMaturityResult?: DigitalMaturitySurveyResultCreateNestedOneWithoutContactInfoInput
+  }
+
+  export type ContactInfoUncheckedCreateWithoutGovernmentResultInput = {
+    id?: string
+    name: string
+    affiliation: string
+    email: string
+    tel?: string | null
+    digitalMaturityResultId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ContactInfoCreateOrConnectWithoutGovernmentResultInput = {
+    where: ContactInfoWhereUniqueInput
+    create: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
   }
 
   export type GovernmentSurveyServiceScoreUpsertWithWhereUniqueWithoutResultInput = {
@@ -7260,6 +9149,37 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GovernmentSurveyServiceScore"> | Date | string
   }
 
+  export type ContactInfoUpsertWithoutGovernmentResultInput = {
+    update: XOR<ContactInfoUpdateWithoutGovernmentResultInput, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
+    create: XOR<ContactInfoCreateWithoutGovernmentResultInput, ContactInfoUncheckedCreateWithoutGovernmentResultInput>
+    where?: ContactInfoWhereInput
+  }
+
+  export type ContactInfoUpdateToOneWithWhereWithoutGovernmentResultInput = {
+    where?: ContactInfoWhereInput
+    data: XOR<ContactInfoUpdateWithoutGovernmentResultInput, ContactInfoUncheckedUpdateWithoutGovernmentResultInput>
+  }
+
+  export type ContactInfoUpdateWithoutGovernmentResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    digitalMaturityResult?: DigitalMaturitySurveyResultUpdateOneWithoutContactInfoNestedInput
+  }
+
+  export type ContactInfoUncheckedUpdateWithoutGovernmentResultInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    affiliation?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    tel?: NullableStringFieldUpdateOperationsInput | string | null
+    digitalMaturityResultId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type GovernmentSurveyResultCreateWithoutServiceScoresInput = {
     id?: string
     country: string
@@ -7271,6 +9191,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultUncheckedCreateWithoutServiceScoresInput = {
@@ -7284,6 +9205,7 @@ export namespace Prisma {
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutGovernmentResultInput
   }
 
   export type GovernmentSurveyResultCreateOrConnectWithoutServiceScoresInput = {
@@ -7313,6 +9235,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type GovernmentSurveyResultUncheckedUpdateWithoutServiceScoresInput = {
@@ -7326,6 +9249,7 @@ export namespace Prisma {
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sectionScores?: NullableJsonNullValueInput | InputJsonValue
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutGovernmentResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultCreateWithoutServiceScoresInput = {
@@ -7338,6 +9262,7 @@ export namespace Prisma {
     criterionScores: JsonNullValueInput | InputJsonValue
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+    contactInfo?: ContactInfoCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedCreateWithoutServiceScoresInput = {
@@ -7350,6 +9275,7 @@ export namespace Prisma {
     criterionScores: JsonNullValueInput | InputJsonValue
     rawAnswers: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+    contactInfo?: ContactInfoUncheckedCreateNestedOneWithoutDigitalMaturityResultInput
   }
 
   export type DigitalMaturitySurveyResultCreateOrConnectWithoutServiceScoresInput = {
@@ -7378,6 +9304,7 @@ export namespace Prisma {
     criterionScores?: JsonNullValueInput | InputJsonValue
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contactInfo?: ContactInfoUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyResultUncheckedUpdateWithoutServiceScoresInput = {
@@ -7390,6 +9317,7 @@ export namespace Prisma {
     criterionScores?: JsonNullValueInput | InputJsonValue
     rawAnswers?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contactInfo?: ContactInfoUncheckedUpdateOneWithoutDigitalMaturityResultNestedInput
   }
 
   export type DigitalMaturitySurveyServiceScoreCreateManyResultInput = {

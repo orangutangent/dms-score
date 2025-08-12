@@ -39,7 +39,7 @@ const DigitalMaturityPage = () => {
     id: -3,
     inputType: "sector",
     criterion: "Sector",
-    question: t("HardcodedQuestions.sector"),
+    question: t("HardcodedQuestions.sectorBusiness"),
     options: [
       {
         value: "healthcare",
@@ -63,12 +63,21 @@ const DigitalMaturityPage = () => {
     weight: 0,
   };
 
+  const contactsQuestion: QuestionType = { // Added
+    id: -4,
+    inputType: "contacts",
+    criterion: "Feedback",
+    question: t("HardcodedQuestions.contacts"),
+    weight: 0,
+  };
+
   const expandedQuestions = expandServiceTemplates(localizedQuestionsData);
   const allQuestions = [
     locationQuestion,
     sectorQuestion,
     ...expandedQuestions,
     finalThoughtsQuestion,
+    contactsQuestion, // Added
   ];
 
   const {
@@ -85,6 +94,8 @@ const DigitalMaturityPage = () => {
     setSector,
     finalThoughts,
     setFinalThoughts,
+    contacts, // Added
+    setContacts, // Added
     responses,
   } = useBusinessSurvey(
     useBusinessSurveyStore,
@@ -96,6 +107,7 @@ const DigitalMaturityPage = () => {
     location: { country: string; region: string };
     sector: string;
     finalThoughts: string;
+    contacts: { name: string; affiliation: string; email: string; tel: string }; // Added
     responses: BusinessSurveyResponseDTO[];
   };
   type SubmitResponse = { message: string; resultId: string };
@@ -118,6 +130,7 @@ const DigitalMaturityPage = () => {
       location,
       sector: sector || "",
       finalThoughts: finalThoughtsValue ?? finalThoughts,
+      contacts, // Added
       responses,
     };
     console.log("Submitting survey data:", dataToSend);
@@ -161,6 +174,8 @@ const DigitalMaturityPage = () => {
           onSectorChange={setSector}
           initialFinalThoughts={finalThoughts}
           onFinalThoughtsChange={setFinalThoughts}
+          initialContacts={contacts} // Added
+          onContactsChange={setContacts} // Added
           isSubmitting={submitSurvey.isPending}
           isLastQuestion={currentQuestionIndex === allQuestions.length - 1}
           onResponseChange={(response) => {

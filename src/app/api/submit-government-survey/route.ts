@@ -9,7 +9,7 @@ import { aggregateByCriteria, aggregateByServices } from "@/lib/scoring";
 
 export async function POST(req: Request) {
   try {
-    const { responses, location, department, finalThoughts } =
+    const { responses, location, department, finalThoughts, contacts } =
       (await req.json()) as GovernmentSurveySubmitDataDTO;
 
     // Используем новые утилиты для агрегации
@@ -30,25 +30,41 @@ export async function POST(req: Request) {
       };
     });
 
-    const result = await prisma.governmentSurveyResult.create({
-      data: {
-        country: location.country || "",
-        region: location.region || "",
-        department: department || "",
-        overallScore,
-        finalThoughts: finalThoughts || "",
-        criterionScores,
-        rawAnswers: responses as unknown as object, // Save raw responses for detailed analysis
-        sectionScores: {},
-        serviceScores: {
-          create: serviceRows.map((r) => ({
-            serviceCode: r.serviceCode,
-            overallScore: r.overallScore,
-            // Prisma Json type expects `unknown` cast to avoid `any`
-            criterionScores: r.criterionScores as unknown as object,
-          })),
+    const result = await prisma.$transaction(async (prisma) => {
+      const surveyResult = await prisma.governmentSurveyResult.create({
+        data: {
+          country: location.country || "",
+          region: location.region || "",
+          department: department || "",
+          overallScore,
+          finalThoughts: finalThoughts || "",
+          criterionScores,
+          rawAnswers: responses as unknown as object, // Save raw responses for detailed analysis
+          sectionScores: {},
+          serviceScores: {
+            create: serviceRows.map((r) => ({
+              serviceCode: r.serviceCode,
+              overallScore: r.overallScore,
+              // Prisma Json type expects `unknown` cast to avoid `any`
+              criterionScores: r.criterionScores as unknown as object,
+            })),
+          },
         },
-      },
+      });
+
+      if (contacts && (contacts.name || contacts.affiliation || contacts.email || contacts.tel)) {
+        await prisma.contactInfo.create({
+          data: {
+            name: contacts.name || "",
+            affiliation: contacts.affiliation || "",
+            email: contacts.email || "",
+            tel: contacts.tel || "",
+            governmentResultId: surveyResult.id,
+          },
+        });
+      }
+
+      return surveyResult;
     });
 
     return NextResponse.json(

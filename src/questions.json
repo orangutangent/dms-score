@@ -12,7 +12,7 @@
         "value": "0",
         "label": {
           "ru": "Интернет часто не работает или очень медленный, возникают частые перебои, работа в цифровом формате невозможна.",
-          "en": "The internet often does not work or is very slow, with frequent outages; online work is impossible."
+          "en": "The internet often does not work or is very slow, with frequent outages; work in digital format is impossible."
         }
       },
       {
@@ -40,7 +40,7 @@
         "value": "4",
         "label": {
           "ru": "Интернет быстрый, надёжный, подходит для всех видов работы в цифровом формате, но без резервного подключения.",
-          "en": "The internet is fast and reliable, suitable for all types of online work, but without backup connectivity."
+          "en": "The internet is fast and reliable, suitable for all types of work in digital format, but without backup connectivity."
         }
       },
       {
@@ -155,7 +155,7 @@
         "value": "3",
         "label": {
           "ru": "60–80% заказов онлайн, офлайн-заказы играют второстепенную роль.",
-          "en": "60–80% of orders are online; offline sources play a secondary role."
+          "en": "60–80% of orders are online; offline orders play a secondary role."
         }
       },
       {
@@ -331,14 +331,14 @@
         "value": "2",
         "label": {
           "ru": "Данные используются для базового разделения базы клиента (например, по полу, возрасту, региону).",
-          "en": "Data is used for basic segmentation (e.g., by gender, age, region)."
+          "en": "Data is used for basic segmentation of the customer base (e.g., by gender, age, region)."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Клиентам отправляются персонализированные предложения, основанные на истории покупок или истории поиска.",
-          "en": "Customers receive personalised offers based on purchase history or behaviour."
+          "en": "Customers receive personalised offers based on purchase history or search history."
         }
       },
       {
@@ -352,7 +352,7 @@
         "value": "5",
         "label": {
           "ru": "Используются инструменты машинного обучения или технологии ИИ для более глубокой персонализации предложений и улучшения качества продукта/услуги.",
-          "en": "Machine learning or AI tools are used for deep personalisation and product improvement."
+          "en": "Machine learning or AI tools are used for deep offer personalisation and product/service improvement."
         }
       }
     ],
@@ -399,14 +399,14 @@
         "value": "3",
         "label": {
           "ru": "Антивирусная защита и автоматическое копирование настроены на большинстве устройств, но система не централизована.",
-          "en": "Protection and automatic backups are set up on most devices, but not centrally."
+          "en": "Antivirus protection and automatic backups are set up on most devices, but the system is not centralized."
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "Централизованная антивирусная защита и автоматические резервные копии есть, но покрывают не все устройства или не обновляются регулярно.",
-          "en": "Centralised protection and automatic backups exist, but do not cover all devices or are not updated regularly."
+          "en": "Centralised antivirus protection and automatic backups exist, but do not cover all devices or are not updated regularly."
         }
       },
       {
@@ -431,8 +431,8 @@
     "criterion": "OPERATIONAL_LEVEL",
     "inputType": "radio",
     "question": {
-      "ru": "Насколько автоматизированы рутинные задачи в вашей организации (выставление счетов, уведомления, учёт запасов и т.д.)?",
-      "en": "To what extent are routine tasks (invoicing, notifications, inventory tracking, etc.) automated in your organisation?"
+      "ru": "Насколько автоматизированы рутинные задачи в вашей организации (выставление счетов, уведомления, проведение инвентаризации и т.д.)?",
+      "en": "To what extent are routine tasks (invoicing, notifications, inventory management, etc.) automated in your organisation?"
     },
     "options": [
       {

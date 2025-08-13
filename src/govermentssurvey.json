@@ -85,7 +85,7 @@
       {
         "value": "4",
         "label": {
-          "ru": "Обмен документами по данной услуге организован через специализированную (60-90%); некоторые процессы все еще требуют бумажного носителя, например, для юридически значимого обмена (особенно, на региональном/муниципальных уровнях).",
+          "ru": "Обмен документами по данной услуге организован через специализированную систему (60-90%); некоторые процессы все еще требуют бумажного носителя, например, для юридически значимого обмена (особенно, на региональном/муниципальных уровнях).",
           "en": "Document exchange for this service is organised through a specialised system (60–90%); some processes still require paper documents for legally significant exchanges (especially at regional/municipal levels)."
         }
       },
@@ -117,7 +117,7 @@
       {
         "value": "1",
         "label": {
-          "ru": "Единого регламента предоставления услуг нет.",
+          "ru": "Единого регламента предоставления услуги нет.",
           "en": "No unified regulation governing service provision exists."
         }
       },
@@ -253,14 +253,14 @@
     "inputType": "service-template",
     "question": {
       "ru": "Как был оптимизирован процесс предоставления данной услуги, чтобы ускорить сроки ее предоставления?",
-      "en": "How has the process of providing this service been optimised to speed up delivery times?"
+      "en": "How has the process of providing this service been optimised to speed up delivery time?"
     },
     "options": [
       {
         "value": "1",
         "label": {
           "ru": "Услуга предоставляется в рамках нескольких государственных услуг на порталах или с физическим присутствием в нескольких ответственных ведомствах/агентствах. Услуга должна быть запрошена несколько раз для различных элементов получения услуги.",
-          "en": "The service is provided as part of several government services on portals or with physical presence at multiple responsible agencies; the service must be requested several times."
+          "en": "The service is provided as part of several government services on web portals or with physical presence at multiple responsible agencies; the service must be requested several times."
         }
       },
       {
@@ -292,7 +292,7 @@
         "value": "1",
         "label": {
           "ru": "Физические копии заявления на получение услуги и сопутствующих документов.",
-          "en": "Physical copies of the service application and supporting documents."
+          "en": "Physical copies of the service application form and supporting documents."
         }
       },
       {
@@ -306,7 +306,7 @@
         "value": "3",
         "label": {
           "ru": "Цифровое заявление на получение услуги на едином портале госуслуг и цифровые копии сопутствующих документов.",
-          "en": "Digital service application on the unified government services portal and digital copies of supporting documents."
+          "en": "Digital service application on the unified public services portal and digital copies of supporting documents."
         }
       },
       {
@@ -377,7 +377,7 @@
         "value": "1",
         "label": {
           "ru": "Через телефонные горячие линии государственных органов.",
-          "en": "Through government hotlines."
+          "en": "Through government telephone hotlines."
         }
       },
       {
@@ -391,14 +391,14 @@
         "value": "3",
         "label": {
           "ru": "На веб-страницах Единого портала государственных услуг.",
-          "en": "On the unified government services portal."
+          "en": "On the unified public services portal."
         }
       },
       {
         "value": "4",
         "label": {
           "ru": "В специализированных чат-ботах на Едином портале государственных услуг или через социальные сети/мессенджеры.",
-          "en": "In specialised chatbots on the unified government services portal or via social media/messengers."
+          "en": "In specialised chatbots on the unified public services portal or via social media/messengers."
         }
       },
       {

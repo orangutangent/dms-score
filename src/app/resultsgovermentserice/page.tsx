@@ -158,20 +158,20 @@ const ResultsGovermentServicePage = () => {
           </div>
 
           {/* Правый нижний блок - Таблица специальных разделов */}
-          {Object.keys(specialScores).length > 0 && (
-            <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8 mt-6">
-              <h2 className="text-2xl font-bold mb-4">
-                {t("specialSectionsTitle")}
-              </h2>
-              <ScoreTable
-                scores={specialScores}
-                criteria={specialCriteria}
-                averageScore={specialAverageScore}
-                getMaturityStage={getMaturityStage}
-                scoreColumnTitle={t("averageScore")}
-              />
-            </div>
-          )}
+          {/* {Object.keys(specialScores).length > 0 && ( */}
+          <div className="lg:col-start-2 max-w-xl bg-white rounded-2xl shadow-lg p-8 mt-6">
+            <h2 className="text-2xl font-bold mb-4">
+              {t("specialSectionsTitle")}
+            </h2>
+            <ScoreTable
+              scores={specialScores}
+              criteria={specialCriteria}
+              averageScore={specialAverageScore}
+              getMaturityStage={getMaturityStage}
+              scoreColumnTitle={t("averageScore")}
+            />
+          </div>
+          {/* )} */}
         </div>
       </div>
     </main>

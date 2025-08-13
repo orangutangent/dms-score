@@ -25,7 +25,7 @@ const ServiceStatsTable: React.FC<ServiceStatsTableProps> = ({
       <h3 className="text-lg font-semibold mb-4">{t("serviceStatsTitle")}</h3>
       <div>
         <div
-          className="grid grid-cols-3 gap-4 text-sm border-b pb-2"
+          className="grid grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm border-b pb-2"
           style={{ color: "#727F88" }}
         >
           <div>{t("serviceTypeColumn")}</div>
@@ -43,12 +43,12 @@ const ServiceStatsTable: React.FC<ServiceStatsTableProps> = ({
             return (
               <div
                 key={service.code}
-                className="grid grid-cols-3 gap-4 items-center"
+                className="grid grid-cols-3 gap-2 md:gap-4 items-center text-[10px] lg:text-base"
               >
                 <div className="flex items-center">
                   {showColors && (
                     <span
-                      className="w-3 h-3 rounded-full mr-3 flex-shrink-0"
+                      className="w-3 h-3 rounded-full mr-1 lg:mr-3 flex-shrink-0"
                       style={{ backgroundColor: displayColor }}
                     ></span>
                   )}
@@ -63,7 +63,7 @@ const ServiceStatsTable: React.FC<ServiceStatsTableProps> = ({
           })}
           {/* Overall Average Row */}
           {serviceStats.length > 0 && (
-            <div className="grid grid-cols-3 gap-4 items-center font-bold border-t pt-4 mt-4">
+            <div className="grid grid-cols-3 gap-2 md:gap-4 items-center font-bold border-t pt-4 mt-4 text-[10px] lg:text-base">
               <div>{t("averageValue")}</div>
               <div className="text-center">
                 {(

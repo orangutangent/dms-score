@@ -27,7 +27,7 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-4 text-sm text-gray-500 border-b pb-2">
+      <div className="grid grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm text-gray-500 border-b pb-2">
         <div>{t("criterionColumn")}</div>
         <div className="text-center">{scoreColumnTitle || t("averageScore")}</div>
         <div className="text-center">{t("stageColumn")}</div>
@@ -46,12 +46,12 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
           return (
             <div
               key={criterion}
-              className="grid grid-cols-3 gap-4 items-center"
+              className="grid grid-cols-3 gap-2 md:gap-4 items-center text-[10px] lg:text-base"
             >
               <div className="flex items-center">
                 {showColors && (
                   <span
-                    className="w-3 h-3 rounded-full mr-3 flex-shrink-0"
+                    className="size-3 rounded-full mr-1 lg:mr-3 flex-shrink-0"
                     style={{ backgroundColor: displayColor }}
                   ></span>
                 )}
@@ -64,7 +64,7 @@ const ScoreTable: React.FC<ScoreTableProps> = ({
             </div>
           );
         })}
-        <div className="grid grid-cols-3 gap-4 items-center font-bold border-t pt-4 mt-4">
+        <div className="grid grid-cols-3 gap-2 md:gap-4 items-center font-bold border-t pt-4 mt-4 text-[10px] lg:text-base">
           <div>{t("averageValue")}</div>
           <div className="text-center">{averageScore.toFixed(1)}</div>
           <div className="text-center">

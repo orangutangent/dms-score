@@ -99,5 +99,10 @@
     "contactsGovTel": "Телефон (необязательно)",
     "selectCountryPlaceholder": "Выберите страну",
     "regionPlaceholder": "Укажите регион (Опционально)"
+  },
+  "NotFoundPage": {
+    "title": "Страница не найдена",
+    "description": "Извините, страница, которую вы ищете, не существует.",
+    "backToHome": "Вернуться на главную"
   }
 }

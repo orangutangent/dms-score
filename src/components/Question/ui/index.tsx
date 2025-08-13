@@ -451,7 +451,7 @@ const Question: React.FC<QuestionProps> = ({
             const after = q.slice(qmIndex); // includes '?'
             return (
               <>
-                {before}{" "}
+                {before}:{" "}
                 <span style={{ color: info.color, fontWeight: 700 }}>
                   {info.label[locale as keyof LocalizedString]}
                 </span>

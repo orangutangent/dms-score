@@ -45,9 +45,9 @@ const LEVEL_CRITERIA = [
 
 // Специальные разделы
 const SPECIAL_SECTION_CRITERIA = [
-  "Специальный раздел 1",
-  "Специальный раздел 2",
-  "Специальный раздел 3",
+  "SPECIAL_SECTION_1",
+  "SPECIAL_SECTION_2",
+  "SPECIAL_SECTION_3",
 ];
 
 export async function GET() {

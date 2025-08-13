@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import React, { useState } from "react";
 import Radio from "../../ui/Radio";
 import { Question as QuestionType, Answer } from "../model/types";
@@ -14,6 +15,7 @@ const ScaleServiceTemplateInput: React.FC<ScaleServiceTemplateInputProps> = ({
   initialAnswer,
   onAnswerChange,
 }) => {
+  const locale = useLocale();
   const [answers, setAnswers] = useState<Record<ServiceCode, string>>(() => {
     const initial: Record<ServiceCode, string> = {} as Record<
       ServiceCode,
@@ -69,7 +71,10 @@ const ScaleServiceTemplateInput: React.FC<ScaleServiceTemplateInputProps> = ({
               className="w-4 h-4 rounded-full mr-3"
               style={{ backgroundColor: SERVICE_MAP[subQ.service].color }}
             ></span>
-            <h4 className="font-medium text-gray-900">{subQ.text}</h4>
+            <h4 className="font-medium text-gray-900">
+              {SERVICE_MAP[subQ.service].label[locale as "ru" | "en"]}:{" "}
+              {subQ.text}
+            </h4>
           </div>
 
           <div className="ml-7">
@@ -80,7 +85,7 @@ const ScaleServiceTemplateInput: React.FC<ScaleServiceTemplateInputProps> = ({
                   label={
                     typeof option.label === "string"
                       ? option.label
-                      : option.label.en
+                      : option.label[locale as "ru" | "en"]
                   }
                   value={option.value}
                   checked={answers[subQ.service] === option.value}

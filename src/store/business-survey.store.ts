@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { Answer } from "../components/Question/model/types";
+import { persist, createJSONStorage } from "zustand/middleware";
 import type { BusinessSurveyResponseDTO } from "@/api/types";
 
 interface LocationState {
@@ -58,10 +57,15 @@ export const useBusinessSurveyStore = create<BusinessSurveyState>()(
       setSector: (sector) => set({ sector }),
       setFinalThoughts: (thoughts) => set({ finalThoughts: thoughts }),
       setContacts: (contacts) => set({ contacts }),
-      clearResponses: () => set({ responses: [], contacts: { name: "", affiliation: "", email: "", tel: "" } }),
+      clearResponses: () =>
+        set({
+          responses: [],
+          contacts: { name: "", affiliation: "", email: "", tel: "" },
+        }),
     }),
     {
       name: "dms-business-survey-storage",
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import type { GovernmentSurveyResponseDTO } from "@/api/types";
 
 interface LocationState {
@@ -57,10 +57,18 @@ export const useGovernmentSurveyStore = create<GovernmentSurveyState>()(
       setDepartment: (department) => set({ department }),
       setFinalThoughts: (thoughts) => set({ finalThoughts: thoughts }),
       setContacts: (contacts) => set({ contacts }),
-      clearResponses: () => set({ responses: [], location: { country: "", region: "" }, department: "", finalThoughts: "", contacts: { name: "", affiliation: "", email: "", tel: "" } }),
+      clearResponses: () =>
+        set({
+          responses: [],
+          location: { country: "", region: "" },
+          department: "",
+          finalThoughts: "",
+          contacts: { name: "", affiliation: "", email: "", tel: "" },
+        }),
     }),
     {
       name: "dms-government-survey-storage",
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

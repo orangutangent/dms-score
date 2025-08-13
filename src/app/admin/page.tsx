@@ -40,8 +40,8 @@ const AdminPage = () => {
 
   const countryData: CountryStats | undefined = stats[selectedCountry];
 
-  const getMaturityStage = (score0to5: number) => {
-    const s = getStage(score0to5 * 2);
+  const getMaturityStage = (score0to10: number) => {
+    const s = getStage(score0to10);
     return `${s.letter} - ${s.label}`;
   };
 
@@ -163,8 +163,7 @@ const AdminPage = () => {
             </div>
           </div>
 
-          {/* Второй ряд: таблица услуг и специальные разделы */}
-          <div>
+          <div className="lg:col-span-2">
             <ServiceStatsTable
               serviceStats={serviceStats}
               showColors={false}
@@ -173,7 +172,7 @@ const AdminPage = () => {
           </div>
 
           {Object.keys(govData.specialSections).length > 0 && (
-            <div className="bg-white rounded-2xl shadow-lg p-8">
+            <div className="bg-white lg:col-span-2 rounded-2xl shadow-lg p-8">
               <h3 className="text-lg font-semibold mb-4">
                 {t("specialSectionsTitle")}
               </h3>
@@ -346,7 +345,7 @@ const AdminPage = () => {
           <div className="lg:col-span-2">
             <ServiceStatsTable
               serviceStats={businessServiceStats}
-              showColors={true}
+              showColors={false}
               customColors={SERVICES.map((s) => s.color)}
             />
           </div>

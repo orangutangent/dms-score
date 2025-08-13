@@ -7,26 +7,63 @@ import ScoreTable, { ServiceStatsTable } from "@/components/ScoreTable";
 import { getStage } from "@/lib/stage";
 import { GOVERNMENT_COLORS, BUSINESS_COLORS } from "@/config/colors";
 import { useAdminStats } from "@/components/AdminStats/data-access/useAdminStats";
+import { useCountries } from "@/components/AdminStats/data-access/useCountries";
 import { CountryStats, SurveyStats } from "@/api/admin-stats-api";
 import { ServiceCode, SERVICES } from "@/config/services";
 import { useLocale, useTranslations } from "next-intl";
 import { LocalizedString } from "@/components/Question/model/types";
+import DateInput from "@/components/ui/DateInput";
+import DatePickerDisplay from "@/components/ui/DatePickerDisplay";
 
 const AdminPage = () => {
   const t = useTranslations("AdminPage"); // Added a comment to force recompile
-  const { data: stats, isLoading, error } = useAdminStats();
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
   const [activeTab, setActiveTab] = useState<"government" | "digitalMaturity">(
     "government"
+  );
+
+  const {
+    data: countries,
+    isLoading: isLoadingCountries,
+    error: errorCountries,
+  } = useCountries();
+
+  const {
+    data: stats,
+    isLoading,
+    error,
+  } = useAdminStats(
+    selectedCountry || "",
+    activeTab,
+    startDate,
+    endDate,
+    !!selectedCountry // Only enable query if a country is selected
   );
 
   const locale = useLocale();
 
   useEffect(() => {
-    if (stats && Object.keys(stats).length > 0 && !selectedCountry) {
-      setSelectedCountry(Object.keys(stats)[0]);
+    if (countries && countries.length > 0 && selectedCountry === null) {
+      setSelectedCountry(countries[0]);
     }
-  }, [stats, selectedCountry]);
+  }, [countries, selectedCountry]);
+
+  if (isLoadingCountries)
+    return <div className="text-center p-8">{t("loading")}</div>;
+  if (errorCountries)
+    return (
+      <div className="text-center p-8 text-red-500">
+        {t("errorFetchingStats")}
+      </div>
+    );
+  if (!countries || countries.length === 0)
+    return (
+      <div className="text-center p-8">
+        {t("noStatsAvailable") + " (No countries found)"}
+      </div>
+    );
 
   if (isLoading) return <div className="text-center p-8">{t("loading")}</div>;
   if (error)
@@ -35,10 +72,8 @@ const AdminPage = () => {
         {t("errorFetchingStats")}
       </div>
     );
-  if (!stats || Object.keys(stats).length === 0)
-    return <div className="text-center p-8">{t("noStatsAvailable")}</div>;
 
-  const countryData: CountryStats | undefined = stats[selectedCountry];
+  const countryData: CountryStats | undefined = stats?.[selectedCountry || ""];
 
   const getMaturityStage = (score0to10: number) => {
     const s = getStage(score0to10);
@@ -46,8 +81,15 @@ const AdminPage = () => {
   };
 
   const renderContent = () => {
-    if (!countryData) {
-      return <p className="text-center p-8">{t("selectCountry")}</p>;
+    if (isLoading) return <div className="text-center p-8">{t("loading")}</div>;
+    if (error)
+      return (
+        <div className="text-center p-8 text-red-500">
+          {t("errorFetchingStats")}
+        </div>
+      );
+    if (!stats || Object.keys(stats).length === 0 || !countryData) {
+      return <p className="text-center p-8">{t("noStatsAvailable")}</p>;
     }
 
     const data = countryData[activeTab];
@@ -382,21 +424,34 @@ const AdminPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-4 items-center">
+        <div className="flex flex-col lg:flex-row gap-4 items-center mb-4">
           <Select
-            value={selectedCountry}
+            value={selectedCountry || ""}
             onChange={(e) => setSelectedCountry(e.target.value)}
-            options={Object.keys(stats).map((country) => ({
+            options={countries.map((country) => ({
               label: country,
               value: country,
             }))}
           />
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-4 items-center mb-8">
           <div className="bg-white p-3 rounded-lg shadow-sm lg:w-md">
             {t("govPassCount")} {countryData?.government.count || 0}
           </div>
           <div className="bg-white p-3 rounded-lg shadow-sm lg:w-md">
             {t("businessPassCount")} {countryData?.digitalMaturity.count || 0}
           </div>
+          <DatePickerDisplay
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            widthClass="w-48"
+          />
+          <DatePickerDisplay
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            widthClass="w-48"
+          />
         </div>
 
         {renderContent()}

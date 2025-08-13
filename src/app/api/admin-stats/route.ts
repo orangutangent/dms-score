@@ -50,11 +50,36 @@ const SPECIAL_SECTION_CRITERIA = [
   "SPECIAL_SECTION_3",
 ];
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const countryParam = searchParams.get("country");
+    const tabParam = searchParams.get("tab");
+    const startDateParam = searchParams.get("startDate");
+    const endDateParam = searchParams.get("endDate");
+
+    const dateFilter: { gte?: Date; lte?: Date } = {};
+    if (startDateParam) {
+      dateFilter.gte = new Date(startDateParam);
+    }
+    if (endDateParam) {
+      dateFilter.lte = new Date(endDateParam);
+    }
+
+    const commonWhere = {
+      ...(countryParam && { country: countryParam }),
+      ...(Object.keys(dateFilter).length > 0 && { createdAt: dateFilter }),
+    };
+
+    const buildServiceScoreWhereClause = (resultIds: string[]) => {
+      if (resultIds.length === 0) return `WHERE false`; // No results to match
+      return `WHERE "resultId" IN ('${resultIds.join("','")}')`;
+    };
+
+    // Process digital maturity results
     const digitalMaturityResults =
-      await prisma.digitalMaturitySurveyResult.findMany();
-    const governmentResults = await prisma.governmentSurveyResult.findMany();
+      await prisma.digitalMaturitySurveyResult.findMany({ where: commonWhere });
+    const governmentResults = await prisma.governmentSurveyResult.findMany({ where: commonWhere });
     const governmentServiceRows: Array<{
       resultId: string;
       serviceCode: string;
@@ -68,7 +93,7 @@ export async function GET() {
         criterionScores: Record<string, number>;
       }>
     >(
-      'SELECT "resultId", "serviceCode", "overallScore", "criterionScores" FROM "public"."GovernmentSurveyServiceScore"'
+      `SELECT "resultId", "serviceCode", "overallScore", "criterionScores" FROM "public"."GovernmentSurveyServiceScore" ${buildServiceScoreWhereClause(governmentResults.map(r => r.id))}`
     );
     const digitalMaturityServiceRows: Array<{
       resultId: string;
@@ -83,7 +108,7 @@ export async function GET() {
         criterionScores: Record<string, number>;
       }>
     >(
-      'SELECT "resultId", "serviceCode", "overallScore", "criterionScores" FROM "public"."DigitalMaturitySurveyServiceScore"'
+      `SELECT "resultId", "serviceCode", "overallScore", "criterionScores" FROM "public"."DigitalMaturitySurveyServiceScore" ${buildServiceScoreWhereClause(digitalMaturityResults.map(r => r.id))}`
     );
 
     const statsByCountry: Record<string, CountryStats> = {};

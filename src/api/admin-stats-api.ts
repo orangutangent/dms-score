@@ -32,7 +32,14 @@ export interface CountryStats {
 
 export type AdminStats = Record<string, CountryStats>;
 
-export const fetchAdminStats = async (): Promise<AdminStats> => {
-  const { data } = await axios.get<AdminStats>("/api/admin-stats");
+export const fetchAdminStats = async (selectedCountry: string, activeTab: string, startDate: string, endDate: string): Promise<AdminStats> => {
+  const { data } = await axios.get<AdminStats>("/api/admin-stats", {
+    params: {
+      country: selectedCountry,
+      tab: activeTab,
+      startDate,
+      endDate,
+    },
+  });
   return data;
 };

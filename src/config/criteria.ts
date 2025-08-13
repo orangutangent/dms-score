@@ -13,13 +13,13 @@ export type CriterionCode =
     | "SPECIAL_SECTION_3";
 
 export const CRITERIA: { code: CriterionCode; label: { ru: string; en: string } }[] = [
-    { code: "GOV_INTERACTION_LEVEL", label: { ru: "Уровень взаимодействия с государством", en: "Level of interaction with the state" } },
+    { code: "GOV_INTERACTION_LEVEL", label: { ru: "Взаимодействие с государством", en: "Interaction with the state" } },
     { code: "INFRASTRUCTURE_LEVEL", label: { ru: "Цифровая зрелость инфраструктуры", en: "Digital Maturity of Infrastructure" } },
-    { code: "ONLINE_PRESENCE_LEVEL", label: { ru: "Уровень онлайн доступности для клиентов", en: "Level of online availability for clients" } },
-    { code: "DATA_MANAGEMENT_LEVEL", label: { ru: "Уровень управления данными", en: "Data Management Level" } },
+    { code: "ONLINE_PRESENCE_LEVEL", label: { ru: "Онлайн доступность для клиентов", en: "Online availability for clients" } },
+    { code: "DATA_MANAGEMENT_LEVEL", label: { ru: "Управление данными", en: "Data Management" } },
     { code: "OPERATIONAL_LEVEL", label: { ru: "Цифровая зрелость процессов предоставления услуги", en: "Digital Maturity of the Process of Providing Services" } },
     { code: "GOVERNMENT_LEVEL", label: { ru: "Цифровая зрелость государственного администрирования", en: "Digital Maturity of Public Administration" } },
-    { code: "BUSINESS_LEVEL", label: { ru: "Уровень бизнеса", en: "Business Level" } },
+    { code: "BUSINESS_LEVEL", label: { ru: "Бизнес", en: "Business" } },
     { code: "PERSONAL_LEVEL", label: { ru: "Цифровая зрелость процессов получения услуги", en: "Digital Maturity of service delivery processes" } },
     { code: "ECOSYSTEM_LEVEL", label: { ru: "Цифровая зрелость интеграции госуслуги в экосистему", en: "Digital maturity of public service integration into the ecosystem" } },
     { code: "SPECIAL_SECTION_1", label: { ru: "Специальный раздел 1. Системы раннего предупреждения и уменьшения опасности бедствий", en: "Special Section 1. Early Warning Systems and Disaster Risk Reduction" } },

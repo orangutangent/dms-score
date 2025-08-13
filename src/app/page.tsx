@@ -8,11 +8,17 @@ export default function Home() {
   return (
     <main className="flex-1 flex items-center justify-center p-8">
       <div className="w-full max-w-5xl ">
-        <h1 className="text-[1.75rem] font-bold  mb-4">
-          {t("mainTitle")}
-        </h1>
-        <p className="mt-6 text-lg text-gray-600  ">
-          {t("mainDescription")}
+        <h1 className="text-2xl font-bold  mb-4">{t("mainTitle")}</h1>
+        <p className="mt-6  text-gray-600  ">{t("mainDescription")}</p>
+        <p className="mt-2  text-gray-600">
+          <Link
+            href="https://www.unescap.org/events/2025/regional-roundtable-digital-public-services-small-and-medium-sized-enterprises"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            {t("moreInfoLinkText")}
+          </Link>
         </p>
         <div className="mt-6 space-y-2 text-gray-500">
           <p>{t("timeToComplete")}</p>

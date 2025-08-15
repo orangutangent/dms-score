@@ -461,28 +461,13 @@ const Question: React.FC<QuestionProps> = ({
               return <>{question.question} </>;
             }
             const info = SERVICE_MAP[sc];
-            const q = question.question || "";
-            const qmIndex = q.indexOf("?");
-            if (qmIndex === -1) {
-              return (
-                <>
-                  {q}{" "}
-                  <span style={{ color: info.color, fontWeight: 700 }}>
-                    {info.label[locale as keyof LocalizedString]}
-                  </span>
-                </>
-              );
-            }
-            const before = q.slice(0, qmIndex).trimEnd();
-            const after = q.slice(qmIndex); // includes '?'
             return (
-              <>
-                {before}:{" "}
+              <div>
                 <span style={{ color: info.color, fontWeight: 700 }}>
                   {info.label[locale as keyof LocalizedString]}
                 </span>
-                {after}
-              </>
+                <div>{question.question}</div>
+              </div>
             );
           })()}
         </h2>

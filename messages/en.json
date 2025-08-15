@@ -85,7 +85,7 @@
     "sectorOptions": {
       "healthcare": "Healthcare",
       "education": "Education",
-      "other": "Other (please define your version)"
+      "other": "Other (please specify)"
     },
     "finalThoughts": "Form for proposals and comments on the development of public services for SMEs:",
     "finalThoughtsPlaceholder": "Enter your suggestions",

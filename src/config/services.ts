@@ -19,7 +19,7 @@ export const SERVICES: {
     code: "APPLY_SUPPORT",
     label: {
       ru: "Подача заявки на получение кредита/грантовой поддержки",
-      en: "Obtaining Credit and Grant Support",
+      en: "Obtaining credit and grant support",
     },
     color: "#7c3aed",
   },

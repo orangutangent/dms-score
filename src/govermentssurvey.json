@@ -267,14 +267,14 @@
         "value": "2",
         "label": {
           "ru": "Услуга предоставляется в режиме «одного окна».",
-          "en": "The service is delivered through a “one-stop shop”  approach."
+          "en": "The service is delivered through a “one-stop shop” approach."
         }
       },
       {
         "value": "3",
         "label": {
           "ru": "Услуга включена в «суперсервис» с упрощенной онлайн подачей заявления и сопутствующих оригиналов цифровых документов в «один клик».",
-          "en": "The service is part of a “super service” enabling simplified one-click online submission applications and original digital documents"
+          "en": "The service is part of a “super service” enabling simplified one-click online submission applications and original digital documents."
         }
       }
     ]
@@ -312,8 +312,8 @@
       {
         "value": "4",
         "label": {
-          "ru": "Цифровое заявление и цифровые оригиналы сопутствующих документов.",
-          "en": "Digital application and digital originals of supporting documents."
+          "ru": "Цифровое заявление и цифровые оригиналы сопутствующих документов, в том числе, автоматически прикрепляющиеся с цифровых государственных систем.",
+          "en": "Digital application and digital originals of supporting documents, including those automatically attached from digital government systems."
         }
       }
     ]

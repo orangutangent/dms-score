@@ -72,7 +72,7 @@
         "value": "2",
         "label": {
           "ru": "Большая часть обмена документами (60-90%) осуществляется на бумажных носителях, некоторые процессы организованы с помощью электронных средств межведомственной коммуникации.",
-          "en": "The majority of document exchange (60–90%) is paper-based, with some processes organised via electronic inter-agency document exchange systems"
+          "en": "The majority of document exchange (60–90%) is paper-based, with some processes organised via electronic inter-agency document exchange systems."
         }
       },
       {
@@ -85,7 +85,7 @@
       {
         "value": "4",
         "label": {
-          "ru": "Обмен документами по данной услуге организован через специализированную систему (60-90%); некоторые процессы все еще требуют бумажного носителя, например, для юридически значимого обмена (особенно, на региональном/муниципальных уровнях).",
+          "ru": "Обмен документами по данной услуге организован через специализированную систему(60-90%); некоторые процессы все еще требуют бумажного носителя, например, для юридически значимого обмена (особенно, на региональном/муниципальных уровнях).",
           "en": "Document exchange for this service is organised through a specialised system (60–90%); some processes still require paper documents for legally significant exchanges (especially at regional/municipal levels)."
         }
       },
@@ -131,7 +131,7 @@
       {
         "value": "3",
         "label": {
-          "ru": "Услуга имеет свой собственный регламент/процедуру",
+          "ru": "Услуга имеет свой собственный регламент/процедуру.",
           "en": "The service has its regulations and procedures."
         }
       },
@@ -274,7 +274,7 @@
         "value": "3",
         "label": {
           "ru": "Услуга включена в «суперсервис» с упрощенной онлайн подачей заявления и сопутствующих оригиналов цифровых документов в «один клик».",
-          "en": "The service is part of a “super service” enabling simplified one-click online submission applications and original digital documents."
+          "en": "The service is part of a “super service”, enabling simplified one-click online submission applications and original digital documents."
         }
       }
     ]
@@ -313,7 +313,7 @@
         "value": "4",
         "label": {
           "ru": "Цифровое заявление и цифровые оригиналы сопутствующих документов, в том числе, автоматически прикрепляющиеся с цифровых государственных систем.",
-          "en": "Digital application and digital originals of supporting documents, including those automatically attached from digital government systems."
+          "en": "Digital application and digital originals of supporting documents."
         }
       }
     ]
@@ -330,36 +330,43 @@
       {
         "value": "1",
         "label": {
-          "ru": "20-30 дней.",
-          "en": "20–30 days"
+          "ru": "До 30 дней.",
+          "en": "Up to 30 days."
         }
       },
       {
         "value": "2",
         "label": {
-          "ru": "10-19 дней.",
-          "en": "10–19 days"
+          "ru": "До 15 дней.",
+          "en": "Up to 15 days."
         }
       },
       {
         "value": "3",
         "label": {
-          "ru": "5-9 дней.",
-          "en": "5–9 days"
+          "ru": "До 10 дней.",
+          "en": "Up to 10 days."
         }
       },
       {
         "value": "4",
         "label": {
-          "ru": "1-4 дней.",
-          "en": "1–4 days"
+          "ru": "До 5 дней.",
+          "en": "Up to 5 days."
         }
       },
       {
         "value": "5",
         "label": {
-          "ru": "Несколько часов.",
-          "en": "Several hours"
+          "ru": "До 3 дней.",
+          "en": "Up to 3 days."
+        }
+      },
+      {
+        "value": "6",
+        "label": {
+          "ru": "менее 1 дня",
+          "en": "Less than 1 day."
         }
       }
     ]
@@ -369,7 +376,7 @@
     "criterion": "ECOSYSTEM_LEVEL",
     "inputType": "service-template",
     "question": {
-      "ru": "Где представители МСП могут узнать информацию о получении необходимой ему услуги?",
+      "ru": "Где представители МСП могут узнать информацию о получении необходимой им услуги?",
       "en": "Where can SME representatives find information on obtaining the required service?"
     },
     "options": [
@@ -391,7 +398,7 @@
         "value": "3",
         "label": {
           "ru": "На веб-страницах Единого портала государственных услуг.",
-          "en": "On the unified public services portal."
+          "en": "On the unified government services portal."
         }
       },
       {
@@ -416,7 +423,7 @@
     "inputType": "service-template",
     "question": {
       "ru": "Как проводится учет международной практики и возможность трансграничного обмена данными по результату предоставления услуги",
-      "en": "Is there a possibility for cross-border data exchange upon service delivery outcome? Are the best international practices taken into account when organizing such data exchanges?"
+      "en": "Is there a possibility for cross-border data exchange upon service delivery outcome? Are the best international practices taken into account when organizing such data exchange"
     },
     "options": [
       {
@@ -606,7 +613,7 @@
       {
         "value": "3",
         "label": {
-          "ru": "Можно отправить только несколько определённых типов контента (например, только текстовый контент).",
+          "ru": "Можно отправить только несколько определенных типов контента (например, только текстовый контент).",
           "en": "Only a few specific content types can be submitted (e.g., text only)."
         }
       },

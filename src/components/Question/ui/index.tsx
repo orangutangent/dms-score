@@ -87,7 +87,16 @@ const Question: React.FC<QuestionProps> = ({
   const locale = useLocale();
 
   useEffect(() => {
-    if (question.inputType === "department") {
+    if (question.inputType === "sector" && initialSector) {
+      if (initialSector.startsWith("other: ")) {
+        setAnswer({
+          value: "other",
+          details: initialSector.replace("other: ", ""),
+        });
+      } else {
+        setAnswer({ value: initialSector });
+      }
+    } else if (question.inputType === "department") {
       setAnswer({ value: initialDepartment || "" });
     } else if (question.inputType === "final-thoughts") {
       setAnswer({ value: initialFinalThoughts });
@@ -96,6 +105,7 @@ const Question: React.FC<QuestionProps> = ({
     }
   }, [
     initialAnswer,
+    initialSector,
     initialDepartment,
     initialFinalThoughts,
     question.inputType,
@@ -153,7 +163,11 @@ const Question: React.FC<QuestionProps> = ({
       onDepartmentChange?.(answer?.value || "");
       onNext(answer);
     } else if (question.inputType === "sector") {
-      onSectorChange?.(answer?.value || ""); // Use selected answer value
+      let sectorValue = answer?.value || "";
+      if (answer?.value === "other" && answer.details) {
+        sectorValue = `other: ${answer.details}`;
+      }
+      onSectorChange?.(sectorValue); // Use selected answer value
       onNext(answer);
     } else if (question.inputType === "final-thoughts") {
       onFinalThoughtsChange(answer?.value || ""); // Use selected answer value
@@ -207,6 +221,7 @@ const Question: React.FC<QuestionProps> = ({
           />
         );
       case "sector":
+        const otherSelected = answer?.value === "other";
         return (
           <div className="flex flex-col gap-4 mt-6">
             {question.options?.map((option) => (
@@ -215,7 +230,7 @@ const Question: React.FC<QuestionProps> = ({
                 label={
                   typeof option.label === "string"
                     ? option.label
-                    : option.label.en
+                    : option.label[locale as keyof LocalizedString]
                 }
                 value={option.value}
                 checked={answer?.value === option.value}
@@ -225,6 +240,17 @@ const Question: React.FC<QuestionProps> = ({
                 }}
               />
             ))}
+            {otherSelected && (
+              <div className="mt-4">
+                <Textarea
+                  placeholder="Please specify"
+                  value={answer?.details || ""}
+                  onChange={(e) =>
+                    setAnswer({ ...answer, details: e.target.value })
+                  }
+                />
+              </div>
+            )}
           </div>
         );
       case "department":

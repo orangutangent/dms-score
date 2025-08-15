@@ -51,8 +51,8 @@
     "noStatsAvailable": "No stats available",
     "selectCountry": "Please select a country.",
     "noSurveyData": "No survey data for this category.",
-    "govSurveyButton": "Government Services Maturity Assessment",
-    "digitalMaturityButton": "Business Digital Maturity Assessment",
+    "govSurveyButton": "Self-Assessment by Civil Servants",
+    "digitalMaturityButton": "Self-Assessment by SMEs",
     "govPassCount": "Number of government passes:",
     "businessPassCount": "Number of business passes:",
     "averageScore": "Average Score",
@@ -76,7 +76,6 @@
     "averageScore": "Average Score"
   },
   "HardcodedQuestions": {
-    "location": "In which country, city, region do you provide DGS for SMEs?",
     "locationGov": "In which country, city, region do you provide Digital Public Services for SMEs?",
     "sectorBusiness": "In which sector of the economy do you provide your services?",
     "locationBusiness": "In which country, city, and region is your SME registered?",

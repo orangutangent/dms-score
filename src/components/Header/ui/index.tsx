@@ -8,7 +8,7 @@ const Header = () => {
     <header className="bg-white shadow-md p-4  absolute w-full  top-0 z-50">
       <div className="flex justify-between px-6">
         <Link className="select-none" href="/">
-          <Image src="/logo.svg" alt="ESCAP Logo" width={180} height={40} />
+          <Image src="/logo.png" alt="ESCAP Logo" width={180} height={40} />
         </Link>
         <LanguageSwitcher />
       </div>

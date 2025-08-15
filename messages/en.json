@@ -16,7 +16,9 @@
     "projectInfo_linkText": "Strengthening the policy and regulatory framework of digital public services for small and medium enterprises (SMEs) in North and Central Asia in support of the Asia-Pacific Information Superhighway (APIS) Action Plan 2022-2026",
     "projectInfo_postLink": "\", implemented with the support of the Russian Federation.",
     "projectInfo_linkUrl": "https://unescap.org/sites/default/d8files/event-documents/For%20StP%20Flyer%20DPS4SMEs.pdf?_gl=1*1gk077t*_ga*MTY5MjM4NTkyOC4xNzA2MTU1NjIz*_ga_SB1ZX36Y86*czE3NTUyNDEzNDgkbzExMzAkZzAkdDE3NTUyNDEzNDkkajU5JGwwJGgw*_ga_FNVGF7TE9P*czE3NTUyNDEzNDgkbzExMjMkZzAkdDE3NTUyNDEzNDkkajU5JGwwJGgw",
-    "roundtableInfoText": "The results of this survey will be presented as part of the Regional Roundtable on Digital Public Services for Small and Medium-sized Enterprises, which will be held on August 26-27, 2025, in St. Petersburg, Russian Federation. More detailed information is available here:",
+    "roundtableInfo_preLink": "The results of this survey will be presented as part of the ",
+    "roundtableInfo_linkText": "Regional Roundtable on Digital Public Services for Small and Medium-sized Enterprises, which will be held on August 26-27, 2025, in St. Petersburg, Russian Federation.",
+    "roundtableInfo_postLink": "",
     "roundtableInfoLinkUrl": "https://www.unescap.org/events/2025/regional-roundtable-digital-public-services-small-and-medium-sized-enterprises",
     "contactInfo_preLink": "Please contact IDS, IDD via email: ",
     "contactInfo_email": "escap-ids@un.org"

@@ -39,15 +39,18 @@ export default function Home() {
             </Link>
             {t("projectInfo_postLink")}
           </p>
-          <p className="mt-6 text-gray-600">{t("roundtableInfoText")}</p>
-          <Link
-            href={t("roundtableInfoLinkUrl")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            {t("roundtableInfoLinkUrl")}
-          </Link>
+          <p className="mt-6 text-gray-600">
+            {t("roundtableInfo_preLink")}
+            <Link
+              href={t("roundtableInfoLinkUrl")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              {t("roundtableInfo_linkText")}
+            </Link>
+            {t("roundtableInfo_postLink")}
+          </p>
           <div className="mt-6 space-y-2 text-gray-500">
             <p>
               {t("contactInfo_preLink")}

@@ -1,382 +1,64 @@
 [
-  {
-    "ru": "Австралия",
-    "en": "Australia"
-  },
-  {
-    "ru": "Австрия",
-    "en": "Austria"
-  },
-  {
-    "ru": "Азербайджан",
-    "en": "Azerbaijan"
-  },
-  {
-    "ru": "Албания",
-    "en": "Albania"
-  },
-  {
-    "ru": "Алжир",
-    "en": "Algeria"
-  },
-  {
-    "ru": "Ангола",
-    "en": "Angola"
-  },
-  {
-    "ru": "Андорра",
-    "en": "Andorra"
-  },
-  {
-    "ru": "Аргентина",
-    "en": "Argentina"
-  },
-  {
-    "ru": "Армения",
-    "en": "Armenia"
-  },
-  {
-    "ru": "Афганистан",
-    "en": "Afghanistan"
-  },
-  {
-    "ru": "Бангладеш",
-    "en": "Bangladesh"
-  },
-  {
-    "ru": "Беларусь",
-    "en": "Belarus"
-  },
-  {
-    "ru": "Бельгия",
-    "en": "Belgium"
-  },
-  {
-    "ru": "Болгария",
-    "en": "Bulgaria"
-  },
-  {
-    "ru": "Боливия",
-    "en": "Bolivia"
-  },
-  {
-    "ru": "Бразилия",
-    "en": "Brazil"
-  },
-  {
-    "ru": "Великобритания",
-    "en": "United Kingdom"
-  },
-  {
-    "ru": "Венгрия",
-    "en": "Hungary"
-  },
-  {
-    "ru": "Венесуэла",
-    "en": "Venezuela"
-  },
-  {
-    "ru": "Вьетнам",
-    "en": "Vietnam"
-  },
-  {
-    "ru": "Германия",
-    "en": "Germany"
-  },
-  {
-    "ru": "Греция",
-    "en": "Greece"
-  },
-  {
-    "ru": "Грузия",
-    "en": "Georgia"
-  },
-  {
-    "ru": "Дания",
-    "en": "Denmark"
-  },
-  {
-    "ru": "Египет",
-    "en": "Egypt"
-  },
-  {
-    "ru": "Израиль",
-    "en": "Israel"
-  },
-  {
-    "ru": "Индия",
-    "en": "India"
-  },
-  {
-    "ru": "Индонезия",
-    "en": "Indonesia"
-  },
-  {
-    "ru": "Иордания",
-    "en": "Jordan"
-  },
-  {
-    "ru": "Иран",
-    "en": "Iran"
-  },
-  {
-    "ru": "Ирландия",
-    "en": "Ireland"
-  },
-  {
-    "ru": "Исландия",
-    "en": "Iceland"
-  },
-  {
-    "ru": "Испания",
-    "en": "Spain"
-  },
-  {
-    "ru": "Италия",
-    "en": "Italy"
-  },
-  {
-    "ru": "Казахстан",
-    "en": "Kazakhstan"
-  },
-  {
-    "ru": "Камбоджа",
-    "en": "Cambodia"
-  },
-  {
-    "ru": "Канада",
-    "en": "Canada"
-  },
-  {
-    "ru": "Катар",
-    "en": "Qatar"
-  },
-  {
-    "ru": "Кения",
-    "en": "Kenya"
-  },
-  {
-    "ru": "Кипр",
-    "en": "Cyprus"
-  },
-  {
-    "ru": "Китай",
-    "en": "China"
-  },
-  {
-    "ru": "Колумбия",
-    "en": "Colombia"
-  },
-  {
-    "ru": "Куба",
-    "en": "Cuba"
-  },
-  {
-    "ru": "Кыргызстан",
-    "en": "Kyrgyzstan"
-  },
-  {
-    "ru": "Латвия",
-    "en": "Latvia"
-  },
-  {
-    "ru": "Ливан",
-    "en": "Lebanon"
-  },
-  {
-    "ru": "Литва",
-    "en": "Lithuania"
-  },
-  {
-    "ru": "Люксембург",
-    "en": "Luxembourg"
-  },
-  {
-    "ru": "Малайзия",
-    "en": "Malaysia"
-  },
-  {
-    "ru": "Мальдивы",
-    "en": "Maldives"
-  },
-  {
-    "ru": "Мальта",
-    "en": "Malta"
-  },
-  {
-    "ru": "Марокко",
-    "en": "Morocco"
-  },
-  {
-    "ru": "Мексика",
-    "en": "Mexico"
-  },
-  {
-    "ru": "Молдова",
-    "en": "Moldova"
-  },
-  {
-    "ru": "Монако",
-    "en": "Monaco"
-  },
-  {
-    "ru": "Монголия",
-    "en": "Mongolia"
-  },
-  {
-    "ru": "Непал",
-    "en": "Nepal"
-  },
-  {
-    "ru": "Нигерия",
-    "en": "Nigeria"
-  },
-  {
-    "ru": "Нидерланды",
-    "en": "Netherlands"
-  },
-  {
-    "ru": "Новая Зеландия",
-    "en": "New Zealand"
-  },
-  {
-    "ru": "Норвегия",
-    "en": "Norway"
-  },
-  {
-    "ru": "ОАЭ",
-    "en": "UAE"
-  },
-  {
-    "ru": "Пакистан",
-    "en": "Pakistan"
-  },
-  {
-    "ru": "Перу",
-    "en": "Peru"
-  },
-  {
-    "ru": "Польша",
-    "en": "Poland"
-  },
-  {
-    "ru": "Португалия",
-    "en": "Portugal"
-  },
-  {
-    "ru": "Россия",
-    "en": "Russia"
-  },
-  {
-    "ru": "Румыния",
-    "en": "Romania"
-  },
-  {
-    "ru": "Саудовская Аравия",
-    "en": "Saudi Arabia"
-  },
-  {
-    "ru": "Северная Корея",
-    "en": "North Korea"
-  },
-  {
-    "ru": "Сингапур",
-    "en": "Singapore"
-  },
-  {
-    "ru": "Сирия",
-    "en": "Syria"
-  },
-  {
-    "ru": "Словакия",
-    "en": "Slovakia"
-  },
-  {
-    "ru": "Словения",
-    "en": "Slovenia"
-  },
-  {
-    "ru": "США",
-    "en": "USA"
-  },
-  {
-    "ru": "Таджикистан",
-    "en": "Tajikistan"
-  },
-  {
-    "ru": "Таиланд",
-    "en": "Thailand"
-  },
-  {
-    "ru": "Туркменистан",
-    "en": "Turkmenistan"
-  },
-  {
-    "ru": "Турция",
-    "en": "Turkey"
-  },
-  {
-    "ru": "Узбекистан",
-    "en": "Uzbekistan"
-  },
-  {
-    "ru": "Украина",
-    "en": "Ukraine"
-  },
-  {
-    "ru": "Финляндия",
-    "en": "Finland"
-  },
-  {
-    "ru": "Франция",
-    "en": "France"
-  },
-  {
-    "ru": "Хорватия",
-    "en": "Croatia"
-  },
-  {
-    "ru": "Черногория",
-    "en": "Montenegro"
-  },
-  {
-    "ru": "Чехия",
-    "en": "Czech Republic"
-  },
-  {
-    "ru": "Чили",
-    "en": "Chile"
-  },
-  {
-    "ru": "Швейцария",
-    "en": "Switzerland"
-  },
-  {
-    "ru": "Швеция",
-    "en": "Sweden"
-  },
-  {
-    "ru": "Шри-Ланка",
-    "en": "Sri Lanka"
-  },
-  {
-    "ru": "Эстония",
-    "en": "Estonia"
-  },
-  {
-    "ru": "Эфиопия",
-    "en": "Ethiopia"
-  },
-  {
-    "ru": "Южная Корея",
-    "en": "South Korea"
-  },
-  {
-    "ru": "ЮАР",
-    "en": "South Africa"
-  },
-  {
-    "ru": "Япония",
-    "en": "Japan"
-  }
+  {"ru": "Afghanistan", "en": "Afghanistan"},
+  {"ru": "Armenia", "en": "Armenia"},
+  {"ru": "Australia", "en": "Australia"},
+  {"ru": "Azerbaijan", "en": "Azerbaijan"},
+  {"ru": "Bangladesh", "en": "Bangladesh"},
+  {"ru": "Bhutan", "en": "Bhutan"},
+  {"ru": "Brunei Darussalam", "en": "Brunei Darussalam"},
+  {"ru": "Cambodia", "en": "Cambodia"},
+  {"ru": "China", "en": "China"},
+  {"ru": "Democratic People’s Republic of Korea", "en": "Democratic People’s Republic of Korea"},
+  {"ru": "Fiji", "en": "Fiji"},
+  {"ru": "France", "en": "France"},
+  {"ru": "Georgia", "en": "Georgia"},
+  {"ru": "India", "en": "India"},
+  {"ru": "Indonesia", "en": "Indonesia"},
+  {"ru": "Iran (Islamic Republic of)", "en": "Iran (Islamic Republic of)"},
+  {"ru": "Japan", "en": "Japan"},
+  {"ru": "Kazakhstan", "en": "Kazakhstan"},
+  {"ru": "Kiribati", "en": "Kiribati"},
+  {"ru": "Kyrgyzstan", "en": "Kyrgyzstan"},
+  {"ru": "Lao People's Democratic Republic", "en": "Lao People's Democratic Republic"},
+  {"ru": "Malaysia", "en": "Malaysia"},
+  {"ru": "Maldives", "en": "Maldives"},
+  {"ru": "Marshall Islands (the)", "en": "Marshall Islands (the)"},
+  {"ru": "Micronesia (Federated States of)", "en": "Micronesia (Federated States of)"},
+  {"ru": "Mongolia", "en": "Mongolia"},
+  {"ru": "Myanmar", "en": "Myanmar"},
+  {"ru": "Nauru", "en": "Nauru"},
+  {"ru": "Nepal", "en": "Nepal"},
+  {"ru": "Netherlands (Kingdom of the)", "en": "Netherlands (Kingdom of the)"},
+  {"ru": "New Zealand", "en": "New Zealand"},
+  {"ru": "Pakistan", "en": "Pakistan"},
+  {"ru": "Palau", "en": "Palau"},
+  {"ru": "Papua New Guinea", "en": "Papua New Guinea"},
+  {"ru": "Philippines (the)", "en": "Philippines (the)"},
+  {"ru": "Republic of Korea (the)", "en": "Republic of Korea (the)"},
+  {"ru": "Russian Federation (the)", "en": "Russian Federation (the)"},
+  {"ru": "Samoa", "en": "Samoa"},
+  {"ru": "Singapore", "en": "Singapore"},
+  {"ru": "Solomon Islands", "en": "Solomon Islands"},
+  {"ru": "Sri Lanka", "en": "Sri Lanka"},
+  {"ru": "Tajikistan", "en": "Tajikistan"},
+  {"ru": "Thailand", "en": "Thailand"},
+  {"ru": "Timor-Leste", "en": "Timor-Leste"},
+  {"ru": "Tonga", "en": "Tonga"},
+  {"ru": "Türkiye", "en": "Türkiye"},
+  {"ru": "Turkmenistan", "en": "Turkmenistan"},
+  {"ru": "Tuvalu", "en": "Tuvalu"},
+  {"ru": "United Kingdom of Great Britain and Northern Ireland (the)", "en": "United Kingdom of Great Britain and Northern Ireland (the)"},
+  {"ru": "United States of America (the)", "en": "United States of America (the)"},
+  {"ru": "Uzbekistan", "en": "Uzbekistan"},
+  {"ru": "Vanuatu", "en": "Vanuatu"},
+  {"ru": "Viet Nam", "en": "Viet Nam"},
+  {"ru": "American Samoa", "en": "American Samoa"},
+  {"ru": "Cook Islands (the)", "en": "Cook Islands (the)"},
+  {"ru": "French Polynesia", "en": "French Polynesia"},
+  {"ru": "Guam", "en": "Guam"},
+  {"ru": "Hong Kong, China", "en": "Hong Kong, China"},
+  {"ru": "Macao, China", "en": "Macao, China"},
+  {"ru": "New Caledonia", "en": "New Caledonia"},
+  {"ru": "Niue", "en": "Niue"},
+  {"ru": "Northern Mariana Islands (the)", "en": "Northern Mariana Islands (the)"}
 ]

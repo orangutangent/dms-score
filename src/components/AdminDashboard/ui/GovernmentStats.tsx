@@ -99,13 +99,11 @@ const GovernmentStats: React.FC<Props> = ({ countryData }) => {
         <p className="text-xl font-semibold text-gray-700 mb-4">
           Стадия: {getMaturityStage(levelAverage)}
         </p>
-        <div className="size-[25rem]">
-          <ScoreCircle
+        <ScoreCircle
             title={t("averageScore")}
             scores={levelScores}
             criteria={levelCriteria}
           />
-        </div>
         <p className="text-sm text-gray-500 mt-2 text-center">
           {t("averageScoreByLevels")}
         </p>

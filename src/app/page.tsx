@@ -8,14 +8,14 @@ export default function Home() {
   return (
     <main className="flex-1 flex flex-col">
       <div className="flex-grow flex items-center justify-center p-8 min-h-screen">
-        <div className="w-full max-w-5xl text-center">
+        <div className="w-full max-w-6xl ">
           <h1 className="text-2xl font-bold  mb-4">{t("mainTitle")}</h1>
           <p className="mt-4 text-gray-600">{t("description1")}</p>
           <p className="mt-4 text-gray-600">{t("description2")}</p>
           <p className="mt-4 text-gray-600">{t("description3")}</p>
           <p className="mt-4 text-gray-600">{t("description4")}</p>
           <p className="mt-4 text-gray-600">{t("invitationText")}</p>
-          <div className="mt-6 flex flex-col lg:flex-row gap-6 justify-center">
+          <div className="mt-6 flex flex-col lg:flex-row gap-6 ">
             <Link href="/govermentssurvey">
               <Button>{t("startGovButton")}</Button>
             </Link>
@@ -26,7 +26,7 @@ export default function Home() {
         </div>
       </div>
       <div className="p-4">
-        <div className="w-full max-w-5xl mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
           <p className="mt-6 text-gray-600">
             {t("projectInfo_preLink")}
             <Link

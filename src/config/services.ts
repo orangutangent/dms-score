@@ -7,7 +7,7 @@ export const SERVICES: {
 }[] = [
   {
     code: "OPEN_BUSINESS",
-    label: { ru: "Открытие бизнеса", en: "Business opening" },
+    label: { ru: "Открытие бизнеса", en: "Business start-up" },
     color: "#2563eb",
   },
   {

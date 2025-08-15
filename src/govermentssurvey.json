@@ -188,7 +188,7 @@
     "criterion": "GOVERNMENT_LEVEL",
     "inputType": "service-template",
     "question": {
-      "ru": "Имеется ли система самосовершенствования процедуры ЦГУ для МСП",
+      "ru": "Имеется ли система самосовершенствования процедуры предоставления данной ЦГУ для МСП",
       "en": "Is there a system for the continuous improvement of DPS for SMEs?"
     },
     "options": [
@@ -416,7 +416,7 @@
     "inputType": "service-template",
     "question": {
       "ru": "Как проводится учет международной практики и возможность трансграничного обмена данными по результату предоставления услуги",
-      "en": "How are international practices taken into account, and is there a possibility for cross-border data exchange upon service delivery outcome?"
+      "en": "Is there a possibility for cross-border data exchange upon service delivery outcome? Are the best international practices taken into account when organizing such data exchanges?"
     },
     "options": [
       {

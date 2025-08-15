@@ -30,15 +30,16 @@ export default function Home() {
           </Link>
         </p>
         <div className="mt-6 space-y-2 text-gray-500">
+          <p>{t("invitationText")}</p>
           <p>{t("timeToComplete")}</p>
           <p>{t("questionCount")}</p>
         </div>
         <div className="mt-12 flex flex-col lg:flex-row gap-6">
-          <Link href="/digitalmaturity">
-            <Button>{t("startMspButton")}</Button>
-          </Link>
           <Link href="/govermentssurvey">
             <Button>{t("startGovButton")}</Button>
+          </Link>
+          <Link href="/digitalmaturity">
+            <Button>{t("startMspButton")}</Button>
           </Link>
         </div>
       </div>

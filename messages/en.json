@@ -19,8 +19,9 @@
     "roundtableLinkText": "the Regional Roundtable on Digital Public Services for Small and Medium-sized Enterprises, which will be held on August 26-27, 2025, in St. Petersburg, Russian Federation.",
     "timeToComplete": "Time to complete: ~ 5 minutes",
     "questionCount": "~21 questions",
-    "startMspButton": "Start testing for SMEs",
-    "startGovButton": "Start testing for civil servants"
+    "invitationText": "If you are a civil servant or SME, please click the respective button below.",
+    "startMspButton": "Survey 2: Self-Assessment by SMEs",
+    "startGovButton": "Survey 1: Self-Assessment by Civil Servants"
   },
   "QuestionComponent": {
     "questionLabel": "Question {questionNumber} of {totalQuestions}",
@@ -76,15 +77,15 @@
   },
   "HardcodedQuestions": {
     "location": "In which country, city, region do you provide DGS for SMEs?",
-    "locationGov": "In which country, city, region do you provide DGS for SMEs?",
+    "locationGov": "In which country, city, region do you provide Digital Public Services for SMEs?",
     "sectorBusiness": "In which sector of the economy do you provide your services?",
     "locationBusiness": "In which country, city, and region is your SME registered?",
     "sector": "Which department or public sector do you represent?",
     "departmentGov": "Which ministry or public sector do you represent?",
     "departmentGovPlaceholder": "Enter the name of your ministry/public sector",
     "sectorOptions": {
-      "healthcare": "healthcare",
-      "education": "education",
+      "healthcare": "Healthcare",
+      "education": "Education",
       "other": "Other (please define your version)"
     },
     "finalThoughts": "Form for proposals and comments on the development of public services for SMEs:",

@@ -673,8 +673,8 @@
     "inputType": "radio",
     "service": "APPLY_SUPPORT",
     "question": {
-      "ru": "Пользуетесь ли вы ЦГУ при получении кредитно-грантовой поддержки?",
-      "en": "Do you use DPS when obtaining credit or grant support?"
+      "ru": "Пользуетесь ли вы ЦГУ (Цифровыми государственными услугами) при получении кредитно-грантовой поддержки?",
+      "en": "Do you use DPS (Digital public services) when obtaining credit or grant support?"
     },
     "options": [
       {

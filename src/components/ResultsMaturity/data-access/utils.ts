@@ -1,8 +1,8 @@
 import { getStage } from "@/lib/stage";
 import { BusinessSurveyResponseDTO } from "@/api/types";
 
-export const getMaturityStage = (score0to10: number) => {
-  const stage = getStage(score0to10);
+export const getMaturityStage = (score0to10: number, locale: string) => {
+  const stage = getStage(score0to10, locale);
   return `${stage.letter} - ${stage.label}`;
 };
 

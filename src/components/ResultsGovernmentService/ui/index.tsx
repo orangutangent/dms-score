@@ -8,7 +8,7 @@ import { Question } from "../../../components/Question/model/types";
 import questionsData from "../../../govermentssurvey.json";
 import { expandServiceTemplates } from "@/lib/survey";
 import { useGovernmentSurveyStore } from "../../../store/government-survey.store";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { calculateScores, getMaturityStage } from "../data-access/utils";
 
 const questions: Question[] = expandServiceTemplates(
@@ -17,6 +17,7 @@ const questions: Question[] = expandServiceTemplates(
 
 const ResultsGovernmentService = () => {
   const t = useTranslations("ResultsPage");
+  const locale = useLocale();
   const { responses } = useGovernmentSurveyStore();
 
   const mainQuestions = questions.filter((q) =>
@@ -88,7 +89,7 @@ const ResultsGovernmentService = () => {
     }, {} as { [key: string]: { color: string; weight: number } });
   }, [specialQuestions, mainCriteria]);
 
-  const overallStage = getMaturityStage(mainAverageScore);
+  const overallStage = getMaturityStage(mainAverageScore, locale);
 
   return (
     <main className="h-full flex-1 flex justify-center items-center p-8">
@@ -112,7 +113,7 @@ const ResultsGovernmentService = () => {
               scores={mainScores}
               criteria={mainCriteria}
               averageScore={mainAverageScore}
-              getMaturityStage={getMaturityStage}
+              getMaturityStage={(score) => getMaturityStage(score, locale)}
               scoreColumnTitle={t("averageScore")}
             />
           </div>
@@ -126,7 +127,7 @@ const ResultsGovernmentService = () => {
                 scores={specialScores}
                 criteria={specialCriteria}
                 averageScore={specialAverageScore}
-                getMaturityStage={getMaturityStage}
+                getMaturityStage={(score) => getMaturityStage(score, locale)}
                 scoreColumnTitle={t("averageScore")}
               />
             </div>

@@ -7,13 +7,14 @@ import { criteriaColors } from "../../../config/criteriaColors";
 import { Question } from "../../../components/Question/model/types";
 import questionsData from "../../../questions.json";
 import { useBusinessSurveyStore } from "../../../store/business-survey.store";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { calculateScores, getMaturityStage } from "../data-access/utils";
 
 const questions: Question[] = questionsData as unknown as Question[];
 
 const ResultsMaturity = () => {
   const t = useTranslations("ResultsPage");
+  const locale = useLocale();
   const { responses } = useBusinessSurveyStore();
 
   const criteria = useMemo(() => {
@@ -37,7 +38,7 @@ const ResultsMaturity = () => {
       : 0;
   }, [scores]);
 
-  const overallStage = getMaturityStage(averageScore);
+  const overallStage = getMaturityStage(averageScore, locale);
 
   return (
     <main className="h-full flex-1 flex justify-center items-center p-8">
@@ -61,7 +62,7 @@ const ResultsMaturity = () => {
               scores={scores}
               criteria={criteria}
               averageScore={averageScore}
-              getMaturityStage={getMaturityStage}
+              getMaturityStage={(score) => getMaturityStage(score, locale)}
               scoreColumnTitle={t("averageScore")}
             />
           </div>

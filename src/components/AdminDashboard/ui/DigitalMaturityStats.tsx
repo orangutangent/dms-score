@@ -18,7 +18,7 @@ const DigitalMaturityStats: React.FC<Props> = ({ countryData }) => {
   const locale = useLocale();
 
   const getMaturityStage = (score0to10: number) => {
-    const s = getStage(score0to10);
+    const s = getStage(score0to10, locale);
     return `${s.letter} - ${s.label}`;
   };
 
